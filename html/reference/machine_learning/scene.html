@@ -1493,62 +1493,6 @@
 <span id="scene"></span><h1>scene<a class="headerlink" href="#module-manim_extensions.machine_learning.scene" title="Link to this heading">¶</a></h1>
 <p>Scene classes for Manim ML visualizations.</p>
 <p>This module provides custom scene classes for machine learning visualizations.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.scene.ManimML3DScene">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.scene.</span></span><span class="sig-name descname"><span class="pre">ManimML3DScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/machine_learning/scene.html#ManimML3DScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.scene.ManimML3DScene" title="Link to this definition">¶</a></dt>
-<dd><p>This is a wrapper class for the Manim ThreeDScene.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>the primary purpose of this is to make it so
-that everything inside of a layer</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDScene</span></code></a>.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDScene</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="manimml3dpreview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ManimML3DPreview <a class="headerlink" href="#manimml3dpreview">¶</a></p><img alt="../../_images/ManimML3DPreview-a345c5f6.png" class="align-center" src="../../_images/ManimML3DPreview-a345c5f6.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.architectures.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardNeuralNetwork</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimML3DScene</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ManimML3DPreview</span><span class="p">(</span><span class="n">ManimML3DScene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">network</span> <span class="o">=</span> <span class="n">FeedForwardNeuralNetwork</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-        <span class="n">network</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.scene.ManimML3DScene.play">
-<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/machine_learning/scene.html#ManimML3DScene.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.scene.ManimML3DScene.play" title="Link to this definition">¶</a></dt>
-<dd><p>Override <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a> for ML scenes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a>.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDScene</span></code></a> subclass tuned for
 machine-learning visualizations.</p>
 <section id="classes">
@@ -1623,10 +1567,6 @@ machine-learning visualizations.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">scene</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.scene.ManimML3DScene"><code class="docutils literal notranslate"><span class="pre">ManimML3DScene</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.scene.ManimML3DScene.play"><code class="docutils literal notranslate"><span class="pre">ManimML3DScene.play()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

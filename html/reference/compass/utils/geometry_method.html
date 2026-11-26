@@ -1493,41 +1493,6 @@
 <span id="geometry-method"></span><h1>geometry_method<a class="headerlink" href="#module-manim_extensions.compass.utils.geometry_method" title="Link to this heading">¶</a></h1>
 <p>Geometry methods for compass.</p>
 <p>This module provides geometry utility functions for compass operations.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.compass.utils.geometry_method.ArcFromCenter">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.utils.geometry_method.</span></span><span class="sig-name descname"><span class="pre">ArcFromCenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">niddle_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pen_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/utils/geometry_method.html#ArcFromCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.utils.geometry_method.ArcFromCenter" title="Link to this definition">¶</a></dt>
-<dd><p>Arc defined by a centre, a starting point and a central angle.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>niddle_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Centre of the arc.</p></li>
-<li><p><strong>pen_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the arc.</p></li>
-<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Central angle of the arc.</p></li>
-<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Colour of the arc.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Other keyword arguments forwarded to
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="getarc" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: GetArc <a class="headerlink" href="#getarc">¶</a></p><img alt="../../../_images/GetArc-57d72a72.png" class="align-center" src="../../../_images/GetArc-57d72a72.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArcFromCenter</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">GetArc</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">arc</span> <span class="o">=</span> <span class="n">ArcFromCenter</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span>
-            <span class="n">Dot</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">),</span>
-            <span class="n">arc</span><span class="p">,</span>
-        <span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1540,8 +1505,8 @@
 </table>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="id0">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.utils.geometry_method.</span></span><span class="sig-name descname"><span class="pre">ArcFromCenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">niddle_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pen_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/utils/geometry_method.html#ArcFromCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="manim_extensions.compass.utils.geometry_method.ArcFromCenter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.utils.geometry_method.</span></span><span class="sig-name descname"><span class="pre">ArcFromCenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">niddle_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pen_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/utils/geometry_method.html#ArcFromCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.utils.geometry_method.ArcFromCenter" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a></p>
 <p>Arc defined by a centre, a starting point and a central angle.</p>
 <dl class="field-list simple">
@@ -1556,32 +1521,6 @@
 </ul>
 </dd>
 </dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">_bezier_t_values</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">npt.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">np.float64</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">tip_length</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">tip_style</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a></span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">arc_center</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><span class="pre">Point3D</span></a></span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">_failed_to_get_center</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Examples</p>
 <div id="getarc" class="admonition admonition-manim-example">
 
@@ -1732,16 +1671,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">geometry_method</a><ul>
-<li><a class="reference internal" href="#manim_extensions.compass.utils.geometry_method.ArcFromCenter"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter</span></code></a>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter</span></code></a><ul>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter._bezier_t_values</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter.tip_length</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter.tip_style</span></code></a></li>
-<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter.arc_center</span></code></a></li>
-<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter._failed_to_get_center</span></code></a></li>
-</ul>
+<li><a class="reference internal" href="#manim_extensions.compass.utils.geometry_method.ArcFromCenter"><code class="docutils literal notranslate"><span class="pre">ArcFromCenter</span></code></a>
 </li>
 </ul>
 </li>

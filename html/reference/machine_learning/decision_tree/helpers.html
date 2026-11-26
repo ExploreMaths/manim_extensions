@@ -1492,47 +1492,20 @@
           <section id="module-manim_extensions.machine_learning.decision_tree.helpers">
 <span id="helpers"></span><h1>helpers<a class="headerlink" href="#module-manim_extensions.machine_learning.decision_tree.helpers" title="Link to this heading">¶</a></h1>
 <p>Helper functions for decision tree visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">SklearnTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#SklearnTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="Link to this definition">¶</a></dt>
-<dd><p>Structural type for <code class="docutils literal notranslate"><span class="pre">sklearn.tree.DecisionTreeClassifier.tree_</span></code>.</p>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree._is_protocol">
-<span class="sig-name descname"><span class="pre">_is_protocol</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree._is_protocol" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="sklearntreeoverview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SklearnTreeOverview <a class="headerlink" href="#sklearntreeoverview">¶</a></p><img alt="../../../_images/SklearnTreeOverview-a28a8b7f.png" class="align-center" src="../../../_images/SklearnTreeOverview-a28a8b7f.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SklearnTree</span>
-
-<span class="n">SklearnTreeTarget</span> <span class="o">=</span> <span class="n">SklearnTree</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SklearnTreeOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">SklearnTreeTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
-        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'SklearnTree'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning.decision_tree.helpers'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'Structural type for sklearn.tree.DecisionTreeClassifier.tree_'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
-            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
-</pre></div>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></p></td>
+<td><p>Structural type for <code class="docutils literal notranslate"><span class="pre">sklearn.tree.DecisionTreeClassifier.tree_</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">node_count</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">SklearnTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">tree</span><span class="o">.</span><span class="n">node_count</span>
-</pre></div>
-</div>
-</dd></dl>
-
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.helpers.compute_node_depths">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_node_depths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_node_depths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_node_depths" title="Link to this definition">¶</a></dt>
@@ -1628,115 +1601,6 @@ maps to <code class="docutils literal notranslate"><span class="pre">-1</span></
 </dl>
 </dd></dl>
 
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></p></td>
-<td><p>Structural type for <code class="docutils literal notranslate"><span class="pre">sklearn.tree.DecisionTreeClassifier.tree_</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_node_depths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_node_depths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Computes the depths of nodes for level order traversal.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></span>) – The sklearn decision tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The depth of each node, indexed by node index. Leaf nodes that are
-never reached get a depth of <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_level_order_traversal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_level_order_traversal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd><p>Computes level order traversal of a sklearn tree.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></span>) – The sklearn decision tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Node indices sorted by ascending depth, i.e. in level order.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_bfs_traversal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_bfs_traversal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd><p>Traverses the tree in BFS order and returns the nodes in order.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></span>) – The sklearn decision tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Node indices in breadth-first order, starting from the root.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_best_first_traversal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_best_first_traversal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
-<dd><p>Traverses the tree according to the best split first order.</p>
-<p>Nodes with the highest impurity are expanded first, so the most
-informative splits are shown before the less informative ones. Nodes
-with equal impurity are visited in ascending node index order.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></span>) – The sklearn decision tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Node indices in best-first order, starting from the root.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.helpers.</span></span><span class="sig-name descname"><span class="pre">compute_node_to_parent_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/helpers.html#compute_node_to_parent_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a hashmap mapping node indices to their parent indices.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a></span>) – The sklearn decision tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Mapping from each node index to its parent node index. The root (0)
-maps to <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -1798,26 +1662,13 @@ maps to <code class="docutils literal notranslate"><span class="pre">-1</span></
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">helpers</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="docutils literal notranslate"><span class="pre">SklearnTree</span></code></a><ul>
-
-
-
-
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree._is_protocol"><code class="docutils literal notranslate"><span class="pre">SklearnTree._is_protocol</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_node_depths"><code class="docutils literal notranslate"><span class="pre">compute_node_depths()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_level_order_traversal"><code class="docutils literal notranslate"><span class="pre">compute_level_order_traversal()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_bfs_traversal"><code class="docutils literal notranslate"><span class="pre">compute_bfs_traversal()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_best_first_traversal"><code class="docutils literal notranslate"><span class="pre">compute_best_first_traversal()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.helpers.compute_node_to_parent_mapping"><code class="docutils literal notranslate"><span class="pre">compute_node_to_parent_mapping()</span></code></a></li>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">compute_node_depths()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">compute_level_order_traversal()</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">compute_bfs_traversal()</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">compute_best_first_traversal()</span></code></a></li>
-<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">compute_node_to_parent_mapping()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -1527,7 +1527,7 @@
 
 
 <div class="viewcode-block" id="Theme">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.Theme.html#manim_extensions.code_blocks.Theme">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.Theme.html#manim_extensions.code_blocks.manim_code_blocks.Theme">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Theme</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""A theme used to syntax highlight a :class:`~manim_extensions.code_blocks.manim_code_blocks.CodeBlock`.</span>
 
@@ -1586,7 +1586,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">group_matchers</span> <span class="o">=</span> <span class="n">group_matchers</span>
 
 <div class="viewcode-block" id="Theme.color_for">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.Theme.html#manim_extensions.code_blocks.Theme.color_for">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.Theme.html#manim_extensions.code_blocks.manim_code_blocks.Theme.color_for">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">color_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the theme colour assigned to a token.</span>
 
@@ -1607,6 +1607,7 @@
 
 
 
+<span class="c1">#: The 'One Dark' theme from the `Atom` text editor.</span>
 <span class="n">OneDark</span> <span class="o">=</span> <span class="n">Theme</span><span class="p">(</span>
     <span class="n">colors</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">"#C678DD"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"keyword"</span><span class="p">,</span> <span class="s2">"directive"</span><span class="p">],</span>  <span class="c1"># Purple</span>
@@ -1620,9 +1621,13 @@
     <span class="p">},</span>
     <span class="n">group_matchers</span><span class="o">=</span><span class="p">[</span><span class="s2">"#D19A66"</span><span class="p">,</span> <span class="s2">"#C678DD"</span><span class="p">,</span> <span class="s2">"#56B6C2"</span><span class="p">],</span>  <span class="c1"># Orange  # Purple  # Cyan</span>
 <span class="p">)</span>
-<span class="sd">"""The 'One Dark' theme from the `Atom` text editor."""</span>
 
 
+<span class="c1">#: GitHub language colours bundled for the languages exposed by this module.</span>
+<span class="c1">#:</span>
+<span class="c1">#: The upstream module downloaded this table from ``ozh/github-colors`` on</span>
+<span class="c1">#: import.  Only the fourteen languages constructed below are included here, so the</span>
+<span class="c1">#: module works offline and does not need to parse a network response.</span>
 <span class="n">language_colors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"C"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"#555555"</span><span class="p">},</span>
     <span class="s2">"C++"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"#f34b7d"</span><span class="p">},</span>
@@ -1639,16 +1644,10 @@
     <span class="s2">"SQL"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"#e38c00"</span><span class="p">},</span>
     <span class="s2">"TypeScript"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"#3178c6"</span><span class="p">},</span>
 <span class="p">}</span>
-<span class="sd">"""GitHub language colours bundled for the languages exposed by this module.</span>
-
-<span class="sd">The upstream module downloaded this table from ``ozh/github-colors`` on</span>
-<span class="sd">import.  Only the fourteen languages constructed below are included here, so the</span>
-<span class="sd">module works offline and does not need to parse a network response.</span>
-<span class="sd">"""</span>
 
 
 <div class="viewcode-block" id="ProgrammingLanguage">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.ProgrammingLanguage">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ProgrammingLanguage</span><span class="p">(</span><span class="n">abstract</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A programming language used to render `CodeBlocks`.</span>
 
@@ -1726,7 +1725,7 @@
 
 
 <div class="viewcode-block" id="CodeBlock">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.CodeBlock">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CodeBlock</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.</span>
 
@@ -1877,7 +1876,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">code_background</span> <span class="o">=</span> <span class="n">background_rect</span>
 
 <div class="viewcode-block" id="CodeBlock.create">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.CodeBlock.create">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Return a tuple of animations for creating the code block. Use such as:\n</span>
 <span class="sd">        ```</span>
@@ -1911,7 +1910,7 @@
 
 
 <div class="viewcode-block" id="CodeBlock.uncreate">
-<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.CodeBlock.uncreate">[docs]</a>
+<a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uncreate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a tuple of animations for uncreating the code block. Use such as:</span>
 <span class="sd">        ```</span>
@@ -1946,47 +1945,47 @@
 
 
 
+<span class="c1">#: The C programming language, used to render C code in code blocks.</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"C"</span><span class="p">)</span>
-<span class="sd">"""The :func:`~manim_extensions.physics.optics.lenses.Lens.C` programming language, used to render :func:`~manim_extensions.physics.optics.lenses.Lens.C` code in `CodeBlocks`"""</span>
 
+<span class="c1">#: The `C++` programming language, used to render `C++` code in `CodeBlocks`.</span>
 <span class="n">Cpp</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"C++"</span><span class="p">,</span> <span class="n">tokenize_name</span><span class="o">=</span><span class="s2">"Cpp"</span><span class="p">)</span>
-<span class="sd">"""The `C++` programming language, used to render `C++` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `C#` programming language, used to render `C#` code in `CodeBlocks`.</span>
 <span class="n">CSharp</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"C#"</span><span class="p">,</span> <span class="n">tokenize_name</span><span class="o">=</span><span class="s2">"CSharp"</span><span class="p">)</span>
-<span class="sd">"""The `C#` programming language, used to render `C#` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Fortran` programming language, used to render Fortran code in `CodeBlocks`.</span>
 <span class="n">Fortran</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Fortran"</span><span class="p">)</span>
-<span class="sd">"""The `Fortran` programming language, used to render Fortran code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Go` programming language, used to render `Go` code in `CodeBlocks`.</span>
 <span class="n">Go</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Go"</span><span class="p">)</span>
-<span class="sd">"""The `Go` programming language, used to render `Go` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Haskell` programming language, used to render `Haskell` code in `CodeBlocks`.</span>
 <span class="n">Haskell</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Haskell"</span><span class="p">)</span>
-<span class="sd">"""The `Haskell` programming language, used to render `Haskell` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Java` programming language, used to render `Java` code in `CodeBlocks`.</span>
 <span class="n">Java</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Java"</span><span class="p">)</span>
-<span class="sd">"""The `Java` programming language, used to render `Java` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `JavaScript` programming language, used to render `JavaScript` code in `CodeBlocks`.</span>
 <span class="n">JavaScript</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"JavaScript"</span><span class="p">)</span>
-<span class="sd">"""The `JavaScript` programming language, used to render `JavaScript` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Lua` programming language, used to render `Lua` code in `CodeBlocks`.</span>
 <span class="n">Lua</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Lua"</span><span class="p">)</span>
-<span class="sd">"""The `Lua` programming language, used to render `Lua` code in `CodeBlocks`. """</span>
 
+<span class="c1">#: The `Python` programming language, used to render `Python` code in `CodeBlocks`.</span>
 <span class="n">Python</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Python"</span><span class="p">)</span>
-<span class="sd">"""The `Python` programming language, used to render `Python` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Ruby` programming language, used to render `Ruby` code in `CodeBlocks`.</span>
 <span class="n">Ruby</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Ruby"</span><span class="p">)</span>
-<span class="sd">"""The `Ruby` programming language, used to render `Ruby` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `Rust` programming language, used to render `Rust` code in `CodeBlocks`.</span>
 <span class="n">Rust</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"Rust"</span><span class="p">)</span>
-<span class="sd">"""The `Rust` programming language, used to render `Rust` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `SQL` programming language, used to render `SQL` code in `CodeBlocks`.</span>
 <span class="n">SQL</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"SQL"</span><span class="p">)</span>
-<span class="sd">"""The `SQL` programming language, used to render `SQL` code in `CodeBlocks`."""</span>
 
+<span class="c1">#: The `TypeScript` programming language, used to render `TypeScript` code in `CodeBlocks`.</span>
 <span class="n">TypeScript</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span><span class="p">(</span><span class="s2">"TypeScript"</span><span class="p">)</span>
-<span class="sd">"""The `TypeScript` programming language, used to render `TypeScript` code in `CodeBlocks`"""</span>
 </pre></div>
         </article>
       </div>

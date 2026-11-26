@@ -1524,7 +1524,7 @@
 
 
 <div class="viewcode-block" id="ManimPushDownAutomaton">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ManimPushDownAutomaton</span><span class="p">(</span><span class="n">ManimNondeterministicFiniteAutomaton</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Pushdown automaton that also tracks a stack during simulation.</span>
 
@@ -1602,7 +1602,7 @@
 
     <span class="c1"># override ManimAutomaton method</span>
 <div class="viewcode-block" id="ManimPushDownAutomaton.construct_transitions">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.construct_transitions">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transitions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Build pushdown-automaton transitions from XML or JSON definitions.</span>
 
@@ -1651,7 +1651,7 @@
 
 
 <div class="viewcode-block" id="ManimPushDownAutomaton.construct_transition">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.construct_transition">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transition">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_transition</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">transition_from</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">,</span>
@@ -1688,7 +1688,7 @@
 
 
 <div class="viewcode-block" id="ManimPushDownAutomaton.push">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.push">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.push">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">push_item</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Push a token onto the automaton stack.</span>
 
@@ -1706,7 +1706,7 @@
 
 
 <div class="viewcode-block" id="ManimPushDownAutomaton.pop">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.pop">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.pop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove and return the top stack symbol.</span>
 
@@ -1722,7 +1722,7 @@
     <span class="c1"># pushdown automata can accept if the stack is empty or if it falls on a final state</span>
     <span class="c1"># overridden</span>
 <div class="viewcode-block" id="ManimPushDownAutomaton.play_string">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.play_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.play_string">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">play_string</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">ManimAutomataInput</span><span class="p">,</span>
@@ -1779,7 +1779,7 @@
 
     <span class="c1"># overridden</span>
 <div class="viewcode-block" id="ManimPushDownAutomaton.automaton_step">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.ManimPushDownAutomaton.automaton_step">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.automaton_step">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">automaton_step</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">state_pointer</span><span class="p">:</span> <span class="n">State</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">State</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">ManimTransition</span><span class="p">]]:</span>
@@ -1852,7 +1852,7 @@
 
 
 <div class="viewcode-block" id="PushDownAutomatonRule">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.PushDownAutomatonRule.html#manim_extensions.automata.PushDownAutomatonRule">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.PushDownAutomatonRule.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PushDownAutomatonRule</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A single pushdown-automaton transition rule.</span>
 
@@ -1912,7 +1912,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">push</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">push_item</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PushDownAutomatonRule.__str__">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.PushDownAutomatonRule.html#manim_extensions.automata.PushDownAutomatonRule.__str__">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.PushDownAutomatonRule.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule.__str__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the transition in read, pop, and push notation.</span>
 

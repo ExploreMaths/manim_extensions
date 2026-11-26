@@ -1500,7 +1500,7 @@
 
 
 <div class="viewcode-block" id="RadarData">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarData</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""One radar snapshot: the axis names plus the value on each axis.</span>
@@ -1564,7 +1564,7 @@
     <span class="n">meta</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RadarData.__post_init__">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.__post_init__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.__post_init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Validate the snapshot and freeze its sequences.</span>
 
@@ -1636,7 +1636,7 @@
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">))))</span>
 
 <div class="viewcode-block" id="RadarData.scale_for">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.scale_for">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.scale_for">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">levels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Snap the full scale so grid labels are round numbers.</span>
 
@@ -1662,7 +1662,7 @@
 
 
 <div class="viewcode-block" id="RadarData.ratios">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.ratios">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.ratios">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">ratios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Express values as fractions of the full scale.</span>
 
@@ -1681,7 +1681,7 @@
 
 
 <div class="viewcode-block" id="RadarData.radius_values">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.radius_values">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.radius_values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">radius_values</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
@@ -1703,7 +1703,7 @@
 
 
 <div class="viewcode-block" id="RadarData.color_or">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.color_or">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.color_or">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">color_or</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fallback</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ManimColor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resolve the polygon colour for this snapshot.</span>
 
@@ -1721,7 +1721,7 @@
 
 
 <div class="viewcode-block" id="RadarData.with_values">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.with_values">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.with_values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">with_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="o">**</span><span class="n">changes</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarData"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Copy this snapshot with new values and optional other changes.</span>
 
@@ -1741,7 +1741,7 @@
 
 
 <div class="viewcode-block" id="RadarData.renamed">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.renamed">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.renamed">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">renamed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"RadarData"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Copy this snapshot with another dataset name.</span>
 
@@ -1759,7 +1759,7 @@
 
 
 <div class="viewcode-block" id="RadarData.__repr__">
-<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.data.RadarData.__repr__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/data.RadarData.html#manim_extensions.radar.data.RadarData.__repr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># pragma: no cover - cosmetic</span>
 <span class="w">        </span><span class="sd">"""Return a compact debug representation.</span>
 

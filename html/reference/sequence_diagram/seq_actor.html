@@ -1493,107 +1493,6 @@
 <span id="seq-actor"></span><h1>seq_actor<a class="headerlink" href="#module-manim_extensions.sequence_diagram.seq_actor" title="Link to this heading">¶</a></h1>
 <p>Sequence diagram actor for Manim.</p>
 <p>This module provides actor class for sequence diagrams.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.sequence_diagram.seq_actor.</span></span><span class="sig-name descname"><span class="pre">SeqActor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/sequence_diagram/seq_actor.html#SeqActor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor" title="Link to this definition">¶</a></dt>
-<dd><p>Single actor in a sequence diagram with a time line.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Actor name displayed in the diagram.</p></li>
-<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Size of the label text.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor.all_actors">
-<span class="sig-name descname"><span class="pre">all_actors</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor" title="manim_extensions.sequence_diagram.seq_actor.SeqActor"><span class="pre">SeqActor</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></span><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.all_actors" title="Link to this definition">¶</a></dt>
-<dd><p>Registry of actors created during the current scene build.</p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="seqactorscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SeqActorScene <a class="headerlink" href="#seqactorscene">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./SeqActorScene-94c2e945.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqActor</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SeqActorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">alice</span> <span class="o">=</span> <span class="n">SeqActor</span><span class="p">(</span><span class="s2">"Alice"</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">bob</span> <span class="o">=</span> <span class="n">SeqActor</span><span class="p">(</span><span class="s2">"Bob"</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">alice</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">bob</span><span class="p">))</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">alice_time</span> <span class="o">=</span> <span class="n">alice</span><span class="o">.</span><span class="n">time_elapse</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">bob_time</span> <span class="o">=</span> <span class="n">bob</span><span class="o">.</span><span class="n">time_elapse</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">alice_time</span><span class="p">,</span> <span class="n">bob_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor.get_deepest_actor">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_deepest_actor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/sequence_diagram/seq_actor.html#SeqActor.get_deepest_actor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_deepest_actor" title="Link to this definition">¶</a></dt>
-<dd><p>Return the actor with the greatest time depth, or <code class="docutils literal notranslate"><span class="pre">None</span></code> when no actor exists.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor" title="manim_extensions.sequence_diagram.seq_actor.SeqActor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SeqActor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The actor with the greatest time depth, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no
-actors have been created.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor.latest_timedot">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">latest_timedot</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Dot.html#manim.mobject.geometry.arc.Dot" title="(in Manim)"><span class="pre">Dot</span></a></span><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.latest_timedot" title="Link to this definition">¶</a></dt>
-<dd><p>Return the newest timeline marker attached to this actor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The most recently added time dot of this actor’s timeline.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor.get_time_depth">
-<span class="sig-name descname"><span class="pre">get_time_depth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/sequence_diagram/seq_actor.html#SeqActor.get_time_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_time_depth" title="Link to this definition">¶</a></dt>
-<dd><p>Return the actor’s current vertical timeline depth.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The current timeline depth, in time ticks.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.sequence_diagram.seq_actor.SeqActor.time_elapse">
-<span class="sig-name descname"><span class="pre">time_elapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticks_to_elapse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/sequence_diagram/seq_actor.html#SeqActor.time_elapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.time_elapse" title="Link to this definition">¶</a></dt>
-<dd><p>Advance the timeline by a given number of ticks.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ticks_to_elapse</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of time ticks to add to the current actor timeline.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">(timeline,</span> <span class="pre">animation)</span></code> pair describing the elapsed time motion.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1666,14 +1565,6 @@ actors have been created.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">seq_actor</a><ul>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor"><code class="docutils literal notranslate"><span class="pre">SeqActor</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.all_actors"><code class="docutils literal notranslate"><span class="pre">SeqActor.all_actors</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_deepest_actor"><code class="docutils literal notranslate"><span class="pre">SeqActor.get_deepest_actor()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.latest_timedot"><code class="docutils literal notranslate"><span class="pre">SeqActor.latest_timedot</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_time_depth"><code class="docutils literal notranslate"><span class="pre">SeqActor.get_time_depth()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.sequence_diagram.seq_actor.SeqActor.time_elapse"><code class="docutils literal notranslate"><span class="pre">SeqActor.time_elapse()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

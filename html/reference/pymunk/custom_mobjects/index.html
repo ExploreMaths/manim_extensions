@@ -1493,153 +1493,6 @@
 <span id="custom-mobjects"></span><h1>custom_mobjects<a class="headerlink" href="#module-manim_extensions.pymunk.custom_mobjects" title="Link to this heading">¶</a></h1>
 <p>Custom Pymunk mobjects.</p>
 <p>This module provides custom Manim mobjects for Pymunk physics simulations.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.VSpring">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.custom_mobjects.</span></span><span class="sig-name descname"><span class="pre">VSpring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">turns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/v_spring.html#VSpring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.VSpring" title="Link to this definition">¶</a></dt>
-<dd><p>A spring-shaped Mobject rendered as a helix between two points.</p>
-<p>This is the default <code class="docutils literal notranslate"><span class="pre">connect_line_class</span></code> of
-<a class="reference internal" href="../constraints/VDampedSpring.VDampedSpring.html#manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring" title="manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDampedSpring</span></code></a>,
-whose updater continuously re-stretches the helix between its anchors.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The start point of the spring.</p></li>
-<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The end point of the spring.</p></li>
-<li><p><strong>turns</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The number of helical turns in the spring.</p></li>
-<li><p><strong>amplitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The amplitude (radius) of the helical oscillation.</p></li>
-<li><p><strong>end_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The length of the straight terminal segments at both ends of the
-spring.</p></li>
-<li><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The stroke width used to draw the spring.</p></li>
-<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – The color of the spring.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="vspringscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: VSpringScene <a class="headerlink" href="#vspringscene">¶</a></p><img alt="../../../_images/VSpringScene-56202c05.png" class="align-center" src="../../../_images/VSpringScene-56202c05.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">VSpringScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">springs</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">VSpring</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
-                    <span class="n">turns</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-            <span class="n">VSpring</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">),</span>
-            <span class="n">VSpring</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
-                    <span class="n">turns</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">springs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.VSpring.generate_points">
-<span class="sig-name descname"><span class="pre">generate_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/v_spring.html#VSpring.generate_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.VSpring.generate_points" title="Link to this definition">¶</a></dt>
-<dd><p>Override generate_points to produce a helix instead of a straight line.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="v_spring.VSpring.html#manim_extensions.pymunk.custom_mobjects.v_spring.VSpring" title="manim_extensions.pymunk.custom_mobjects.v_spring.VSpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VSpring</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.VSpring.put_start_and_end_on">
-<span class="sig-name descname"><span class="pre">put_start_and_end_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/v_spring.html#VSpring.put_start_and_end_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.VSpring.put_start_and_end_on" title="Link to this definition">¶</a></dt>
-<dd><p>Regenerate points when positions change (e.g. called by an Updater).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The starting point of the spring.</p></li>
-<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The ending point of the spring.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="v_spring.VSpring.html#manim_extensions.pymunk.custom_mobjects.v_spring.VSpring" title="manim_extensions.pymunk.custom_mobjects.v_spring.VSpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VSpring</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The object itself, for method chaining.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.Apple">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.custom_mobjects.</span></span><span class="sig-name descname"><span class="pre">Apple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/apple.html#Apple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.Apple" title="Link to this definition">¶</a></dt>
-<dd><p>An apple-shaped Mobject built from Bezier curves.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="applescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: AppleScene <a class="headerlink" href="#applescene">¶</a></p><img alt="../../../_images/AppleScene-bc370658.png" class="align-center" src="../../../_images/AppleScene-bc370658.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">AppleScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">apples</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Apple</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
-            <span class="n">Apple</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
-            <span class="n">Apple</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="n">apples</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">apples</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.Gear">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.custom_mobjects.</span></span><span class="sig-name descname"><span class="pre">Gear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_teeth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooth_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roundness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hole_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/gear.html#Gear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.Gear" title="Link to this definition">¶</a></dt>
-<dd><p>A gear-shaped Mobject with teeth and an optional center hole.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>num_teeth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The number of teeth distributed around the gear.</p></li>
-<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The radius of the base disc of the gear.</p></li>
-<li><p><strong>tooth_height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The height of each tooth, measured from the base disc outward.</p></li>
-<li><p><strong>width_factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The ratio of tooth width to the space available for a single tooth.
-(half tooth, half gap).</p></li>
-<li><p><strong>roundness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The corner rounding radius applied to each tooth. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> for
-sharp corners.</p></li>
-<li><p><strong>hole_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The radius of the hole cut out of the gear’s center. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> for
-a solid gear.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="pymunkgear" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: PymunkGear <a class="headerlink" href="#pymunkgear">¶</a></p><img alt="../../../_images/PymunkGear-49eb64a7.png" class="align-center" src="../../../_images/PymunkGear-49eb64a7.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">PymunkGear</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">gears</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tooth_height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">),</span>
-            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">hole_radius</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="n">gears</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gears</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Ready-made physical mobjects for demos: an apple, a gear, and a spring.</p>
@@ -1662,7 +1515,7 @@ a solid gear.</p></li>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">apple</span><span class="p">,</span> <span class="n">gear</span><span class="p">,</span> <span class="n">spring</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.Apple" title="manim_extensions.pymunk.custom_mobjects.Apple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Apple</span></code></a> <a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.Gear" title="manim_extensions.pymunk.custom_mobjects.Gear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gear</span></code></a> <a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.VSpring" title="manim_extensions.pymunk.custom_mobjects.VSpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VSpring</span></code></a></p>
+<p>References: <a class="reference internal" href="apple.Apple.html#manim_extensions.pymunk.custom_mobjects.apple.Apple" title="manim_extensions.pymunk.custom_mobjects.apple.Apple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Apple</span></code></a> <a class="reference internal" href="../../gearbox/gear_mobjects/gear_mobject.Gear.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear" title="manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gear</span></code></a> <a class="reference internal" href="v_spring.VSpring.html#manim_extensions.pymunk.custom_mobjects.v_spring.VSpring" title="manim_extensions.pymunk.custom_mobjects.v_spring.VSpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VSpring</span></code></a></p>
 </div></section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
@@ -1742,16 +1595,6 @@ a solid gear.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">custom_mobjects</a><ul>
-<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.VSpring"><code class="docutils literal notranslate"><span class="pre">VSpring</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.VSpring.generate_points"><code class="docutils literal notranslate"><span class="pre">VSpring.generate_points()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.VSpring.put_start_and_end_on"><code class="docutils literal notranslate"><span class="pre">VSpring.put_start_and_end_on()</span></code></a></li>
-
-
-
-</ul>
-</li>
-<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.Apple"><code class="docutils literal notranslate"><span class="pre">Apple</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.Gear"><code class="docutils literal notranslate"><span class="pre">Gear</span></code></a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>

@@ -1496,86 +1496,6 @@
 <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.moving_camera_scene.MovingCameraScene.html#manim.scene.moving_camera_scene.MovingCameraScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovingCameraScene</span></code></a> with helper
 methods to lay down a ruler, draw a line with the pencil, and return the
 ruler to its resting position.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.compass.scene.ruler_scene.SingleRulerScene">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.scene.ruler_scene.</span></span><span class="sig-name descname"><span class="pre">SingleRulerScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MovingCamera</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/scene/ruler_scene.html#SingleRulerScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene" title="Link to this definition">¶</a></dt>
-<dd><p>A scene that provides a ruler and a pencil for drawing lines.</p>
-<p class="rubric">Examples</p>
-<div id="singlerulersceneusage" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SingleRulerSceneUsage <a class="headerlink" href="#singlerulersceneusage">¶</a></p><img alt="../../../_images/SingleRulerSceneUsage-0493f570.png" class="align-center" src="../../../_images/SingleRulerSceneUsage-0493f570.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">SingleRulerScene</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SingleRulerSceneUsage</span><span class="p">(</span><span class="n">SingleRulerScene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">draw_line_with_pencil</span><span class="p">(</span><span class="n">LEFT</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">UR</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">put_ruler_back</span><span class="p">()</span>
-</pre></div>
-</div>
-</div><dl class="field-list simple">
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.compass.scene.ruler_scene.SingleRulerScene.setup">
-<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/scene/ruler_scene.html#SingleRulerScene.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.setup" title="Link to this definition">¶</a></dt>
-<dd><p>Place the ruler at the bottom edge and the pencil at the right edge.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.compass.scene.ruler_scene.SingleRulerScene.draw_line_with_pencil">
-<span class="sig-name descname"><span class="pre">draw_line_with_pencil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">added_anims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/scene/ruler_scene.html#SingleRulerScene.draw_line_with_pencil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.draw_line_with_pencil" title="Link to this definition">¶</a></dt>
-<dd><p>Draw a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a> from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">end</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The start point of the line.</p></li>
-<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The end point of the line.</p></li>
-<li><p><strong>added_anims</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Extra animations to play alongside the drawing, if any.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments: <code class="docutils literal notranslate"><span class="pre">run_time</span></code> (total run time for
-the two plays), <code class="docutils literal notranslate"><span class="pre">color</span></code> (the stroke color of the line) and
-<code class="docutils literal notranslate"><span class="pre">stroke_width</span></code> (the stroke width of the line).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The line that was drawn.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.compass.scene.ruler_scene.SingleRulerScene.put_ruler_back">
-<span class="sig-name descname"><span class="pre">put_ruler_back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">added_anims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/scene/ruler_scene.html#SingleRulerScene.put_ruler_back"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.put_ruler_back" title="Link to this definition">¶</a></dt>
-<dd><p>Restore the ruler to its saved state and move the pencil back.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>added_anims</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Extra animations to play alongside the restoration, if any.</p></li>
-<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Run time for the play.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to the play.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1630,12 +1550,6 @@ the two plays), <code class="docutils literal notranslate"><span class="pre">col
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">ruler_scene</a><ul>
-<li><a class="reference internal" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene"><code class="docutils literal notranslate"><span class="pre">SingleRulerScene</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.setup"><code class="docutils literal notranslate"><span class="pre">SingleRulerScene.setup()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.draw_line_with_pencil"><code class="docutils literal notranslate"><span class="pre">SingleRulerScene.draw_line_with_pencil()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.put_ruler_back"><code class="docutils literal notranslate"><span class="pre">SingleRulerScene.put_ruler_back()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

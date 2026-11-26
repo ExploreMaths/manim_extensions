@@ -1592,16 +1592,13 @@
 <span class="s2">"""</span>
 
 
-<div class="viewcode-block" id="_ensure_to_svg_plugin">
-<a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.html#manim_extensions.svg_animations.html_parsed_vmobject._ensure_to_svg_plugin">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_to_svg_plugin</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Import the vendored manim-mobject-svg code, which registers VMobject.to_svg().</span>
 
 <span class="sd">    The import is done lazily so that :mod:`~manim_extensions.svg_animations`</span>
 <span class="sd">    stays cheap to import when :class:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject` is unused.</span>
 <span class="sd">    """</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">mobject_svg</span>  <span class="c1"># noqa: F401  (side effect: registers to_svg)</span></div>
-
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">mobject_svg</span>  <span class="c1"># noqa: F401  (side effect: registers to_svg)</span>
 
 
 <div class="viewcode-block" id="HTMLParsedVMobject">

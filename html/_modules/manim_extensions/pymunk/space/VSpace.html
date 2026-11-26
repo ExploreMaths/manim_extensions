@@ -1506,7 +1506,7 @@
 
 
 <div class="viewcode-block" id="VSpace">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">VSpace</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ConvertToOpenGL</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Pymunk physical space management is generally not used by users.</span>
 <span class="sd">    This object has already been created in :class:`~manim_extensions.pymunk.space.SpaceScene.SpaceScene`.</span>
@@ -1593,7 +1593,7 @@
 
     <span class="c1"># ================================== init ==================================</span>
 <div class="viewcode-block" id="VSpace.init_updater">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.init_updater">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.init_updater">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">init_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register the per-frame step updater that advances the physics</span>
 <span class="sd">        simulation and synchronizes Mobject positions with their bodies.</span>
@@ -1641,7 +1641,7 @@
 
     <span class="c1"># =============================== space  ==================================</span>
 <div class="viewcode-block" id="VSpace.remove_body_shapes_constraints">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.remove_body_shapes_constraints">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.remove_body_shapes_constraints">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_body_shapes_constraints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span> <span class="o">|</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span> <span class="o">|</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">Constraint</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1661,7 +1661,7 @@
 
 
 <div class="viewcode-block" id="VSpace._add_body2space">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace._add_body2space">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._add_body2space">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_body2space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Registers the physical body and shapes of a :class:`~manim.mobject.mobject.Mobject` into the simulation space.</span>
 
@@ -1733,7 +1733,7 @@
         <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">angular_velocity</span>
 
 <div class="viewcode-block" id="VSpace.set_body_and_shapes">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.set_body_and_shapes">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.set_body_and_shapes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_body_and_shapes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -1802,7 +1802,7 @@
 
 
 <div class="viewcode-block" id="VSpace._set_collision_type">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace._set_collision_type">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._set_collision_type">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_collision_type</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">collision_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets the collision type ID for all physical shapes associated with a :class:`~manim.mobject.mobject.Mobject`.</span>
@@ -1824,7 +1824,7 @@
 
 
 <div class="viewcode-block" id="VSpace._wildcard_collision_handler">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace._wildcard_collision_handler">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._wildcard_collision_handler">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_wildcard_collision_handler</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1900,7 +1900,7 @@
 
 
 <div class="viewcode-block" id="VSpace._collision_detection_handler">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace._collision_detection_handler">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._collision_detection_handler">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_collision_detection_handler</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1984,7 +1984,7 @@
 
     <span class="c1"># =============================== body ==================================</span>
 <div class="viewcode-block" id="VSpace.apply_force_at_local_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.apply_force_at_local_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.apply_force_at_local_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_force_at_local_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2013,7 +2013,7 @@
 
 
 <div class="viewcode-block" id="VSpace.apply_force_at_world_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.apply_force_at_world_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.apply_force_at_world_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_force_at_world_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2042,7 +2042,7 @@
 
 
 <div class="viewcode-block" id="VSpace.apply_impulse_at_local_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.apply_impulse_at_local_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.apply_impulse_at_local_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_impulse_at_local_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2072,7 +2072,7 @@
 
 
 <div class="viewcode-block" id="VSpace.apply_impulse_at_world_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.apply_impulse_at_world_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.apply_impulse_at_world_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_impulse_at_world_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2103,7 +2103,7 @@
 
 
 <div class="viewcode-block" id="VSpace.local_to_world">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.local_to_world">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.local_to_world">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">local_to_world</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2127,7 +2127,7 @@
 
 
 <div class="viewcode-block" id="VSpace.world_to_local">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.world_to_local">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.world_to_local">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">world_to_local</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2151,7 +2151,7 @@
 
 
 <div class="viewcode-block" id="VSpace.set_position_func">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.set_position_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.set_position_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_position_func</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2180,7 +2180,7 @@
 
 
 <div class="viewcode-block" id="VSpace.set_velocity_func">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.set_velocity_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.set_velocity_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_velocity_func</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2212,7 +2212,7 @@
 
 
 <div class="viewcode-block" id="VSpace.velocity_at_local_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.velocity_at_local_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.velocity_at_local_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">velocity_at_local_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2237,7 +2237,7 @@
 
 
 <div class="viewcode-block" id="VSpace.velocity_at_world_point">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.velocity_at_world_point">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.velocity_at_world_point">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">velocity_at_world_point</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2570,7 +2570,7 @@
             <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span> <span class="p">[</span><span class="n">hull</span><span class="p">])</span>
 
 <div class="viewcode-block" id="VSpace._add_shape_filter">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace._add_shape_filter">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._add_shape_filter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_shape_filter</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2604,7 +2604,7 @@
 
 
 <div class="viewcode-block" id="VSpace.get_point_query_info">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.get_point_query_info">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.get_point_query_info">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_point_query_info</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2659,7 +2659,7 @@
 
 
 <div class="viewcode-block" id="VSpace.get_line_query">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.get_line_query">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.get_line_query">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_line_query</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -2719,7 +2719,7 @@
 
 
 <div class="viewcode-block" id="VSpace.get_shapea_shapeb_info">
-<a class="viewcode-back" href="../../../../reference/pymunk/space/index.html#manim_extensions.pymunk.VSpace.get_shapea_shapeb_info">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.get_shapea_shapeb_info">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_shapea_shapeb_info</span><span class="p">(</span>
         <span class="n">shape_a</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span>

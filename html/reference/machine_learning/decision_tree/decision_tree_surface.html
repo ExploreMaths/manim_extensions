@@ -1492,68 +1492,26 @@
           <section id="module-manim_extensions.machine_learning.decision_tree.decision_tree_surface">
 <span id="decision-tree-surface"></span><h1>decision_tree_surface<a class="headerlink" href="#module-manim_extensions.machine_learning.decision_tree.decision_tree_surface" title="Link to this heading">¶</a></h1>
 <p>Decision tree visualization for Manim.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">AABB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#AABB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="Link to this definition">¶</a></dt>
-<dd><p>Axis-aligned bounding box.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n_features</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of features; each feature gets a <code class="docutils literal notranslate"><span class="pre">[-inf,</span> <span class="pre">inf]</span></code> limit pair.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="aabboverview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: AABBOverview <a class="headerlink" href="#aabboverview">¶</a></p><img alt="../../../_images/AABBOverview-e4afe1a8.png" class="align-center" src="../../../_images/AABBOverview-e4afe1a8.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.decision_tree_surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">AABB</span>
-
-<span class="n">AABBTarget</span> <span class="o">=</span> <span class="n">AABB</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">AABBOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">AABBTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
-        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'AABB'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning.decision_tree.decision_tree_surface'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'Axis-aligned bounding box'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
-            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
-</pre></div>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AABB</span></code></a></p></td>
+<td><p>Axis-aligned bounding box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="decision_tree_surface.DecisionTreeSurface.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionTreeSurface</span></code></a></p></td>
+<td><p>Colored decision surface of a fitted decision tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="decision_tree_surface.IrisDatasetPlot.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IrisDatasetPlot</span></code></a></p></td>
+<td><p>Plot of the first two features of the Iris dataset.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.decision_tree_surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">AABB</span>
-
-<span class="n">box</span> <span class="o">=</span> <span class="n">AABB</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB.split">
-<span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#AABB.split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB.split" title="Link to this definition">¶</a></dt>
-<dd><p>Split the bounding box along feature f at value v, returning left and right <a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-class docutils literal notranslate"><span class="pre">AABB</span></code></a>s.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the feature to split along.</p></li>
-<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Threshold value; the left box gets <code class="docutils literal notranslate"><span class="pre">[-inf,</span> <span class="pre">v]</span></code> and the right
-box <code class="docutils literal notranslate"><span class="pre">[v,</span> <span class="pre">inf]</span></code> along feature <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-class docutils literal notranslate"><span class="pre">AABB</span></code></a>, <a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-class docutils literal notranslate"><span class="pre">AABB</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of the results.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.tree_bounds">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">tree_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#tree_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.tree_bounds" title="Link to this definition">¶</a></dt>
@@ -1607,7 +1565,7 @@ is open (<code class="docutils literal notranslate"><span class="pre">+/-inf</sp
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rectangles</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Array of decision-area rectangles as returned by
-<a class="reference internal" href="#id1" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_decision_areas()</span></code></a>;
+<a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_decision_areas()</span></code></a>;
 each row is <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right,</span> <span class="pre">bottom,</span> <span class="pre">top,</span> <span class="pre">class_index]</span></code>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -1622,371 +1580,6 @@ each row is <code class="docutils literal notranslate"><span class="pre">[left,<
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.merge_overlapping_polygons">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">merge_overlapping_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_polygons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#merge_overlapping_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.merge_overlapping_polygons" title="Link to this definition">¶</a></dt>
-<dd><p>Merge adjacent polygons of the same color into larger contiguous polygons.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>all_polygons</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Polygon.html#manim.mobject.geometry.polygram.Polygon" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a>]</span>) – The polygon mobjects to merge, typically the decision-area
-rectangles of a <a class="reference internal" href="decision_tree_surface.DecisionTreeSurface.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeSurface</span></code></a>.</p></li>
-<li><p><strong>colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>]</span>) – The colors to merge polygons for, in order.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A list of the results.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">IrisDatasetPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iris</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#IrisDatasetPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot" title="Link to this definition">¶</a></dt>
-<dd><p>Plot of the first two features of the Iris dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>iris</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.Bunch.html#sklearn.utils.Bunch" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bunch</span></code></a></span>) – Loaded Iris dataset (e.g. from <code class="docutils literal notranslate"><span class="pre">sklearn.datasets.load_iris</span></code>).</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="irisdatasetplotscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: IrisDatasetPlotScene <a class="headerlink" href="#irisdatasetplotscene">¶</a></p><img alt="../../../_images/IrisDatasetPlotScene-ce9b8764.png" class="align-center" src="../../../_images/IrisDatasetPlotScene-ce9b8764.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.decision_tree_surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">IrisDatasetPlot</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">IrisDatasetPlotScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">plot</span> <span class="o">=</span> <span class="n">IrisDatasetPlot</span><span class="p">(</span><span class="n">load_iris</span><span class="p">())</span>
-        <span class="c1"># VGroup.__init__ is not called by the constructor, so add</span>
-        <span class="c1"># the composed plot groups directly.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">plot</span><span class="o">.</span><span class="n">all_group</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot.create_animation">
-<span class="sig-name descname"><span class="pre">create_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#IrisDatasetPlot.create_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot.create_animation" title="Link to this definition">¶</a></dt>
-<dd><p>Create animation for the Iris plot: points, axes, and legend in sequence.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_point_group">
-<span class="sig-name descname"><span class="pre">_make_point_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#IrisDatasetPlot._make_point_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_point_group" title="Link to this definition">¶</a></dt>
-<dd><p>Create one coloured dot per data point.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>points</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Two-dimensional coordinates of the samples.</p></li>
-<li><p><strong>targets</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Class index of every sample.</p></li>
-<li><p><strong>class_colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>]</span>) – Colour used for each class.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The group of coloured dots.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_legend">
-<span class="sig-name descname"><span class="pre">_make_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#IrisDatasetPlot._make_legend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_legend" title="Link to this definition">¶</a></dt>
-<dd><p>Build the class legend placed below the axes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>class_colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>]</span>) – Colours assigned to the classes.</p></li>
-<li><p><strong>feature_labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Names of the plotted features.</p></li>
-<li><p><strong>axes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span>) – Axes group the legend is aligned with.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The assembled legend group.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_axes_group">
-<span class="sig-name descname"><span class="pre">_make_axes_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Source</span> <span class="pre">Han</span> <span class="pre">Sans'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#IrisDatasetPlot._make_axes_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_axes_group" title="Link to this definition">¶</a></dt>
-<dd><p>Build labelled axes sized to the data points.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>points</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Samples used to derive the axis ranges.</p></li>
-<li><p><strong>labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Axis labels.</p></li>
-<li><p><strong>font</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Font family for the labels.</p></li>
-<li><p><strong>font_scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale factor applied to the label text.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The assembled axes group.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">DecisionTreeSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree_clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface" title="Link to this definition">¶</a></dt>
-<dd><p>Colored decision surface of a fitted decision tree.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tree_clf</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a></span>) – Fitted scikit-learn decision tree classifier.</p></li>
-<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Two-dimensional data points the tree was fitted on.</p></li>
-<li><p><strong>axes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graphing.coordinate_systems.Axes.html#manim.mobject.graphing.coordinate_systems.Axes" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a></span>) – Manim axes the surface rectangles are drawn in.</p></li>
-<li><p><strong>class_colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>]</span>) – Colors, one per class, used to fill the decision areas.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="decisiontreesurfacescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: DecisionTreeSurfaceScene <a class="headerlink" href="#decisiontreesurfacescene">¶</a></p><img alt="../../../_images/DecisionTreeSurfaceScene-c59e1bd0.png" class="align-center" src="../../../_images/DecisionTreeSurfaceScene-c59e1bd0.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.decision_tree_surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeSurface</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">DecisionTreeSurfaceScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-        <span class="n">points</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">tree_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">tree_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
-        <span class="n">axes</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                    <span class="n">x_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">surface</span> <span class="o">=</span> <span class="n">DecisionTreeSurface</span><span class="p">(</span><span class="n">tree_clf</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">axes</span><span class="p">)</span>
-        <span class="c1"># VGroup.__init__ is not called by the constructor, so add</span>
-        <span class="c1"># the computed surface rectangles directly.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="o">*</span><span class="n">surface</span><span class="o">.</span><span class="n">surface_rectangles</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.generate_surface_rectangles">
-<span class="sig-name descname"><span class="pre">generate_surface_rectangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface.generate_surface_rectangles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.generate_surface_rectangles" title="Link to this definition">¶</a></dt>
-<dd><p>Compute decision areas from the tree and return them as Manim polygon mobjects.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of the results.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._rectangle_to_polygon">
-<span class="sig-name descname"><span class="pre">_rectangle_to_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface._rectangle_to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._rectangle_to_polygon" title="Link to this definition">¶</a></dt>
-<dd><p>Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rect</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Decision rectangle <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right,</span> <span class="pre">bottom,</span> <span class="pre">top,</span> <span class="pre">class_index]</span></code>
-in data coordinates.</p></li>
-<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the polygon.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Polygon.html#manim.mobject.geometry.polygram.Polygon" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Polygon.html#manim.mobject.geometry.polygram.Polygon" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a> instance representing the decision rectangle.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._make_decision_rectangles">
-<span class="sig-name descname"><span class="pre">_make_decision_rectangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface._make_decision_rectangles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._make_decision_rectangles" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the decision rectangle of every leaf node of the tree.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping from leaf node index to its decision rectangle
-<code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right,</span> <span class="pre">bottom,</span> <span class="pre">top,</span> <span class="pre">class_index]</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._subtree_leaves">
-<span class="sig-name descname"><span class="pre">_subtree_leaves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface._subtree_leaves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._subtree_leaves" title="Link to this definition">¶</a></dt>
-<dd><p>Collect the leaf node indices below a tree node.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>node_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the tree node whose subtree leaves are collected.</p></li>
-<li><p><strong>ctree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/types.html#types.ModuleType" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleType</span></code></a></span>) – The <code class="docutils literal notranslate"><span class="pre">sklearn.tree._tree</span></code> module, used to detect leaf nodes.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Indices of the leaf nodes in the subtree, in depth-first order.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.make_split_to_animation_map">
-<span class="sig-name descname"><span class="pre">make_split_to_animation_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface.make_split_to_animation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.make_split_to_animation_map" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a dictionary mapping a given split node to an animation to be played.</p>
-<p>Each animation creates the classification areas of the leaves below
-the corresponding split node, so the decision surface can be revealed
-split by split alongside a tree expansion animation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping from split node index to its classification area animation.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.create_override">
-<span class="sig-name descname"><span class="pre">create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface.create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.create_override" title="Link to this definition">¶</a></dt>
-<dd><p>Create animation that reveals all surface rectangles simultaneously.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.uncreate_override">
-<span class="sig-name descname"><span class="pre">uncreate_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#DecisionTreeSurface.uncreate_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.uncreate_override" title="Link to this definition">¶</a></dt>
-<dd><p>Uncreate animation that removes all surface rectangles simultaneously.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AABB</span></code></a></p></td>
-<td><p>Axis-aligned bounding box.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="decision_tree_surface.DecisionTreeSurface.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionTreeSurface</span></code></a></p></td>
-<td><p>Colored decision surface of a fitted decision tree.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="decision_tree_surface.IrisDatasetPlot.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IrisDatasetPlot</span></code></a></p></td>
-<td><p>Plot of the first two features of the Iris dataset.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">tree_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#tree_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Compute final decision rule for each node in tree.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – The sklearn tree structure (<code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of a fitted
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>).</p></li>
-<li><p><strong>n_features</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Override autodetection of the number of features. The number of
-features is inferred as <code class="docutils literal notranslate"><span class="pre">max(tree.feature)</span> <span class="pre">+</span> <span class="pre">1</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="decision_tree_surface.AABB.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="xref py py-class docutils literal notranslate"><span class="pre">AABB</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The bounding boxes of the tree nodes.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">compute_decision_areas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree_classifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxrange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#compute_decision_areas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd><p>Extract decision areas.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tree_classifier</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a></span>) – Instance of a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>.</p></li>
-<li><p><strong>maxrange</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Values to insert for <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right,</span> <span class="pre">top,</span> <span class="pre">bottom]</span></code> if the interval
-is open (<code class="docutils literal notranslate"><span class="pre">+/-inf</span></code>).</p></li>
-<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the feature that goes on the x axis.</p></li>
-<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the feature that goes on the y axis.</p></li>
-<li><p><strong>n_features</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Override autodetection of the number of features.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A list of the results.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">plot_areas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#plot_areas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd><p>Plot decision area rectangles on the current matplotlib axes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>rectangles</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Array of decision-area rectangles as returned by
-<a class="reference internal" href="#id1" title="manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_decision_areas()</span></code></a>;
-each row is <code class="docutils literal notranslate"><span class="pre">[left,</span> <span class="pre">right,</span> <span class="pre">bottom,</span> <span class="pre">top,</span> <span class="pre">class_index]</span></code>.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_surface.</span></span><span class="sig-name descname"><span class="pre">merge_overlapping_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_polygons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_surface.html#merge_overlapping_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>Merge adjacent polygons of the same color into larger contiguous polygons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2066,39 +1659,12 @@ rectangles of a <a class="reference internal" href="decision_tree_surface.Decisi
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">decision_tree_surface</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB"><code class="docutils literal notranslate"><span class="pre">AABB</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB.split"><code class="docutils literal notranslate"><span class="pre">AABB.split()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.tree_bounds"><code class="docutils literal notranslate"><span class="pre">tree_bounds()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas"><code class="docutils literal notranslate"><span class="pre">compute_decision_areas()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.plot_areas"><code class="docutils literal notranslate"><span class="pre">plot_areas()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.merge_overlapping_polygons"><code class="docutils literal notranslate"><span class="pre">merge_overlapping_polygons()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot"><code class="docutils literal notranslate"><span class="pre">IrisDatasetPlot</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot.create_animation"><code class="docutils literal notranslate"><span class="pre">IrisDatasetPlot.create_animation()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_point_group"><code class="docutils literal notranslate"><span class="pre">IrisDatasetPlot._make_point_group()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_legend"><code class="docutils literal notranslate"><span class="pre">IrisDatasetPlot._make_legend()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot._make_axes_group"><code class="docutils literal notranslate"><span class="pre">IrisDatasetPlot._make_axes_group()</span></code></a></li>
-
-</ul>
-</li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.generate_surface_rectangles"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface.generate_surface_rectangles()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._rectangle_to_polygon"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface._rectangle_to_polygon()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._make_decision_rectangles"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface._make_decision_rectangles()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface._subtree_leaves"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface._subtree_leaves()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.make_split_to_animation_map"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface.make_split_to_animation_map()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.create_override"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface.create_override()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface.uncreate_override"><code class="docutils literal notranslate"><span class="pre">DecisionTreeSurface.uncreate_override()</span></code></a></li>
-
-</ul>
-</li>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">tree_bounds()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">compute_decision_areas()</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">plot_areas()</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">merge_overlapping_polygons()</span></code></a></li>
 </ul>
 </li>
 </ul>

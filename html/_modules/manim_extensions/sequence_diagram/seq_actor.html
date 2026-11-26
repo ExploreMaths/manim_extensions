@@ -1511,7 +1511,7 @@
 
 
 <div class="viewcode-block" id="SeqActor">
-<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.SeqActor">[docs]</a>
+<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SeqActor</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Single actor in a sequence diagram with a time line.</span>
 
@@ -1569,7 +1569,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">actor_ctn</span><span class="p">,</span> <span class="n">actor_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor_timedots</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SeqActor.get_deepest_actor">
-<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.SeqActor.get_deepest_actor">[docs]</a>
+<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_deepest_actor">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_deepest_actor</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"SeqActor | None"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the actor with the greatest time depth, or ``None`` when no actor exists.</span>
@@ -1599,7 +1599,7 @@
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor_timedots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <div class="viewcode-block" id="SeqActor.get_time_depth">
-<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.SeqActor.get_time_depth">[docs]</a>
+<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_time_depth">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_time_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the actor's current vertical timeline depth.</span>
 
@@ -1616,7 +1616,7 @@
 
 
 <div class="viewcode-block" id="SeqActor.time_elapse">
-<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.SeqActor.time_elapse">[docs]</a>
+<a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor.time_elapse">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">time_elapse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticks_to_elapse</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Line</span><span class="p">,</span> <span class="n">Succession</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Advance the timeline by a given number of ticks.</span>
 

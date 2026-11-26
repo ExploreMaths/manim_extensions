@@ -1493,32 +1493,23 @@
 <span id="dropout"></span><h1>dropout<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.animations.dropout" title="Link to this heading">¶</a></h1>
 <p>Code for making a dropout animation for the
 feed forward layers of a neural network.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.dropout.XMark">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">XMark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.GRAY"><span class="pre">GRAY</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#XMark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" title="Link to this definition">¶</a></dt>
-<dd><p>X-shaped mark used to indicate dropped-out nodes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the two lines.</p></li>
-<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the mark.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="xmarkscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: XMarkScene <a class="headerlink" href="#xmarkscene">¶</a></p><img alt="../../../../_images/XMarkScene-df06d234.png" class="align-center" src="../../../../_images/XMarkScene-df06d234.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.dropout</span><span class="w"> </span><span class="kn">import</span> <span class="n">XMark</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">XMarkScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">XMark</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
-</pre></div>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="dropout.PostDropoutAnimation.html#manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation" title="manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostDropoutAnimation</span></code></a></p></td>
+<td><p>Animation that restores a neural network after dropout.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dropout.XMark.html#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" title="manim_extensions.machine_learning.neural_network.animations.dropout.XMark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">XMark</span></code></a></p></td>
+<td><p>X-shaped mark used to indicate dropped-out nodes.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div></dd></dl>
-
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.dropout.get_edges_to_drop_out">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">get_edges_to_drop_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers_to_nodes_to_drop_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#get_edges_to_drop_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.dropout.get_edges_to_drop_out" title="Link to this definition">¶</a></dt>
@@ -1628,57 +1619,6 @@ that are dropped out in each layer.</p></li>
 </div>
 </div></dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">PostDropoutAnimation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#PostDropoutAnimation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation" title="Link to this definition">¶</a></dt>
-<dd><p>Animation that restores a neural network after dropout.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network the dropout animation is applied to.</p></li>
-<li><p><strong>layers_to_nodes_to_drop_out</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference internal" href="../layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Mapping from feed forward layers to the indices of the nodes
-that are dropped out in each layer.</p></li>
-<li><p><strong>x_marks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="dropout.XMark.html#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" title="manim_extensions.machine_learning.neural_network.animations.dropout.XMark"><code class="xref py py-class docutils literal notranslate"><span class="pre">XMark</span></code></a>]</span>) – The X-shaped marks placed on dropped-out nodes during the
-pre-dropout animation.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="afterdropout" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: AfterDropout <a class="headerlink" href="#afterdropout">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./AfterDropout-bd13645a.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FeedForwardLayer</span><span class="p">,</span>
-    <span class="n">NeuralNetwork</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.dropout</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">PostDropoutAnimation</span><span class="p">,</span>
-    <span class="n">make_pre_dropout_animation</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">AfterDropout</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">network</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
-        <span class="n">layers</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">filter_layers</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">FeedForwardLayer</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-        <span class="n">network</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
-        <span class="n">pre</span><span class="p">,</span> <span class="n">marks</span> <span class="o">=</span> <span class="n">make_pre_dropout_animation</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">pre</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">PostDropoutAnimation</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">marks</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.dropout.make_forward_pass_with_dropout_animation">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">make_forward_pass_with_dropout_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neural_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers_to_nodes_to_drop_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#make_forward_pass_with_dropout_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_forward_pass_with_dropout_animation" title="Link to this definition">¶</a></dt>
@@ -1703,183 +1643,6 @@ that are dropped out in each layer.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">make_neural_network_dropout_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neural_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_forward_pass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_layer_stable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_layer_stable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#make_neural_network_dropout_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation" title="Link to this definition">¶</a></dt>
-<dd><p>Makes a dropout animation for a given neural network.</p>
-<p>NOTE Does dropout only on feed forward layers.</p>
-<ol class="arabic simple">
-<li><p>Does dropout</p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">do_forward_pass</span></code> then do forward pass animation</p></li>
-<li><p>Revert network to pre-dropout appearance</p></li>
-</ol>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network the dropout animation is applied to.</p></li>
-<li><p><strong>dropout_rate</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Probability that each node is dropped out.</p></li>
-<li><p><strong>do_forward_pass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to run a forward pass animation after dropout.</p></li>
-<li><p><strong>last_layer_stable</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to keep the last feed forward layer stable (no dropout).</p></li>
-<li><p><strong>first_layer_stable</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to keep the first feed forward layer stable (no dropout).</p></li>
-<li><p><strong>seed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Seed for the random number generator.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="dropout.PostDropoutAnimation.html#manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation" title="manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostDropoutAnimation</span></code></a></p></td>
-<td><p>Animation that restores a neural network after dropout.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dropout.XMark.html#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" title="manim_extensions.machine_learning.neural_network.animations.dropout.XMark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">XMark</span></code></a></p></td>
-<td><p>X-shaped mark used to indicate dropped-out nodes.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">get_edges_to_drop_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers_to_nodes_to_drop_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#get_edges_to_drop_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Returns edges to drop out for a given <a class="reference internal" href="../layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward" title="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardToFeedForward</span></code></a> layer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward" title="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardToFeedForward</span></code></a></span>) – The connective layer whose edges are considered for dropout.</p></li>
-<li><p><strong>layers_to_nodes_to_drop_out</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference internal" href="../layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Mapping from layers to the indices of the nodes that are
-dropped out in each layer.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of the results.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="dropoutedges" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: DropOutEdges <a class="headerlink" href="#dropoutedges">¶</a></p><img alt="../../../../_images/DropOutEdges-bd4ea85e.png" class="align-center" src="../../../../_images/DropOutEdges-bd4ea85e.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FeedForwardLayer</span><span class="p">,</span>
-    <span class="n">NeuralNetwork</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.dropout</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">get_edges_to_drop_out</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FeedForwardToFeedForward</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">DropOutEdges</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">network</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
-        <span class="n">layers</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">filter_layers</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">FeedForwardLayer</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-        <span class="n">connective</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">filter_layers</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">FeedForwardToFeedForward</span><span class="p">)</span>
-        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">edges</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_edges_to_drop_out</span><span class="p">(</span><span class="n">connective</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
-        <span class="n">network</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-            <span class="n">edge</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">RED</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">make_pre_dropout_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neural_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers_to_nodes_to_drop_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_out_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.GRAY"><span class="pre">GRAY</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_out_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#make_pre_dropout_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd><p>Makes an animation that sets up the NN layer for dropout.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network the dropout animation is applied to.</p></li>
-<li><p><strong>layers_to_nodes_to_drop_out</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference internal" href="../layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Mapping from feed forward layers to the indices of the nodes
-that are dropped out in each layer.</p></li>
-<li><p><strong>dropped_out_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color used to indicate dropped-out edges.</p></li>
-<li><p><strong>dropped_out_opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity used to indicate dropped-out edges.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="dropout.XMark.html#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" title="manim_extensions.machine_learning.neural_network.animations.dropout.XMark"><code class="xref py py-class docutils literal notranslate"><span class="pre">XMark</span></code></a>]]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of the results.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="beforedropout" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: BeforeDropout <a class="headerlink" href="#beforedropout">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./BeforeDropout-7c49a326.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FeedForwardLayer</span><span class="p">,</span>
-    <span class="n">NeuralNetwork</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.dropout</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">make_pre_dropout_animation</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">BeforeDropout</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">network</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
-        <span class="n">layers</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">filter_layers</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">FeedForwardLayer</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-        <span class="n">network</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
-        <span class="n">animation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_pre_dropout_animation</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">make_forward_pass_with_dropout_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neural_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers_to_nodes_to_drop_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#make_forward_pass_with_dropout_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd><p>Makes forward pass animation with dropout.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network the forward pass animation is applied to.</p></li>
-<li><p><strong>layers_to_nodes_to_drop_out</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference internal" href="../layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Mapping from feed forward layers to the indices of the nodes
-that are dropped out in each layer.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The forward pass animation with dropout.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.dropout.</span></span><span class="sig-name descname"><span class="pre">make_neural_network_dropout_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neural_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_forward_pass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_layer_stable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_layer_stable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/dropout.html#make_neural_network_dropout_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>Makes a dropout animation for a given neural network.</p>
 <p>NOTE Does dropout only on feed forward layers.</p>
 <ol class="arabic simple">
@@ -1968,19 +1731,12 @@ that are dropped out in each layer.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">dropout</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.XMark"><code class="docutils literal notranslate"><span class="pre">XMark</span></code></a>
-</li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.get_edges_to_drop_out"><code class="docutils literal notranslate"><span class="pre">get_edges_to_drop_out()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_pre_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_pre_dropout_animation()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation"><code class="docutils literal notranslate"><span class="pre">PostDropoutAnimation</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_forward_pass_with_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_forward_pass_with_dropout_animation()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_neural_network_dropout_animation()</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">get_edges_to_drop_out()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">make_pre_dropout_animation()</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">make_forward_pass_with_dropout_animation()</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">make_neural_network_dropout_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.get_edges_to_drop_out"><code class="docutils literal notranslate"><span class="pre">get_edges_to_drop_out()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_pre_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_pre_dropout_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_forward_pass_with_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_forward_pass_with_dropout_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation"><code class="docutils literal notranslate"><span class="pre">make_neural_network_dropout_animation()</span></code></a></li>
 </ul>
 </li>
 </ul>

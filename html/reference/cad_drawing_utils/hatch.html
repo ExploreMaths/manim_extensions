@@ -1492,58 +1492,6 @@
           <section id="module-manim_extensions.cad_drawing_utils.hatch">
 <span id="hatch"></span><h1>hatch<a class="headerlink" href="#module-manim_extensions.cad_drawing_utils.hatch" title="Link to this heading">¶</a></h1>
 <p>Hatch-line and intersection helpers for CAD drawings.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.hatch.HatchLines">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.hatch.</span></span><span class="sig-name descname"><span class="pre">HatchLines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_mobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/hatch.html#HatchLines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.hatch.HatchLines" title="Link to this definition">¶</a></dt>
-<dd><p>Hatch lines clipped to the interior of a target mobject.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>target_mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject whose interior is hatched.</p></li>
-<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Angle of the hatch lines.</p></li>
-<li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between adjacent hatch lines.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to each line.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="hatchlinesscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: HatchLinesScene <a class="headerlink" href="#hatchlinesscene">¶</a></p><img alt="../../_images/HatchLinesScene-dea5b64c.png" class="align-center" src="../../_images/HatchLinesScene-dea5b64c.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Scene</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">HatchLines</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">HatchLinesScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">hatch</span> <span class="o">=</span> <span class="n">HatchLines</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">hatch</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.hatch.curve_intersection">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.hatch.</span></span><span class="sig-name descname"><span class="pre">curve_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/hatch.html#curve_intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.hatch.curve_intersection" title="Link to this definition">¶</a></dt>
-<dd><p>Find intersection points of two vector mobjects.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vmob1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – First mobject.</p></li>
-<li><p><strong>vmob2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – Second mobject.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The intersection indices: parameter values for each mobject and
-matching curve indices.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1559,8 +1507,8 @@ matching curve indices.</p>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.hatch.</span></span><span class="sig-name descname"><span class="pre">curve_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/hatch.html#curve_intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.hatch.curve_intersection">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.hatch.</span></span><span class="sig-name descname"><span class="pre">curve_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/hatch.html#curve_intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.hatch.curve_intersection" title="Link to this definition">¶</a></dt>
 <dd><p>Find intersection points of two vector mobjects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1640,12 +1588,9 @@ matching curve indices.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">hatch</a><ul>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.hatch.HatchLines"><code class="docutils literal notranslate"><span class="pre">HatchLines</span></code></a>
-</li>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.hatch.curve_intersection"><code class="docutils literal notranslate"><span class="pre">curve_intersection()</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">curve_intersection()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.hatch.curve_intersection"><code class="docutils literal notranslate"><span class="pre">curve_intersection()</span></code></a></li>
 </ul>
 </li>
 </ul>

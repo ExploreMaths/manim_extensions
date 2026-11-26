@@ -1499,7 +1499,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RollingNumber</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A value read-out that rolls like a mechanical counter.</span>
 
@@ -1579,7 +1579,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RollingNumber.label_for">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber.label_for">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber.label_for">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">label_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Format a value, including the overflow suffix.</span>
 
@@ -1608,7 +1608,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber._key_limit">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber._key_limit">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber._key_limit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_key_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the largest integer glyph key the counter needs.</span>
 
@@ -1621,7 +1621,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber.set_max_value">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber.set_max_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber.set_max_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_max_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the full scale used by the overflow rule.</span>
 
@@ -1647,7 +1647,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber.hide">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber.hide">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber.hide">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">hide</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Hide every cached glyph (used while another read-out takes over)."""</span>
         <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -1655,7 +1655,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber.set_live_color">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber.set_live_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber.set_live_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_live_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recolour the cached glyphs.</span>
 
@@ -1675,7 +1675,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber._text_for">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber._text_for">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber._text_for">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_text_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the cached glyph for an integer key, creating it if needed.</span>
 
@@ -1706,7 +1706,7 @@
 
 
 <div class="viewcode-block" id="RollingNumber._apply_scale">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber._apply_scale">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber._apply_scale">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_apply_scale</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="n">Text</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Hook for subclasses to react to chart scaling.</span>
@@ -1725,7 +1725,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RollingNumber.render">
-<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.RollingNumber.render">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/numbers.RollingNumber.html#manim_extensions.radar.numbers.RollingNumber.render">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>

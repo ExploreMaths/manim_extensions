@@ -1499,7 +1499,7 @@
 
 
 <div class="viewcode-block" id="VConstraint">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">VConstraint</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""The Manim base class for visualizing Pymunk physical constraints.</span>
 
@@ -1542,7 +1542,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_data</span><span class="p">()</span>
 
 <div class="viewcode-block" id="VConstraint._check_data">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint._check_data">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._check_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Verify the validity of constraint parameters.</span>
 
@@ -1552,7 +1552,7 @@
 
 
 <div class="viewcode-block" id="VConstraint._get_bodies">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint._get_bodies">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._get_bodies">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_bodies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Body</span><span class="p">,</span> <span class="n">Body</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Extract pymunk bodies from the two connected mobjects and validate them.</span>
 
@@ -1584,7 +1584,7 @@
 
 
 <div class="viewcode-block" id="VConstraint._finalize_install">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint._finalize_install">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._finalize_install">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Finalize the installation by adding the constraint to the space</span>
 <span class="sd">        and registering the per-frame updater.</span>
@@ -1602,7 +1602,7 @@
 
 
 <div class="viewcode-block" id="VConstraint.install">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint.install">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint.install">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Installs physical constraints into the Pymunk physical space.</span>
 <span class="sd">        This method should be overridden by subclasses to implement the</span>
@@ -1622,7 +1622,7 @@
 
 
 <div class="viewcode-block" id="VConstraint.mob_updater">
-<a class="viewcode-back" href="../../../../reference/pymunk/index.html#manim_extensions.pymunk.constraints.constraint.VConstraint.mob_updater">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint.mob_updater">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the visual representation of constraints in real time.</span>
 <span class="sd">        This method should be overridden by subclasses and called in every frame,</span>

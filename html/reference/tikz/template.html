@@ -1493,57 +1493,6 @@
 <span id="template"></span><h1>template<a class="headerlink" href="#module-manim_extensions.tikz.template" title="Link to this heading">¶</a></h1>
 <p>TikZ template for Manim.</p>
 <p>This module provides the TikZ template class for rendering TikZ diagrams.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.tikz.template.TikzTemplate">
-<span class="property"><span class="pre">dataclass</span> </span><span class="sig-prename descclassname"><span class="pre">manim_extensions.tikz.template.</span></span><span class="sig-name descname"><span class="pre">TikzTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">libraries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tikzset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preamble</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/tikz/template.html#TikzTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.tikz.template.TikzTemplate" title="Link to this definition">¶</a></dt>
-<dd><p>A custom <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.tex.TexTemplate.html#manim.utils.tex.TexTemplate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TexTemplate</span></code></a> for rendering TikZ diagrams.</p>
-<p>This template configures a standalone LaTeX document with the <code class="docutils literal notranslate"><span class="pre">tikz</span></code>
-package loaded and provides hooks for injecting additional packages,
-libraries, style definitions, and raw preamble code.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>packages</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Additional LaTeX packages to include (e.g. <code class="docutils literal notranslate"><span class="pre">[&quot;pgfplots&quot;]</span></code>).</p></li>
-<li><p><strong>libraries</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – TikZ libraries to load (e.g. <code class="docutils literal notranslate"><span class="pre">[&quot;arrows.meta&quot;,</span> <span class="pre">&quot;calc&quot;]</span></code>).</p></li>
-<li><p><strong>tikzset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Custom TikZ style definitions passed through <code class="docutils literal notranslate"><span class="pre">\tikzset{...}</span></code>.</p></li>
-<li><p><strong>preamble</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Extra raw LaTeX code appended to the preamble.</p></li>
-<li><p><strong>use_pdf</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the PDF pipeline instead of the default DVI path.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.tex.TexTemplate.html#manim.utils.tex.TexTemplate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TexTemplate</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.tikz.template.TikzTemplate._DEFAULT_PREAMBLE">
-<span class="sig-name descname"><span class="pre">_DEFAULT_PREAMBLE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'\\usepackage[english]{babel}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{tikz}\n'</span></span></span><a class="headerlink" href="#manim_extensions.tikz.template.TikzTemplate._DEFAULT_PREAMBLE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="tikztemplatescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: TikzTemplateScene <a class="headerlink" href="#tikztemplatescene">¶</a></p><img alt="../../_images/TikzTemplateScene-3e98696e.png" class="align-center" src="../../_images/TikzTemplateScene-3e98696e.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.tikz.template</span><span class="w"> </span><span class="kn">import</span> <span class="n">TikzTemplate</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">TikzTemplateScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">template</span> <span class="o">=</span> <span class="n">TikzTemplate</span><span class="p">(</span>
-            <span class="n">libraries</span><span class="o">=</span><span class="p">[</span><span class="s2">"arrows.meta"</span><span class="p">],</span>
-            <span class="n">tikzset</span><span class="o">=</span><span class="p">[</span><span class="s2">"mybox/.style={draw=red, thick, fill=red!20}"</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">tex</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span>
-            <span class="sa">r</span><span class="s2">"\begin</span><span class="si">{tikzpicture}</span><span class="s2">"</span>
-            <span class="sa">r</span><span class="s2">"\node[mybox] (a) at (0,0) </span><span class="si">{Template}</span><span class="s2">;"</span>
-            <span class="sa">r</span><span class="s2">"\draw[-</span><span class="si">{Stealth}</span><span class="s2">, thick] (a.east) -- ++(1.5,0);"</span>
-            <span class="sa">r</span><span class="s2">"\end</span><span class="si">{tikzpicture}</span><span class="s2">"</span><span class="p">,</span>
-            <span class="n">tex_template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">tex</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tex</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1616,10 +1565,6 @@ libraries, style definitions, and raw preamble code.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">template</a><ul>
-<li><a class="reference internal" href="#manim_extensions.tikz.template.TikzTemplate"><code class="docutils literal notranslate"><span class="pre">TikzTemplate</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.tikz.template.TikzTemplate._DEFAULT_PREAMBLE"><code class="docutils literal notranslate"><span class="pre">TikzTemplate._DEFAULT_PREAMBLE</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

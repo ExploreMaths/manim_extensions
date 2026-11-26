@@ -1498,7 +1498,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">BaseMBondObject</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract base class for 2D chemical bond mobjects between two atoms.</span>
 
@@ -1546,7 +1546,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="BaseMBondObject.__str__">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.__str__">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.__str__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a description of the bonded atoms.</span>
 
@@ -1558,7 +1558,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.__repr__">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.__repr__">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.__repr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the same description as ``__str__``.</span>
 
@@ -1590,7 +1590,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bond</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BaseMBondObject.define_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.define_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_subtype</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">subtype</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"complete"</span><span class="p">,</span> <span class="s2">"skeleton"</span><span class="p">,</span> <span class="s2">"over_bond"</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -1652,7 +1652,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.atoms_in_bond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.atoms_in_bond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.atoms_in_bond">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">atoms_in_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">MAtomObject</span><span class="p">,</span> <span class="n">MAtomObject</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a tuple of the two atoms connected by this bond.</span>
 
@@ -1664,7 +1664,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.atom_is_in_bond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.atom_is_in_bond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.atom_is_in_bond">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">atom_is_in_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="n">MAtomObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return True if the given atom is one of the two atoms in this bond.</span>
 
@@ -1684,7 +1684,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.get_bond_index_by_atom">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.get_bond_index_by_atom">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.get_bond_index_by_atom">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bond_index_by_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="n">MAtomObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the bond's index if the atom is part of this bond, otherwise None.</span>
 
@@ -1704,7 +1704,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.add_bond_index_by_atom_to_list">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.add_bond_index_by_atom_to_list">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.add_bond_index_by_atom_to_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_bond_index_by_atom_to_list</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="n">MAtomObject</span><span class="p">,</span> <span class="nb">list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
@@ -1730,7 +1730,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.get_perpendicular_unit_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.get_perpendicular_unit_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.get_perpendicular_unit_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_perpendicular_unit_vector</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">point_a</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">point_b</span><span class="p">:</span> <span class="n">Point3D</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
@@ -1758,7 +1758,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Provide the geometry used when no bond subtype is selected.</span>
 
@@ -1778,7 +1778,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is drawn shorter on both ends.</span>
 
@@ -1798,7 +1798,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is shortened at the from-atom end.</span>
 
@@ -1818,7 +1818,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is shortened at the to-atom end.</span>
 
@@ -1838,7 +1838,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.longer_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.longer_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is drawn longer.</span>
 
@@ -1858,7 +1858,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Assemble the bond's line components for the selected subtype.</span>
 
@@ -1878,7 +1878,7 @@
 
 
 <div class="viewcode-block" id="BaseMBondObject.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.BaseMBondObject.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.</span>
 
@@ -1901,7 +1901,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A single-line chemical bond between two atoms.</span>
 
@@ -1928,7 +1928,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="SimpleBond.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a full-length line connecting both atom centers.</span>
 
@@ -1940,7 +1940,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a shorter line with buffer space at both atom ends.</span>
 
@@ -1952,7 +1952,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span> <span class="o">|</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a line shortened at the from-atom end, starting from the to atom.</span>
 
@@ -1974,7 +1974,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span> <span class="o">|</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a line shortened at the to-atom end, starting from the from atom.</span>
 
@@ -1996,7 +1996,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond.longer_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.longer_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a zero-length line at the from atom (degenerate bond).</span>
 
@@ -2008,7 +2008,7 @@
 
 
 <div class="viewcode-block" id="SimpleBond.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.SimpleBond.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span> <span class="o">|</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the bond line based on the configured subtype.</span>
 
@@ -2035,7 +2035,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DoubleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A double bond between two atoms.</span>
 
@@ -2091,7 +2091,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">from_atom</span><span class="p">,</span> <span class="n">to_atom</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DoubleBond.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return two parallel lines: one full-length and one shorter offset line.</span>
 
@@ -2114,7 +2114,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return two parallel shortened lines offset perpendicularly from the bond axis.</span>
 
@@ -2139,7 +2139,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2190,7 +2190,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2239,7 +2239,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 
@@ -2260,7 +2260,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.get_surroundings">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.get_surroundings">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.get_surroundings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_surroundings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Checks the number of bonds of C atoms.</span>
 
@@ -2296,7 +2296,7 @@
 
 
 <div class="viewcode-block" id="DoubleBond.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.DoubleBond.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span> <span class="o">|</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the double bond VGroup based on the configured subtype.</span>
 
@@ -2331,7 +2331,7 @@
 
 
 <div class="viewcode-block" id="TripleBond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TripleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A triple bond between two atoms.</span>
 
@@ -2386,7 +2386,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">from_atom</span><span class="p">,</span> <span class="n">to_atom</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TripleBond.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return three parallel lines forming a full triple bond.</span>
 
@@ -2408,7 +2408,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return three parallel shortened lines forming a triple bond.</span>
 
@@ -2430,7 +2430,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triple bond shortened at the from-atom end.</span>
 
@@ -2462,7 +2462,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triple bond shortened at the to-atom end.</span>
 
@@ -2494,7 +2494,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.longer_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.longer_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">bond</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">base_line</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -2528,7 +2528,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span> <span class="o">|</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the triple bond VGroup based on the configured subtype.</span>
 
@@ -2552,7 +2552,7 @@
 
 
 <div class="viewcode-block" id="TripleBond.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.TripleBond.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 
@@ -2575,7 +2575,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PlainCramBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A filled triangular wedge bond representing stereochemistry (coming out of the page).</span>
 
@@ -2602,7 +2602,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="PlainCramBond.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span> <span class="o">|</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a full triangular filled polygon representing a plain cram bond.</span>
 
@@ -2627,7 +2627,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a shortened triangular filled cram bond with buffer at both ends.</span>
 
@@ -2650,7 +2650,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triangular cram bond shortened at the from-atom end.</span>
 
@@ -2679,7 +2679,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triangular cram bond shortened at the to-atom end.</span>
 
@@ -2707,7 +2707,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.longer_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.longer_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a degenerate zero-length cram bond at the from atom.</span>
 
@@ -2730,7 +2730,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span> <span class="o">|</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the plain cram bond polygon based on the configured subtype.</span>
 
@@ -2752,7 +2752,7 @@
 
 
 <div class="viewcode-block" id="PlainCramBond.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.PlainCramBond.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the direction vector from the from-atom to the to-atom.</span>
 
@@ -2777,7 +2777,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DashedCramBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A dashed wedge bond representing stereochemistry (going into the page).</span>
 
@@ -2804,7 +2804,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="DashedCramBond.add_dashed_cram_bond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.add_dashed_cram_bond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.add_dashed_cram_bond">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_dashed_cram_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_line</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a dashed cram bond from progressively shorter perpendicular lines along the direction.</span>
 
@@ -2841,7 +2841,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.no_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.no_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a full-length dashed cram bond between both atoms.</span>
 
@@ -2858,7 +2858,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.shorter_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.shorter_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a shortened dashed cram bond with buffer space at both ends.</span>
 
@@ -2874,7 +2874,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.shorter_from_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.shorter_from_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a dashed cram bond shortened at the from-atom end.</span>
 
@@ -2896,7 +2896,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.shorter_to_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.shorter_to_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a dashed cram bond shortened at the to-atom end.</span>
 
@@ -2918,7 +2918,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.longer_subtype">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.longer_subtype">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a degenerate zero-length dashed cram bond at the from atom.</span>
 
@@ -2940,7 +2940,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.create_line">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.create_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span> <span class="o">|</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the dashed cram bond VGroup based on the configured subtype.</span>
 
@@ -2963,7 +2963,7 @@
 
 
 <div class="viewcode-block" id="DashedCramBond.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.DashedCramBond.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 

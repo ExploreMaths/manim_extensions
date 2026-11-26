@@ -1492,91 +1492,6 @@
           <section id="module-manim_extensions.meshes.models.manim_models.triangle_mesh">
 <span id="triangle-mesh"></span><h1>triangle_mesh<a class="headerlink" href="#module-manim_extensions.meshes.models.manim_models.triangle_mesh" title="Link to this heading">¶</a></h1>
 <p>2D triangle manim mesh with functionality useful for delaunay meshes.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.models.manim_models.triangle_mesh.</span></span><span class="sig-name descname"><span class="pre">TriangleManim2DMesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/triangle_mesh.html#TriangleManim2DMesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="Link to this definition">¶</a></dt>
-<dd><p>2D <a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a> implementation that has additional methods especially for triangles.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – The mesh data model. Must consist only of triangles.</p></li>
-<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to the parent <a class="reference internal" href="basic_mesh.Manim2DMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manim2DMesh</span></code></a>.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – <p>Additional keyword arguments forwarded to the parent class.</p>
-<p>Possible keyword arguments (see <a class="reference internal" href="../../params.html#id3" title="manim_extensions.meshes.params.BM2DM"><code class="xref py py-data docutils literal notranslate"><span class="pre">BM2DM</span></code></a>):</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">display_vertices</span></code>: whether to display the vertices</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">display_edges</span></code>: whether to display the edges</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">display_faces</span></code>: whether to display the faces</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clear_vertices</span></code>: whether to clear the vertices after WHAT?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clear_edges</span></code>: whether to clear the edges after WHAT?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clear_faces</span></code>: whether to clear the faces after WHAT?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">edges_color</span></code>: color of the edges</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">edges_width</span></code>: width of the lines of the edges</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">faces_color</span></code>: color of the faces</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">faces_opacity</span></code>: opacity of the faces</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">verts_color</span></code>: color of the vertices.</p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="trianglemanim2dmeshscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: TriangleManim2DMeshScene <a class="headerlink" href="#trianglemanim2dmeshscene">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./TriangleManim2DMeshScene-400c8405.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.triangle_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">TriangleManim2DMesh</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">TriangleManim2DMeshScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">vertices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
-        <span class="n">faces</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-        <span class="n">mesh_data</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
-        <span class="n">tm</span> <span class="o">=</span> <span class="n">TriangleManim2DMesh</span><span class="p">(</span><span class="n">mesh_data</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">faces</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">edges</span><span class="p">))</span>
-        <span class="c1"># flip the diagonal shared by the two triangles</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">edge_flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh.edge_flip">
-<span class="sig-name descname"><span class="pre">edge_flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx_2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/triangle_mesh.html#TriangleManim2DMesh.edge_flip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh.edge_flip" title="Link to this definition">¶</a></dt>
-<dd><p>Flip the shared edge between two adjacent triangle faces.</p>
-<p>The edge connecting the two non-shared vertices of the original
-triangles becomes the new shared edge.  Raises an error if the
-faces are not both triangles or do not share exactly one edge.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – The scene in which the animation is played.</p></li>
-<li><p><strong>face_idx_1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the first triangle face.</p></li>
-<li><p><strong>face_idx_2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the second triangle face (must share an edge with the first).</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a> / <code class="docutils literal notranslate"><span class="pre">animate</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">run_time</span></code>).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If either face is not a triangle or the faces do not share
-    exactly one edge.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1649,26 +1564,6 @@ faces are not both triangles or do not share exactly one edge.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">triangle_mesh</a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh.edge_flip"><code class="docutils literal notranslate"><span class="pre">TriangleManim2DMesh.edge_flip()</span></code></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

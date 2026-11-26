@@ -1492,6 +1492,8 @@
           <section id="module-manim_extensions.meshes.helpers">
 <span id="helpers"></span><h1>helpers<a class="headerlink" href="#module-manim_extensions.meshes.helpers" title="Link to this heading">¶</a></h1>
 <p>some basic helpers for our models.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.helpers.is_in_vararray">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">is_in_vararray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#is_in_vararray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.helpers.is_in_vararray" title="Link to this definition">¶</a></dt>
@@ -1501,7 +1503,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
+<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The list of arrays to search.</p></li>
 <li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
 </ul>
@@ -1522,7 +1524,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
+<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The list of arrays to search.</p></li>
 <li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
 <li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index at which to begin the search (useful to skip self-references).</p></li>
@@ -1544,8 +1546,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – First array collection.</p></li>
-<li><p><strong>array2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Second array collection.</p></li>
+<li><p><strong>array1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – First array collection.</p></li>
+<li><p><strong>array2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – Second array collection.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations.</p></li>
 </ul>
 </dd>
@@ -1609,7 +1611,7 @@ requirements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>original</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The collection of sub-arrays to clean up.</p></li>
+<li><p><strong>original</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The collection of sub-arrays to clean up.</p></li>
 <li><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices whose references should be removed.</p></li>
 </ul>
 </dd>
@@ -1625,158 +1627,6 @@ requirements.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.helpers.remove_keys_from_dict">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">remove_keys_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#remove_keys_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.helpers.remove_keys_from_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Remove <code class="docutils literal notranslate"><span class="pre">keys</span></code> from dictionary <code class="docutils literal notranslate"><span class="pre">d</span></code> without raising <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>d</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – The dictionary to mutate.</p></li>
-<li><p><strong>keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Keys to remove.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The (potentially empty) mutated dictionary.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">is_in_vararray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#is_in_vararray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Check whether <code class="docutils literal notranslate"><span class="pre">item</span></code> exists in <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
-<p>With <code class="docutils literal notranslate"><span class="pre">rolling</span></code> enabled, cyclic permutations are considered equal
-(e.g. <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> matches <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">3,</span> <span class="pre">1]</span></code> but not <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">2]</span></code>).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
-<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
-<li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether <code class="docutils literal notranslate"><span class="pre">item</span></code> (or a rotation of it) is found in <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">find_in_vararray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#find_in_vararray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd><p>Find all indices where <code class="docutils literal notranslate"><span class="pre">item</span></code> appears in <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
-<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
-<li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
-<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index at which to begin the search (useful to skip self-references).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Indices of every matching entry.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">is_vararray_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#is_vararray_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd><p>Check whether two VarArrays contain the same elements (order-agnostic).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>array1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – First array collection.</p></li>
-<li><p><strong>array2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Second array collection.</p></li>
-<li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether both collections contain the same elements.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">is_twice_nested_iterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_lens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#is_twice_nested_iterable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
-<dd><p>Check whether <code class="docutils literal notranslate"><span class="pre">obj</span></code> is a 2-D array-like structure.</p>
-<p>Examples of valid structures include 2-D NumPy arrays,
-<code class="docutils literal notranslate"><span class="pre">List[List[int|float]]</span></code>, and similar.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>obj</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – The object to inspect.</p></li>
-<li><p><strong>min_lens</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Minimum lengths for the outer and inner layers.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether <code class="docutils literal notranslate"><span class="pre">obj</span></code> is a twice-nested iterable meeting the size
-requirements.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">are_edges_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#are_edges_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
-<dd><p>Check whether two edge lists contain the same (unordered) edges.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>edges1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Edges" title="manim_extensions.meshes.types.Edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edges</span></code></a></span>) – First list of edges.</p></li>
-<li><p><strong>edges2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Edges" title="manim_extensions.meshes.types.Edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edges</span></code></a></span>) – Second list of edges.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether both lists contain the same edges regardless of order.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">fix_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#fix_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
-<dd><p>Remove references to <code class="docutils literal notranslate"><span class="pre">indices</span></code> from <code class="docutils literal notranslate"><span class="pre">original</span></code> and adjust remaining indices.</p>
-<p>Both <code class="docutils literal notranslate"><span class="pre">original</span></code> and <code class="docutils literal notranslate"><span class="pre">indices</span></code> are mutated in place for performance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>original</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The collection of sub-arrays to clean up.</p></li>
-<li><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices whose references should be removed.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Indices in <code class="docutils literal notranslate"><span class="pre">original</span></code> where entries were removed.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id6">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.helpers.</span></span><span class="sig-name descname"><span class="pre">remove_keys_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/helpers.html#remove_keys_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
 <dd><p>Remove <code class="docutils literal notranslate"><span class="pre">keys</span></code> from dictionary <code class="docutils literal notranslate"><span class="pre">d</span></code> without raising <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1853,6 +1703,7 @@ requirements.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">helpers</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.is_in_vararray"><code class="docutils literal notranslate"><span class="pre">is_in_vararray()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.find_in_vararray"><code class="docutils literal notranslate"><span class="pre">find_in_vararray()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.is_vararray_equal"><code class="docutils literal notranslate"><span class="pre">is_vararray_equal()</span></code></a></li>
@@ -1860,14 +1711,6 @@ requirements.</p>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.are_edges_equal"><code class="docutils literal notranslate"><span class="pre">are_edges_equal()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.fix_references"><code class="docutils literal notranslate"><span class="pre">fix_references()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.helpers.remove_keys_from_dict"><code class="docutils literal notranslate"><span class="pre">remove_keys_from_dict()</span></code></a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">is_in_vararray()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">find_in_vararray()</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">is_vararray_equal()</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">is_twice_nested_iterable()</span></code></a></li>
-<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">are_edges_equal()</span></code></a></li>
-<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">fix_references()</span></code></a></li>
-<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">remove_keys_from_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -1505,8 +1505,6 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="_resolve_arabic_font">
-<a class="viewcode-back" href="../../../reference/arabic/text.html#manim_extensions.arabic._resolve_arabic_font">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_arabic_font</span><span class="p">(</span><span class="n">font_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Pick an installed Arabic font.</span>
 
@@ -1531,12 +1529,11 @@
     <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">_FONT_CANDIDATES</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">available</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">candidate</span>
-    <span class="k">return</span> <span class="n">_FONT_CANDIDATES</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
-
+    <span class="k">return</span> <span class="n">_FONT_CANDIDATES</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="ArabicTemplate">
-<a class="viewcode-back" href="../../../reference/arabic/text.ArabicTemplate.html#manim_extensions.arabic.ArabicTemplate">[docs]</a>
+<a class="viewcode-back" href="../../../reference/arabic/text.ArabicTemplate.html#manim_extensions.arabic.text.ArabicTemplate">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArabicTemplate</span><span class="p">(</span><span class="n">TexTemplate</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A :class:`~manim.utils.tex.TexTemplate` configured for Arabic text rendering using XeLaTeX.</span>
 
@@ -1584,7 +1581,7 @@
 
 
 <div class="viewcode-block" id="ArabicText">
-<a class="viewcode-back" href="../../../reference/arabic/text.ArabicText.html#manim_extensions.arabic.ArabicText">[docs]</a>
+<a class="viewcode-back" href="../../../reference/arabic/text.ArabicText.html#manim_extensions.arabic.text.ArabicText">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArabicText</span><span class="p">(</span><span class="n">Tex</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A :class:`~manim.mobject.text.tex_mobject.Tex` object rendered with Arabic text.</span>
 

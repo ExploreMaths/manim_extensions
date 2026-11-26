@@ -1493,38 +1493,6 @@
 <span id="manim-turing-machine"></span><h1>manim_turing_machine<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_turing_machine" title="Link to this heading">¶</a></h1>
 <p>Turing machine visualization.</p>
 <p>This module provides the <a class="reference internal" href="manim_turing_machine.ManimTuringMachine.html#manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine" title="manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimTuringMachine</span></code></a> class for visualizing Turing machines.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_turing_machine.</span></span><span class="sig-name descname"><span class="pre">ManimTuringMachine</span></span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_turing_machine.html#ManimTuringMachine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine" title="Link to this definition">¶</a></dt>
-<dd><p>Visual Turing machine.</p>
-<p>Provides a basic visual representation of a Turing machine
-with a tape and read/write head.</p>
-<p class="rubric">Examples</p>
-<div id="manimturingmachinescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ManimTuringMachineScene <a class="headerlink" href="#manimturingmachinescene">¶</a></p><img alt="../../../_images/ManimTuringMachineScene-2e2da8d2.png" class="align-center" src="../../../_images/ManimTuringMachineScene-2e2da8d2.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_turing_machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimTuringMachine</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ManimTuringMachineScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">tm</span> <span class="o">=</span> <span class="n">ManimTuringMachine</span><span class="p">()</span>
-        <span class="n">symbols</span> <span class="o">=</span> <span class="s2">"0101"</span>
-        <span class="n">cells</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">Square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">))</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">symbols</span><span class="p">):</span>
-            <span class="n">cell</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MathTex</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">tape</span><span class="p">)</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">tape</span> <span class="o">=</span> <span class="n">cells</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">tape</span><span class="p">,</span> <span class="n">tm</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="field-list simple">
-</dl>
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1597,8 +1565,6 @@ with a tape and read/write head.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_turing_machine</a><ul>
-<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine"><code class="docutils literal notranslate"><span class="pre">ManimTuringMachine</span></code></a>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

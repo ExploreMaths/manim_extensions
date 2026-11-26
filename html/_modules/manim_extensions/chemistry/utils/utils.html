@@ -1735,7 +1735,7 @@
 
 
 <div class="viewcode-block" id="mol_parser_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.mol_parser_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_parser_string">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">"""Parse a MOL-format string (list of lines) into atoms and bonds dicts.</span>
 
@@ -1847,7 +1847,7 @@
 
 
 <div class="viewcode-block" id="mol_parser">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.mol_parser">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_parser">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">mol_parser</span><span class="p">(</span>
     <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]:</span>
@@ -1869,7 +1869,7 @@
 
 
 <div class="viewcode-block" id="sdf_parser_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.sdf_parser_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.sdf_parser_string">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser_string</span><span class="p">(</span>
     <span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]:</span>
@@ -1898,7 +1898,7 @@
 
 
 <div class="viewcode-block" id="sdf_parser">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.sdf_parser">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.sdf_parser">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser</span><span class="p">(</span>
     <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]:</span>
@@ -1920,7 +1920,7 @@
 
 
 <div class="viewcode-block" id="get_element">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.get_element">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.get_element">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_element</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"ENG"</span><span class="p">,</span> <span class="s2">"ESP"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ENG"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Element</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return the :class:`~manim_extensions.chemistry.element.element.Element` class instance for a given element symbol.</span>
 
@@ -1953,7 +1953,7 @@
 
 
 <div class="viewcode-block" id="mol_to_graph">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.mol_to_graph">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_to_graph">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">mol_to_graph</span><span class="p">(</span>
     <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"ENG"</span><span class="p">,</span> <span class="s2">"ESP"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ENG"</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>

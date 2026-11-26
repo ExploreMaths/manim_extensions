@@ -1492,55 +1492,6 @@
           <section id="module-manim_extensions.machine_learning.neural_network.activation_functions.relu">
 <span id="relu"></span><h1>relu<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.activation_functions.relu" title="Link to this heading">¶</a></h1>
 <p>ReLU activation function visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.relu.</span></span><span class="sig-name descname"><span class="pre">ReLUFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ReLU'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/relu.html#ReLUFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction" title="Link to this definition">¶</a></dt>
-<dd><p>Rectified Linear Unit Activation Function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>function_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name displayed next to the plot.</p></li>
-<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the x-axis.</p></li>
-<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the y-axis.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="relufunctionscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ReLUFunctionScene <a class="headerlink" href="#relufunctionscene">¶</a></p><img alt="../../../../_images/ReLUFunctionScene-f025e6b9.png" class="align-center" src="../../../../_images/ReLUFunctionScene-f025e6b9.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.activation_functions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ReLUFunction</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ReLUFunctionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">relu</span> <span class="o">=</span> <span class="n">ReLUFunction</span><span class="p">()</span>
-        <span class="n">relu</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">relu</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relu</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction.apply_function">
-<span class="sig-name descname"><span class="pre">apply_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/relu.html#ReLUFunction.apply_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction.apply_function" title="Link to this definition">¶</a></dt>
-<dd><p>Return max(0, x_val), the ReLU activation applied to the input value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x_val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Input value to which the ReLU activation is applied.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The computed integer value. <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1613,10 +1564,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">relu</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction"><code class="docutils literal notranslate"><span class="pre">ReLUFunction</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction.apply_function"><code class="docutils literal notranslate"><span class="pre">ReLUFunction.apply_function()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

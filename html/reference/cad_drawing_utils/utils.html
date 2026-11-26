@@ -1492,115 +1492,6 @@
           <section id="module-manim_extensions.cad_drawing_utils.utils">
 <span id="utils"></span><h1>utils<a class="headerlink" href="#module-manim_extensions.cad_drawing_utils.utils" title="Link to this heading">¶</a></h1>
 <p>Small vector and construction helpers shared by the CAD drawing utilities.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.utils.</span></span><span class="sig-name descname"><span class="pre">angle_between_vectors_signed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#angle_between_vectors_signed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed" title="Link to this definition">¶</a></dt>
-<dd><p>Return the signed angle between two vectors.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>v1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – First vector.</p></li>
-<li><p><strong>v2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Second vector.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The rotation angle that aligns <code class="docutils literal notranslate"><span class="pre">v1</span></code> with <code class="docutils literal notranslate"><span class="pre">v2</span></code>, in the range
-minus pi to pi.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.utils.</span></span><span class="sig-name descname"><span class="pre">BezierHandlebars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_mobject</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars" title="Link to this definition">¶</a></dt>
-<dd><p>Creates circles (dots) and lines on the points of another mobject.
-Used for visualizing bezier control points and handles, helps debugging.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>target_mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – Mobject whose control points and handles are visualised.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to the vector dictionary.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="bezierhandlebarsscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: BezierHandlebarsScene <a class="headerlink" href="#bezierhandlebarsscene">¶</a></p><img alt="../../_images/BezierHandlebarsScene-fc320b0b.png" class="align-center" src="../../_images/BezierHandlebarsScene-fc320b0b.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">BezierHandlebars</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">BezierHandlebarsScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">curve</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">handles</span> <span class="o">=</span> <span class="n">BezierHandlebars</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">handles</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles">
-<span class="sig-name descname"><span class="pre">generate_circles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars.generate_circles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles" title="Link to this definition">¶</a></dt>
-<dd><p>Create a dot at every control point.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>r</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the dots.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The dots are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;dots&quot;</span></code> key.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_circles">
-<span class="sig-name descname"><span class="pre">move_circles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars.move_circles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_circles" title="Link to this definition">¶</a></dt>
-<dd><p>Move the dots onto the current control points.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The dots are moved in place.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_lines">
-<span class="sig-name descname"><span class="pre">generate_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars.generate_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_lines" title="Link to this definition">¶</a></dt>
-<dd><p>Draw the two Bezier handles for every curve.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The handles are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;lines&quot;</span></code> key.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_lines">
-<span class="sig-name descname"><span class="pre">move_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars.move_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_lines" title="Link to this definition">¶</a></dt>
-<dd><p>Update the handle lines to match the current control points.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The lines are repositioned in place.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1616,8 +1507,8 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.utils.</span></span><span class="sig-name descname"><span class="pre">angle_between_vectors_signed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#angle_between_vectors_signed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.cad_drawing_utils.utils.</span></span><span class="sig-name descname"><span class="pre">angle_between_vectors_signed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#angle_between_vectors_signed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed" title="Link to this definition">¶</a></dt>
 <dd><p>Return the signed angle between two vectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1697,18 +1588,9 @@ minus pi to pi.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">utils</a><ul>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed"><code class="docutils literal notranslate"><span class="pre">angle_between_vectors_signed()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars"><code class="docutils literal notranslate"><span class="pre">BezierHandlebars</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles"><code class="docutils literal notranslate"><span class="pre">BezierHandlebars.generate_circles()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_circles"><code class="docutils literal notranslate"><span class="pre">BezierHandlebars.move_circles()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_lines"><code class="docutils literal notranslate"><span class="pre">BezierHandlebars.generate_lines()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_lines"><code class="docutils literal notranslate"><span class="pre">BezierHandlebars.move_lines()</span></code></a></li>
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">angle_between_vectors_signed()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed"><code class="docutils literal notranslate"><span class="pre">angle_between_vectors_signed()</span></code></a></li>
 </ul>
 </li>
 </ul>

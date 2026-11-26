@@ -1501,7 +1501,7 @@
 
 
 <div class="viewcode-block" id="Cell">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Cell</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A single cell in a table, containing text and optional border lines.</span>
 
@@ -1593,7 +1593,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Cell.create_border">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.create_border">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.create_border">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_border</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the four border lines of the cell.</span>
 
@@ -1626,7 +1626,7 @@
 
 
 <div class="viewcode-block" id="Cell.get_value">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.get_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.get_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the text value of this cell.</span>
 
@@ -1638,7 +1638,7 @@
 
 
 <div class="viewcode-block" id="Cell.set_value">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.set_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.set_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Change the text value of this cell.</span>
 
@@ -1690,7 +1690,7 @@
 
 
 <div class="viewcode-block" id="Cell.get_resized_copy">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.get_resized_copy">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.get_resized_copy">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_resized_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cell"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a copy of this cell with a new width.</span>
 <span class="sd">        The copy is positioned at the same center as this cell.</span>
@@ -1740,7 +1740,7 @@
 
 
 <div class="viewcode-block" id="Cell.resize_width">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.resize_width">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.resize_width">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resize_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resize this cell to a new width (instant, no animation).</span>
 <span class="sd">        Updates border lines in place.</span>
@@ -1777,7 +1777,7 @@
 
 
 <div class="viewcode-block" id="Cell.set_font_color">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.set_font_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.set_font_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cell"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the font/text color of this cell.</span>
 
@@ -1796,7 +1796,7 @@
 
 
 <div class="viewcode-block" id="Cell.set_border_color">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.set_border_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.set_border_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_border_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cell"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the border line color of this cell.</span>
 
@@ -1817,7 +1817,7 @@
 
 
 <div class="viewcode-block" id="Cell.set_background_color">
-<a class="viewcode-back" href="../../../reference/table/index.html#manim_extensions.table.cell.Cell.set_background_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/table/cell.Cell.html#manim_extensions.table.cell.Cell.set_background_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_background_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cell"</span><span class="p">:</span>

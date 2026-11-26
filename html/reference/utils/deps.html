@@ -1495,10 +1495,12 @@
 <p>The packages listed in <code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code> are not needed
 to import <code class="docutils literal notranslate"><span class="pre">manim_extensions</span></code>; each vendored module pulls in its own
 extra (<code class="docutils literal notranslate"><span class="pre">physics</span></code>, <code class="docutils literal notranslate"><span class="pre">chemistry</span></code>, <code class="docutils literal notranslate"><span class="pre">qr</span></code>, …).  Use
-<a class="reference internal" href="#id0" title="manim_extensions.utils.deps.require"><code class="xref py py-func docutils literal notranslate"><span class="pre">require()</span></code></a> inside the function or
+<a class="reference internal" href="#manim_extensions.utils.deps.require" title="manim_extensions.utils.deps.require"><code class="xref py py-func docutils literal notranslate"><span class="pre">require()</span></code></a> inside the function or
 method that needs such a package, passing the extra that provides it, so
 the ImportError names the right
 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">manim_extensions[...]</span></code> command.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.utils.deps.require">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.utils.deps.</span></span><span class="sig-name descname"><span class="pre">require</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/utils/deps.html#require"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.utils.deps.require" title="Link to this definition">¶</a></dt>
@@ -1547,66 +1549,6 @@ with the imported modules in the order of <code class="docutils literal notransl
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This feature requires 'not_installed_package'. Install it with: pip install manim_extensions[physics]
-</pre></div>
-</div>
-</div>
-</div>
-</dd></dl>
-
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.utils.deps.</span></span><span class="sig-name descname"><span class="pre">require</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/utils/deps.html#require"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Import optional dependencies, raising a helpful error naming the extra.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Overloads<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>extra</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>), <strong>name1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>), / → <span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/types.html#types.ModuleType" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleType</span></code></a></span></p></li>
-<li><p><strong>extra</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>), <strong>name1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>), <strong>name2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>), /, <strong>*names</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) → <span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/types.html#types.ModuleType" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleType</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span></p></li>
-</ul>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>extra</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the <code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code> extra that provides
-the packages (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;physics&quot;</span></code>).</p></li>
-<li><p><strong>name1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – First optional package to import, when importing several at once.</p></li>
-<li><p><strong>name2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Second optional package to import, when importing several at once.</p></li>
-<li><p><strong>*names</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Names of any further optional packages to import (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;pymunk&quot;</span></code>).</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The imported module when a single name is given, otherwise a tuple
-with the imported modules in the order of <code class="docutils literal notranslate"><span class="pre">names</span></code>.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ImportError" title="(in Python v3.15)"><strong>ImportError</strong></a> – If one of the packages is not installed.  The error message names
-    the missing package and the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> extra that provides it.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/types.html#types.ModuleType" title="(in Python v3.15)"><em>ModuleType</em></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/types.html#types.ModuleType" title="(in Python v3.15)"><em>ModuleType</em></a>, …]</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
-</pre></div>
-</div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"not_installed_package"</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1676,9 +1618,8 @@ with the imported modules in the order of <code class="docutils literal notransl
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">deps</a><ul>
-<li><a class="reference internal" href="#manim_extensions.utils.deps.require"><code class="docutils literal notranslate"><span class="pre">require()</span></code></a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">require()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.utils.deps.require"><code class="docutils literal notranslate"><span class="pre">require()</span></code></a></li>
 </ul>
 </li>
 </ul>

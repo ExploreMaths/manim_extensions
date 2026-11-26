@@ -1493,69 +1493,6 @@
 <span id="layout-factory"></span><h1>layout_factory<a class="headerlink" href="#module-manim_extensions.mindmap.algorithms.layout_factory" title="Link to this heading">¶</a></h1>
 <p><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> factory for mindmap algorithms.</p>
 <p>This module provides factory for creating layout algorithms.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.layout_factory.</span></span><span class="sig-name descname"><span class="pre">LayoutFactory</span></span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_factory.html#LayoutFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory" title="Link to this definition">¶</a></dt>
-<dd><p>Factory for layout algorithms.</p>
-<p class="rubric">Examples</p>
-<div id="layoutfactoryscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: LayoutFactoryScene <a class="headerlink" href="#layoutfactoryscene">¶</a></p><img alt="../../../_images/LayoutFactoryScene-28ce66a7.png" class="align-center" src="../../../_images/LayoutFactoryScene-28ce66a7.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">bfs_walker</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.mindmap.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_tree</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutConfig</span><span class="p">,</span> <span class="n">LayoutType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_factory</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutFactory</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">LayoutFactoryScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"Root"</span><span class="p">),</span>
-            <span class="s2">"child"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"A"</span><span class="p">)},</span> <span class="p">{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)}],</span>
-        <span class="p">}</span>
-        <span class="n">panels</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">layout_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">Catalog</span><span class="p">):</span>
-            <span class="n">root</span> <span class="o">=</span> <span class="n">generate_tree</span><span class="p">(</span><span class="n">Map</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">()</span>
-            <span class="n">root</span> <span class="o">=</span> <span class="n">LayoutFactory</span><span class="o">.</span><span class="n">create_layout</span><span class="p">(</span><span class="n">layout_type</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
-            <span class="n">panel</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-                <span class="n">panel</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="p">)</span>
-            <span class="n">panel</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>
-            <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">layout_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-            <span class="n">panels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Group</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">))</span>
-        <span class="n">panels</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">panels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory.create_layout">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_layout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_factory.html#LayoutFactory.create_layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory.create_layout" title="Link to this definition">¶</a></dt>
-<dd><p>Create the appropriate layout algorithm instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>layout_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="layout_config.LayoutType.html#manim_extensions.mindmap.algorithms.layout_config.LayoutType" title="manim_extensions.mindmap.algorithms.layout_config.LayoutType"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutType</span></code></a></span>) – The desired layout type.</p></li>
-<li><p><strong>root</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – The root node of the tree to lay out.</p></li>
-<li><p><strong>layout_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="layout_config.LayoutConfig.html#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig" title="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutConfig</span></code></a></span>) – Configuration object providing layout-specific parameters.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A concrete layout algorithm instance.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">layout_type</span></code> is not recognised.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1628,10 +1565,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">layout_factory</a><ul>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory"><code class="docutils literal notranslate"><span class="pre">LayoutFactory</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_factory.LayoutFactory.create_layout"><code class="docutils literal notranslate"><span class="pre">LayoutFactory.create_layout()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

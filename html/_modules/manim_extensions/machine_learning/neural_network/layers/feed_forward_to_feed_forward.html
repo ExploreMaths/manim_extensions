@@ -1516,7 +1516,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">FeedForwardToFeedForward</span><span class="p">(</span><span class="n">ConnectiveLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Layer for connecting FeedForward layer to :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`.</span>
 
@@ -1590,7 +1590,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">edge_width</span> <span class="o">=</span> <span class="n">edge_width</span>
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.construct_layer">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.construct_layer">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.construct_layer">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
@@ -1619,7 +1619,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.construct_edges">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.construct_edges">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.construct_edges">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create all connecting lines between input and output layer nodes.</span>
 
@@ -1645,7 +1645,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward._fadeout_animation">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward._fadeout_animation">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward._fadeout_animation">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_fadeout_animation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fade out every connection edge.</span>
@@ -1665,7 +1665,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.make_forward_pass_animation">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.make_forward_pass_animation">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
@@ -1726,7 +1726,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.modify_edge_colors">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_colors">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_colors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">modify_edge_colors</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ManimColor</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1779,7 +1779,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.modify_edge_stroke_widths">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_stroke_widths">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_stroke_widths">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">modify_edge_stroke_widths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widths</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Changes the widths of the edges.</span>
 
@@ -1811,7 +1811,7 @@
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward._create_override">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward._create_override">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create every connection edge.</span>

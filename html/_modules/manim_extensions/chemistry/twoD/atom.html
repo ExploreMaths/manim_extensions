@@ -1497,7 +1497,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MAtomObject</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A 2D visual representation of an atom in a chemical molecule.</span>
 
@@ -1556,7 +1556,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="MAtomObject.__str__">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.__str__">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.__str__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a description of the atom.</span>
 
@@ -1568,7 +1568,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.__repr__">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.__repr__">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.__repr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the same description as ``__str__``.</span>
 
@@ -1619,7 +1619,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_atom_color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MAtomObject.set_representation">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.set_representation">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.set_representation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_representation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">representation_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"complete"</span><span class="p">,</span> <span class="s2">"skeleton"</span><span class="p">,</span> <span class="s2">"over_bond"</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -1668,7 +1668,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.add_atom">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.add_atom">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.add_atom">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MarkupText</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds an atom depending on the representation.</span>
 
@@ -1682,7 +1682,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.bonds_fulfilled">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.bonds_fulfilled">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.bonds_fulfilled">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">bonds_fulfilled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Check if the atom has its expected minimum number of bonds.</span>
 
@@ -1699,7 +1699,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.make_copy">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.make_copy">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.make_copy">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MAtomObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a copy of this atom preserving all properties and coordinates.</span>
 
@@ -1723,7 +1723,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.rename_atom">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.rename_atom">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.rename_atom">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rename_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bonds_direction</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MAtomObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace this atom's element with new_element and adjust position by bond direction.</span>
 
@@ -1755,7 +1755,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.copy_with_explicit_hydrogens">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.copy_with_explicit_hydrogens">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.copy_with_explicit_hydrogens">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">copy_with_explicit_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MAtomObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a copy of this atom with explicit hydrogens enabled.</span>
 
@@ -1769,7 +1769,7 @@
 
 
 <div class="viewcode-block" id="MAtomObject.set_atom_color">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.MAtomObject.set_atom_color">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.set_atom_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_atom_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""TODO: Add the color depending on cpk convention</span>
 

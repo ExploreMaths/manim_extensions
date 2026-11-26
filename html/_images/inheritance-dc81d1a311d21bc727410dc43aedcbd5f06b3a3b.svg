@@ -1528,7 +1528,7 @@
 
 <ns0:g id="node141" class="node">
 <ns0:title>QRCode</ns0:title>
-<ns0:g id="a_node141"><ns0:a ns1:href="../reference/qr_codes/qr.html#id0" ns1:title="A QR code rendered as a Manim group." target="_top">
+<ns0:g id="a_node141"><ns0:a ns1:href="../reference/qr_codes/qr.html#manim_extensions.qr_codes.qr.QRCode" ns1:title="A QR code rendered as a Manim group." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="401.23,-383.95 355.03,-383.95 355.03,-364 401.23,-364 401.23,-383.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="378.13" y="-370.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">QRCode</ns0:text>
 </ns0:a>

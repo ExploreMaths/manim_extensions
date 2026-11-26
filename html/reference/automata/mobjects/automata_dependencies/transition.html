@@ -1493,59 +1493,6 @@
 <span id="transition"></span><h1>transition<a class="headerlink" href="#module-manim_extensions.automata.mobjects.automata_dependencies.transition" title="Link to this heading">¶</a></h1>
 <p><a class="reference internal" href="transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a> representation for automata.</p>
 <p>This module provides the <a class="reference internal" href="transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a> class for representing state transitions in automata.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.transition.</span></span><span class="sig-name descname"><span class="pre">Transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transition_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transition_to</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/transition.html#Transition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="Link to this definition">¶</a></dt>
-<dd><p>Class that represents transitions between states.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>transition_from</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></span>) – Json object that describes an automaton.</p></li>
-<li><p><strong>transition_to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></span>) – Path of XML format file describing an automaton.</p></li>
-<li><p><strong>input_symbol</strong> – The class’ input symbol.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition.id_iter">
-<span class="sig-name descname"><span class="pre">id_iter</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">itertools.count</span><span class="pre">()</span></span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition.id_iter" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="transitionscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: TransitionScene <a class="headerlink" href="#transitionscene">¶</a></p><img alt="../../../../_images/TransitionScene-cfbe58a8.png" class="align-center" src="../../../../_images/TransitionScene-cfbe58a8.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.automata_dependencies.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">State</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.automata_dependencies.transition</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transition</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">TransitionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">s1</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span><span class="s2">"q0"</span><span class="p">)</span>
-        <span class="n">s2</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span><span class="s2">"q1"</span><span class="p">)</span>
-        <span class="n">trans</span> <span class="o">=</span> <span class="n">Transition</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
-        <span class="n">trans</span><span class="o">.</span><span class="n">read_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]</span>
-        <span class="n">s1</span><span class="o">.</span><span class="n">add_transition_to_state</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">c1</span><span class="p">,</span>
-            <span class="n">Text</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">c1</span><span class="p">),</span>
-            <span class="n">c2</span><span class="p">,</span>
-            <span class="n">Text</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">c2</span><span class="p">),</span>
-            <span class="n">arrow</span><span class="p">,</span>
-            <span class="n">MathTex</span><span class="p">(</span><span class="s2">"a, b"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="n">caption</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"Transition </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, read=</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">read_symbols</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-            <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">caption</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1618,14 +1565,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">transition</a><ul>
-<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="docutils literal notranslate"><span class="pre">Transition</span></code></a><ul>
-
-
-
-
-<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition.id_iter"><code class="docutils literal notranslate"><span class="pre">Transition.id_iter</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -1546,7 +1546,7 @@
 
 
 <div class="viewcode-block" id="_load_pymunk">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics._load_pymunk">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._load_pymunk">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_load_pymunk</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Import pymunk lazily, as it belongs to the ``physics`` extra.</span>
 
@@ -1559,7 +1559,7 @@
 
 
 <div class="viewcode-block" id="PhysicsAttributes">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.PhysicsAttributes">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PhysicsAttributes</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Structural type of a mobject augmented with pymunk body attributes.</span>
 
@@ -1606,7 +1606,7 @@
 
 
 <div class="viewcode-block" id="Space">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.Space.html#manim_extensions.physics.Space">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Space</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ConvertToOpenGL</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Physics space that manages a pymunk simulation.</span>
 
@@ -1659,7 +1659,7 @@
 
 
 <div class="viewcode-block" id="SpaceScene">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpaceScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Scene with built-in pymunk rigid-body physics.</span>
 
@@ -1726,7 +1726,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SpaceScene.setup">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene.setup">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.setup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add the physics space to the scene and advance it every frame.</span>
 
@@ -1739,7 +1739,7 @@
 
 
 <div class="viewcode-block" id="SpaceScene.add_body">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene.add_body">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.add_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register a pymunk body's shape in the physics space.</span>
 
@@ -1760,7 +1760,7 @@
 
 
 <div class="viewcode-block" id="SpaceScene.make_rigid_body">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene.make_rigid_body">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_rigid_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
@@ -1813,7 +1813,7 @@
 
 
 <div class="viewcode-block" id="SpaceScene.make_static_body">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene.make_static_body">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_static_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_static_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1846,7 +1846,7 @@
 
 
 <div class="viewcode-block" id="SpaceScene.stop_rigidity">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.SpaceScene.stop_rigidity">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.stop_rigidity">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_rigidity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the mobjects rigidity.</span>
 
@@ -1870,7 +1870,7 @@
 
 
 <div class="viewcode-block" id="_step">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics._step">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_step</span><span class="p">(</span><span class="n">space</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Advance the pymont simulation by one time step.</span>
 
@@ -1891,7 +1891,7 @@
 
 
 <div class="viewcode-block" id="_simulate">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics._simulate">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._simulate">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_simulate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Read the current state of a pymont body and update the Manim mobject.</span>
 
@@ -1913,7 +1913,7 @@
 
 
 <div class="viewcode-block" id="get_shape">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.get_shape">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_shape</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Obtains the shape of the body from the mobject.</span>
 
@@ -1950,7 +1950,7 @@
 
 
 <div class="viewcode-block" id="get_angle">
-<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.get_angle">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_angle</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Obtains the angle of the body from the mobject.</span>
 <span class="sd">    Used internally for updaters.</span>

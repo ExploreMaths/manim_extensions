@@ -1494,31 +1494,12 @@
 <p>Rubik’s Cube helpers and scene objects.</p>
 <p>The module exposes the main cube model and related animation utilities for
 visualising cube states in Manim scenes.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.rubikscube._install_grouped_depth_sorting">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.</span></span><span class="sig-name descname"><span class="pre">_install_grouped_depth_sorting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube.html#_install_grouped_depth_sorting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube._install_grouped_depth_sorting" title="Link to this definition">¶</a></dt>
-<dd><p>Enable grouped 3D depth sorting for Manim’s <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.camera.three_d_camera.ThreeDCamera.html#manim.camera.three_d_camera.ThreeDCamera" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDCamera</span></code></a>.</p>
-<p>Manim sorts 3D mobjects by a single per-mobject depth key (each mobject’s own
-centre), which scatters the six faces of a cubie and causes the depth-order
-flicker (the “front/back jumping”) visible while a cube rotates. Installing a
-grouped z-key – primary = the mobject’s <code class="docutils literal notranslate"><span class="pre">z_index_group</span></code> centre, secondary =
-its own centre – keeps a cubie’s faces moving together during rotation while
-still drawing them far-to-near (correct painter’s algorithm). Mobjects without
-a <code class="docutils literal notranslate"><span class="pre">z_index_group</span></code> are unaffected, since the secondary key then equals the
-primary and the ordering matches Manim’s original behaviour.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-</dl>
-</dd></dl>
-
 <div class="vendored-status note admonition">
 <p class="admonition-title">Vendoring status: <code class="docutils literal notranslate"><span class="pre">manim-rubikscube</span></code></p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">e117d42eb4b7484957440a4c9d67ab183bb06e0a</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/WampyCakes/manim-rubikscube/commit/e117d42eb4b7484957440a4c9d67ab183bb06e0a">e117d42</a> (2023-06-26).</p></li>
-<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 18:55 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> (2021-05-26).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -2141,7 +2122,6 @@ for the full spec, examples, and documentation.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Rubik’s Cube</a><ul>
-<li><a class="reference internal" href="#manim_extensions.rubikscube._install_grouped_depth_sorting"><code class="docutils literal notranslate"><span class="pre">_install_grouped_depth_sorting()</span></code></a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#creating-a-rubikscube">Creating a RubiksCube</a></li>
 <li><a class="reference internal" href="#changing-the-colors-of-a-rubikscube">Changing the colors of a RubiksCube</a></li>

@@ -1492,85 +1492,6 @@
           <section id="module-manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d">
 <span id="max-pooling-2d-to-convolutional-2d"></span><h1>max_pooling_2d_to_convolutional_2d<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d" title="Link to this heading">¶</a></h1>
 <p>Max pooling 2D to convolutional 2D layer connection visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.</span></span><span class="sig-name descname"><span class="pre">MaxPooling2DToConvolutional2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passing_flash_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">cell_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_grid_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.html#MaxPooling2DToConvolutional2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D" title="Link to this definition">¶</a></dt>
-<dd><p>Connective layer between a max pooling 2D layer and a convolutional 2D layer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer" title="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxPooling2DLayer</span></code></a></span>) – The input max pooling layer.</p></li>
-<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer" title="manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolutional2DLayer</span></code></a></span>) – The output convolutional layer.</p></li>
-<li><p><strong>passing_flash_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the flash animation during the forward pass.</p></li>
-<li><p><strong>cell_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of a single grid cell.</p></li>
-<li><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the filter rectangles.</p></li>
-<li><p><strong>show_grid_lines</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to show the grid lines.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to
-<a class="reference internal" href="convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D" title="manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolutional2DToConvolutional2D</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.input_class">
-<span class="sig-name descname"><span class="pre">input_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.input_class" title="Link to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer" title="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxPooling2DLayer</span></code></a></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.output_class">
-<span class="sig-name descname"><span class="pre">output_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.output_class" title="Link to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer" title="manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolutional2DLayer</span></code></a></p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="maxpooling2dtoconvolutional2dscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: MaxPooling2DToConvolutional2DScene <a class="headerlink" href="#maxpooling2dtoconvolutional2dscene">¶</a></p><img alt="../../../../_images/MaxPooling2DToConvolutional2DScene-6164c3d5.png" class="align-center" src="../../../../_images/MaxPooling2DToConvolutional2DScene-6164c3d5.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.max_pooling_2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaxPooling2DLayer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.convolutional_2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Convolutional2DLayer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaxPooling2DToConvolutional2D</span>
-<span class="n">source</span> <span class="o">=</span> <span class="n">Convolutional2DLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">source</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">first</span> <span class="o">=</span> <span class="n">MaxPooling2DLayer</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">second</span> <span class="o">=</span> <span class="n">Convolutional2DLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">first</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">second</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">first</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">second</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">connection</span> <span class="o">=</span> <span class="n">MaxPooling2DToConvolutional2D</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">MaxPooling2DToConvolutional2DScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
-        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.construct_layer">
-<span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.html#MaxPooling2DToConvolutional2D.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.construct_layer" title="Link to this definition">¶</a></dt>
-<dd><p>Constructs the MaxPooling to Convolution3D layer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Input layer.</p></li>
-<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Output layer.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1643,14 +1564,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">max_pooling_2d_to_convolutional_2d</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D"><code class="docutils literal notranslate"><span class="pre">MaxPooling2DToConvolutional2D</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.input_class"><code class="docutils literal notranslate"><span class="pre">MaxPooling2DToConvolutional2D.input_class</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.output_class"><code class="docutils literal notranslate"><span class="pre">MaxPooling2DToConvolutional2D.output_class</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.construct_layer"><code class="docutils literal notranslate"><span class="pre">MaxPooling2DToConvolutional2D.construct_layer()</span></code></a></li>
-
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

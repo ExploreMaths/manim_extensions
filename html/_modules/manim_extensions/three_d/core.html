@@ -1649,7 +1649,7 @@
 
 
 <div class="viewcode-block" id="plan_timeline">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.plan_timeline">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.html#manim_extensions.three_d.core.plan_timeline">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plan_timeline</span><span class="p">(</span>
     <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
@@ -1789,7 +1789,7 @@
 
 <span class="c1"># ---------------- Configuration ----------------</span>
 <div class="viewcode-block" id="GaussianSurface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurface.html#manim_extensions.three_d.core.GaussianSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`.</span>
@@ -1848,7 +1848,7 @@
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span>
 
 <div class="viewcode-block" id="GaussianSurface.resolve">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurface.resolve">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurface.html#manim_extensions.three_d.core.GaussianSurface.resolve">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Resolve the surface function and its displayed formula.</span>
 
@@ -1870,7 +1870,7 @@
 
 
 <div class="viewcode-block" id="SaddleSurface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.SaddleSurface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurface.html#manim_extensions.three_d.core.SaddleSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SaddleSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`.</span>
@@ -1923,7 +1923,7 @@
 
 
 <div class="viewcode-block" id="ParaboloidSurface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.ParaboloidSurface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurface.html#manim_extensions.three_d.core.ParaboloidSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ParaboloidSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`.</span>
@@ -1976,7 +1976,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurface.html#manim_extensions.three_d.core.EllipsoidSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">EllipsoidSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for an ellipsoid, the first closed parametric surface.</span>
@@ -2027,7 +2027,7 @@
 
 
 <div class="viewcode-block" id="TorusSurface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurface.html#manim_extensions.three_d.core.TorusSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TorusSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for a torus with a 4:1 major-to-minor radius ratio.</span>
@@ -2080,7 +2080,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheet">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheet">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheet.html#manim_extensions.three_d.core.HyperboloidOneSheet">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">HyperboloidOneSheet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for a one-sheet hyperboloid, recognizable by its waist.</span>
@@ -2157,7 +2157,7 @@
 
 <span class="c1"># ---------------- Beat skeleton (shared graph surfaces) ----------------</span>
 <div class="viewcode-block" id="GraphSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GraphSurfaceScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Shared beat skeleton for graph and closed surfaces.</span>
 
@@ -2238,7 +2238,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_cls</span><span class="p">()</span>
 
 <div class="viewcode-block" id="GraphSurfaceScene.__init_subclass__">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene.__init_subclass__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene.__init_subclass__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">config_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply configuration keywords written in the class statement.</span>
 
@@ -2270,7 +2270,7 @@
 
     <span class="c1"># ---- hooks ----</span>
 <div class="viewcode-block" id="GraphSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the surface geometry description.</span>
 
@@ -2293,7 +2293,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -2331,7 +2331,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Describe the annotated feature point.</span>
 
@@ -2356,7 +2356,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._caption_slots">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._caption_slots">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._caption_slots">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_caption_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""List the caption slots used by this scene.</span>
 
@@ -2368,7 +2368,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._annotate_camera">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._annotate_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._annotate_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_annotate_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the camera angle used for the annotation beat.</span>
 
@@ -2380,7 +2380,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._make_axes">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._make_axes">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._make_axes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_axes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">GraphSurfaceConfig</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ThreeDAxes</span><span class="p">:</span>
@@ -2413,7 +2413,7 @@
 
 
 <div class="viewcode-block" id="GraphSurfaceScene._make_surface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene._make_surface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._make_surface">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_surface</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">GraphSurfaceConfig</span><span class="p">,</span>
@@ -2465,7 +2465,7 @@
 
     <span class="c1"># ---- main flow ----</span>
 <div class="viewcode-block" id="GraphSurfaceScene.construct">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GraphSurfaceScene.construct">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene.construct">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build and play the full surface presentation.</span>
 
@@ -2781,7 +2781,7 @@
 
 <span class="c1"># ---------------- three surface scenes ----------------</span>
 <div class="viewcode-block" id="GaussianSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Animated demo of the Gaussian surface :math:`z=e^{-x^2-y^2}`.</span>
 
@@ -2805,7 +2805,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">GaussianSurface</span>
 
 <div class="viewcode-block" id="GaussianSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sample the Gaussian surface and derive its display range.</span>
 
@@ -2835,7 +2835,7 @@
 
 
 <div class="viewcode-block" id="GaussianSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -2886,7 +2886,7 @@
 
 
 <div class="viewcode-block" id="GaussianSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Locate the peak of the sampled Gaussian surface.</span>
 
@@ -2916,7 +2916,7 @@
 
 
 <div class="viewcode-block" id="GaussianSurfaceScene._caption_slots">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene._caption_slots">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene._caption_slots">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_caption_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""List the caption slots used by the Gaussian scene.</span>
 
@@ -2928,7 +2928,7 @@
 
 
 <div class="viewcode-block" id="GaussianSurfaceScene._annotate_camera">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.GaussianSurfaceScene._annotate_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene._annotate_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_annotate_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the camera angle used for the Gaussian annotation.</span>
 
@@ -2942,7 +2942,7 @@
 
 
 <div class="viewcode-block" id="SaddleSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.SaddleSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SaddleSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Animated demo of the saddle surface :math:`z=x^2-y^2`.</span>
 
@@ -2966,7 +2966,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">SaddleSurface</span>
 
 <div class="viewcode-block" id="SaddleSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.SaddleSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the fixed saddle geometry and its display range.</span>
 
@@ -2988,7 +2988,7 @@
 
 
 <div class="viewcode-block" id="SaddleSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.SaddleSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3076,7 +3076,7 @@
 
 
 <div class="viewcode-block" id="SaddleSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.SaddleSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the saddle point annotation.</span>
 
@@ -3106,7 +3106,7 @@
 
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.ParaboloidSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ParaboloidSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Animated demo of the paraboloid :math:`z=x^2+y^2`.</span>
 
@@ -3131,7 +3131,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">ParaboloidSurface</span>
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the fixed paraboloid geometry and its display range.</span>
 
@@ -3153,7 +3153,7 @@
 
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3209,7 +3209,7 @@
 
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the paraboloid vertex annotation.</span>
 
@@ -3239,7 +3239,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EllipsoidSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Ellipsoid scene with an inflated formation and uniformly scaled axes.</span>
 
@@ -3262,7 +3262,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">EllipsoidSurface</span>
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the ellipsoid formula and display range.</span>
 
@@ -3288,7 +3288,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._make_axes">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._make_axes">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._make_axes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_axes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ThreeDAxes</span><span class="p">:</span>
@@ -3322,7 +3322,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._make_surface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._make_surface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._make_surface">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_surface</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3374,7 +3374,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3429,7 +3429,7 @@
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the ellipsoid apex annotation.</span>
 
@@ -3453,7 +3453,7 @@
 
 
 <div class="viewcode-block" id="TorusSurfaceScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TorusSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Torus scene with an inflated formation and uniformly scaled axes.</span>
 
@@ -3476,7 +3476,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">TorusSurface</span>
 
 <div class="viewcode-block" id="TorusSurfaceScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the torus formula and display range.</span>
 
@@ -3498,7 +3498,7 @@
 
 
 <div class="viewcode-block" id="TorusSurfaceScene._make_axes">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene._make_axes">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene._make_axes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_axes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ThreeDAxes</span><span class="p">:</span>
@@ -3535,7 +3535,7 @@
 
 
 <div class="viewcode-block" id="TorusSurfaceScene._make_surface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene._make_surface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene._make_surface">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_surface</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3589,7 +3589,7 @@
 
 
 <div class="viewcode-block" id="TorusSurfaceScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3644,7 +3644,7 @@
 
 
 <div class="viewcode-block" id="TorusSurfaceScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.TorusSurfaceScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the torus apex annotation.</span>
 
@@ -3668,7 +3668,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HyperboloidOneSheetScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""One-sheet hyperboloid scene with an inflated formation.</span>
 
@@ -3691,7 +3691,7 @@
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">HyperboloidOneSheet</span>
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._geometry">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the hyperboloid formula and display range.</span>
 
@@ -3716,7 +3716,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._make_axes">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._make_axes">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._make_axes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_axes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ThreeDAxes</span><span class="p">:</span>
@@ -3753,7 +3753,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._make_surface">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._make_surface">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._make_surface">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_surface</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3807,7 +3807,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._contours">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._contours">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span>
@@ -3863,7 +3863,7 @@
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._feature">
-<a class="viewcode-back" href="../../../reference/three_d/index.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._feature">[docs]</a>
+<a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureSpec</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the waist point annotation.</span>
 

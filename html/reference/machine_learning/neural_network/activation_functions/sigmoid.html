@@ -1492,62 +1492,6 @@
           <section id="module-manim_extensions.machine_learning.neural_network.activation_functions.sigmoid">
 <span id="sigmoid"></span><h1>sigmoid<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.activation_functions.sigmoid" title="Link to this heading">¶</a></h1>
 <p>Sigmoid activation function visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.</span></span><span class="sig-name descname"><span class="pre">SigmoidFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sigmoid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-5,</span> <span class="pre">5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/sigmoid.html#SigmoidFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction" title="Link to this definition">¶</a></dt>
-<dd><p>Sigmoid Activation Function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>function_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name displayed next to the plot.</p></li>
-<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the x-axis.</p></li>
-<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the y-axis.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="sigmoidfunctionscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SigmoidFunctionScene <a class="headerlink" href="#sigmoidfunctionscene">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./SigmoidFunctionScene-ec62d55c.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.activation_functions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">SigmoidFunction</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SigmoidFunctionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">sigmoid</span> <span class="o">=</span> <span class="n">SigmoidFunction</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">sigmoid</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">sigmoid</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">sigmoid</span><span class="o">.</span><span class="n">make_evaluate_animation</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction.apply_function">
-<span class="sig-name descname"><span class="pre">apply_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/sigmoid.html#SigmoidFunction.apply_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction.apply_function" title="Link to this definition">¶</a></dt>
-<dd><p>Return <span class="math notranslate nohighlight">\(\frac{1}{1 + e^{-x}}\)</span>, the sigmoid of the input value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x_val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Input value to which the sigmoid is applied.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The <span class="math notranslate nohighlight">\(\frac{1}{1 + e^{-x}}\)</span>, the sigmoid of the input value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1620,10 +1564,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">sigmoid</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction"><code class="docutils literal notranslate"><span class="pre">SigmoidFunction</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction.apply_function"><code class="docutils literal notranslate"><span class="pre">SigmoidFunction.apply_function()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1643,7 +1583,6 @@
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../../_static/design-tabs.js?v=fcb327ea"></script>
-    <script defer="defer" src="../../../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../../../_static/icon_gallery.js?v=86f39e20"></script>

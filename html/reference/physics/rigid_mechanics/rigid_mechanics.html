@@ -1509,54 +1509,68 @@ they don’t register collisions finely enough. Trying to increase the
 config frame rate might solve the problem.</p></li>
 </ul>
 </div>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Space</span></code></a></p></td>
+<td><p>Physics space that manages a pymunk simulation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpaceScene</span></code></a></p></td>
+<td><p>Scene with built-in pymunk rigid-body physics.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">Space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">-9.81)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#Space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="Link to this definition">¶</a></dt>
-<dd><p>Physics space that manages a pymunk simulation.</p>
-<p>The <a class="reference internal" href="rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> object wraps a <a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> and is automatically
-added to every <a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceScene</span></code></a>.  It owns the gravity configuration and
-the simulation step that is called each frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>gravity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Gravity vector <span class="math notranslate nohighlight">\((x, y)\)</span>.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">PhysicsAttributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#PhysicsAttributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
+<p>Structural type of a mobject augmented with pymunk body attributes.</p>
+<p>The attributes are attached dynamically by
+<a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a>
+and <a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_shape()</span></code></a>.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes._is_protocol">
+<span class="sig-name descname"><span class="pre">_is_protocol</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes._is_protocol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <p class="rubric">Examples</p>
-<div id="space" class="admonition admonition-manim-example">
+<div id="physicsattributesoverview" class="admonition admonition-manim-example">
 
-<p class="admonition-title">Example: Space <a class="headerlink" href="#space">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./Space-26eda64a.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">SpaceScene</span><span class="p">,</span>
-<span class="p">)</span>
+<p class="admonition-title">Example: PhysicsAttributesOverview <a class="headerlink" href="#physicsattributesoverview">¶</a></p><img alt="../../../_images/PhysicsAttributesOverview-b2ef4a50.png" class="align-center" src="../../../_images/PhysicsAttributesOverview-b2ef4a50.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="n">PhysicsAttributes</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Space</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
-    <span class="n">GRAVITY</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">PhysicsAttributesTarget</span> <span class="o">=</span> <span class="n">PhysicsAttributes</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PhysicsAttributesOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">ground</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">7</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="n">ball</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">stroke_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span>
-                      <span class="n">fill_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">ball</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">ground</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">ball</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">make_static_body</span><span class="p">(</span><span class="n">ground</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="n">ball</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">gravity</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">PhysicsAttributesTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'PhysicsAttributes'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.physics.rigid_mechanics.rigid_mechanics'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Structural type of a mobject augmented with pymunk body attributes'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></dd></dl>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">PhysicsAttributes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">body</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</dd></dl>
 
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics._step">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step" title="Link to this definition">¶</a></dt>
@@ -1614,306 +1628,6 @@ the simulation step that is called each frame.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">get_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#get_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle" title="Link to this definition">¶</a></dt>
-<dd><p>Obtains the angle of the body from the mobject.
-Used internally for updaters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject to manipulate.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">SpaceScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="Link to this definition">¶</a></dt>
-<dd><p>Scene with built-in pymunk rigid-body physics.</p>
-<p><a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceScene</span></code></a> is the base scene class for all rigid-mechanics
-animations.  It creates a <a class="reference internal" href="rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> instance and sets up the
-simulation updater so that any mobject registered via
-<a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a> or <a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a> participates in the
-physics simulation.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The gravity vector can be customised by overriding the class
-attribute <a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GRAVITY</span></code></a> before instantiation.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>renderer</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">CairoRenderer</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLRenderer</span></code> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Renderer name forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY">
-<span class="sig-name descname"><span class="pre">GRAVITY</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,</span> <span class="pre">-9.81)</span></span></span><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY" title="Link to this definition">¶</a></dt>
-<dd><p>Default gravity vector applied by the physics space.</p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="spacesceneusage" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SpaceSceneUsage <a class="headerlink" href="#spacesceneusage">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./SpaceSceneUsage-a626c955.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">SpaceScene</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SpaceSceneUsage</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
-        <span class="n">circle</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">RED</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">circle</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">DOWN</span> <span class="o">+</span> <span class="n">RIGHT</span><span class="p">)</span>
-        <span class="n">rect</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
-        <span class="n">rect</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
-        <span class="n">rect</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">YELLOW_A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">rect</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">rect</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">ground</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">wall1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">wall2</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">walls</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">ground</span><span class="p">,</span> <span class="n">wall1</span><span class="p">,</span> <span class="n">wall2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
-            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">circle</span><span class="p">),</span>
-            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">rect</span><span class="p">),</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">walls</span><span class="p">)</span>
-        <span class="c1"># Mobjects will move with gravity</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">circle</span><span class="p">)</span>
-        <span class="c1"># Mobjects will stay in place</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">make_static_body</span><span class="p">(</span><span class="n">walls</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.setup">
-<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.setup" title="Link to this definition">¶</a></dt>
-<dd><p>Add the physics space to the scene and advance it every frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.add_body">
-<span class="sig-name descname"><span class="pre">add_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.add_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.add_body" title="Link to this definition">¶</a></dt>
-<dd><p>Register a pymunk body’s shape in the physics space.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – A mobject whose <code class="docutils literal notranslate"><span class="pre">body</span></code> and <code class="docutils literal notranslate"><span class="pre">shape</span></code> attributes are pymunk
-objects to be added to the simulation space.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body">
-<span class="sig-name descname"><span class="pre">make_rigid_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elasticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.make_rigid_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="Link to this definition">¶</a></dt>
-<dd><p>Make any mobject movable by gravity.
-Equivalent to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>’s <code class="docutils literal notranslate"><span class="pre">add</span></code> function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobs to be made rigid.</p></li>
-<li><p><strong>elasticity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Elasticity of the mobjects.</p></li>
-<li><p><strong>density</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Density of the mobjects.</p></li>
-<li><p><strong>friction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Friction of the mobjects in regards to
-interacting with other rigid and static objects.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_static_body">
-<span class="sig-name descname"><span class="pre">make_static_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elasticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.make_static_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_static_body" title="Link to this definition">¶</a></dt>
-<dd><p>Make any mobject interactable by rigid objects.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobs to be made static.</p></li>
-<li><p><strong>elasticity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Elasticity of the mobjects.</p></li>
-<li><p><strong>friction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Friction of the mobjects in regards to
-interacting with rigid objects.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.stop_rigidity">
-<span class="sig-name descname"><span class="pre">stop_rigidity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.stop_rigidity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.stop_rigidity" title="Link to this definition">¶</a></dt>
-<dd><p>Stop the mobjects rigidity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobs processed by this operation.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Space</span></code></a></p></td>
-<td><p>Physics space that manages a pymunk simulation.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpaceScene</span></code></a></p></td>
-<td><p>Scene with built-in pymunk rigid-body physics.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">PhysicsAttributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#PhysicsAttributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
-<p>Structural type of a mobject augmented with pymunk body attributes.</p>
-<p>The attributes are attached dynamically by
-<a class="reference internal" href="rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a>
-and <a class="reference internal" href="#id2" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_shape()</span></code></a>.</p>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes._is_protocol">
-<span class="sig-name descname"><span class="pre">_is_protocol</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes._is_protocol" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="physicsattributesoverview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: PhysicsAttributesOverview <a class="headerlink" href="#physicsattributesoverview">¶</a></p><img alt="../../../_images/PhysicsAttributesOverview-b2ef4a50.png" class="align-center" src="../../../_images/PhysicsAttributesOverview-b2ef4a50.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="n">PhysicsAttributes</span>
-
-<span class="n">PhysicsAttributesTarget</span> <span class="o">=</span> <span class="n">PhysicsAttributes</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">PhysicsAttributesOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">PhysicsAttributesTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
-        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'PhysicsAttributes'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.physics.rigid_mechanics.rigid_mechanics'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'Structural type of a mobject augmented with pymunk body attributes'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
-            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">PhysicsAttributes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">body</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Advance the pymont simulation by one time step.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The physics space containing the simulation.</p></li>
-<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step size in seconds.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">_simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#_simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd><p>Read the current state of a pymont body and update the Manim mobject.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The physics body whose state is synchronised to its mobject.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">get_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#get_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd><p>Obtains the shape of the body from the mobject.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject to manipulate.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">get_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#get_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>Obtains the angle of the body from the mobject.
 Used internally for updaters.</p>
 <dl class="field-list simple">
@@ -2004,21 +1718,6 @@ Used internally for updaters.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">rigid_mechanics</a><ul>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="docutils literal notranslate"><span class="pre">Space</span></code></a>
-</li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step"><code class="docutils literal notranslate"><span class="pre">_step()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._simulate"><code class="docutils literal notranslate"><span class="pre">_simulate()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape"><code class="docutils literal notranslate"><span class="pre">get_shape()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle"><code class="docutils literal notranslate"><span class="pre">get_angle()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="docutils literal notranslate"><span class="pre">SpaceScene</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY"><code class="docutils literal notranslate"><span class="pre">SpaceScene.GRAVITY</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.setup"><code class="docutils literal notranslate"><span class="pre">SpaceScene.setup()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.add_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.add_body()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.make_rigid_body()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_static_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.make_static_body()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.stop_rigidity"><code class="docutils literal notranslate"><span class="pre">SpaceScene.stop_rigidity()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes"><code class="docutils literal notranslate"><span class="pre">PhysicsAttributes</span></code></a><ul>
 
@@ -2031,10 +1730,10 @@ Used internally for updaters.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">_step()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">_simulate()</span></code></a></li>
-<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">get_shape()</span></code></a></li>
-<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">get_angle()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step"><code class="docutils literal notranslate"><span class="pre">_step()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._simulate"><code class="docutils literal notranslate"><span class="pre">_simulate()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape"><code class="docutils literal notranslate"><span class="pre">get_shape()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle"><code class="docutils literal notranslate"><span class="pre">get_angle()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._load_pymunk"><code class="docutils literal notranslate"><span class="pre">_load_pymunk()</span></code></a></li>
 </ul>
 </li>
@@ -2056,7 +1755,6 @@ Used internally for updaters.</p>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
-    <script defer="defer" src="../../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../../_static/icon_gallery.js?v=86f39e20"></script>

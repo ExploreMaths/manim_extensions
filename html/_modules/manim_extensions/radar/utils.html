@@ -1508,7 +1508,7 @@
 
 
 <div class="viewcode-block" id="unit_vector">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.unit_vector">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.unit_vector">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">unit_vector</span><span class="p">(</span><span class="n">degrees</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return a unit vector for an angle in degrees.</span>
 
@@ -1528,7 +1528,7 @@
 
 
 <div class="viewcode-block" id="axis_angles">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.axis_angles">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.axis_angles">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">axis_angles</span><span class="p">(</span>
     <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">90.0</span><span class="p">,</span> <span class="n">clockwise</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
@@ -1554,7 +1554,7 @@
 
 
 <div class="viewcode-block" id="mix">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.mix">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.mix">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">mix</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ManimColor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Blend two colours linearly.</span>
 
@@ -1577,7 +1577,7 @@
 
 
 <div class="viewcode-block" id="lighten">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.lighten">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.lighten">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">lighten</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ManimColor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Push a colour towards white.</span>
 
@@ -1598,7 +1598,7 @@
 
 
 <div class="viewcode-block" id="ease_in_out_cubic">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.ease_in_out_cubic">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.ease_in_out_cubic">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ease_in_out_cubic</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Apply a cubic ease-in-out curve.</span>
 
@@ -1620,7 +1620,7 @@
 
 
 <div class="viewcode-block" id="ease_out_back">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.ease_out_back">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.ease_out_back">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ease_out_back</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">overshoot</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Apply an ease-out curve with a controllable overshoot.</span>
 
@@ -1644,7 +1644,7 @@
 
 
 <div class="viewcode-block" id="ease_out_overshoot">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.ease_out_overshoot">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.ease_out_overshoot">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ease_out_overshoot</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">fraction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Apply an ease-out whose peak overshoots by a fraction of the span.</span>
 
@@ -1682,7 +1682,7 @@
 
 
 <div class="viewcode-block" id="pick_font">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.pick_font">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.pick_font">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">pick_font</span><span class="p">(</span>
     <span class="n">candidates</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -1723,7 +1723,7 @@
 
 
 <div class="viewcode-block" id="closed">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.closed">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.closed">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">closed</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Close a polygon path by appending its first point.</span>
 
@@ -1742,7 +1742,7 @@
 
 
 <div class="viewcode-block" id="as_points">
-<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.as_points">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/utils.html#manim_extensions.radar.utils.as_points">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">as_points</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Coerce 2D or 3D points into a float array with three columns.</span>
 

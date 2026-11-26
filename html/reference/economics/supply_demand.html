@@ -1493,47 +1493,6 @@
 <span id="supply-demand"></span><h1>supply_demand<a class="headerlink" href="#module-manim_extensions.economics.supply_demand" title="Link to this heading">¶</a></h1>
 <p>Supply and demand diagram for Manim.</p>
 <p>This module provides the supply and demand diagram.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.economics.supply_demand.SupplyDemandDiagram">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.economics.supply_demand.</span></span><span class="sig-name descname"><span class="pre">SupplyDemandDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supply_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_equilibrium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/supply_demand.html#SupplyDemandDiagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.supply_demand.SupplyDemandDiagram" title="Link to this definition">¶</a></dt>
-<dd><p>A supply-and-demand diagram.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>demand_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Demand function <span class="math notranslate nohighlight">\(P = D(Q)\)</span>.</p></li>
-<li><p><strong>supply_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Supply function <span class="math notranslate nohighlight">\(P = S(Q)\)</span>.</p></li>
-<li><p><strong>show_equilibrium</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, mark the supply–demand intersection as the equilibrium.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference internal" href="base.EconDiagram.html#manim_extensions.economics.base.EconDiagram" title="manim_extensions.economics.base.EconDiagram"><code class="xref py py-class docutils literal notranslate"><span class="pre">EconDiagram</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="supplydemanddiagramscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: SupplyDemandDiagramScene <a class="headerlink" href="#supplydemanddiagramscene">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./SupplyDemandDiagramScene-8b8bb809.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.economics</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupplyDemandDiagram</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SupplyDemandDiagramScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">diagram</span> <span class="o">=</span> <span class="n">SupplyDemandDiagram</span><span class="p">(</span>
-            <span class="n">demand_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="mi">8</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span>   <span class="c1"># inverse demand P(Q)</span>
-            <span class="n">supply_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span>   <span class="c1"># inverse supply P(Q)</span>
-            <span class="n">show_equilibrium</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">diagram</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">get_shift_animation</span><span class="p">(</span>
-            <span class="s2">"demand"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="mi">10</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span> <span class="n">show_arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1606,8 +1565,6 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">supply_demand</a><ul>
-<li><a class="reference internal" href="#manim_extensions.economics.supply_demand.SupplyDemandDiagram"><code class="docutils literal notranslate"><span class="pre">SupplyDemandDiagram</span></code></a>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1627,7 +1584,6 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
-    <script defer="defer" src="../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../_static/icon_gallery.js?v=86f39e20"></script>

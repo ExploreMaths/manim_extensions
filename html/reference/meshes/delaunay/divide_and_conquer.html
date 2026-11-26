@@ -1492,6 +1492,20 @@
           <section id="module-manim_extensions.meshes.delaunay.divide_and_conquer">
 <span id="divide-and-conquer"></span><h1>divide_and_conquer<a class="headerlink" href="#module-manim_extensions.meshes.delaunay.divide_and_conquer" title="Link to this heading">¶</a></h1>
 <p>functions to create delaunay meshes by divide and conquer.</p>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer" title="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DivideAndConquer</span></code></a></p></td>
+<td><p>Visualise the divide-and-conquer algorithm for Delaunay triangulation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.get_clockwise_angle">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.divide_and_conquer.</span></span><span class="sig-name descname"><span class="pre">get_clockwise_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#get_clockwise_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_clockwise_angle" title="Link to this definition">¶</a></dt>
@@ -1515,321 +1529,6 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.get_counter_clockwise_angle">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.divide_and_conquer.</span></span><span class="sig-name descname"><span class="pre">get_counter_clockwise_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#get_counter_clockwise_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_counter_clockwise_angle" title="Link to this definition">¶</a></dt>
-<dd><p>Returns counter-clockwise angle between 2D vectors a and b.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First 2D vector.</p></li>
-<li><p><strong>b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second 2D vector.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Counter-clockwise angle in radians between 0 and <span class="math notranslate nohighlight">\(2\pi\)</span>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.divide_and_conquer.</span></span><span class="sig-name descname"><span class="pre">DivideAndConquer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer" title="Link to this definition">¶</a></dt>
-<dd><p>Visualise the divide-and-conquer algorithm for Delaunay triangulation.</p>
-<p>The class operates on a <a class="reference internal" href="../models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a> that has already
-been added to a scene and contains only vertices (no faces yet).  It
-animates the recursive splitting, triangulation of base cases, and
-merging steps described by Guibas and Stolfi.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – The scene in which the triangulation will be animated.</p></li>
-<li><p><strong>triangle_mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a></span>) – <p>A triangle mesh containing only vertices (no faces) that has
-already been added to <code class="docutils literal notranslate"><span class="pre">scene</span></code>.</p>
-<p>Algorithm based on <a class="reference external" href="http://www.geom.uiuc.edu/~samuelp/del_project.html">http://www.geom.uiuc.edu/~samuelp/del_project.html</a>.</p>
-</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="divideandconquerscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: DivideAndConquerScene <a class="headerlink" href="#divideandconquerscene">¶</a></p><video
-    class="manim-video"
-    controls
-    loop
-    autoplay
-    src="./DivideAndConquerScene-8c1e5192.mp4">
-</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.templates</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_coplanar_points</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.triangle_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">TriangleManim2DMesh</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.delaunay.divide_and_conquer</span><span class="w"> </span><span class="kn">import</span> <span class="n">DivideAndConquer</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">DivideAndConquerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># the mesh must only consist of vertices and display them and</span>
-        <span class="c1"># the edges, else the algorithm is not visualized properly</span>
-        <span class="n">tm</span> <span class="o">=</span> <span class="n">TriangleManim2DMesh</span><span class="p">(</span>
-            <span class="n">create_coplanar_points</span><span class="p">(),</span>
-            <span class="n">display_vertices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">display_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">edges_color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">,</span>
-            <span class="n">faces_color</span><span class="o">=</span><span class="n">BLUE_D</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">vertices</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">edges</span><span class="p">))</span>
-        <span class="c1"># recursively splits, triangulates and merges the point set</span>
-        <span class="n">dc</span> <span class="o">=</span> <span class="n">DivideAndConquer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tm</span><span class="p">)</span>
-        <span class="n">dc</span><span class="o">.</span><span class="n">divide_and_conquer_recursive</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points">
-<span class="sig-name descname"><span class="pre">split_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vert_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dash_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer.split_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points" title="Link to this definition">¶</a></dt>
-<dd><p>Split the vertex set into two halves along the x-coordinate median.</p>
-<p>The vertices referenced by <code class="docutils literal notranslate"><span class="pre">vert_indices</span></code> are sorted by their
-x-coordinate and divided into a left and right subset.  A dashed
-separator line is drawn at the split position.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vert_indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices to split.</p></li>
-<li><p><strong>dash_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Dash length of the separator line.</p></li>
-<li><p><strong>line_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the separator line.</p></li>
-<li><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier (lower is faster).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.DashedLine.html#manim.mobject.geometry.line.DashedLine" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashedLine</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Left vertex indices, right vertex indices, and the separator
-line mobject.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.triangulate_leq_3">
-<span class="sig-name descname"><span class="pre">triangulate_leq_3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vert_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer.triangulate_leq_3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.triangulate_leq_3" title="Link to this definition">¶</a></dt>
-<dd><p>Triangulate a base case of at most three vertices.</p>
-<p>Creates a triangle (or a degenerate segment when only two vertices
-are supplied) and adds it to the mesh.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>vert_indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices to triangulate.  The list must contain
-at most three entries.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">vert_indices</span></code> contains more than three entries.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._refresh_renderer">
-<span class="sig-name descname"><span class="pre">_refresh_renderer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer._refresh_renderer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._refresh_renderer" title="Link to this definition">¶</a></dt>
-<dd><p>Commit a mesh mutation to the renderer before the next animation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate">
-<span class="sig-name descname"><span class="pre">_right_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rr_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer._right_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate" title="Link to this definition">¶</a></dt>
-<dd><p>Find the best right-side candidate vertex for the merge step.</p>
-<p>The method evaluates all right-side vertices connected to the
-base edge <code class="docutils literal notranslate"><span class="pre">base_lr</span></code> and returns the first one whose circumscribed
-circle does not contain the next candidate in the angularly sorted
-order (Incircle criterion).  If a conflicting RR edge is found it is
-removed from the mesh.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>base_lr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices <code class="docutils literal notranslate"><span class="pre">(l,</span> <span class="pre">r)</span></code> forming the base edge of the merge.</p></li>
-<li><p><strong>rr_edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span>) – Right-right edges currently present in the mesh.</p></li>
-<li><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Index of the right candidate vertex, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no valid
-candidate exists.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._left_candidate">
-<span class="sig-name descname"><span class="pre">_left_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer._left_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._left_candidate" title="Link to this definition">¶</a></dt>
-<dd><p>Find the best left-side candidate vertex for the merge step.</p>
-<p>Mirror of <a class="reference internal" href="divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate" title="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_right_candidate()</span></code></a> for the left side.  Evaluates
-left-side vertices connected to the base edge and returns the
-first one satisfying the Incircle criterion, removing conflicting
-LL edges when necessary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>base_lr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices <code class="docutils literal notranslate"><span class="pre">(l,</span> <span class="pre">r)</span></code> forming the base edge of the merge.</p></li>
-<li><p><strong>ll_edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span>) – Left-left edges currently present in the mesh.</p></li>
-<li><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Index of the left candidate vertex, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no valid
-candidate exists.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.merge_sets">
-<span class="sig-name descname"><span class="pre">merge_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer.merge_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.merge_sets" title="Link to this definition">¶</a></dt>
-<dd><p>Merge two Delaunay-triangulated vertex sets into a combined triangulation.</p>
-<p>The method removes the split separator line, locates the base edge
-between the two sets via <cite>_find_base_lr()</cite>, and iteratively
-adds new triangles by selecting the best left/right candidates
-until the merge is complete.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>indices_left</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices in the left set.</p></li>
-<li><p><strong>indices_right</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices in the right set.</p></li>
-<li><p><strong>split_line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.DashedLine.html#manim.mobject.geometry.line.DashedLine" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashedLine</span></code></a></span>) – The separator line drawn during <a class="reference internal" href="divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points" title="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">split_points()</span></code></a>; it is
-removed as part of the merge animation.</p></li>
-<li><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Combined list of vertex indices from both sets.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._find_base_lr">
-<span class="sig-name descname"><span class="pre">_find_base_lr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer._find_base_lr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._find_base_lr" title="Link to this definition">¶</a></dt>
-<dd><p>Find the initial base edge connecting the left and right vertex sets.</p>
-<p>The method identifies the rightmost vertex of the left hull and the
-leftmost vertex of the right hull, then walks down the convex hulls
-until the tangent line satisfies the Delaunay criterion.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>indices_left</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices in the left set.</p></li>
-<li><p><strong>indices_right</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices in the right set.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The <code class="docutils literal notranslate"><span class="pre">(l,</span> <span class="pre">r)</span></code> vertex indices forming the initial base edge.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.divide_and_conquer_recursive">
-<span class="sig-name descname"><span class="pre">divide_and_conquer_recursive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer.divide_and_conquer_recursive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.divide_and_conquer_recursive" title="Link to this definition">¶</a></dt>
-<dd><p>Run the complete recursive divide-and-conquer algorithm.</p>
-<p>Starts with the full set of mesh vertices and recursively splits,
-triangulates base cases, and merges until a Delaunay triangulation
-is produced.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If the mesh already contains faces (must be empty).</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._divide_and_conquer_recursive">
-<span class="sig-name descname"><span class="pre">_divide_and_conquer_recursive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vert_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#DivideAndConquer._divide_and_conquer_recursive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._divide_and_conquer_recursive" title="Link to this definition">¶</a></dt>
-<dd><p>Internal recursive implementation of the divide-and-conquer algorithm.</p>
-<p>Base cases (&lt;= 3 vertices) are triangulated directly; otherwise the
-set is split and recursively processed before merging.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vert_indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Indices of the vertices to process.</p></li>
-<li><p><strong>speed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation speed multiplier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Combined vertex indices after triangulation and merging.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer" title="manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DivideAndConquer</span></code></a></p></td>
-<td><p>Visualise the divide-and-conquer algorithm for Delaunay triangulation.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.divide_and_conquer.</span></span><span class="sig-name descname"><span class="pre">get_clockwise_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#get_clockwise_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Returns clockwise angle between 2D vectors a and b.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First 2D vector.</p></li>
-<li><p><strong>b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second 2D vector.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Clockwise angle in radians between 0 and <span class="math notranslate nohighlight">\(2\pi\)</span>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.divide_and_conquer.</span></span><span class="sig-name descname"><span class="pre">get_counter_clockwise_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/divide_and_conquer.html#get_counter_clockwise_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Returns counter-clockwise angle between 2D vectors a and b.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1908,24 +1607,10 @@ set is split and recursively processed before merging.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">divide_and_conquer</a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_clockwise_angle"><code class="docutils literal notranslate"><span class="pre">get_clockwise_angle()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_counter_clockwise_angle"><code class="docutils literal notranslate"><span class="pre">get_counter_clockwise_angle()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer.split_points()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.triangulate_leq_3"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer.triangulate_leq_3()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._refresh_renderer"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer._refresh_renderer()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer._right_candidate()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._left_candidate"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer._left_candidate()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.merge_sets"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer.merge_sets()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._find_base_lr"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer._find_base_lr()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.divide_and_conquer_recursive"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer.divide_and_conquer_recursive()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._divide_and_conquer_recursive"><code class="docutils literal notranslate"><span class="pre">DivideAndConquer._divide_and_conquer_recursive()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">get_clockwise_angle()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">get_counter_clockwise_angle()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_clockwise_angle"><code class="docutils literal notranslate"><span class="pre">get_clockwise_angle()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.divide_and_conquer.get_counter_clockwise_angle"><code class="docutils literal notranslate"><span class="pre">get_counter_clockwise_angle()</span></code></a></li>
 </ul>
 </li>
 </ul>

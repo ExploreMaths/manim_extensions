@@ -1492,166 +1492,6 @@
           <section id="module-manim_extensions.radar.backdrop">
 <span id="backdrop"></span><h1>backdrop<a class="headerlink" href="#module-manim_extensions.radar.backdrop" title="Link to this heading">¶</a></h1>
 <p>The deep-space backdrop: radial glow, vignette, nebula blobs and stars.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.backdrop.</span></span><span class="sig-name descname"><span class="pre">DeepSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'midnight'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glow_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vignette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vignette_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nebula</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nebula_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-7.6,</span> <span class="pre">7.6,</span> <span class="pre">-4.3,</span> <span class="pre">4.3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace" title="Link to this definition">¶</a></dt>
-<dd><p>Animated starfield + glow used behind a radar chart.</p>
-<p>Four stacked layers:</p>
-<ul class="simple">
-<li><p><strong>glow</strong> – a smooth radial glow built from many concentric circles
-(Manim has no real gradients, stacking low-opacity circles is the trick)</p></li>
-<li><p><strong>vignette</strong> – darker corners so the chart pops out of the frame</p></li>
-<li><p><strong>nebula</strong> – big soft blobs that breathe in the chart’s current colour</p></li>
-<li><p><strong>stars</strong> – three-layer glowing dots that drift and twinkle</p></li>
-</ul>
-<p>Use <a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace.link" title="manim_extensions.radar.backdrop.DeepSpace.link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">link()</span></code></a> to make the
-nebula and stars follow a chart’s colour, and
-<a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace.set_fade" title="manim_extensions.radar.backdrop.DeepSpace.set_fade"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_fade()</span></code></a> to dim
-everything for the black gap moment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – The theme name, theme object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> for the default theme.</p></li>
-<li><p><strong>center</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Two-dimensional centre of the radial glow.</p></li>
-<li><p><strong>glow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw the radial glow.</p></li>
-<li><p><strong>glow_layers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of concentric circles used for the glow.</p></li>
-<li><p><strong>vignette</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to darken the frame corners.</p></li>
-<li><p><strong>vignette_layers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of stacked vignette rings.</p></li>
-<li><p><strong>nebula</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw soft colour blobs.</p></li>
-<li><p><strong>nebula_count</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of nebula blobs.</p></li>
-<li><p><strong>stars</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw the star field.</p></li>
-<li><p><strong>star_count</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of stars.</p></li>
-<li><p><strong>star_region</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span>) – Bounds <code class="docutils literal notranslate"><span class="pre">(x_min,</span> <span class="pre">x_max,</span> <span class="pre">y_min,</span> <span class="pre">y_max)</span></code> for the star field.</p></li>
-<li><p><strong>seed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Random seed for reproducible star placement.</p></li>
-<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="deepspacescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: DeepSpaceScene <a class="headerlink" href="#deepspacescene">¶</a></p><img alt="../../_images/DeepSpaceScene-8631d447.png" class="align-center" src="../../_images/DeepSpaceScene-8631d447.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.backdrop</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeepSpace</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">DeepSpaceScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">backdrop</span> <span class="o">=</span> <span class="n">DeepSpace</span><span class="p">()</span>
-        <span class="n">backdrop</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace.link">
-<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chart</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace.link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace.link" title="Link to this definition">¶</a></dt>
-<dd><p>Make the backdrop follow a chart’s current colour.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Chart whose colour drives the tint.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>This backdrop, allowing calls to be chained.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace.set_tint">
-<span class="sig-name descname"><span class="pre">set_tint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace.set_tint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace.set_tint" title="Link to this definition">¶</a></dt>
-<dd><p>Recolour the nebula and star halos.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – New tint colour.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>This backdrop, allowing calls to be chained.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace.set_fade">
-<span class="sig-name descname"><span class="pre">set_fade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace.set_fade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace.set_fade" title="Link to this definition">¶</a></dt>
-<dd><p>Set the global brightness of the backdrop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Brightness from 0 for almost black to 1 for full.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>This backdrop, allowing calls to be chained.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace.install">
-<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace.install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace.install" title="Link to this definition">¶</a></dt>
-<dd><p>Add the backdrop to a scene.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene that receives the backdrop.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>This backdrop, allowing calls to be chained.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.DeepSpace._refresh">
-<span class="sig-name descname"><span class="pre">_refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#DeepSpace._refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.DeepSpace._refresh" title="Link to this definition">¶</a></dt>
-<dd><p>Advance the backdrop animation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject carrying the updater.</p></li>
-<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step in seconds.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.set_scene_background">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.backdrop.</span></span><span class="sig-name descname"><span class="pre">set_scene_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'midnight'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#set_scene_background"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.set_scene_background" title="Link to this definition">¶</a></dt>
-<dd><p>Set Manim’s global background colour to a theme background.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – The theme name, theme object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> for the default theme.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The colour that was applied.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>Handy at the top of a scene file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_scene_background</span>
-<span class="n">set_scene_background</span><span class="p">(</span><span class="s2">"midnight"</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1667,8 +1507,8 @@ everything for the black gap moment.</p>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.backdrop.</span></span><span class="sig-name descname"><span class="pre">set_scene_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'midnight'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#set_scene_background"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="manim_extensions.radar.backdrop.set_scene_background">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.backdrop.</span></span><span class="sig-name descname"><span class="pre">set_scene_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'midnight'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/backdrop.html#set_scene_background"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.backdrop.set_scene_background" title="Link to this definition">¶</a></dt>
 <dd><p>Set Manim’s global background colour to a theme background.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1750,19 +1590,9 @@ everything for the black gap moment.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">backdrop</a><ul>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace"><code class="docutils literal notranslate"><span class="pre">DeepSpace</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace.link"><code class="docutils literal notranslate"><span class="pre">DeepSpace.link()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace.set_tint"><code class="docutils literal notranslate"><span class="pre">DeepSpace.set_tint()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace.set_fade"><code class="docutils literal notranslate"><span class="pre">DeepSpace.set_fade()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace.install"><code class="docutils literal notranslate"><span class="pre">DeepSpace.install()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.DeepSpace._refresh"><code class="docutils literal notranslate"><span class="pre">DeepSpace._refresh()</span></code></a></li>
-
-</ul>
-</li>
-<li><a class="reference internal" href="#manim_extensions.radar.backdrop.set_scene_background"><code class="docutils literal notranslate"><span class="pre">set_scene_background()</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">set_scene_background()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.backdrop.set_scene_background"><code class="docutils literal notranslate"><span class="pre">set_scene_background()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -1492,44 +1492,6 @@
           <section id="module-manim_extensions.machine_learning.utils.mobjects.plotting">
 <span id="plotting"></span><h1>plotting<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.mobjects.plotting" title="Link to this heading">¶</a></h1>
 <p>Plotting utilities for neural network visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.plotting.</span></span><span class="sig-name descname"><span class="pre">MatplotlibFigureImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/plotting.html#MatplotlibFigureImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage" title="Link to this definition">¶</a></dt>
-<dd><p>A matplotlib figure rendered as an image mobject.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>fig</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span>) – Matplotlib figure.</p></li>
-<li><p><strong>dpi</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Resolution of the rendered figure in dots per inch.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.image_mobject.ImageMobject.html#manim.mobject.types.image_mobject.ImageMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageMobject</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="matplotlibfigure" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: MatplotlibFigure <a class="headerlink" href="#matplotlibfigure">¶</a></p><img alt="../../../../_images/MatplotlibFigure-fdf07565.png" class="align-center" src="../../../../_images/MatplotlibFigure-fdf07565.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">MatplotlibFigureImage</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">MatplotlibFigure</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"tab:blue"</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"sin(x)"</span><span class="p">)</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">MatplotlibFigureImage</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-        <span class="n">image</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1542,8 +1504,8 @@
 </table>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="id0">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.plotting.</span></span><span class="sig-name descname"><span class="pre">MatplotlibFigureImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/plotting.html#MatplotlibFigureImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.plotting.</span></span><span class="sig-name descname"><span class="pre">MatplotlibFigureImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/plotting.html#MatplotlibFigureImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.image_mobject.ImageMobject.html#manim.mobject.types.image_mobject.ImageMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageMobject</span></code></a></p>
 <p>A matplotlib figure rendered as an image mobject.</p>
 <dl class="field-list simple">
@@ -1641,9 +1603,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">plotting</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage"><code class="docutils literal notranslate"><span class="pre">MatplotlibFigureImage</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">MatplotlibFigureImage</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage"><code class="docutils literal notranslate"><span class="pre">MatplotlibFigureImage</span></code></a></li>
 </ul>
 </li>
 </ul>

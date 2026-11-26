@@ -1513,7 +1513,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingLayer</span><span class="p">(</span><span class="n">VGroupNeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">""":class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` embedding object that can show probability distributions.</span>
 
@@ -1589,7 +1589,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">paired_query_mode</span> <span class="o">=</span> <span class="n">paired_query_mode</span>
 
 <div class="viewcode-block" id="EmbeddingLayer.construct_layer">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.construct_layer">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.construct_layer">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
@@ -1636,7 +1636,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.add_gaussian_distribution">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.add_gaussian_distribution">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.add_gaussian_distribution">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_gaussian_distribution</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">gaussian_distribution</span><span class="p">:</span> <span class="n">GaussianDistribution</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Create</span><span class="p">:</span>
@@ -1657,7 +1657,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.remove_gaussian_distribution">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.remove_gaussian_distribution">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.remove_gaussian_distribution">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_gaussian_distribution</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">gaussian_distribution</span><span class="p">:</span> <span class="n">GaussianDistribution</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FadeOut</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -1680,7 +1680,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.sample_point_location_from_distribution">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.sample_point_location_from_distribution">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.sample_point_location_from_distribution">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">sample_point_location_from_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Samples from the current latent distribution.</span>
 
@@ -1698,7 +1698,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.get_distribution_location">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.get_distribution_location">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.get_distribution_location">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_distribution_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns mean of latent distribution in axes frame.</span>
 
@@ -1710,7 +1710,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.construct_gaussian_point_cloud">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.construct_gaussian_point_cloud">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.construct_gaussian_point_cloud">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_gaussian_point_cloud</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mean</span><span class="p">:</span> <span class="n">Point2D</span><span class="p">,</span>
@@ -1750,7 +1750,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer.make_forward_pass_animation">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.make_forward_pass_animation">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
@@ -1844,7 +1844,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingLayer._create_override">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer._create_override">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Reveal the point cloud point by point.</span>

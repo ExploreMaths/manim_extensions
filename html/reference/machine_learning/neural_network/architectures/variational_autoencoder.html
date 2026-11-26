@@ -1494,115 +1494,6 @@
 <p>Variational Autoencoder Manim Visualizations.</p>
 <p>In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.</span></span><span class="sig-name descname"><span class="pre">VariationalAutoencoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder_nodes_per_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[5,</span> <span class="pre">3]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decoder_nodes_per_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[3,</span> <span class="pre">5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dot_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ellipse_stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.html#VariationalAutoencoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder" title="Link to this definition">¶</a></dt>
-<dd><p>Variational Autoencoder Manim Visualization.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>encoder_nodes_per_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Number of nodes in each encoder layer.</p></li>
-<li><p><strong>decoder_nodes_per_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Number of nodes in each decoder layer.</p></li>
-<li><p><strong>point_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the points in the embedding layer.</p></li>
-<li><p><strong>dot_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the points in the embedding layer.</p></li>
-<li><p><strong>ellipse_stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the embedding ellipse.</p></li>
-<li><p><strong>layer_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between the neural network layers.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="variationalautoencoderscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: VariationalAutoencoderScene <a class="headerlink" href="#variationalautoencoderscene">¶</a></p><img alt="../../../../_images/VariationalAutoencoderScene-ef2ff1e1.png" class="align-center" src="../../../../_images/VariationalAutoencoderScene-ef2ff1e1.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">VariationalAutoencoder</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">VariationalAutoencoderScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">vae</span> <span class="o">=</span> <span class="n">VariationalAutoencoder</span><span class="p">()</span>
-        <span class="n">vae</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._construct_neural_network">
-<span class="sig-name descname"><span class="pre">_construct_neural_network</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.html#VariationalAutoencoder._construct_neural_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._construct_neural_network" title="Link to this definition">¶</a></dt>
-<dd><p>Makes the VAE encoder, embedding layer, and decoder.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a>, <a class="reference internal" href="../layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer" title="manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbeddingLayer</span></code></a>]</span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The assembled neural network and its embedding layer.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._create_vae">
-<span class="sig-name descname"><span class="pre">_create_vae</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.html#VariationalAutoencoder._create_vae"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._create_vae" title="Link to this definition">¶</a></dt>
-<dd><p>Create the neural network when the VAE appears.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.Create.html#manim.animation.creation.Create" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Create</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The creation animation for the neural network.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_triplet_forward_pass">
-<span class="sig-name descname"><span class="pre">make_triplet_forward_pass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triplet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.html#VariationalAutoencoder.make_triplet_forward_pass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_triplet_forward_pass" title="Link to this definition">¶</a></dt>
-<dd><p>Animate a triplet forward pass through the network.</p>
-<p>The three images of the triplet (anchor, positive, negative) are
-shown next to the encoder and then propagated through the network.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>triplet</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>], <a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>], <a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>]]</span>) – The triplet of inputs passed through the network.</p></li>
-<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Run time of the forward pass animation.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when the triplet does not contain exactly three images
-    or an image does not have two or three dimensions.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_image_forward_pass">
-<span class="sig-name descname"><span class="pre">make_image_forward_pass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.html#VariationalAutoencoder.make_image_forward_pass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_image_forward_pass" title="Link to this definition">¶</a></dt>
-<dd><p>Override forward pass animation specific to a VAE.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>]</span>) – The input image fed into the encoder.</p></li>
-<li><p><strong>output_image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>]</span>) – The output image produced by the decoder.</p></li>
-<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Run time of the forward pass animation.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1675,14 +1566,6 @@ shown next to the encoder and then propagated through the network.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">variational_autoencoder</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder"><code class="docutils literal notranslate"><span class="pre">VariationalAutoencoder</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._construct_neural_network"><code class="docutils literal notranslate"><span class="pre">VariationalAutoencoder._construct_neural_network()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder._create_vae"><code class="docutils literal notranslate"><span class="pre">VariationalAutoencoder._create_vae()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_triplet_forward_pass"><code class="docutils literal notranslate"><span class="pre">VariationalAutoencoder.make_triplet_forward_pass()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder.make_image_forward_pass"><code class="docutils literal notranslate"><span class="pre">VariationalAutoencoder.make_image_forward_pass()</span></code></a></li>
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

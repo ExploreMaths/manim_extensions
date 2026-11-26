@@ -2275,7 +2275,7 @@
 
 
 <div class="viewcode-block" id="LayoutAnimation">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.LayoutAnimation">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.LayoutAnimation.html#manim_extensions.mindmap.animations.animations.LayoutAnimation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LayoutAnimation</span><span class="p">(</span><span class="n">AbstractLayoutAnimation</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""General layout animation: apply a layout to the whole tree and play all change animations.</span>
 
@@ -2354,7 +2354,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="LayoutAnimation.collect_animations">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.LayoutAnimation.collect_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.LayoutAnimation.html#manim_extensions.mindmap.animations.animations.LayoutAnimation.collect_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect the animations needed to re-layout the mind map.</span>
 
@@ -2375,7 +2375,7 @@
 
 
 <div class="viewcode-block" id="RemoveNode">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.RemoveNode">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.RemoveNode.html#manim_extensions.mindmap.animations.animations.RemoveNode">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RemoveNode</span><span class="p">(</span><span class="n">LayoutAnimation</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.</span>
 
@@ -2446,7 +2446,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="RemoveNode.collect_animations">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.RemoveNode.collect_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.RemoveNode.html#manim_extensions.mindmap.animations.animations.RemoveNode.collect_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect animations for removing nodes (or the whole tree).</span>
 
@@ -2471,7 +2471,7 @@
 
 
 <div class="viewcode-block" id="RemoveNode._get_whole_tree">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.RemoveNode._get_whole_tree">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.RemoveNode.html#manim_extensions.mindmap.animations.animations.RemoveNode._get_whole_tree">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_whole_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Collect all mobjects belonging to the whole tree for removal.</span>
 
@@ -2491,7 +2491,7 @@
 
 
 <div class="viewcode-block" id="InsertNode">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.InsertNode">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.InsertNode.html#manim_extensions.mindmap.animations.animations.InsertNode">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InsertNode</span><span class="p">(</span><span class="n">LayoutAnimation</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Insert one or more child nodes into the mind map.</span>
 
@@ -2552,7 +2552,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="InsertNode.get_root">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.InsertNode.get_root">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.InsertNode.html#manim_extensions.mindmap.animations.animations.InsertNode.get_root">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Return the common root of the given nodes.</span>
 
@@ -2579,7 +2579,7 @@
 
 
 <div class="viewcode-block" id="InsertNode.collect_animations">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.InsertNode.collect_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.InsertNode.html#manim_extensions.mindmap.animations.animations.InsertNode.collect_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect animations for inserting new nodes into the mind map.</span>
 
@@ -2598,7 +2598,7 @@
 
 
 <div class="viewcode-block" id="ScaleNode">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.ScaleNode">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.ScaleNode.html#manim_extensions.mindmap.animations.animations.ScaleNode">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ScaleNode</span><span class="p">(</span><span class="n">LayoutAnimation</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Scale one or more nodes in the mind map.</span>
 
@@ -2665,7 +2665,7 @@
 
 
 <div class="viewcode-block" id="AlterNode">
-<a class="viewcode-back" href="../../../../reference/mindmap/index.html#manim_extensions.mindmap.animations.animations.AlterNode">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.AlterNode.html#manim_extensions.mindmap.animations.animations.AlterNode">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AlterNode</span><span class="p">(</span><span class="n">LayoutAnimation</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Replace the content of one or more nodes in the mind map.</span>
 

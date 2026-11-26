@@ -1505,7 +1505,7 @@
 
 
 <div class="viewcode-block" id="RadialWave">
-<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.RadialWave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadialWave</span><span class="p">(</span><span class="n">Surface</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ConvertToOpenGL</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Wave surface that radiates from one or more point sources.</span>
 
@@ -1579,7 +1579,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="RadialWave._wave_z">
-<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.RadialWave._wave_z">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave._wave_z">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_wave_z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sources</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Point3D</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute the wave height at position ``(u, v)`` summed over all sources.</span>
 
@@ -1607,7 +1607,7 @@
 
 
 <div class="viewcode-block" id="RadialWave._update_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.RadialWave._update_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave._update_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the wave simulation by ``dt`` seconds and refresh the surface.</span>
 
@@ -1635,7 +1635,7 @@
 
 
 <div class="viewcode-block" id="RadialWave.start_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.RadialWave.start_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.start_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Animate the wave propagation.</span>
 
@@ -1647,7 +1647,7 @@
 
 
 <div class="viewcode-block" id="RadialWave.stop_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.RadialWave.stop_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.stop_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop animating the wave propagation.</span>
 
@@ -1661,7 +1661,7 @@
 
 
 <div class="viewcode-block" id="LinearWave">
-<a class="viewcode-back" href="../../../reference/physics/wave.LinearWave.html#manim_extensions.physics.LinearWave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.LinearWave.html#manim_extensions.physics.wave.LinearWave">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LinearWave</span><span class="p">(</span><span class="n">RadialWave</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A wave surface propagating in one spatial direction.</span>
 
@@ -1718,7 +1718,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="LinearWave._wave_z">
-<a class="viewcode-back" href="../../../reference/physics/wave.LinearWave.html#manim_extensions.physics.LinearWave._wave_z">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.LinearWave.html#manim_extensions.physics.wave.LinearWave._wave_z">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_wave_z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sources</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Point3D</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute the height of the linear wave at position ``(u, v)``.</span>
 
@@ -1744,7 +1744,7 @@
 
 
 <div class="viewcode-block" id="StandingWave">
-<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.StandingWave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StandingWave</span><span class="p">(</span><span class="n">ParametricFunction</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A 2D standing wave formed by the superposition of opposing waves.</span>
 
@@ -1805,7 +1805,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">((</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
 <div class="viewcode-block" id="StandingWave._update_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.StandingWave._update_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave._update_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the standing-wave simulation and refresh the curve.</span>
 
@@ -1840,7 +1840,7 @@
 
 
 <div class="viewcode-block" id="StandingWave.start_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.StandingWave.start_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.start_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Begin the standing-wave animation and store its current center.</span>
 
@@ -1853,7 +1853,7 @@
 
 
 <div class="viewcode-block" id="StandingWave.stop_wave">
-<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.StandingWave.stop_wave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.stop_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the standing-wave animation.</span>
 

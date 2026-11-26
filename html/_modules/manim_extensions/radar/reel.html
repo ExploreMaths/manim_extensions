@@ -1507,7 +1507,7 @@
 
 
 <div class="viewcode-block" id="RadarReel">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarReel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Play a whole list of snapshots with a single command.</span>
 
@@ -1598,7 +1598,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarReel._normalize_step">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel._normalize_step">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel._normalize_step">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_normalize_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Turn one reel entry into a list of snapshots.</span>
 
@@ -1632,7 +1632,7 @@
 
 
 <div class="viewcode-block" id="RadarReel._with_palette_colors">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel._with_palette_colors">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel._with_palette_colors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_with_palette_colors</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">RadarData</span><span class="p">],</span> <span class="n">step_index</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]:</span>
@@ -1682,7 +1682,7 @@
         <span class="k">return</span> <span class="n">total</span>
 
 <div class="viewcode-block" id="RadarReel.summary">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel.summary">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel.summary">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Describe what :meth:`~manim_extensions.radar.reel.RadarReel.play_on` will do.</span>
 
@@ -1712,7 +1712,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarReel.play_on">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel.play_on">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel.play_on">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">play_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarReel"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Play the whole sequence on a scene.</span>
 
@@ -1789,7 +1789,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarReel._install_backdrop">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel._install_backdrop">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel._install_backdrop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_install_backdrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach and link the optional deep-space backdrop.</span>
 
@@ -1813,7 +1813,7 @@
 
 
 <div class="viewcode-block" id="RadarReel._fade_backdrop">
-<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.RadarReel._fade_backdrop">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/reel.RadarReel.html#manim_extensions.radar.reel.RadarReel._fade_backdrop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_fade_backdrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Animate the backdrop brightness.</span>
 

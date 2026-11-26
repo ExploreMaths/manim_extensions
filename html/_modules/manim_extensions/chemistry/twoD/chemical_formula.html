@@ -1506,7 +1506,7 @@
 
 
 <div class="viewcode-block" id="ChemicalFormula">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.ChemicalFormula">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ChemicalFormula</span><span class="p">(</span><span class="n">MarkupText</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Mostly useful for simple compounds like binary salts or oxoanions.</span>
 
@@ -1563,7 +1563,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ChemicalFormula.parse_formula">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.ChemicalFormula.parse_formula">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.parse_formula">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Parse a formula string into a dict mapping element symbols to their counts.</span>
 
@@ -1587,7 +1587,7 @@
 
 
 <div class="viewcode-block" id="ChemicalFormula.make_markup">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.ChemicalFormula.make_markup">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.make_markup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_markup</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">parsed_formula</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
@@ -1629,7 +1629,7 @@
 
 
 <div class="viewcode-block" id="ChemicalFormula.set_atom_color">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.ChemicalFormula.set_atom_color">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.set_atom_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_atom_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subindex</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Wrap an atom symbol and its subscript count in a colored span tag.</span>
 
@@ -1659,7 +1659,7 @@
 
 
 <div class="viewcode-block" id="NamedFormula">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.NamedFormula">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NamedFormula</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A chemical formula together with its name.</span>
 
@@ -1748,7 +1748,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name_mob</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NamedFormula.make_name">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.NamedFormula.make_name">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.make_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MarkupText</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Not all languages use the same naming structure.</span>
 <span class="sd">        For example, in english NaCl is Sodium (Na) Chloride (Cl)</span>
@@ -1784,7 +1784,7 @@
 
 
 <div class="viewcode-block" id="ComplexFormula">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.ComplexFormula">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ComplexFormula</span><span class="p">(</span><span class="n">MarkupText</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Allows the creation of more complex molecular formulas</span>
 <span class="sd">    using a dictionary. The key is the string to be written</span>
@@ -1823,7 +1823,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ComplexFormula.add_tags_around_numbers">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.ComplexFormula.add_tags_around_numbers">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.add_tags_around_numbers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_tags_around_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_part</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Wrap trailing numbers in formula parts with HTML subscript tags.</span>
 
@@ -1843,7 +1843,7 @@
 
 
 <div class="viewcode-block" id="ComplexFormula.add_tags_around_charges">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.ComplexFormula.add_tags_around_charges">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.add_tags_around_charges">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_tags_around_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_part</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Wrap charge notation (^{...}) with HTML superscript tags.</span>
 
@@ -1864,7 +1864,7 @@
 
 
 <div class="viewcode-block" id="ComplexFormula.make_formula_structure">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.ComplexFormula.make_formula_structure">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.make_formula_structure">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_formula_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_part</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply subscript and superscript formatting to a formula string.</span>
 
@@ -1886,7 +1886,7 @@
 
 
 <div class="viewcode-block" id="NamedComplexFormula">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.NamedComplexFormula">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NamedComplexFormula</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Complex formula build with two dicts.</span>
 
@@ -1942,7 +1942,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NamedComplexFormula.build_name">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.NamedComplexFormula.build_name">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.build_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">build_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build colored markup text from the name dictionary entries.</span>
 

@@ -1503,16 +1503,13 @@
 
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)</span>
-<div class="viewcode-block" id="_sph_harm">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.html#manim_extensions.chemistry._sph_harm">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">polar</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the spherical harmonic with the legacy scipy argument order."""</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">,</span> <span class="n">polar</span><span class="p">))</span></div>
-
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">,</span> <span class="n">polar</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="OrbitalBase">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.OrbitalBase">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalBase</span><span class="p">(</span><span class="n">OpenGLSurface</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Base class for implementing atomic orbitals.</span>
 <span class="sd">    Not meant to be used directly even when you can.</span>
@@ -1572,7 +1569,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalBase.add_background_rectangle_to_family_members_with_points">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.OrbitalBase.add_background_rectangle_to_family_members_with_points">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase.add_background_rectangle_to_family_members_with_points">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_background_rectangle_to_family_members_with_points</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"OrbitalBase"</span><span class="p">:</span>
@@ -1618,7 +1615,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
 
 <div class="viewcode-block" id="OrbitalBase.psi_ang">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.OrbitalBase.psi_ang">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase.psi_ang">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">psi_ang</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
@@ -1645,7 +1642,7 @@
 
 
 <div class="viewcode-block" id="OrbitalBase.calculate_coordinates">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.OrbitalBase.calculate_coordinates">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase.calculate_coordinates">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate_coordinates</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">psi</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">VectorND</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixMN</span><span class="p">:</span>
@@ -1673,7 +1670,7 @@
 
 
 <div class="viewcode-block" id="OrbitalBase.uv_func">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.OrbitalBase.uv_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase.uv_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uv_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixMN</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Base uv function: compute orbital surface coordinates from spherical angles u, v.</span>
 
@@ -1696,7 +1693,7 @@
 
 
 <div class="viewcode-block" id="OrbitalPositive">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.OrbitalPositive">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalPositive">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalPositive</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Calculates the positive values of the orbital.</span>
 
@@ -1733,7 +1730,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalPositive.uv_func">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.OrbitalPositive.uv_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalPositive.uv_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uv_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixMN</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute positive-lobe orbital coordinates, clamping negative psi values to zero.</span>
 
@@ -1758,7 +1755,7 @@
 
 
 <div class="viewcode-block" id="OrbitalNegative">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.OrbitalNegative">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalNegative">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalNegative</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Calculates the negative values of the orbital.</span>
 
@@ -1795,7 +1792,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalNegative.uv_func">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.OrbitalNegative.uv_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalNegative.uv_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uv_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixMN</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute negative-lobe orbital coordinates, clamping positive psi values to zero.</span>
 
@@ -1820,7 +1817,7 @@
 
 
 <div class="viewcode-block" id="Orbital">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.Orbital">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.orbitals.orbitals.Orbital">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Orbital</span><span class="p">(</span><span class="n">OpenGLSurface</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Uses positive and negative orbitals to create</span>
 <span class="sd">    an orbital. n value is still not implemented TODO</span>
@@ -1898,7 +1895,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">needs_new_bounding_box</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="Orbital.uv_func">
-<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.Orbital.uv_func">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.orbitals.orbitals.Orbital.uv_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uv_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixMN</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Placeholder uv function returning origin; actual geometry is in child positive/negative orbitals.</span>
 

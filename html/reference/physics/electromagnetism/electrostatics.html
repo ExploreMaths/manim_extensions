@@ -1494,95 +1494,6 @@
 <p>Electrostatic field helpers.</p>
 <p>The classes in this module generate charge objects and electric-field vector
 fields suitable for teaching and demonstration scenes in Manim.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.physics.electromagnetism.electrostatics.Charge">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.electromagnetism.electrostatics.</span></span><span class="sig-name descname"><span class="pre">Charge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">add_glow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#Charge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.electromagnetism.electrostatics.Charge" title="Link to this definition">¶</a></dt>
-<dd><p>Visual representation of an electrostatic charge.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>magnitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Charge strength; positive values are red, negative values are blue.</p></li>
-<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Location of the charge in the scene.</p></li>
-<li><p><strong>add_glow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw a soft glow around the charge.</p></li>
-<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="chargescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ChargeScene <a class="headerlink" href="#chargescene">¶</a></p><img alt="../../../_images/ChargeScene-9209cd8b.png" class="align-center" src="../../../_images/ChargeScene-9209cd8b.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.electrostatics</span><span class="w"> </span><span class="kn">import</span> <span class="n">Charge</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ChargeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">positive</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">UP</span><span class="p">)</span>
-        <span class="n">negative</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">UP</span><span class="p">)</span>
-        <span class="n">plain</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">add_glow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">plain</span><span class="p">)</span>
-        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.physics.electromagnetism.electrostatics.ElectricField">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.electromagnetism.electrostatics.</span></span><span class="sig-name descname"><span class="pre">ElectricField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">charges</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#ElectricField"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.electromagnetism.electrostatics.ElectricField" title="Link to this definition">¶</a></dt>
-<dd><p>Vector field generated by one or more electrostatic charges.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>charges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="electrostatics.Charge.html#manim_extensions.physics.electromagnetism.electrostatics.Charge" title="manim_extensions.physics.electromagnetism.electrostatics.Charge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Charge</span></code></a></span>) – The charges affecting the electric field.</p></li>
-<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.vector_field.ArrowVectorField.html#manim.mobject.vector_field.ArrowVectorField" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowVectorField</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="electricfieldscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ElectricFieldScene <a class="headerlink" href="#electricfieldscene">¶</a></p><img alt="../../../_images/ElectricFieldScene-a57b889c.png" class="align-center" src="../../../_images/ElectricFieldScene-a57b889c.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.electrostatics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Charge</span><span class="p">,</span> <span class="n">ElectricField</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ElectricFieldScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">charge1</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">LEFT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span>
-        <span class="n">charge2</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span>
-        <span class="n">charge3</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">UP</span><span class="p">)</span>
-        <span class="n">field</span> <span class="o">=</span> <span class="n">ElectricField</span><span class="p">(</span><span class="n">charge1</span><span class="p">,</span> <span class="n">charge2</span><span class="p">,</span> <span class="n">charge3</span><span class="p">)</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">charge1</span><span class="p">,</span> <span class="n">charge2</span><span class="p">,</span> <span class="n">charge3</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
-        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.physics.electromagnetism.electrostatics.ElectricField._field_func">
-<span class="sig-name descname"><span class="pre">_field_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnitudes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#ElectricField._field_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.electromagnetism.electrostatics.ElectricField._field_func" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the electric field vector at a point using Coulomb’s law.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Field point at which the electric field is evaluated.</p></li>
-<li><p><strong>positions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Positions of the source charges.</p></li>
-<li><p><strong>magnitudes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Charge magnitudes (in arbitrary units) for each source charge.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The net electric field vector at point <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1658,13 +1569,6 @@ fields suitable for teaching and demonstration scenes in Manim.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">electrostatics</a><ul>
-<li><a class="reference internal" href="#manim_extensions.physics.electromagnetism.electrostatics.Charge"><code class="docutils literal notranslate"><span class="pre">Charge</span></code></a>
-</li>
-<li><a class="reference internal" href="#manim_extensions.physics.electromagnetism.electrostatics.ElectricField"><code class="docutils literal notranslate"><span class="pre">ElectricField</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.physics.electromagnetism.electrostatics.ElectricField._field_func"><code class="docutils literal notranslate"><span class="pre">ElectricField._field_func()</span></code></a></li>
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

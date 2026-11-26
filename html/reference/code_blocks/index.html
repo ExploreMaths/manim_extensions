@@ -1494,208 +1494,12 @@
 <p><a class="reference internal" href="manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock" title="manim_extensions.code_blocks.manim_code_blocks.CodeBlock"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodeBlock</span></code></a> rendering.</p>
 <p>This package bundles the <code class="docutils literal notranslate"><span class="pre">manim-code-blocks-redux</span></code> module so that code
 blocks can be rendered directly inside a Manim scene.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.CodeBlock">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.</span></span><span class="sig-name descname"><span class="pre">CodeBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="manim_code_blocks.html#id0"><span class="pre">OneDark</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'consolas'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.CodeBlock" title="Link to this definition">¶</a></dt>
-<dd><p>A block of code. By default code blocks are rendered as <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.MarkupText.html#manim.mobject.text.text_mobject.MarkupText" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarkupText</span></code></a> objects with <cite>BackgroundRectangles</cite> behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using <cite>TextMates</cite> by extracting <cite>.tmLanguage.json</cite> files from <cite>microsoft/vscode</cite>. See <a class="reference external" href="https://github.com/microsoft/vscode/tree/main/extensions">https://github.com/microsoft/vscode/tree/main/extensions</a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The source code shown in the block.</p></li>
-<li><p><strong>language</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage" title="manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProgrammingLanguage</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Language used for syntax highlighting.</p></li>
-<li><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_code_blocks.Theme.html#manim_extensions.code_blocks.manim_code_blocks.Theme" title="manim_extensions.code_blocks.manim_code_blocks.Theme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Theme</span></code></a></span>) – Colour theme applied to the tokens.</p></li>
-<li><p><strong>font</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Font family used for the code.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to the markup text.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="codeblockscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: CodeBlockScene <a class="headerlink" href="#codeblockscene">¶</a></p><img alt="../../_images/CodeBlockScene-46050744.png" class="align-center" src="../../_images/CodeBlockScene-46050744.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeBlock</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">CodeBlockScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">block</span> <span class="o">=</span> <span class="n">CodeBlock</span><span class="p">(</span><span class="s1">'print("Hello World!")'</span><span class="p">)</span>
-        <span class="n">block</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.CodeBlock.create">
-<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.CodeBlock.create" title="Link to this definition">¶</a></dt>
-<dd><p>Return a tuple of animations for creating the code block. Use such as:n
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">python</span> <span class="pre">=</span> <span class="pre">CodeBlock('print(&quot;Hello</span> <span class="pre">World!&quot;)',</span> <span class="pre">language</span> <span class="pre">=</span> <span class="pre">Python)</span>
-<span class="pre">self.play(*python.create())</span>
-<span class="pre">`</span></code>
-By default the animation will <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a> the <cite>background</cite> and <cite>title_background</cite>, and <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.AddTextLetterByLetter.html#manim.animation.creation.AddTextLetterByLetter" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AddTextLetterByLetter</span></code></a> the <cite>code</cite> and <cite>title</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to each animation.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of animations that create the block, including the title
-animations when a title is present.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.CodeBlock.uncreate">
-<span class="sig-name descname"><span class="pre">uncreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock.uncreate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.CodeBlock.uncreate" title="Link to this definition">¶</a></dt>
-<dd><p>Return a tuple of animations for uncreating the code block. Use such as:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">python</span> <span class="pre">=</span> <span class="pre">CodeBlock('print(&quot;Hello</span> <span class="pre">World!&quot;)',</span> <span class="pre">language</span> <span class="pre">=</span> <span class="pre">Python)</span>
-<span class="pre">self.play(*python.uncreate())</span>
-<span class="pre">`</span></code>
-By default the animation will <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> the <cite>background</cite> and <cite>title_background</cite>, and <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.Uncreate.html#manim.animation.creation.Uncreate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Uncreate</span></code></a> the <cite>code</cite> and <cite>title</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to each animation.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of animations that remove the block, including the title
-animations when a title is present.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.ProgrammingLanguage">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.</span></span><span class="sig-name descname"><span class="pre">ProgrammingLanguage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenize_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#ProgrammingLanguage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.ProgrammingLanguage" title="Link to this definition">¶</a></dt>
-<dd><p>A programming language used to render <cite>CodeBlocks</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Display name of the language.</p></li>
-<li><p><strong>tokenize_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Tokenizer attribute name; defaults to <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="programminglanguageoverview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ProgrammingLanguageOverview <a class="headerlink" href="#programminglanguageoverview">¶</a></p><img alt="../../_images/ProgrammingLanguageOverview-16443c11.png" class="align-center" src="../../_images/ProgrammingLanguageOverview-16443c11.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks.manim_code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProgrammingLanguage</span>
-
-<span class="n">ProgrammingLanguageTarget</span> <span class="o">=</span> <span class="n">ProgrammingLanguage</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ProgrammingLanguageOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ProgrammingLanguageTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
-        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'ProgrammingLanguage'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.code_blocks.manim_code_blocks'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'A programming language used to render CodeBlocks'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
-            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks.manim_code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProgrammingLanguage</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Python</span><span class="p">(</span><span class="n">ProgrammingLanguage</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">"Python"</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="s2">"#3572A5"</span>
-</pre></div>
-</div>
-<dl class="py property">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.ProgrammingLanguage.language">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">language</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><span class="pre">object</span></a></span><a class="headerlink" href="#manim_extensions.code_blocks.ProgrammingLanguage.language" title="Link to this definition">¶</a></dt>
-<dd><p>Return the tokenizer for this language.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The tokenizer object, importing <code class="docutils literal notranslate"><span class="pre">tokenize-all-code</span></code> on first use.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.Theme">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.</span></span><span class="sig-name descname"><span class="pre">Theme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_matchers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#Theme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.Theme" title="Link to this definition">¶</a></dt>
-<dd><p>A theme used to syntax highlight a <a class="reference internal" href="manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock" title="manim_extensions.code_blocks.manim_code_blocks.CodeBlock"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodeBlock</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]]</span>) – Mapping from hex colours to the token types drawn in that colour.</p></li>
-<li><p><strong>group_matchers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Colours cycled through for matched bracket groups.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div id="themeoverview" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: ThemeOverview <a class="headerlink" href="#themeoverview">¶</a></p><img alt="../../_images/ThemeOverview-61428039.png" class="align-center" src="../../_images/ThemeOverview-61428039.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks.manim_code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Theme</span>
-
-<span class="n">ThemeTarget</span> <span class="o">=</span> <span class="n">Theme</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ThemeOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThemeTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
-        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'Theme'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.code_blocks.manim_code_blocks'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s1">'A theme used to syntax highlight a manim_extensions.code_blocks.manim_code_blocks.CodeBlock'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
-            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
-            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks.manim_code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Theme</span>
-
-<span class="n">theme</span> <span class="o">=</span> <span class="n">Theme</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s2">"#ff0000"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"keyword"</span><span class="p">]},</span> <span class="n">group_matchers</span><span class="o">=</span><span class="p">[</span><span class="s2">"#00ff00"</span><span class="p">])</span>
-</pre></div>
-</div>
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.code_blocks.Theme.color_for">
-<span class="sig-name descname"><span class="pre">color_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#Theme.color_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.Theme.color_for" title="Link to this definition">¶</a></dt>
-<dd><p>Return the theme colour assigned to a token.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – The token whose type selects the colour.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The matching hex colour, or white when no rule matches.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <div class="vendored-status note admonition">
 <p class="admonition-title">Vendoring status: <code class="docutils literal notranslate"><span class="pre">manim-code-blocks</span></code></p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/CasualCodersProjects/manim-code-blocks/commit/0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297">0eb9e5d</a> (2024-02-20).</p></li>
-<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 18:55 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -1716,7 +1520,7 @@ uncreate animations.</p></li>
 <li><p><a class="reference internal" href="manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage" title="manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProgrammingLanguage</span></code></a> presets
 for C, C++, C#, Fortran, Go, Haskell, Java, JavaScript, Lua, Python, Ruby,
 Rust, SQL, and TypeScript.</p></li>
-<li><p><a class="reference internal" href="manim_code_blocks.html#id0" title="manim_extensions.code_blocks.manim_code_blocks.OneDark"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneDark</span></code></a> and custom themes.</p></li>
+<li><p><a class="reference internal" href="manim_code_blocks.html#manim_extensions.code_blocks.manim_code_blocks.OneDark" title="manim_extensions.code_blocks.manim_code_blocks.OneDark"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneDark</span></code></a> and custom themes.</p></li>
 <li><p>offline language colours and lazy tokenizer imports.</p></li>
 </ul>
 </section>
@@ -1741,13 +1545,13 @@ Rust, SQL, and TypeScript.</p></li>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="#manim_extensions.code_blocks.CodeBlock" title="manim_extensions.code_blocks.CodeBlock"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodeBlock</span></code></a></p>
+<p>References: <a class="reference internal" href="manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock" title="manim_extensions.code_blocks.manim_code_blocks.CodeBlock"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodeBlock</span></code></a></p>
 </div></section>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="manim_extensions.code_blocks.manim_code_blocks.CodeBlock">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.</span></span><span class="sig-name descname"><span class="pre">CodeBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="manim_code_blocks.html#id0"><span class="pre">OneDark</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'consolas'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.CodeBlock" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.</span></span><span class="sig-name descname"><span class="pre">CodeBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="manim_code_blocks.html#manim_extensions.code_blocks.manim_code_blocks.OneDark"><span class="pre">OneDark</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'consolas'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.CodeBlock" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></p>
 <p>A block of code. By default code blocks are rendered as <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.MarkupText.html#manim.mobject.text.text_mobject.MarkupText" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarkupText</span></code></a> objects with <cite>BackgroundRectangles</cite> behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using <cite>TextMates</cite> by extracting <cite>.tmLanguage.json</cite> files from <cite>microsoft/vscode</cite>. See <a class="reference external" href="https://github.com/microsoft/vscode/tree/main/extensions">https://github.com/microsoft/vscode/tree/main/extensions</a>.</p>
 <dl class="field-list simple">
@@ -1949,7 +1753,7 @@ animations when a title is present.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.code_blocks.manim_code_blocks.C">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.</span></span><span class="sig-name descname"><span class="pre">C</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.C" title="Link to this definition">¶</a></dt>
-<dd><p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">C()</span></code> programming language, used to render <code class="xref py py-func docutils literal notranslate"><span class="pre">C()</span></code> code in <cite>CodeBlocks</cite></p>
+<dd><p>The C programming language, used to render C code in code blocks.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -2033,7 +1837,7 @@ animations when a title is present.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.code_blocks.manim_code_blocks.TypeScript">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.</span></span><span class="sig-name descname"><span class="pre">TypeScript</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="manim_code_blocks.ProgrammingLanguage.html#manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage"><span class="pre">manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.TypeScript" title="Link to this definition">¶</a></dt>
-<dd><p>The <cite>TypeScript</cite> programming language, used to render <cite>TypeScript</cite> code in <cite>CodeBlocks</cite></p>
+<dd><p>The <cite>TypeScript</cite> programming language, used to render <cite>TypeScript</cite> code in <cite>CodeBlocks</cite>.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -2114,25 +1918,6 @@ animations when a title is present.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Code Blocks</a><ul>
-<li><a class="reference internal" href="#manim_extensions.code_blocks.CodeBlock"><code class="docutils literal notranslate"><span class="pre">CodeBlock</span></code></a><ul>
-
-
-
-
-<li><a class="reference internal" href="#manim_extensions.code_blocks.CodeBlock.create"><code class="docutils literal notranslate"><span class="pre">CodeBlock.create()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.code_blocks.CodeBlock.uncreate"><code class="docutils literal notranslate"><span class="pre">CodeBlock.uncreate()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#manim_extensions.code_blocks.ProgrammingLanguage"><code class="docutils literal notranslate"><span class="pre">ProgrammingLanguage</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.code_blocks.ProgrammingLanguage.language"><code class="docutils literal notranslate"><span class="pre">ProgrammingLanguage.language</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#manim_extensions.code_blocks.Theme"><code class="docutils literal notranslate"><span class="pre">Theme</span></code></a><ul>
-
-
-<li><a class="reference internal" href="#manim_extensions.code_blocks.Theme.color_for"><code class="docutils literal notranslate"><span class="pre">Theme.color_for()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>

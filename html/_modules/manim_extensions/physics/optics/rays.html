@@ -1504,7 +1504,7 @@
 
 
 <div class="viewcode-block" id="Ray">
-<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.Ray">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Ray</span><span class="p">(</span><span class="n">Line</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A light ray that can be refracted through lenses.</span>
 
@@ -1567,7 +1567,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="o">*</span><span class="n">propagate</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Ray.propagate">
-<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.Ray.propagate">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray.propagate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">propagate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">lenses</span><span class="p">:</span> <span class="n">Lens</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Let the ray propagate through the list</span>
 <span class="sd">        of lenses passed.</span>
@@ -1632,7 +1632,7 @@
 
 
 <div class="viewcode-block" id="Ray._sort_lens">
-<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.Ray._sort_lens">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray._sort_lens">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sort_lens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lenses</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Lens</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Lens</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Sort lenses by distance from the ray's start to the intersection point.</span>
 
@@ -1659,7 +1659,7 @@
 
 
 <div class="viewcode-block" id="Ray._sort_intersections">
-<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.Ray._sort_intersections">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray._sort_intersections">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sort_intersections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intersections</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Point3D</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Sort intersection points by distance from the ray's current end point.</span>
 

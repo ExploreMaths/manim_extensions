@@ -1492,97 +1492,6 @@
           <section id="module-manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation">
 <span id="feed-forward-to-math-operation"></span><h1>feed_forward_to_math_operation<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation" title="Link to this heading">¶</a></h1>
 <p>Feed-forward to math operation layer connection visualization.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.</span></span><span class="sig-name descname"><span class="pre">FeedForwardToMathOperation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.html#FeedForwardToMathOperation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation" title="Link to this definition">¶</a></dt>
-<dd><p>Connective layer between a feed-forward layer and a math operation layer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a></span>) – The input feed-forward layer.</p></li>
-<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="math_operation_layer.MathOperationLayer.html#manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer" title="manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MathOperationLayer</span></code></a></span>) – The output math operation layer.</p></li>
-<li><p><strong>active_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color used when highlighting the connection.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference internal" href="parent_layers.ConnectiveLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectiveLayer</span></code></a>.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.input_class">
-<span class="sig-name descname"><span class="pre">input_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.input_class" title="Link to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.output_class">
-<span class="sig-name descname"><span class="pre">output_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.output_class" title="Link to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="math_operation_layer.MathOperationLayer.html#manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer" title="manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MathOperationLayer</span></code></a></p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="feedforwardtomathoperationscene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: FeedForwardToMathOperationScene <a class="headerlink" href="#feedforwardtomathoperationscene">¶</a></p><img alt="../../../../_images/FeedForwardToMathOperationScene-66af7cbf.png" class="align-center" src="../../../../_images/FeedForwardToMathOperationScene-66af7cbf.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.math_operation_layer</span><span class="w"> </span><span class="kn">import</span> <span class="n">MathOperationLayer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardToMathOperation</span>
-<span class="n">first</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">second</span> <span class="o">=</span> <span class="n">MathOperationLayer</span><span class="p">(</span><span class="s2">"+"</span><span class="p">)</span>
-<span class="n">first</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">second</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">first</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">second</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">connection</span> <span class="o">=</span> <span class="n">FeedForwardToMathOperation</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">FeedForwardToMathOperationScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
-        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.construct_layer">
-<span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.html#FeedForwardToMathOperation.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.construct_layer" title="Link to this definition">¶</a></dt>
-<dd><p>Build a straight arrow connection between the feed-forward and math operation layers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer preceding this connective layer in the network.</p></li>
-<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer following this connective layer in the network.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.make_forward_pass_animation">
-<span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.html#FeedForwardToMathOperation.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
-<dd><p>Makes dots diverge from the given location and move to the feed forward nodes decoder.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>layer_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Additional arguments passed to the connected layers when making
-their forward pass animations.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.indication.ShowPassingFlash.html#manim.animation.indication.ShowPassingFlash" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShowPassingFlash</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.indication.ShowPassingFlash.html#manim.animation.indication.ShowPassingFlash" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShowPassingFlash</span></code></a> instance representing the result.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1655,14 +1564,6 @@ their forward pass animations.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">feed_forward_to_math_operation</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation"><code class="docutils literal notranslate"><span class="pre">FeedForwardToMathOperation</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.input_class"><code class="docutils literal notranslate"><span class="pre">FeedForwardToMathOperation.input_class</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.output_class"><code class="docutils literal notranslate"><span class="pre">FeedForwardToMathOperation.output_class</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.construct_layer"><code class="docutils literal notranslate"><span class="pre">FeedForwardToMathOperation.construct_layer()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">FeedForwardToMathOperation.make_forward_pass_animation()</span></code></a></li>
-
-</ul>
-</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -1496,6 +1496,18 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Module docstrings now describe only; <code class="docutils literal notranslate"><span class="pre">validate-docstrings</span></code> rejects
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> / <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span></code> blocks, doctest prompts and code
+snippets inside them. <code class="docutils literal notranslate"><span class="pre">radar</span></code> and the neural-network module moved their
+usage examples to the reference pages.</p></li>
+<li><p>Every reference page renders its module description with
+<code class="docutils literal notranslate"><span class="pre">automodule</span></code>; the autodoc skip handler drops module-level members so the
+page no longer repeats classes, functions and constants owned by member
+pages and <code class="docutils literal notranslate"><span class="pre">autoall</span></code> sections. <code class="docutils literal notranslate"><span class="pre">validate-rst</span></code> fails if an <code class="docutils literal notranslate"><span class="pre">automodule</span></code>
+block asks for members.</p></li>
+<li><p>Module and class constants now require a <code class="docutils literal notranslate"><span class="pre">#:</span></code> description immediately
+above the assignment; trailing string literals are no longer accepted
+because autodoc cannot render them. All existing constants were converted.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">validate-manim-directives</span></code> now rejects an animated <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code>
 example that does not end with <code class="docutils literal notranslate"><span class="pre">self.wait()</span></code> or longer. Seamless loops
 stay exempt: mark the code with <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">loops</span> <span class="pre">seamlessly</span></code> or use
@@ -1630,14 +1642,14 @@ constraint lines skip line updates that would divide by zero or warn.</p></li>
 <li><p>Constant entries no longer render as empty blocks: re-exported constants
 carry a <code class="docutils literal notranslate"><span class="pre">#:</span></code> docstring, and <code class="docutils literal notranslate"><span class="pre">autoall</span></code> keeps short values as a normal
 <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">repr</span></code> signature. Values longer than 1,000 characters, such as
-<a class="reference internal" href="reference/nerdfont/index.html#id0" title="manim_extensions.nerdfont.SYMBOLS_UNICODE"><code class="xref py py-data docutils literal notranslate"><span class="pre">SYMBOLS_UNICODE</span></code></a>, show
+<a class="reference internal" href="reference/nerdfont/index.html#manim_extensions.nerdfont.SYMBOLS_UNICODE" title="manim_extensions.nerdfont.SYMBOLS_UNICODE"><code class="xref py py-data docutils literal notranslate"><span class="pre">SYMBOLS_UNICODE</span></code></a>, show
 <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">dict</span> <span class="pre">with</span> <span class="pre">10,083</span> <span class="pre">entries</span></code> with a <code class="docutils literal notranslate"><span class="pre">Show</span></code> button; the button
 replaces the summary with the exact value inline in the signature. Class
 and type names inside every constant value, whether it is folded or shown
 in full, use the same cross-reference pass as signature defaults.
 Fully-qualified <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'module.Class'&gt;</span></code> spellings are replaced by the
 linked short class name, and <code class="docutils literal notranslate"><span class="pre">type[module.Class]</span></code> by <code class="docutils literal notranslate"><span class="pre">type[Class]</span></code>,
-so values such as <a class="reference internal" href="reference/chemistry/utils/file_handler.html#id0" title="manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS"><code class="xref py py-data docutils literal notranslate"><span class="pre">SUPPORTED_FORMATS</span></code></a> keep compact links to their parser
+so values such as <a class="reference internal" href="reference/chemistry/utils/file_handler.html#manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS" title="manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS"><code class="xref py py-data docutils literal notranslate"><span class="pre">SUPPORTED_FORMATS</span></code></a> keep compact links to their parser
 classes.</p></li>
 <li><p>Corrected the spelling of the node-state enum to
 <a class="reference internal" href="reference/mindmap/nodes/node.NodeState.html#manim_extensions.mindmap.nodes.node.NodeState" title="manim_extensions.mindmap.nodes.node.NodeState"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeState</span></code></a>.</p></li>
@@ -1664,7 +1676,7 @@ no separate installation.</p></li>
 <section id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>The QR code factory is now the <a class="reference internal" href="reference/qr_codes/qr.html#id0" title="manim_extensions.qr_codes.qr.QRCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">QRCode</span></code></a>
+<li><p>The QR code factory is now the <a class="reference internal" href="reference/qr_codes/qr.html#manim_extensions.qr_codes.qr.QRCode" title="manim_extensions.qr_codes.qr.QRCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">QRCode</span></code></a>
 mobject class.  The refactored version no longer exposes a separate
 <code class="docutils literal notranslate"><span class="pre">qr_code</span></code> function or compatibility alias.  Each instance is a
 <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> that directly
@@ -1899,13 +1911,13 @@ default behaviour.</p></li>
 <a class="reference internal" href="reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMesh</span></code></a>
 to four dimensions: central projection (<span class="math notranslate nohighlight">\(scale = d / (d - w)\)</span>), rotations
 in the <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">4)</span></code> plane, flips with 4D semantics, and
-<a class="reference internal" href="reference/meshes/templates.html#id5" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a> building a tesseract
+<a class="reference internal" href="reference/meshes/templates.html#manim_extensions.meshes.templates.create_grid" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a> building a tesseract
 (16 vertices, 24 square faces, 32 edges).</p></li>
 <li><p>Completed the 3D grid templates and mesh flipping for the vendored mesh
-package, so <a class="reference internal" href="reference/meshes/templates.html#id5" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a> covers the cube and tetrahedral layouts and
+package, so <a class="reference internal" href="reference/meshes/templates.html#manim_extensions.meshes.templates.create_grid" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a> covers the cube and tetrahedral layouts and
 <code class="docutils literal notranslate"><span class="pre">apply_flip</span></code> works on the 3D meshes it produces.</p></li>
 <li><p>Implemented the Rubik’s Cube facelet state helpers
-(<a class="reference internal" href="reference/rubikscube/cube_utils.html#id2" title="manim_extensions.rubikscube.cube_utils.get_cubie_colors_from_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cubie_colors_from_state()</span></code></a> and <a class="reference internal" href="reference/rubikscube/cube_utils.html#id3" title="manim_extensions.rubikscube.cube_utils.get_all_states"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_states()</span></code></a>), which previously
+(<a class="reference internal" href="reference/rubikscube/cube_utils.html#manim_extensions.rubikscube.cube_utils.get_cubie_colors_from_state" title="manim_extensions.rubikscube.cube_utils.get_cubie_colors_from_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cubie_colors_from_state()</span></code></a> and <a class="reference internal" href="reference/rubikscube/cube_utils.html#manim_extensions.rubikscube.cube_utils.get_all_states" title="manim_extensions.rubikscube.cube_utils.get_all_states"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_states()</span></code></a>), which previously
 returned <code class="docutils literal notranslate"><span class="pre">None</span></code>: states now round-trip through
 <a class="reference internal" href="reference/rubikscube/cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube.set_state" title="manim_extensions.rubikscube.cube.RubiksCube.set_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code></a> and malformed input raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
 <li><p>Added the <code class="docutils literal notranslate"><span class="pre">manim-chemistry</span></code> and <code class="docutils literal notranslate"><span class="pre">manim-rubikscube</span></code> console commands.</p></li>
@@ -1985,7 +1997,7 @@ no longer crashes when subelectron holes are requested without
 electrons, and
 <a class="reference internal" href="reference/chemistry/future_classes/future_classes.BatterySchema.html#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals" title="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals"><code class="xref py py-meth docutils literal notranslate"><span class="pre">invert_terminals()</span></code></a>
 now uses the keyword form of <code class="docutils literal notranslate"><span class="pre">rotate</span></code> that current Manim accepts.</p></li>
-<li><p>Fixed the dangling <a class="reference internal" href="reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMesh</span></code></a> cross-reference in the <a class="reference internal" href="reference/meshes/templates.html#id5" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a>
+<li><p>Fixed the dangling <a class="reference internal" href="reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMesh</span></code></a> cross-reference in the <a class="reference internal" href="reference/meshes/templates.html#manim_extensions.meshes.templates.create_grid" title="manim_extensions.meshes.templates.create_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_grid()</span></code></a>
 docstring.</p></li>
 <li><p>Fixed the type-annotation and doc-example checks that the new ManimML
 surface exposed.</p></li>
@@ -2142,7 +2154,7 @@ single consolidated inheritance graph in the Reference Manual.</p></li>
 <code class="docutils literal notranslate"><span class="pre">chemistry</span></code>, <code class="docutils literal notranslate"><span class="pre">physics</span></code>, <code class="docutils literal notranslate"><span class="pre">rubikscube</span></code>, <code class="docutils literal notranslate"><span class="pre">meshes</span></code>, <code class="docutils literal notranslate"><span class="pre">video</span></code>,
 <code class="docutils literal notranslate"><span class="pre">qr</span></code>, <code class="docutils literal notranslate"><span class="pre">svg</span></code>, <code class="docutils literal notranslate"><span class="pre">ml</span></code>, …) and an <code class="docutils literal notranslate"><span class="pre">all</span></code> extra; the base install
 is now just <code class="docutils literal notranslate"><span class="pre">manim</span></code> + <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, and every heavier dependency is
-lazy-imported via the new <a class="reference internal" href="reference/utils/deps.html#id0" title="manim_extensions.utils.deps.require"><code class="xref py py-func docutils literal notranslate"><span class="pre">require()</span></code></a>
+lazy-imported via the new <a class="reference internal" href="reference/utils/deps.html#manim_extensions.utils.deps.require" title="manim_extensions.utils.deps.require"><code class="xref py py-func docutils literal notranslate"><span class="pre">require()</span></code></a>
 helper whose error names the exact <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">manim_extensions[...]</span></code>
 command. A subprocess-based test blocks all optional packages via a
 meta-path finder and asserts the base package and all 250+ submodules
@@ -2185,7 +2197,7 @@ so instances no longer risk mutating each other’s colour map.</p></li>
 migrated the <a class="reference internal" href="reference/table/index.html#module-manim_extensions.table" title="manim_extensions.table"><code class="xref py py-mod docutils literal notranslate"><span class="pre">table</span></code></a> module from <code class="docutils literal notranslate"><span class="pre">manimlib</span></code> (ManimGL) to Manim
 Community Edition.</p></li>
 <li><p>Replaced the type-specific geometry intersection helpers with a single
-generic <a class="reference internal" href="reference/basic/geometry.html#id0" title="manim_extensions.geometry.vmobject_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a>.</p></li>
+generic <a class="reference internal" href="reference/basic/geometry.html#manim_extensions.geometry.vmobject_int" title="manim_extensions.geometry.vmobject_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a>.</p></li>
 <li><p>Converted all intra-package absolute imports to relative imports, and
 banned <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">manim</span> <span class="pre">import</span> <span class="pre">*</span></code> outside <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> across the whole
 repository (165 files converted to explicit imports; the import-style
@@ -2248,7 +2260,7 @@ workflow, and made tests skip gracefully when optional extras
 absent.</p></li>
 <li><p>Fixed the gearbox module failing to import due to an incorrect
 <code class="docutils literal notranslate"><span class="pre">Renderer</span></code> type annotation on the radius parameter of
-<a class="reference internal" href="reference/gearbox/gear_mobjects/gear_mobject.html#id0" title="manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func"><code class="xref py py-func docutils literal notranslate"><span class="pre">involute_func()</span></code></a>
+<a class="reference internal" href="reference/gearbox/gear_mobjects/gear_mobject.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func" title="manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func"><code class="xref py py-func docutils literal notranslate"><span class="pre">involute_func()</span></code></a>
 and related functions.</p></li>
 <li><p>Fixed missing closing parentheses in four docstring manim example
 blocks (MCMCAxes, MultiPendulum, GMAnimationBuilder, vmobject_int)

@@ -1571,8 +1571,6 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="_unit">
-<a class="viewcode-back" href="../../../reference/radar/poly.html#manim_extensions.radar._unit">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_unit</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Normalize a vector to unit length.</span>
 
@@ -1587,8 +1585,7 @@
 <span class="sd">    """</span>
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></div>
-
+    <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
 
 <span class="c1">#: The 20 normalized dodecahedron vertex coordinates.</span>
@@ -1679,7 +1676,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PolyRadarChart</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A twelve-axis radar drawn on a rotating dodecahedron.</span>
 
@@ -1862,7 +1859,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="PolyRadarChart._data_triangles">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart._data_triangles">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._data_triangles">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_data_triangles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Group the dodecahedron faces around each inner vertex.</span>
 
@@ -1879,7 +1876,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart._world">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart._world">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._world">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute the rotated world position of an axis marker.</span>
 
@@ -1910,7 +1907,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart._rebuild">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart._rebuild">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._rebuild">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recompute sphere, edge, face and label geometry from ``_frac``."""</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
@@ -1928,7 +1925,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart._tick">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart._tick">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._tick">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the automatic rotation.</span>
 
@@ -1948,7 +1945,7 @@
         <span class="c1"># label orientation is handled by _billboard (become + look-at), see _attach_billboards</span>
 
 <div class="viewcode-block" id="PolyRadarChart._attach_billboards">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart._attach_billboards">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._attach_billboards">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_attach_billboards</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Orient each label towards the camera and keep it upright.</span>
 
@@ -1986,7 +1983,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="PolyRadarChart.grow_in">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart.grow_in">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart.grow_in">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">grow_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.45</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"PolyRadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Animate the skeleton growing from the inner shell outwards.</span>
 
@@ -2019,7 +2016,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart.spin_to">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart.spin_to">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart.spin_to">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">spin_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate so one panel faces the camera.</span>
 
@@ -2102,7 +2099,7 @@
 
 
 <div class="viewcode-block" id="PolyRadarChart.set_values">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.PolyRadarChart.set_values">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart.set_values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace the data values and rebuild the geometry.</span>
 
@@ -2119,7 +2116,7 @@
 
 
 <div class="viewcode-block" id="PolyMorph">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.PolyMorph">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.poly.PolyMorph">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PolyMorph</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Morph the data spheres along their panel directions.</span>
 
@@ -2160,14 +2157,14 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PolyMorph.begin">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.PolyMorph.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.poly.PolyMorph.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Snapshot the current fractions as the morph start state."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly</span><span class="o">.</span><span class="n">_frac</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="PolyMorph.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.PolyMorph.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/poly.PolyMorph.html#manim_extensions.radar.poly.PolyMorph.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Blend the geometry towards the target values.</span>
 
