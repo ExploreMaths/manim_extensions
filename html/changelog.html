@@ -1612,100 +1612,6 @@ cannot stand in for a real demonstration.</p></li>
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
 </ul>
 </section>
-<section id="fixed-19">
-<h3>Fixed (19)<a class="headerlink" href="#fixed-19" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>The <a class="reference internal" href="reference/basic/animations.FadeInRandom.html#manim_extensions.animations.FadeInRandom" title="manim_extensions.animations.FadeInRandom"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeInRandom</span></code></a> example now fades in
-a <code class="docutils literal notranslate"><span class="pre">Text</span></code> object instead of a formula, so the per-glyph random order is
-visible in the rendered clip.</p></li>
-<li><p>Python standard-library type links, including <code class="docutils literal notranslate"><span class="pre">None</span></code>, now use the
-inherited text colour in parameter descriptions.  <code class="docutils literal notranslate"><span class="pre">None</span></code> no longer keeps
-a blue link colour while <code class="docutils literal notranslate"><span class="pre">str</span></code> and the other builtins stay plain.</p></li>
-<li><p>The QR-code logger reference page now renders the module description
-instead of an empty page.  The QR-code and Nerd Font docstrings link to the
-bundled Icon Gallery, and Python docstrings no longer use Sphinx
-<code class="docutils literal notranslate"><span class="pre">:doc:</span></code> roles that editors cannot resolve.</p></li>
-<li><p>Image layers and grayscale image mobjects convert floating-point pixel
-arrays to <code class="docutils literal notranslate"><span class="pre">uint8</span></code> before handing them to Manim, so examples built from
-<code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> no longer fail under Pillow with
-<code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">handle</span> <span class="pre">this</span> <span class="pre">data</span> <span class="pre">type:</span> <span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">4),</span> <span class="pre">&lt;f8</span></code>.  Images normalized to
-<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> are rescaled to <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> first.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> installs the <code class="docutils literal notranslate"><span class="pre">docs</span></code> extra alongside <code class="docutils literal notranslate"><span class="pre">all</span></code> because
-mypy analyses the Sphinx directive helper and needs <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
-<code class="docutils literal notranslate"><span class="pre">jinja2</span></code> stubs to import it.</p></li>
-<li><p>Type aliases now refer to the configuration classes directly:
-<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code> are defined after their
-classes, so their source no longer needs quoted forward references.  Both
-render as <code class="docutils literal notranslate"><span class="pre">GaussianSurface</span> <span class="pre">|</span> <span class="pre">SaddleSurface</span> <span class="pre">|</span> <span class="pre">...</span></code> with each class linked
-to its reference page; <code class="docutils literal notranslate"><span class="pre">autoall</span></code> still strips quotes from other aliases
-when the name resolves to a class in the alias module.</p></li>
-<li><p>The Manim documentation supplement now documents the private animation
-builder returned by <code class="docutils literal notranslate"><span class="pre">.animate</span></code> under its real name, and its page title
-keeps the leading underscore.  A short summary is installed for the class
-when Manim supplies no docstring, so the <code class="docutils literal notranslate"><span class="pre">Classes</span></code> autosummary row is no
-longer empty.</p></li>
-<li><p>Project type aliases render by name again under postponed annotations:
-<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GeometrySpec</span></code>, <code class="docutils literal notranslate"><span class="pre">ContourSpec</span></code>,
-<code class="docutils literal notranslate"><span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">SurfaceFunction</span></code> stay aliases in parameter and return
-types instead of expanding to <code class="docutils literal notranslate"><span class="pre">Union[...]</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple[VGroup,</span> <span class="pre">bool]</span></code>.
-The Sphinx hook now patches
-<code class="docutils literal notranslate"><span class="pre">sphinx_autodoc_typehints._resolve.hints.type_hints</span></code> — the binding the
-installed 3.17.5 release actually calls — and restores aliases parsed from
-the original annotation string, including names nested inside <code class="docutils literal notranslate"><span class="pre">list[...]</span></code>
-and unions.</p></li>
-<li><p>Project aliases are also registered with Sphinx’s official
-<code class="docutils literal notranslate"><span class="pre">autodoc_type_aliases</span></code> option.  <code class="docutils literal notranslate"><span class="pre">autodoc_all</span></code> discovers public alias
-assignments from the package AST and merges them on <code class="docutils literal notranslate"><span class="pre">config-inited</span></code>, so
-direct annotations such as <code class="docutils literal notranslate"><span class="pre">ramp:</span> <span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">type[SurfaceConfig]</span></code>
-render as linked alias names instead of expanded structures.  Sphinx 9
-replaces a <code class="docutils literal notranslate"><span class="pre">typehints_formatter</span></code> assigned during <code class="docutils literal notranslate"><span class="pre">setup()</span></code> with the
-configured value, so the earlier wrapper never saw parameter annotations.</p></li>
-<li><p>Every vendored package that defines type aliases now has a <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Aliases</span></code>
-section on its reference page.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> gained a <code class="docutils literal notranslate"><span class="pre">typealias</span></code>
-classification that renders real <code class="docutils literal notranslate"><span class="pre">py:type</span></code> targets with the alias source
-from the module AST, so signatures such as
-<a class="reference internal" href="reference/three_d/core.html#manim_extensions.three_d.core.ContourSpec" title="manim_extensions.three_d.core.ContourSpec"><code class="xref py py-type docutils literal notranslate"><span class="pre">ContourSpec</span></code></a> link to the definition
-instead of appearing as plain text.  Re-exported aliases are not duplicated.</p></li>
-<li><p>Deprecation and runtime warnings no longer flood the pytest and CI logs:
-internal calls to the compatibility rate functions use their unwrapped
-implementations, Manim mobject getters use properties (<code class="docutils literal notranslate"><span class="pre">width</span></code>,
-<code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">points</span></code>, <code class="docutils literal notranslate"><span class="pre">z_index</span></code>, <code class="docutils literal notranslate"><span class="pre">axes</span></code>, <code class="docutils literal notranslate"><span class="pre">states</span></code>, <code class="docutils literal notranslate"><span class="pre">bonds</span></code>),
-stroke updates use <code class="docutils literal notranslate"><span class="pre">set_stroke</span></code>, and zero-length bonds and pymunk
-constraint lines skip line updates that would divide by zero or warn.</p></li>
-<li><p>Constant entries no longer render as empty blocks: re-exported constants
-carry a <code class="docutils literal notranslate"><span class="pre">#:</span></code> docstring, and <code class="docutils literal notranslate"><span class="pre">autoall</span></code> keeps short values as a normal
-<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">repr</span></code> signature. Values longer than 1,000 characters, such as
-<a class="reference internal" href="reference/nerdfont/index.html#manim_extensions.nerdfont.SYMBOLS_UNICODE" title="manim_extensions.nerdfont.SYMBOLS_UNICODE"><code class="xref py py-data docutils literal notranslate"><span class="pre">SYMBOLS_UNICODE</span></code></a>, show
-<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">dict</span> <span class="pre">with</span> <span class="pre">10,083</span> <span class="pre">entries</span></code> with a <code class="docutils literal notranslate"><span class="pre">Show</span></code> button; the button
-replaces the summary with the exact value inline in the signature. Class
-and type names inside every constant value, whether it is folded or shown
-in full, use the same cross-reference pass as signature defaults.
-Fully-qualified <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'module.Class'&gt;</span></code> spellings are replaced by the
-linked short class name, and <code class="docutils literal notranslate"><span class="pre">type[module.Class]</span></code> by <code class="docutils literal notranslate"><span class="pre">type[Class]</span></code>,
-so values such as <a class="reference internal" href="reference/chemistry/utils/file_handler.html#manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS" title="manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS"><code class="xref py py-data docutils literal notranslate"><span class="pre">SUPPORTED_FORMATS</span></code></a> keep compact links to their parser
-classes.</p></li>
-<li><p>Corrected the spelling of the node-state enum to
-<a class="reference internal" href="reference/mindmap/nodes/node.NodeState.html#manim_extensions.mindmap.nodes.node.NodeState" title="manim_extensions.mindmap.nodes.node.NodeState"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeState</span></code></a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">validate_docstrings.py</span></code> rejects a docstring that contains a backslash
-without the <code class="docutils literal notranslate"><span class="pre">r</span></code> prefix (<code class="docutils literal notranslate"><span class="pre">non-raw-docstring</span></code>), and every existing
-docstring now follows that rule.</p></li>
-<li><p>Documentation examples render their real output again: the nbcell
-execution cache is read by the directive, the sample molecule files ship
-with the repository, and the chemistry examples run against them.</p></li>
-<li><p>Nerd Font examples render the icon again instead of a
-<code class="docutils literal notranslate"><span class="pre">0F0320</span></code>-style tofu box: the media-cache renderer now finds the font at
-<code class="docutils literal notranslate"><span class="pre">&lt;package&gt;/nerdfont</span></code> and installs it before the worker pool starts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">:output-language:</span> <span class="pre">pytb</span></code> examples no longer show CI machine paths or the
-documentation runner’s own stack frame.</p></li>
-<li><p>The <a class="reference internal" href="reference/meshes/exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><code class="xref py py-class docutils literal notranslate"><span class="pre">InvalidRequestException</span></code></a>
-example raises again: it projects a five-dimensional mesh, because
-four-dimensional meshes are now supported.</p></li>
-<li><p>The installation page no longer tells Python 3.13+ users to install
-<code class="docutils literal notranslate"><span class="pre">manim-mobject-svg</span></code> with <code class="docutils literal notranslate"><span class="pre">--ignore-requires-python</span></code>. Both that plugin
-and <code class="docutils literal notranslate"><span class="pre">manim-nerdfont-icons</span></code> are vendored as package submodules and need
-no separate installation.</p></li>
-</ul>
-</section>
 <section id="changed-33">
 <h3>Changed (33)<a class="headerlink" href="#changed-33" title="Link to this heading">¶</a></h3>
 <ul class="simple">
@@ -1827,11 +1733,6 @@ from <code class="docutils literal notranslate"><span class="pre">[tool.manim-do
 repository can therefore vendor <code class="docutils literal notranslate"><span class="pre">workflow/</span></code> and <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> and run the
 checks against its own package and documentation tree without installing a
 separate distribution.</p></li>
-</ul>
-</section>
-<section id="mypy">
-<h3>Mypy<a class="headerlink" href="#mypy" title="Link to this heading">¶</a></h3>
-<ul class="simple">
 <li><p>The whole package, vendored modules included, now passes
 <code class="docutils literal notranslate"><span class="pre">mypy</span> <span class="pre">--strict</span></code>: the baseline of <strong>3,875 errors across 198 of 295 files</strong>
 is down to <strong>0 errors in 295 files</strong>.  <code class="docutils literal notranslate"><span class="pre">follow_imports</span> <span class="pre">=</span> <span class="pre">&quot;silent&quot;</span></code> and the
@@ -1892,6 +1793,100 @@ objects again, and <code class="docutils literal notranslate"><span class="pre">
 <li><p>The changelog entry for <code class="docutils literal notranslate"><span class="pre">validate-types</span></code> in the <em>Added</em> section above is
 updated to describe the package-wide check rather than the first-party
 allowlist.</p></li>
+</ul>
+</section>
+<section id="fixed-19">
+<h3>Fixed (19)<a class="headerlink" href="#fixed-19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="reference/basic/animations.FadeInRandom.html#manim_extensions.animations.FadeInRandom" title="manim_extensions.animations.FadeInRandom"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeInRandom</span></code></a> example now fades in
+a <code class="docutils literal notranslate"><span class="pre">Text</span></code> object instead of a formula, so the per-glyph random order is
+visible in the rendered clip.</p></li>
+<li><p>Python standard-library type links, including <code class="docutils literal notranslate"><span class="pre">None</span></code>, now use the
+inherited text colour in parameter descriptions.  <code class="docutils literal notranslate"><span class="pre">None</span></code> no longer keeps
+a blue link colour while <code class="docutils literal notranslate"><span class="pre">str</span></code> and the other builtins stay plain.</p></li>
+<li><p>The QR-code logger reference page now renders the module description
+instead of an empty page.  The QR-code and Nerd Font docstrings link to the
+bundled Icon Gallery, and Python docstrings no longer use Sphinx
+<code class="docutils literal notranslate"><span class="pre">:doc:</span></code> roles that editors cannot resolve.</p></li>
+<li><p>Image layers and grayscale image mobjects convert floating-point pixel
+arrays to <code class="docutils literal notranslate"><span class="pre">uint8</span></code> before handing them to Manim, so examples built from
+<code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> no longer fail under Pillow with
+<code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">handle</span> <span class="pre">this</span> <span class="pre">data</span> <span class="pre">type:</span> <span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">4),</span> <span class="pre">&lt;f8</span></code>.  Images normalized to
+<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> are rescaled to <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> installs the <code class="docutils literal notranslate"><span class="pre">docs</span></code> extra alongside <code class="docutils literal notranslate"><span class="pre">all</span></code> because
+mypy analyses the Sphinx directive helper and needs <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
+<code class="docutils literal notranslate"><span class="pre">jinja2</span></code> stubs to import it.</p></li>
+<li><p>Type aliases now refer to the configuration classes directly:
+<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code> are defined after their
+classes, so their source no longer needs quoted forward references.  Both
+render as <code class="docutils literal notranslate"><span class="pre">GaussianSurface</span> <span class="pre">|</span> <span class="pre">SaddleSurface</span> <span class="pre">|</span> <span class="pre">...</span></code> with each class linked
+to its reference page; <code class="docutils literal notranslate"><span class="pre">autoall</span></code> still strips quotes from other aliases
+when the name resolves to a class in the alias module.</p></li>
+<li><p>The Manim documentation supplement now documents the private animation
+builder returned by <code class="docutils literal notranslate"><span class="pre">.animate</span></code> under its real name, and its page title
+keeps the leading underscore.  A short summary is installed for the class
+when Manim supplies no docstring, so the <code class="docutils literal notranslate"><span class="pre">Classes</span></code> autosummary row is no
+longer empty.</p></li>
+<li><p>Project type aliases render by name again under postponed annotations:
+<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GeometrySpec</span></code>, <code class="docutils literal notranslate"><span class="pre">ContourSpec</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">SurfaceFunction</span></code> stay aliases in parameter and return
+types instead of expanding to <code class="docutils literal notranslate"><span class="pre">Union[...]</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple[VGroup,</span> <span class="pre">bool]</span></code>.
+The Sphinx hook now patches
+<code class="docutils literal notranslate"><span class="pre">sphinx_autodoc_typehints._resolve.hints.type_hints</span></code> — the binding the
+installed 3.17.5 release actually calls — and restores aliases parsed from
+the original annotation string, including names nested inside <code class="docutils literal notranslate"><span class="pre">list[...]</span></code>
+and unions.</p></li>
+<li><p>Project aliases are also registered with Sphinx’s official
+<code class="docutils literal notranslate"><span class="pre">autodoc_type_aliases</span></code> option.  <code class="docutils literal notranslate"><span class="pre">autodoc_all</span></code> discovers public alias
+assignments from the package AST and merges them on <code class="docutils literal notranslate"><span class="pre">config-inited</span></code>, so
+direct annotations such as <code class="docutils literal notranslate"><span class="pre">ramp:</span> <span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">type[SurfaceConfig]</span></code>
+render as linked alias names instead of expanded structures.  Sphinx 9
+replaces a <code class="docutils literal notranslate"><span class="pre">typehints_formatter</span></code> assigned during <code class="docutils literal notranslate"><span class="pre">setup()</span></code> with the
+configured value, so the earlier wrapper never saw parameter annotations.</p></li>
+<li><p>Every vendored package that defines type aliases now has a <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Aliases</span></code>
+section on its reference page.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> gained a <code class="docutils literal notranslate"><span class="pre">typealias</span></code>
+classification that renders real <code class="docutils literal notranslate"><span class="pre">py:type</span></code> targets with the alias source
+from the module AST, so signatures such as
+<a class="reference internal" href="reference/three_d/core.html#manim_extensions.three_d.core.ContourSpec" title="manim_extensions.three_d.core.ContourSpec"><code class="xref py py-type docutils literal notranslate"><span class="pre">ContourSpec</span></code></a> link to the definition
+instead of appearing as plain text.  Re-exported aliases are not duplicated.</p></li>
+<li><p>Deprecation and runtime warnings no longer flood the pytest and CI logs:
+internal calls to the compatibility rate functions use their unwrapped
+implementations, Manim mobject getters use properties (<code class="docutils literal notranslate"><span class="pre">width</span></code>,
+<code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">points</span></code>, <code class="docutils literal notranslate"><span class="pre">z_index</span></code>, <code class="docutils literal notranslate"><span class="pre">axes</span></code>, <code class="docutils literal notranslate"><span class="pre">states</span></code>, <code class="docutils literal notranslate"><span class="pre">bonds</span></code>),
+stroke updates use <code class="docutils literal notranslate"><span class="pre">set_stroke</span></code>, and zero-length bonds and pymunk
+constraint lines skip line updates that would divide by zero or warn.</p></li>
+<li><p>Constant entries no longer render as empty blocks: re-exported constants
+carry a <code class="docutils literal notranslate"><span class="pre">#:</span></code> docstring, and <code class="docutils literal notranslate"><span class="pre">autoall</span></code> keeps short values as a normal
+<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">repr</span></code> signature. Values longer than 1,000 characters, such as
+<a class="reference internal" href="reference/nerdfont/index.html#manim_extensions.nerdfont.SYMBOLS_UNICODE" title="manim_extensions.nerdfont.SYMBOLS_UNICODE"><code class="xref py py-data docutils literal notranslate"><span class="pre">SYMBOLS_UNICODE</span></code></a>, show
+<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">dict</span> <span class="pre">with</span> <span class="pre">10,083</span> <span class="pre">entries</span></code> with a <code class="docutils literal notranslate"><span class="pre">Show</span></code> button; the button
+replaces the summary with the exact value inline in the signature. Class
+and type names inside every constant value, whether it is folded or shown
+in full, use the same cross-reference pass as signature defaults.
+Fully-qualified <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'module.Class'&gt;</span></code> spellings are replaced by the
+linked short class name, and <code class="docutils literal notranslate"><span class="pre">type[module.Class]</span></code> by <code class="docutils literal notranslate"><span class="pre">type[Class]</span></code>,
+so values such as <a class="reference internal" href="reference/chemistry/utils/file_handler.html#manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS" title="manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS"><code class="xref py py-data docutils literal notranslate"><span class="pre">SUPPORTED_FORMATS</span></code></a> keep compact links to their parser
+classes.</p></li>
+<li><p>Corrected the spelling of the node-state enum to
+<a class="reference internal" href="reference/mindmap/nodes/node.NodeState.html#manim_extensions.mindmap.nodes.node.NodeState" title="manim_extensions.mindmap.nodes.node.NodeState"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeState</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate_docstrings.py</span></code> rejects a docstring that contains a backslash
+without the <code class="docutils literal notranslate"><span class="pre">r</span></code> prefix (<code class="docutils literal notranslate"><span class="pre">non-raw-docstring</span></code>), and every existing
+docstring now follows that rule.</p></li>
+<li><p>Documentation examples render their real output again: the nbcell
+execution cache is read by the directive, the sample molecule files ship
+with the repository, and the chemistry examples run against them.</p></li>
+<li><p>Nerd Font examples render the icon again instead of a
+<code class="docutils literal notranslate"><span class="pre">0F0320</span></code>-style tofu box: the media-cache renderer now finds the font at
+<code class="docutils literal notranslate"><span class="pre">&lt;package&gt;/nerdfont</span></code> and installs it before the worker pool starts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:output-language:</span> <span class="pre">pytb</span></code> examples no longer show CI machine paths or the
+documentation runner’s own stack frame.</p></li>
+<li><p>The <a class="reference internal" href="reference/meshes/exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><code class="xref py py-class docutils literal notranslate"><span class="pre">InvalidRequestException</span></code></a>
+example raises again: it projects a five-dimensional mesh, because
+four-dimensional meshes are now supported.</p></li>
+<li><p>The installation page no longer tells Python 3.13+ users to install
+<code class="docutils literal notranslate"><span class="pre">manim-mobject-svg</span></code> with <code class="docutils literal notranslate"><span class="pre">--ignore-requires-python</span></code>. Both that plugin
+and <code class="docutils literal notranslate"><span class="pre">manim-nerdfont-icons</span></code> are vendored as package submodules and need
+no separate installation.</p></li>
 </ul>
 </section>
 </section>
@@ -2057,11 +2052,6 @@ instead of popping a key that was never inserted.</p></li>
 <li><p>Fixed <a class="reference internal" href="reference/physics/rigid_mechanics/pendulum.MultiPendulum.html#manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum" title="manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPendulum</span></code></a>
 joints being added to a non-existent <code class="docutils literal notranslate"><span class="pre">space</span></code> attribute, so
 <code class="docutils literal notranslate"><span class="pre">start_swinging</span></code> no longer fails with <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p></li>
-</ul>
-</section>
-<section id="documentation-and-hygiene">
-<h3>Documentation and hygiene<a class="headerlink" href="#documentation-and-hygiene" title="Link to this heading">¶</a></h3>
-<ul class="simple">
 <li><p>Reorganised the reference manual package by package: <a class="reference internal" href="reference/chemistry/index.html#module-manim_extensions.chemistry" title="manim_extensions.chemistry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">chemistry</span></code></a>,
 <a class="reference internal" href="reference/automata/index.html#module-manim_extensions.automata" title="manim_extensions.automata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">automata</span></code></a>, <a class="reference internal" href="reference/algorithm/index.html#module-manim_extensions.algorithm" title="manim_extensions.algorithm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algorithm</span></code></a>, <a class="reference internal" href="reference/data_structures/index.html#module-manim_extensions.data_structures" title="manim_extensions.data_structures"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_structures</span></code></a>, <a class="reference internal" href="reference/economics/index.html#module-manim_extensions.economics" title="manim_extensions.economics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">economics</span></code></a>,
 <a class="reference internal" href="reference/pymunk/index.html#module-manim_extensions.pymunk" title="manim_extensions.pymunk"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pymunk</span></code></a>, <a class="reference internal" href="reference/mindmap/index.html#module-manim_extensions.mindmap" title="manim_extensions.mindmap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mindmap</span></code></a>, <a class="reference internal" href="reference/machine_learning/index.html#module-manim_extensions.machine_learning" title="manim_extensions.machine_learning"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine_learning</span></code></a>, <a class="reference internal" href="reference/table/index.html#module-manim_extensions.table" title="manim_extensions.table"><code class="xref py py-mod docutils literal notranslate"><span class="pre">table</span></code></a>, and the rest
@@ -2120,11 +2110,6 @@ title, and kept a hidden sidebar toctree so the navigation tree is
 preserved.</p></li>
 <li><p>Rewrote <code class="docutils literal notranslate"><span class="pre">CODE_OF_CONDUCT</span></code> as the project’s own code and removed
 duplicate chemistry overview pages plus stray rendered images.</p></li>
-</ul>
-</section>
-<section id="ci">
-<h3>CI<a class="headerlink" href="#ci" title="Link to this heading">¶</a></h3>
-<ul class="simple">
 <li><p>Consumed the shared <code class="docutils literal notranslate"><span class="pre">ExploreMaths/setup-manim-env&#64;v1</span></code> action across
 workflows.</p></li>
 <li><p>Extended the Validate workflow with type-annotation, return-annotation,
@@ -2560,17 +2545,14 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#">Changelog</a><ul>
 <li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a><ul>
 <li><a class="reference internal" href="#added-21">Added (21)</a></li>
-<li><a class="reference internal" href="#fixed-19">Fixed (19)</a></li>
 <li><a class="reference internal" href="#changed-33">Changed (33)</a></li>
-<li><a class="reference internal" href="#mypy">Mypy</a></li>
+<li><a class="reference internal" href="#fixed-19">Fixed (19)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-6-latest">v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span></a><ul>
 <li><a class="reference internal" href="#added-18">Added (18)</a></li>
 <li><a class="reference internal" href="#changed-14">Changed (14)</a></li>
 <li><a class="reference internal" href="#fixed-51">Fixed (51)</a></li>
-<li><a class="reference internal" href="#documentation-and-hygiene">Documentation and hygiene</a></li>
-<li><a class="reference internal" href="#ci">CI</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-5">v1.0.5</a><ul>

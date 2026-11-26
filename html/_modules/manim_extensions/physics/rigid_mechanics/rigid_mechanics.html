@@ -1644,17 +1644,16 @@
 <span class="sd">           GRAVITY = (0, -5)</span>
 <span class="sd">           def construct(self):</span>
 <span class="sd">               ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 3)</span>
+<span class="sd">               ceiling = Line(LEFT * 7, RIGHT * 7).shift(UP * 3)</span>
 <span class="sd">               ball = Circle(radius=0.4, stroke_color=BLUE,</span>
 <span class="sd">                             fill_color=BLUE, fill_opacity=1)</span>
 <span class="sd">               ball.shift(ground.get_center() + UP * 4)</span>
-<span class="sd">               self.play(FadeIn(ground), FadeIn(ball))</span>
-<span class="sd">               self.make_static_body(ground)</span>
+<span class="sd">               self.play(FadeIn(ground), FadeIn(ceiling), FadeIn(ball))</span>
+<span class="sd">               self.make_static_body(ground, ceiling)</span>
 <span class="sd">               self.make_rigid_body(ball)</span>
 <span class="sd">               self.wait(2)</span>
 <span class="sd">               self.space.space.gravity = (0, 5)</span>
-<span class="sd">               self.wait(3)</span>
-<span class="sd">               Group(*self.mobjects).scale(0.2).move_to(ORIGIN)</span>
-<span class="sd">               self.wait()</span>
+<span class="sd">               self.wait(4)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

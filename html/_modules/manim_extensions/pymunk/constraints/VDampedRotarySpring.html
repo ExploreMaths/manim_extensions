@@ -1553,6 +1553,7 @@
 <span class="sd">           def construct(self):</span>
 <span class="sd">               # the spinning squares are pulled back to rest_angle=PI/4 and</span>
 <span class="sd">               # their oscillation is damped (watch the arc indicators)</span>
+<span class="sd">               self.vspace.space.gravity = (0, 0)</span>
 <span class="sd">               floor = Line(LEFT * 6.5, RIGHT * 6.5, stroke_width=8, color=GREY)</span>
 <span class="sd">               floor.to_edge(DOWN, buff=0.5)</span>
 <span class="sd">               square_1 = Square().next_to(floor, UP, buff=1)</span>
@@ -1568,9 +1569,7 @@
 <span class="sd">               self.add_static_body(floor)</span>
 <span class="sd">               self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)</span>
 <span class="sd">               self.add_constraints(spring)</span>
-<span class="sd">               self.wait(5)</span>
-<span class="sd">               Group(*self.mobjects).scale(0.07).move_to(ORIGIN)</span>
-<span class="sd">               self.wait()</span>
+<span class="sd">               self.wait(6)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

@@ -1531,24 +1531,26 @@ Setting this to a finite value allows the motor to “stall” under load.</p></
     controls
     loop
     autoplay
-    src="./VSimpleMotorScene-5df298f4.mp4">
+    src="./VSimpleMotorScene-d486ae65.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">VSimpleMotorScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># the motor keeps the wheel spinning at a constant rate</span>
+        <span class="c1"># The pivot joint pins the wheel in place; the motor alone only</span>
+        <span class="c1"># enforces angular velocity and the wheel would fall freely.</span>
         <span class="n">pivot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="n">wheel</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pivot</span><span class="p">)</span>
-        <span class="n">motor</span> <span class="o">=</span> <span class="n">VSimpleMotor</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_torque</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">VSimpleMotor</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_torque</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span>
+            <span class="n">VPivotJoint</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">wheel</span><span class="p">),</span>
+        <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">pivot</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">wheel</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_static_body</span><span class="p">(</span><span class="n">pivot</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_body</span><span class="p">(</span><span class="n">wheel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_shapes_filter</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="n">motor</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.12</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="o">*</span><span class="n">constraints</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div><dl class="py method">

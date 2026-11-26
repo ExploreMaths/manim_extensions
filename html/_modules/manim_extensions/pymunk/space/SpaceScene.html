@@ -1542,22 +1542,24 @@
 <span class="sd">               # a floor and three balls driven by the Pymunk physics space</span>
 <span class="sd">               floor = Line(LEFT * 6, RIGHT * 6, stroke_width=8, color=GREY)</span>
 <span class="sd">               floor.to_edge(DOWN, buff=0.5)</span>
+<span class="sd">               wall1 = Line([-6, -3.5, 0], [-6, 3.5, 0], stroke_width=8, color=GREY)</span>
+<span class="sd">               wall2 = Line([6, -3.5, 0], [6, 3.5, 0], stroke_width=8, color=GREY)</span>
+<span class="sd">               ceiling = Line([-6, 3.5, 0], [6, 3.5, 0], stroke_width=8, color=GREY)</span>
+<span class="sd">               walls = VGroup(floor, wall1, wall2, ceiling)</span>
 <span class="sd">               balls = VGroup(*[</span>
 <span class="sd">                   Circle(radius=0.3, color=BLUE, fill_opacity=0.8).move_to(</span>
 <span class="sd">                       UP * 3 + (i - 1) * RIGHT</span>
 <span class="sd">                   )</span>
 <span class="sd">                   for i in range(3)</span>
 <span class="sd">               ])</span>
-<span class="sd">               self.play(FadeIn(floor), FadeIn(balls))</span>
-<span class="sd">               self.add_static_body(floor)</span>
+<span class="sd">               self.play(FadeIn(walls), FadeIn(balls))</span>
+<span class="sd">               self.add_static_body(floor, wall1, wall2, ceiling)</span>
 <span class="sd">               self.add_dynamic_body(*balls)</span>
 <span class="sd">               self.add_shapes_filter(*balls, group=1)</span>
 <span class="sd">               self.apply_impulse_at_world_point(</span>
 <span class="sd">                   balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())</span>
 <span class="sd">               )</span>
-<span class="sd">               self.wait(5)</span>
-<span class="sd">               Group(*self.mobjects).scale(0.08).move_to(ORIGIN)</span>
-<span class="sd">               self.wait()</span>
+<span class="sd">               self.wait(6)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

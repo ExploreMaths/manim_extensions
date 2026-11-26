@@ -1549,18 +1549,20 @@
 
 <span class="sd">       class VSimpleMotorScene(SpaceScene):</span>
 <span class="sd">           def construct(self):</span>
-<span class="sd">               # the motor keeps the wheel spinning at a constant rate</span>
+<span class="sd">               # The pivot joint pins the wheel in place; the motor alone only</span>
+<span class="sd">               # enforces angular velocity and the wheel would fall freely.</span>
 <span class="sd">               pivot = Dot(ORIGIN)</span>
 <span class="sd">               wheel = Square().move_to(pivot)</span>
-<span class="sd">               motor = VSimpleMotor(pivot, wheel, rate=4, max_torque=500)</span>
+<span class="sd">               constraints = [</span>
+<span class="sd">                   VSimpleMotor(pivot, wheel, rate=4, max_torque=500),</span>
+<span class="sd">                   VPivotJoint(pivot, wheel),</span>
+<span class="sd">               ]</span>
 <span class="sd">               self.play(FadeIn(pivot), FadeIn(wheel))</span>
 <span class="sd">               self.add_static_body(pivot)</span>
 <span class="sd">               self.add_dynamic_body(wheel)</span>
 <span class="sd">               self.add_shapes_filter(pivot, wheel, group=2)</span>
-<span class="sd">               self.add_constraints(motor)</span>
-<span class="sd">               self.wait(4)</span>
-<span class="sd">               Group(*self.mobjects).scale(0.12).move_to(ORIGIN)</span>
-<span class="sd">               self.wait()</span>
+<span class="sd">               self.add_constraints(*constraints)</span>
+<span class="sd">               self.wait(5)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
