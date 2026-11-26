@@ -30,7 +30,14 @@ __all__ = [
 ]
 
 #: Axis names used by the bundled demo reel.
-REPLICA_AXES = ("理论贡献", "实践贡献", "群众路线", "个人品德", "国际主义", "历史影响")
+REPLICA_AXES = (
+    "Theory",
+    "Practice",
+    "Mass Line",
+    "Character",
+    "Internationalism",
+    "Historical Impact",
+)
 
 #: Full-scale value of the demo reel (values above it render as ``10+``).
 REPLICA_MAX = 10.0
@@ -140,7 +147,6 @@ class RadarV1Scene(Scene):
 
     #: 1.0 chart style preset.
     style = "classic"
-    #: 1.0 chart theme preset.
     #: 2.0 chart theme preset.
     theme = "midnight"
     #: Optional chart title; ``None`` keeps the generated nameplate text.
@@ -183,18 +189,17 @@ class RadarV2Scene(Scene):
                    replica_datasets()[0],
                    style="neo",
                    theme="midnight",
-                   title="六维能力 · 雷达图鉴",
+                   title="Six-Axis Capability · Radar Atlas",
                )
                self.play(Create(chart))
     """
 
     #: 2.0 chart style preset.
     style = "neo"
-    #: 1.0 chart theme preset.
     #: 2.0 chart theme preset.
     theme = "midnight"
     #: Default title shown above the 2.0 chart.
-    title: Optional[str] = "六维能力 · 雷达图鉴"
+    title: Optional[str] = "Six-Axis Capability · Radar Atlas"
 
     def construct(self) -> None:
         """Build the 2.0 chart with its themed backdrop and play the reel."""

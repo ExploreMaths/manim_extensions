@@ -19,7 +19,7 @@ from types import ModuleType
 
 
 @overload
-def require(extra: str, name: str, /) -> ModuleType:
+def require(extra: str, name1: str, /) -> ModuleType:
     """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters

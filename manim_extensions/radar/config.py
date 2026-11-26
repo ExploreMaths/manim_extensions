@@ -38,16 +38,16 @@ class RadarConfig:
     """
 
     # ---- geometry --------------------------------------------------------
-    #: outer ring radius, in scene units (Manim's default frame is 14.22 x 8)
+    #: Outer ring radius, in scene units (Manim's default frame is 14.22 x 8)
     radius: float = 2.9
-    #: chart centre in scene units ``(x, y)``; a little below the middle leaves
+    #: Chart centre in scene units ``(x, y)``; a little below the middle leaves
     #: room for the nameplate / title above the chart
     position: tuple[Any, ...] = (0.0, -0.18)
-    #: number of concentric grid rings (the outermost ring is the full scale)
+    #: Number of concentric grid rings (the outermost ring is the full scale)
     levels: int = 5
-    #: angle of the first axis, in degrees (90 = straight up)
+    #: Angle of the first axis, in degrees (90 = straight up)
     start_angle: float = 90.0
-    #: if True the axes run clockwise
+    #: If True the axes run clockwise
     clockwise: bool = True
 
     # ---- grid ------------------------------------------------------------
@@ -60,7 +60,7 @@ class RadarConfig:
     grid_glow: bool = True
     grid_glow_width: float = 8.0
     grid_glow_opacity: float = 0.10
-    #: draw small scale numbers (2/4/6/8…) along one spoke
+    #: Draw small scale numbers (2/4/6/8…) along one spoke
     show_level_labels: bool = True
     level_label_axis: int = 0
     level_label_size: int = 17
@@ -79,7 +79,7 @@ class RadarConfig:
     glow_opacity: float = 0.22
     halo_width: float = 30.0
     halo_opacity: float = 0.08
-    #: colour the 6 edges with a gradient between the two axis colours
+    #: Colour the 6 edges with a gradient between the two axis colours
     rainbow_edges: bool = True
     edge_segments: int = 3
     vertex_dots: bool = True
@@ -87,26 +87,26 @@ class RadarConfig:
 
     # ---- axis labels & numbers -------------------------------------------
     show_axis_names: bool = True
-    #: distance of the axis names from the centre, as a multiple of ``radius``
+    #: Distance of the axis names from the centre, as a multiple of ``radius``
     label_offset: float = 1.10
     name_font: Optional[str] = None
     name_weight: str = "BOLD"
-    #: colour axis names with their axis colour (False -> near-white)
+    #: Colour axis names with their axis colour (False -> near-white)
     colored_axis_names: bool = True
     #: "roll" (odometer tween) | "swap" (snap to integers) | "off"
     numbers: str = "roll"
     number_font: Optional[str] = None
     number_size: int = 28
-    #: place the numbers right after the axis name (True) or inside the chart
+    #: Place the numbers right after the axis name (True) or inside the chart
     numbers_next_to_name: bool = True
-    #: radius multiple of the numbers when ``numbers_next_to_name=False``
+    #: Radius multiple of the numbers when ``numbers_next_to_name=False``
     number_offset: float = 0.62
-    #: horizontal gap between an axis name and its number
+    #: Horizontal gap between an axis name and its number
     number_gap: float = 0.18
     number_format: str = "{:g}"
-    #: appended when a value exceeds the full scale (e.g. ``10`` -> ``10+``)
+    #: Appended when a value exceeds the full scale (e.g. ``10`` -> ``10+``)
     overflow_suffix: str = "+"
-    #: vertical travel of the odometer wheel, in scene units (one line height
+    #: Vertical travel of the odometer wheel, in scene units (one line height
     #: keeps the outgoing and incoming digits cleanly separated while rolling)
     roll_height: float = 0.44
 
@@ -118,22 +118,22 @@ class RadarConfig:
     sweep_edge_width: float = 1.6
 
     # ---- transitions -----------------------------------------------------
-    #: add a shockwave ring on every morph
+    #: Add a shockwave ring on every morph
     shockwave: bool = True
     shock_duration: float = 0.40
     shock_radius: float = 5.0
-    #: fraction of the morph spent "dipping" before values roll up
+    #: Fraction of the morph spent "dipping" before values roll up
     dip_ratio: float = 0.24
-    #: default run time of :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`
+    #: Default run time of :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`
     morph_run_time: float = 1.3
-    #: how far values dip below their target (in value units)
+    #: How far values dip below their target (in value units)
     dip_drop: float = 1.0
     dip_floor: float = 2.0
-    #: quantise values to integers while rolling (classic snap-in look)
+    #: Quantise values to integers while rolling (classic snap-in look)
     stepped: bool = False
-    #: seconds each extra dataset waits before starting its own morph
+    #: Seconds each extra dataset waits before starting its own morph
     stagger: float = 0.12
-    #: emphasise the dataset with an extra orange/cyan double outline
+    #: Emphasise the dataset with an extra orange/cyan double outline
     rim: bool = False
     rim_offset_outer: float = 0.030
     rim_offset_inner: float = 0.040
@@ -146,27 +146,27 @@ class RadarConfig:
     glitch_bar_width: float = 20.0
 
     # ---- burst (used by transition="burst" / OverflowRadarChart) ---------
-    #: fraction of the target a value overshoots past before settling
+    #: Fraction of the target a value overshoots past before settling
     burst_overshoot: float = 0.16
 
     # ---- overflow (OverflowRadarChart) -----------------------------------
-    #: allow values above the full scale to escape the outer ring as spikes
+    #: Allow values above the full scale to escape the outer ring as spikes
     overflow: bool = False
-    #: draw a dashed track along spokes that poke beyond the outer ring
+    #: Draw a dashed track along spokes that poke beyond the outer ring
     overflow_dash: bool = True
-    #: width of the dashed segments (and of the gaps), as radius multiples
+    #: Width of the dashed segments (and of the gaps), as radius multiples
     overflow_dash_on: float = 0.085
     overflow_dash_off: float = 0.055
-    #: glowing "breach" where a spike pierces the outer ring
+    #: Glowing "breach" where a spike pierces the outer ring
     overflow_breach_glow: bool = True
     breach_glow_radius: float = 0.16
-    #: spike must exceed the full scale by this fraction before the overflow
+    #: Spike must exceed the full scale by this fraction before the overflow
     #: decorations (track / breach / big number) kick in — keeps transient
     #: overshoots from burst morphs from popping spurious read-outs
     overflow_min_over: float = 0.05
-    #: font size of the unclamped read-outs that ride the spikes
+    #: Font size of the unclamped read-outs that ride the spikes
     overflow_number_size: int = 40
-    #: how far beyond the vertex the overflow number sits (radius multiple)
+    #: How far beyond the vertex the overflow number sits (radius multiple)
     overflow_number_offset: float = 0.17
 
     # ---- rainbow web (0.1.2) -------------------------------------------
@@ -177,45 +177,45 @@ class RadarConfig:
     web_trace_time: float = 0.32
 
     # ---- legend & comparisons --------------------------------------------
-    #: draw a legend (colour chip + name) when several datasets share a chart
+    #: Draw a legend (colour chip + name) when several datasets share a chart
     legend: bool = True
-    #: font size of legend names
+    #: Font size of legend names
     legend_size: int = 21
-    #: gap between legend chips, in scene units
+    #: Gap between legend chips, in scene units
     legend_gap: float = 0.30
-    #: height of the colour chip, in scene units
+    #: Height of the colour chip, in scene units
     legend_chip: float = 0.16
-    #: vertical position of the legend row, as a multiple of ``radius``
+    #: Vertical position of the legend row, as a multiple of ``radius``
     legend_offset: float = 1.62
-    #: how the per-axis numbers behave when several datasets share a chart:
+    #: How the per-axis numbers behave when several datasets share a chart:
     #: "legend" (none, names in the legend) | "all" (every dataset, at its
     #: vertices) | "first" (dataset 0 only) | "focus" (follows chart.focus)
     compare_numbers: str = "legend"
-    #: font-size multiplier for the per-vertex comparison numbers
+    #: Font-size multiplier for the per-vertex comparison numbers
     compare_number_scale: float = 0.62
-    #: opacity a dataset is dimmed to when it is not the focused one
+    #: Opacity a dataset is dimmed to when it is not the focused one
     focus_dim: float = 0.22
 
     # ---- title & nameplate ----------------------------------------------
     title: Optional[str] = None
     title_font: Optional[str] = None
     title_size: int = 30
-    #: vertical position of the header, as a multiple of ``radius``
+    #: Vertical position of the header, as a multiple of ``radius``
     title_offset: float = 1.30
-    #: show :attr:`~manim_extensions.radar.data.RadarData.name` above the chart
+    #: Show :attr:`~manim_extensions.radar.data.RadarData.name` above the chart
     show_dataset_name: bool = True
-    #: vertical position of the nameplate, as a multiple of ``radius``
+    #: Vertical position of the nameplate, as a multiple of ``radius``
     name_offset: float = 1.28
     name_size: int = 34
-    #: extra gap between nameplate and header when both are shown
+    #: Extra gap between nameplate and header when both are shown
     name_gap: float = 0.55
 
     # ---- misc ------------------------------------------------------------
-    #: global opacity multiplier (1 = fully visible)
+    #: Global opacity multiplier (1 = fully visible)
     opacity: float = 1.0
-    #: random seed for decorations that live on the chart
+    #: Random seed for decorations that live on the chart
     seed: int = 7
-    #: extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject
+    #: Extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject
     text_kwargs: dict[Any, Any] = field(default_factory=dict)
 
     # ------------------------------------------------------------------

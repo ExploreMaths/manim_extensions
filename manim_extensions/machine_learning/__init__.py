@@ -72,19 +72,11 @@ class ManimMLConfig:
 
     @property
     def color_scheme(self) -> ColorScheme:
-        """Set the active color scheme and apply its background color.
+        """Return the active color scheme.
 
-        Parameters
-        ----------
-        value
-            A :class:`~manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme` instance, or the name of a builtin
-            scheme (``"dark_mode"`` / ``"light_mode"``).
-
-        Raises
-        ------
-        ValueError
-            Raised when ``value`` is a string other than ``"dark_mode"``
-            or ``"light_mode"``.
+        Returns
+        -------
+            The scheme currently applied to the config.
         """
         return self._color_scheme
 

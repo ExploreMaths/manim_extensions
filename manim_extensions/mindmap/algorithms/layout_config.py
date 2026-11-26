@@ -215,12 +215,11 @@ class LayoutConfig:
 
     @property
     def catalog(self) -> dict[Any, Any]:
-        """Update the catalog layout settings from a dictionary.
+        """Return the catalog layout settings.
 
-        Parameters
-        ----------
-        catalog
-            Dictionary with ``node_spacing`` and ``level_spacing`` keys.
+        Returns
+        -------
+            A mapping with ``node_spacing`` and ``level_spacing``.
         """
         return {
             "node_spacing": self.node_spacing,
@@ -247,19 +246,12 @@ class LayoutConfig:
 
     @property
     def mindmap(self) -> dict[Any, Any]:
-        """Update the mind map layout settings from a dictionary.
+        """Return the mind map layout settings.
 
-        Parameters
-        ----------
-        mindmap
-            Dictionary with ``direction``, ``node_spacing``, and
-            ``level_spacing`` keys.
-
-        Raises
-        ------
-        ValueError
-            Raised when ``direction`` is not one of UP, DOWN,
-            LEFT, RIGHT.
+        Returns
+        -------
+            A mapping with ``direction``, ``node_spacing`` and
+            ``level_spacing``.
         """
         return {
             "direction": self.layout_direction,
@@ -300,18 +292,11 @@ class LayoutConfig:
 
     @property
     def timeline(self) -> dict[Any, Any]:
-        """Update the timeline layout settings from a dictionary.
+        """Return the timeline layout settings.
 
-        Parameters
-        ----------
-        timeline
-            Dictionary with ``node_spacing``, ``level_spacing``, and
-            ``sides`` keys.
-
-        Raises
-        ------
-        ValueError
-            Raised when a side is not one of UP, DOWN.
+        Returns
+        -------
+            A mapping with ``node_spacing``, ``level_spacing`` and ``sides``.
         """
         return {
             "node_spacing": self.node_spacing,

@@ -34,6 +34,8 @@ PARAM_LINE_RE = re.compile(
     r"[ \t]*:[ \t]*(?P<desc>.*)$"
 )
 
+CJK_RE = re.compile(r"[\u3400-\u9fff]")
+
 SKIP_DIRS = {
     "__pycache__",
     ".git",
@@ -514,6 +516,32 @@ def check_args_format(py_file):
     return find_args_sections(source)
 
 
+def check_cjk_strings(filepath):
+    """Return ``(line, text)`` for source strings containing CJK characters.
+
+    The public reference manual is English-only.  A Chinese title or axis
+    label inside a doc example is still rendered into the manual image and
+    must not slip through because the surrounding prose is English.
+    """
+    try:
+        source = filepath.read_text(encoding="utf-8")
+        tree = ast.parse(source)
+    except (OSError, SyntaxError, UnicodeDecodeError):
+        return []
+
+    hits = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            if CJK_RE.search(node.value):
+                text = " ".join(node.value.split())
+                # One- or two-character samples test font coverage; they are
+                # data, not prose that reaches the manual.
+                if len(text) <= 2:
+                    continue
+                hits.append((node.lineno, text[:80]))
+    return hits
+
+
 def main():
     """Main validation function."""
     parser = argparse.ArgumentParser(
@@ -532,6 +560,7 @@ def main():
     args_errors = []
     init_errors = []
     raw_errors = []
+    cjk_errors = []
     fixed_count = 0
     checked = 0
 
@@ -575,6 +604,8 @@ def main():
                 init_errors.append((py_file, line_no, name))
             for line_no, name in check_raw_docstrings(py_file):
                 raw_errors.append((py_file, line_no, name))
+            for line_no, text in check_cjk_strings(py_file):
+                cjk_errors.append((py_file, line_no, text))
             continue
 
         result = check_file(py_file)
@@ -597,15 +628,19 @@ def main():
         for line_no, name in check_raw_docstrings(py_file):
             raw_errors.append((py_file, line_no, name))
 
+        for line_no, text in check_cjk_strings(py_file):
+            cjk_errors.append((py_file, line_no, text))
+
         checked += 1
 
-    if errors or func_errors or args_errors or init_errors or raw_errors:
+    if errors or func_errors or args_errors or init_errors or raw_errors or cjk_errors:
         total = (
             len(errors)
             + len(func_errors)
             + len(args_errors)
             + len(init_errors)
             + len(raw_errors)
+            + len(cjk_errors)
         )
         print(f"FAIL  docstrings  {total} issue(s)\n")
         for filepath, error_type in sorted(errors, key=lambda x: str(x[0])):
@@ -628,6 +663,14 @@ def main():
             print(
                 f"  {rel_path}:{line_no}  init-docstring: '__init__' must not have"
                 " a docstring (document the class instead)"
+            )
+        for filepath, line_no, text in sorted(
+            cjk_errors, key=lambda x: (str(x[0]), x[1])
+        ):
+            rel_path = filepath.relative_to(ROOT)
+            print(
+                f"  {rel_path}:{line_no}  cjk-string: public source strings must "
+                f"be English: {text!r}"
             )
         for filepath, line_no, name in sorted(
             raw_errors, key=lambda x: (str(x[0]), x[1])

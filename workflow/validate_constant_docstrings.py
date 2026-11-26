@@ -94,6 +94,27 @@ def preceding_hashdoc(lines: list[str], lineno: int) -> bool:
     return False
 
 
+def hashdoc_text(lines: list[str], lineno: int) -> str | None:
+    """Return the text of the ``#:`` block above *lineno*, if any."""
+    index = lineno - 2
+    while index >= 0 and not lines[index].strip():
+        index -= 1
+    if index < 0 or not lines[index].lstrip().startswith("#:"):
+        return None
+    first = index
+    while first > 0 and lines[first - 1].lstrip().startswith("#:"):
+        first -= 1
+    return lines[first].split("#:", 1)[1].strip()
+
+
+def hashdoc_starts_upper(lines: list[str], lineno: int) -> bool:
+    """Return whether a ``#:`` description starts with a capital letter."""
+    text = hashdoc_text(lines, lineno)
+    if text is None:
+        return True
+    return not text[:1].islower()
+
+
 def trailing_docstring(body: list[ast.stmt], node: ast.stmt) -> bool:
     """Return whether *node* is followed by a bare string-literal docstring.
 
@@ -164,6 +185,10 @@ def check_module(module: types.ModuleType) -> list[tuple[int, str]]:
         )
         if not documented:
             missing.append((node.lineno, name))
+        elif preceding_hashdoc(lines, node.lineno) and not hashdoc_starts_upper(
+            lines, node.lineno
+        ):
+            missing.append((node.lineno, f"{name}: description must start uppercase"))
     missing.extend(check_class_constants(tree, lines))
     return missing
 
@@ -226,13 +251,37 @@ def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int,
             else:
                 continue
             for name in targets:
-                if name.startswith("_") or not _is_class_constant(name, node, cls):
+                if name.startswith("_"):
+                    continue
+                # Any public class field with a ``#:`` description must use
+                # sentence case, including dataclass fields that are not
+                # class constants.
+                if preceding_hashdoc(lines, node.lineno) and not hashdoc_starts_upper(
+                    lines, node.lineno
+                ):
+                    missing.append(
+                        (
+                            node.lineno,
+                            f"{cls.name}.{name}: description must start uppercase",
+                        )
+                    )
+                    continue
+                if not _is_class_constant(name, node, cls):
                     continue
                 documented = preceding_hashdoc(
                     lines, node.lineno
                 ) or trailing_docstring(cls.body, node)
                 if not documented:
                     missing.append((node.lineno, f"{cls.name}.{name}"))
+                elif preceding_hashdoc(lines, node.lineno) and not hashdoc_starts_upper(
+                    lines, node.lineno
+                ):
+                    missing.append(
+                        (
+                            node.lineno,
+                            f"{cls.name}.{name}: description must start uppercase",
+                        )
+                    )
     return missing
 
 
@@ -267,10 +316,16 @@ def main() -> int:
         print(f"FAIL  constant-docstrings  {len(failures)} issue(s)\n")
         for path, lineno, name in sorted(failures, key=lambda f: (str(f[0]), f[1])):
             rel = path.relative_to(ROOT)
-            print(
-                f"  {rel}:{lineno}  missing-constant-docstring: "
-                f"constant '{name}' has no '#:' description"
-            )
+            if "description must start uppercase" in name:
+                print(
+                    f"  {rel}:{lineno}  constant-description-style: "
+                    f"'{name.split(':')[0]}' must start with a capital letter"
+                )
+            else:
+                print(
+                    f"  {rel}:{lineno}  missing-constant-docstring: "
+                    f"constant '{name}' has no '#:' description"
+                )
         print(f"\nTotal: {len(failures)} issue(s)")
         return 1
 
