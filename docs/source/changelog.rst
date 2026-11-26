@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Changelog
-=========
+Changelog (11)
+==============
 
 v1.0.7 :bdg-primary-line:`In Development`
 -----------------------------------------
