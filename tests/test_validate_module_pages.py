@@ -45,3 +45,36 @@ def test_automodule_with_members_fails() -> None:
     ]
     issues = rst.check_automodule_options(lines)
     assert issues and issues[0][0] == 2
+
+
+def test_recursive_type_alias_block_fails() -> None:
+    """A package-level recursive alias block repeats submodule aliases."""
+    lines = [
+        ".. autoall:: manim_extensions.radar",
+        "   :recursive:",
+        "   :types: typealias",
+    ]
+    issues = rst.check_reference_page_layout(lines)
+    assert issues and issues[0][0] == 1
+
+
+def test_module_type_alias_block_passes() -> None:
+    """A non-recursive alias block stays on its defining module page."""
+    lines = [
+        ".. autoall:: manim_extensions.radar.chart",
+        "   :types: typealias",
+    ]
+    assert rst.check_reference_page_layout(lines) == []
+
+
+def test_inline_autoclass_next_to_autosummary_fails() -> None:
+    """A class may not be rendered both in a table and inline."""
+    lines = [
+        ".. autosummary::",
+        "   ~RadarChart",
+        "   ~Series",
+        "",
+        ".. autoclass:: manim_extensions.radar.chart.Series",
+    ]
+    issues = rst.check_reference_page_layout(lines)
+    assert issues and issues[0][0] == 5

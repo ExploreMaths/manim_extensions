@@ -14,7 +14,7 @@ from __future__ import annotations
 __version__ = "0.1.2"
 
 from .animations import (
-    TRANSITIONS,
+    TRANSITIONS as _TRANSITIONS,
     GlitchFlash,
     RadarBurstIn,
     RadarFade,
@@ -25,14 +25,21 @@ from .animations import (
 from .backdrop import DeepSpace, set_scene_background
 from .camera import CameraRig
 from .chart import RadarChart
-from .config import STYLES, RadarConfig, get_style, style_names
+from .config import STYLES as _STYLES, RadarConfig, get_style, style_names
 from .data import RadarData
 from .numbers import RollingNumber
 from .overflow import OverflowRadarChart
 from .poly import PolyMorph, PolyRadarChart
 from .reel import RadarReel
-from .theme import THEMES, RadarTheme, get_theme, theme_names
+from .theme import THEMES as _THEMES, RadarTheme, get_theme, theme_names
 from .utils import ease_in_out_cubic, ease_out_back, ease_out_overshoot, mix, pick_font
+
+#: Named transition presets understood by :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`.
+TRANSITIONS = _TRANSITIONS
+#: Bundled radar style presets keyed by style name.
+STYLES = _STYLES
+#: Bundled radar colour themes keyed by theme name.
+THEMES = _THEMES
 
 __all__ = [
     "__version__",

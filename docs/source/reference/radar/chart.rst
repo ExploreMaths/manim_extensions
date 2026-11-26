@@ -14,15 +14,20 @@ Classes
    :nosignatures:
 
    ~RadarChart
+   ~Series
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    chart.RadarChart
+   chart.Series
 
-.. autoclass:: manim_extensions.radar.chart.Series
-   :show-inheritance:
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.radar.chart
+   :types: typealias
 
 Constants
 =========

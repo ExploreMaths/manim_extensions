@@ -22,6 +22,29 @@ Added
 * Module and class constants now require a ``#:`` description immediately
   above the assignment; trailing string literals are no longer accepted
   because autodoc cannot render them. All existing constants were converted.
+* Type aliases are documented on the module page that defines them
+  (``radar.chart``, ``three_d.core``, ``meshes.types``, ...), not on the
+  package landing page. Package landing pages no longer use a recursive
+  ``:types: typealias`` block, so aliases such as ``RadarInput`` appear once
+  on the page that owns them. ``meshes.types`` gains its own module page.
+* Every class now enters through ``autosummary`` and a generated single-class
+  page; module pages no longer mix ``autosummary`` with an inline
+  ``autoclass`` block. The inline classes split out are
+  :class:`~manim_extensions.radar.chart.Series`,
+  :class:`~manim_extensions.data_structures.m_array.UpdateIndices`,
+  :class:`~manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode`,
+  :class:`~manim_extensions.mindmap.algorithms.alg_standard.TreeNode`,
+  :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode`,
+  :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree`,
+  :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode`,
+  :class:`~manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation`
+  and :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes`.
+* Re-exported package constants keep a documented ``#:`` binding at the
+  package root, so the landing page shows a readable description instead of
+  an empty ``<dd>`` or the built-in ``dict()`` docstring.
+* Radar module docstrings no longer carry ``New in 0.1.1`` notes. Both
+  ``manim-radar --version`` and the ``manim-rubikscube`` banner report the
+  installed Manim Extensions version and label it explicitly.
 * ``validate-manim-directives`` now rejects an animated ``.. manim::``
   example that does not end with ``self.wait()`` or longer. Seamless loops
   stay exempt: mark the code with ``# loops seamlessly`` or use

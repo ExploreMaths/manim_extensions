@@ -18,6 +18,18 @@ from .mobjects.manim_state import *
 from .mobjects.manim_transition import *
 from .mobjects.manim_automaton_input import *
 
+from .mobjects.manim_non_deterministic_finite_state_automaton import (
+    nfa_automaton_json as _nfa_automaton_json,
+)
+from .mobjects.manim_pushdown_automaton import (
+    pushdown_automaton_json as _pushdown_automaton_json,
+)
+
+#: Example non-deterministic finite automaton definition.
+nfa_automaton_json = _nfa_automaton_json
+#: Example pushdown automaton definition.
+pushdown_automaton_json = _pushdown_automaton_json
+
 __all__ = [
     "ManimAutomaton",
     "ManimDeterministicFiniteAutomaton",

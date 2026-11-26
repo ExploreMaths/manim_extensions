@@ -4,7 +4,7 @@
 
 """All animations: the morph, the intro/outro and the transition effects.
 
-New in 0.1.1: :class:`~manim_extensions.radar.animations.RadarMorph` morphs *lists* of datasets (comparison
+:class:`~manim_extensions.radar.animations.RadarMorph` morphs *lists* of datasets (comparison
 mode) with an optional per-dataset ``stagger``, the ``"burst"`` transition
 stabs values past their target (for :class:`~manim_extensions.radar.overflow.OverflowRadarChart`),
 and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching entrance.

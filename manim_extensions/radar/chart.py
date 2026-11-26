@@ -4,7 +4,7 @@
 
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
-New in 0.1.1: several datasets can share one grid (comparison mode), with a
+Several datasets can share one grid (comparison mode), with a
 legend, four per-vertex number modes, focus dimming, a difference highlight
 (:meth:`~manim_extensions.radar.chart.RadarChart.highlight_gap`) and overflow-aware painting used by
 :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
@@ -321,7 +321,7 @@ class RadarChart(VGroup):
 
         self.play(chart.morph_to(RadarData(axes=..., values=[...])))
 
-    Comparison mode (new in 0.1.1) — several datasets share one grid::
+    Comparison mode — several datasets share one grid::
 
         chart = RadarChart(datasets=[holder_data, basic_data], theme="midnight")
         self.play(chart.reveal())

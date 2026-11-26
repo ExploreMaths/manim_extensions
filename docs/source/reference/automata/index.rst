@@ -113,14 +113,14 @@ Modules
 
    ~mobjects
 
-Constants
----------
-
-.. autoall:: manim_extensions.automata
-   :types: data
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    mobjects/index
+
+Constants
+---------
+
+.. autoall:: manim_extensions.automata
+   :types: data

@@ -19,3 +19,9 @@ Classes
    :maxdepth: 1
 
    table.Table
+
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.table.table
+   :types: typealias

@@ -14,12 +14,11 @@ Classes
    :nosignatures:
 
    ~CatalogLayout
+   ~CatalogNode
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_catalog.CatalogLayout
-
-.. autoclass:: manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode
-   :show-inheritance:
+   alg_catalog.CatalogNode

@@ -314,18 +314,19 @@ Module pages render their description with ``.. automodule::``. The autodoc skip
 
 The docs use a custom ``.. autoall::`` directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an ``autoall`` block (or an explicit ``autoclass`` / ``autofunction`` / ``autodata``).
 
-A public type alias is not a constant.  Document it in the package page's ``Type Aliases`` section with ``:types: typealias``; ``autoall`` emits a ``py:type`` entry whose target signatures can link to:
+A public type alias is not a constant.  Document it on the page of the module that defines it, in a ``Type Aliases`` section with ``:types: typealias``; ``autoall`` emits a ``py:type`` entry whose target signatures can link to:
 
 .. code-block:: rst
 
     Type Aliases
     ------------
 
-    .. autoall:: manim_extensions.three_d
-       :recursive:
+    .. autoall:: manim_extensions.three_d.core
        :types: typealias
 
-Only the module that defines the alias should list it; imported re-exports are skipped so the page keeps one canonical target.  A ``#:`` comment immediately above the assignment becomes its description, matching module-level constants.
+Do not add a recursive type-alias block to a package landing page.  Aliases belong to their defining module page, next to that module's classes, functions and constants; imported re-exports are skipped so the page keeps one canonical target.  A ``#:`` comment immediately above the assignment becomes its description, matching module-level constants.
+
+Every class belongs in the module page's ``Classes`` ``autosummary`` table and gets a single-class page under ``<module>.<ClassName>.rst``.  Do not add a second inline ``.. autoclass::`` block to a page that already has an ``autosummary`` table; that renders the full signature twice.  ``validate_rst.py`` rejects a page that mixes both layouts.
 
 After adding new public names, refresh the coverage snapshot:
 

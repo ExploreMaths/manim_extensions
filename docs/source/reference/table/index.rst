@@ -100,13 +100,6 @@ Modules
    ~row
    ~table
 
-Type Aliases
-------------
-
-.. autoall:: manim_extensions.table
-   :recursive:
-   :types: typealias
-
 .. toctree::
    :hidden:
    :maxdepth: 1

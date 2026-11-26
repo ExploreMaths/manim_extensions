@@ -26,3 +26,9 @@ Classes
    node.Node
    node.NodeConfig
    node.NodeSolt
+
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.algorithm.node
+   :types: typealias

@@ -197,7 +197,7 @@ def test_rubikscube_module_entry_point(capsys):
     from manim_extensions.rubikscube.__main__ import main
 
     main()
-    assert "Manim Rubik's Cube" in capsys.readouterr().out
+    assert "manim-rubikscube (Manim Extensions)" in capsys.readouterr().out
 
 
 def test_nerdfont_icon_accepts_named_and_raw_values():

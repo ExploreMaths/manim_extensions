@@ -24,9 +24,14 @@ from .core import (
     TorusSurfaceScene,
     HyperboloidOneSheetScene,
     plan_timeline,
-    RAMPS,
-    PACE,
+    RAMPS as _RAMPS,
+    PACE as _PACE,
 )
+
+#: Named colour ramps used to colour the timeline.
+RAMPS = _RAMPS
+#: Per-pace total duration in seconds for the timeline.
+PACE = _PACE
 
 __version__ = "0.1.1"
 __all__ = [

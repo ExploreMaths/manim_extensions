@@ -30,8 +30,11 @@ from .manim_code_blocks import (
     SQL,
     Theme,
     TypeScript,
-    language_colors,
+    language_colors as _language_colors,
 )
+
+#: Colour table for the bundled languages.
+language_colors = _language_colors
 
 __all__ = [
     "C",

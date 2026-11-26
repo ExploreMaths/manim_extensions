@@ -240,13 +240,6 @@ Modules
    ~twoD
    ~utils
 
-Type Aliases
-------------
-
-.. autoall:: manim_extensions.chemistry
-   :recursive:
-   :types: typealias
-
 Constants
 ---------
 

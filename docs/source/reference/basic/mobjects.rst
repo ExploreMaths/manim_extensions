@@ -42,6 +42,12 @@ Classes
    ~manim_extensions.mobjects.TreeDiagram
    ~manim_extensions.mobjects.VideoMobject
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.mobjects
+   :types: typealias
+
 Constants
 ---------
 

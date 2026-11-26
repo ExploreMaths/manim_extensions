@@ -14,15 +14,14 @@ Classes
    :nosignatures:
 
    ~StandardLayout
+   ~TreeNode
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_standard.StandardLayout
-
-.. autoclass:: manim_extensions.mindmap.algorithms.alg_standard.TreeNode
-   :show-inheritance:
+   alg_standard.TreeNode
 
 Functions
 =========

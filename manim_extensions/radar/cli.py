@@ -21,7 +21,12 @@ import subprocess
 import sys
 import textwrap
 
-from . import __version__
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("manim_extensions")
+except PackageNotFoundError:  # pragma: no cover - source tree without metadata
+    __version__ = "unknown"
 
 #: Starter scene source rendered by the ``manim-radar template`` command.
 TEMPLATE = '''# -*- coding: utf-8 -*-
@@ -68,7 +73,7 @@ def build_parser() -> argparse.ArgumentParser:
         prog="manim-radar", description="Animated radar charts for Manim."
     )
     parser.add_argument(
-        "--version", action="version", version=f"manim-radar {__version__}"
+        "--version", action="version", version=f"manim-radar (Manim Extensions) {__version__}"
     )
     sub = parser.add_subparsers(dest="command")
 

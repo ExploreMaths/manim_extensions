@@ -27,6 +27,12 @@ Classes
    ~TorusSurfaceScene
    ~HyperboloidOneSheetScene
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.three_d.core
+   :types: typealias
+
 Functions
 ---------
 
