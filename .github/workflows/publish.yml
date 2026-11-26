@@ -33,7 +33,6 @@ jobs:
   prepare:
     name: Prepare and build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -100,7 +99,6 @@ jobs:
     needs: prepare
     if: ${{ !inputs.dry_run }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     environment:
       name: pypi
       url: https://pypi.org/project/manim-extensions/

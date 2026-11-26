@@ -176,7 +176,6 @@ jobs:
     needs: [render, vendored-cache]
     if: ${{ always() && (needs.render.result == 'success' || github.event_name == 'schedule') && (needs.vendored-cache.result == 'success' || github.event_name == 'push') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     concurrency:
       group: docs-build
       cancel-in-progress: true

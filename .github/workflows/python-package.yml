@@ -12,7 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
     permissions:
       contents: write
     strategy:
@@ -88,7 +87,6 @@ jobs:
   # so compatibility is tested rather than merely claimed.
   manim-latest:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
 
