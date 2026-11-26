@@ -116,6 +116,17 @@ def hashdoc_starts_upper(lines: list[str], lineno: int) -> bool:
     return not text[:1].islower()
 
 
+def hashdoc_ends_period(lines: list[str], lineno: int) -> bool:
+    """Return whether the ``#:`` block above *lineno* ends like a sentence."""
+    index = lineno - 2
+    while index >= 0 and not lines[index].strip():
+        index -= 1
+    if index < 0 or not lines[index].lstrip().startswith("#:"):
+        return True
+    text = lines[index].split("#:", 1)[1].strip()
+    return bool(re.search(r"[.!?][`'\")\]}]*$", text))
+
+
 def trailing_docstring(body: list[ast.stmt], node: ast.stmt) -> bool:
     """Return whether *node* is followed by a bare string-literal docstring.
 
@@ -190,6 +201,10 @@ def check_module(module: types.ModuleType) -> list[tuple[int, str]]:
             lines, node.lineno
         ):
             missing.append((node.lineno, f"{name}: description must start uppercase"))
+        elif preceding_hashdoc(lines, node.lineno) and not hashdoc_ends_period(
+            lines, node.lineno
+        ):
+            missing.append((node.lineno, f"{name}: description must end with a period"))
     missing.extend(check_class_constants(tree, lines))
     return missing
 
@@ -323,6 +338,15 @@ def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int,
                         (
                             node.lineno,
                             f"{cls.name}.{name}: description must start uppercase",
+                        )
+                    )
+                elif preceding_hashdoc(lines, node.lineno) and not hashdoc_ends_period(
+                    lines, node.lineno
+                ):
+                    missing.append(
+                        (
+                            node.lineno,
+                            f"{cls.name}.{name}: description must end with a period",
                         )
                     )
     return missing

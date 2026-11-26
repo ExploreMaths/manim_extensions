@@ -39,17 +39,17 @@ class RadarTheme:
                self.add(chart)
     """
 
-    #: Human-readable theme name
+    #: Human-readable theme name.
     name: str = "custom"
-    #: Flat background colour used by :class:`~manim_extensions.radar.backdrop.DeepSpace`
+    #: Flat background colour used by :class:`~manim_extensions.radar.backdrop.DeepSpace`.
     background: str = "#070B16"
-    #: Colour of the soft radial glow in the middle of the backdrop
+    #: Colour of the soft radial glow in the middle of the backdrop.
     glow: str = "#1A2547"
-    #: Colour of the corner vignette layers
+    #: Colour of the corner vignette layers.
     vignette: str = "#03040A"
-    #: Grid (rings) colour
+    #: Grid (rings) colour.
     grid: str = "#8B9BB8"
-    #: Colour of each axis spoke / axis label (cycles if fewer than axes)
+    #: Colour of each axis spoke / axis label (cycles if fewer than axes).
     axis_colors: Sequence[str] = (
         "#4DD0E1",
         "#FFB74D",
@@ -58,7 +58,7 @@ class RadarTheme:
         "#64B5F6",
         "#CE93D8",
     )
-    #: Colours used for datasets that do not carry an explicit ``color``
+    #: Colours used for datasets that do not carry an explicit ``color``.
     palette: Sequence[str] = (
         "#17B8BA",
         "#B89AF0",
@@ -73,17 +73,17 @@ class RadarTheme:
         "#30C8C0",
         "#D878C8",
     )
-    #: Colour of the axis value numbers
+    #: Colour of the axis value numbers.
     number: str = "#FFFFFF"
-    #: Gradient used for the header title
+    #: Gradient used for the header title.
     title_gradient: Sequence[str] = ("#9FB2CC", "#EAF2FF")
-    #: Gradient used for the dataset nameplate
+    #: Gradient used for the dataset nameplate.
     name_gradient: Sequence[str] = ("#FFD166", "#F59E62")
-    #: Colour of the outer rim stroke
+    #: Colour of the outer rim stroke.
     rim_outer: str = "#FF9C3C"
-    #: Colour of the inner rim stroke
+    #: Colour of the inner rim stroke.
     rim_inner: str = "#3CC8FF"
-    #: Accent colours for the occasional coloured star
+    #: Accent colours for the occasional coloured star.
     star_accents: Sequence[str] = (
         "#FFD54F",
         "#4DD0E1",
@@ -92,9 +92,9 @@ class RadarTheme:
         "#CE93D8",
         "#FFB74D",
     )
-    #: Chromatic split colours used by the glitch transition
+    #: Chromatic split colours used by the glitch transition.
     glitch_split: Sequence[str] = ("#FF7A00", "#00CFFF")
-    #: How much dataset colours are pushed towards white (0 = none)
+    #: How much dataset colours are pushed towards white (0 = none).
     brighten: float = 0.08
 
     # ---- helpers ---------------------------------------------------------
