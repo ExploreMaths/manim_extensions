@@ -108,6 +108,18 @@ def _worker_init(workdir):
     config.verbosity = "ERROR"
 
 
+def stage_assets(assets, workdir: Path) -> None:
+    """Link or copy each resolved sample file into the probe directory."""
+    for asset in assets:
+        target = workdir / Path(asset.path).name
+        if target.exists():
+            continue
+        try:
+            target.symlink_to(asset.path)
+        except OSError:
+            shutil.copy2(asset.path, target)
+
+
 def probe_block(task):
     """Construct one example and measure its content bounding box."""
     class_name, code, source, assets, renderer = task
@@ -118,13 +130,7 @@ def probe_block(task):
         namespace = {"__file__": "<doc example>", "__name__": "__manim_docgen__"}
         root = _WORKER_ROOT or Path(tempfile.mkdtemp())
         workdir = Path(tempfile.mkdtemp(dir=root))
-        for asset in assets:
-            target = workdir / Path(asset).name
-            if not target.exists():
-                try:
-                    target.symlink_to(asset)
-                except OSError:
-                    shutil.copy2(asset, target)
+        stage_assets(assets, workdir)
         previous = Path.cwd()
         os.chdir(workdir)
         try:
