@@ -1518,7 +1518,7 @@ Original author: <a class="reference external" href="https://github.com/widcardw
     controls
     loop
     autoplay
-    src="./FadeOutRandomScene-ab431e1f.mp4">
+    src="./FadeOutRandomScene-99a8dc41.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FadeOutRandom</span>
 
@@ -1526,6 +1526,7 @@ Original author: <a class="reference external" href="https://github.com/widcardw
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">mob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"Now you see me"</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">BOLD</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.56</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">mob</span><span class="p">))</span>
+        <span class="c1"># loops seamlessly</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOutRandom</span><span class="p">(</span><span class="n">mob</span><span class="p">))</span>
 </pre></div>
 </div>

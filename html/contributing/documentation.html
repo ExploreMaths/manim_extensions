@@ -1577,6 +1577,14 @@ group; new visual functions cannot land without a rendered example.</p>
 </tbody>
 </table>
 </div>
+<p>Animated examples that are <strong>not</strong> seamless loops <strong>MUST</strong> end their
+<code class="docutils literal notranslate"><span class="pre">construct</span></code> method with <code class="docutils literal notranslate"><span class="pre">self.wait()</span></code> or a longer wait, so the final
+frame stays on screen for at least one second.  A seamless loop is exempt:
+mark it with a <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">loops</span> <span class="pre">seamlessly</span></code> comment in the example code (the gear
+and fade-out loops do this), or add <code class="docutils literal notranslate"><span class="pre">:save_as_gif:</span></code> to the directive.
+<code class="docutils literal notranslate"><span class="pre">workflow/validate_manim_directives.py</span></code> fails the package group with
+<code class="docutils literal notranslate"><span class="pre">animated-missing-final-wait</span></code> or <code class="docutils literal notranslate"><span class="pre">animated-short-final-wait</span></code> when either
+rule is broken.</p>
 <section id="gallery-sections">
 <h3>Gallery sections<a class="headerlink" href="#gallery-sections" title="Link to this heading">¶</a></h3>
 <p>Section index pages such as <code class="docutils literal notranslate"><span class="pre">docs/source/examples/index.rst</span></code> <strong>MUST NOT</strong>

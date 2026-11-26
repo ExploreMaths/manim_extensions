@@ -1546,7 +1546,7 @@
 <span class="sd">               self.play(Queue.Enqueue(q, Node("4").next_to(q, RIGHT, buff=1.5)))</span>
 <span class="sd">               self.wait(0.5)</span>
 <span class="sd">               self.play(Queue.Dequeue(q))</span>
-<span class="sd">               self.wait(0.5)</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1618,7 +1618,7 @@
 <span class="sd">                   self.add(q)</span>
 <span class="sd">                   self.play(Queue.Enqueue(q, Node("2").next_to(q, RIGHT, buff=1.5)))</span>
 <span class="sd">                   self.play(Queue.Enqueue(q, Node("3").next_to(q, RIGHT, buff=1.5)))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1671,7 +1671,7 @@
 <span class="sd">                   q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)</span>
 <span class="sd">                   self.add(q)</span>
 <span class="sd">                   self.play(Queue.Dequeue(q, target_pos=DOWN * 2.5 + LEFT * 2))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

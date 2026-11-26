@@ -2064,6 +2064,7 @@
 <span class="sd">                       )</span>
 <span class="sd">                       self.add(chart)</span>
 <span class="sd">                       self.play(chart.spin_to(axis_index=0, run_time=1.0))</span>
+<span class="sd">                       self.wait()</span>
 <span class="sd">            """</span>
 
             <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2148,6 +2149,7 @@
 <span class="sd">               )</span>
 <span class="sd">               self.add(chart)</span>
 <span class="sd">               self.play(PolyMorph(chart, [9, 7, 8, 6, 5, 9, 4, 8, 6, 7, 5, 9]))</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

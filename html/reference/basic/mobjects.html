@@ -1967,7 +1967,7 @@ children.</p></li>
     controls
     loop
     autoplay
-    src="./FileTreeScene-ff6eca57.mp4">
+    src="./FileTreeScene-5cb6b015.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileTree</span>
 
@@ -1985,7 +1985,7 @@ children.</p></li>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">highlight</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">highlight</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">RED</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2102,7 +2102,7 @@ file via OpenCV.</p>
     controls
     loop
     autoplay
-    src="./VideoMobjectScene-85550d72.mp4">
+    src="./VideoMobjectScene-420272bd.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">VideoMobject</span>
 
@@ -2111,6 +2111,7 @@ file via OpenCV.</p>
         <span class="n">vid</span> <span class="o">=</span> <span class="n">VideoMobject</span><span class="p">(</span><span class="s2">"3Blue1Brown.mp4"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vid</span><span class="p">)</span>
         <span class="n">vid</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="manim-example-files">
@@ -2352,7 +2353,7 @@ Original author: <a class="reference external" href="https://github.com/cigar666
     controls
     loop
     autoplay
-    src="./TrailScene-c9efffab.mp4">
+    src="./TrailScene-adc341b8.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trail</span>
 
@@ -2366,6 +2367,7 @@ Original author: <a class="reference external" href="https://github.com/cigar666
         <span class="n">trail</span><span class="o">.</span><span class="n">stop_trace</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">dot</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">))</span>
         <span class="n">VGroup</span><span class="p">(</span><span class="n">trail</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">8.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">

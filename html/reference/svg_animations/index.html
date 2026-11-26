@@ -1498,7 +1498,7 @@
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">da696ce5693d6cb57d97553a8f7534b8dbe5ace5</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/MathItYT/manim-svg-animations/commit/da696ce5693d6cb57d97553a8f7534b8dbe5ace5">da696ce</a> (2023-03-06).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -1554,7 +1554,7 @@ once the animations are done.</p>
     controls
     loop
     autoplay
-    src="./SVGAnimationUsage-fad1fadf.mp4">
+    src="./SVGAnimationUsage-de265931.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.svg_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTMLParsedVMobject</span>
 <span class="n">VMobject</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span>
@@ -1599,6 +1599,7 @@ once the animations are done.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">banner</span><span class="o">.</span><span class="n">create</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">banner</span><span class="o">.</span><span class="n">expand</span><span class="p">())</span>
         <span class="n">parsed</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject" title="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTMLParsedVMobject</span></code></a></p>
@@ -1625,7 +1626,7 @@ the mobjects that should change when each parameter moves.</p>
     controls
     loop
     autoplay
-    src="./InteractiveHTMLScene-e4906165.mp4">
+    src="./InteractiveHTMLScene-55011ccc.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.svg_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTMLParsedVMobject</span>
 <span class="n">VMobject</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span>
@@ -1657,6 +1658,7 @@ the mobjects that should change when each parameter moves.</p>
         <span class="p">)</span>
         <span class="n">parsed</span><span class="o">.</span><span class="n">start_interactive</span><span class="p">([</span><span class="n">dx</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))])</span>
         <span class="n">parsed</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><p>After the animation has played, call <code class="docutils literal notranslate"><span class="pre">update(0,</span> <span class="pre">0.5)</span></code> in the console to

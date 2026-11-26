@@ -1580,7 +1580,7 @@ circle tangent points, so you can use the results with any Manim mobject:</p>
     controls
     loop
     autoplay
-    src="./QuickstartAnimations-2aca068c.mp4">
+    src="./QuickstartAnimations-3c8e21de.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeWriter</span>
 
@@ -1589,6 +1589,7 @@ circle tangent points, so you can use the results with any Manim mobject:</p>
         <span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"Hello Extensions"</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">text</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">TypeWriter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></section>
@@ -1618,7 +1619,7 @@ in the <a class="reference internal" href="../reference/index.html"><span class=
     controls
     loop
     autoplay
-    src="./QuickstartGear-250cf893.mp4">
+    src="./QuickstartGear-782a5d9d.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.gearbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gear</span>
 
@@ -1629,6 +1630,7 @@ in the <a class="reference internal" href="../reference/index.html"><span class=
         <span class="n">gear1</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">gear1</span><span class="o">.</span><span class="n">rp</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">)</span>
         <span class="n">gear2</span><span class="o">.</span><span class="n">mesh_to</span><span class="p">(</span><span class="n">gear1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gear1</span><span class="p">,</span> <span class="n">gear2</span><span class="p">)</span>
+        <span class="c1"># loops seamlessly</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="n">Rotate</span><span class="p">(</span><span class="n">gear1</span><span class="p">,</span> <span class="n">gear1</span><span class="o">.</span><span class="n">pitch_angle</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span><span class="p">),</span>
             <span class="n">Rotate</span><span class="p">(</span><span class="n">gear2</span><span class="p">,</span> <span class="o">-</span><span class="n">gear2</span><span class="o">.</span><span class="n">pitch_angle</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span><span class="p">),</span>

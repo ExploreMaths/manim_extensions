@@ -1711,6 +1711,7 @@
 <span class="sd">               # Automatic node detection</span>
 <span class="sd">               for node, color in zip(circuit.node_list, [BLUE, RED, ORANGE, YELLOW]):</span>
 <span class="sd">                   self.play(node.animate.set_color(color), run_time=0.5)</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

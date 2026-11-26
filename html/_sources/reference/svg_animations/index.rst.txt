@@ -106,6 +106,7 @@ once the animations are done.
            self.play(banner.create())
            self.play(banner.expand())
            parsed.finish()
+           self.wait()
 
 Render the scene with the ``manim`` command, adding the
 ``--disable_caching`` flag — this is important. Besides the MP4 in the
@@ -159,6 +160,7 @@ the mobjects that should change when each parameter moves.
            )
            parsed.start_interactive([dx], [np.flip(np.linspace(0.1, 1, 100))])
            parsed.finish()
+           self.wait()
 
 After the animation has played, call ``update(0, 0.5)`` in the console to
 set the first parameter to ``0.5``, ``update(1, 1.2)`` for the second

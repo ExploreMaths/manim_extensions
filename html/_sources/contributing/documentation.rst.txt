@@ -96,6 +96,15 @@ The manim-directive checker also enforces the ``:save_last_frame:`` usage rules:
    * - Static with ``:save_last_frame:``
      - Must **not** use ``self.wait()`` (redundant)
 
+Animated examples that are **not** seamless loops **MUST** end their
+``construct`` method with ``self.wait()`` or a longer wait, so the final
+frame stays on screen for at least one second.  A seamless loop is exempt:
+mark it with a ``# loops seamlessly`` comment in the example code (the gear
+and fade-out loops do this), or add ``:save_as_gif:`` to the directive.
+``workflow/validate_manim_directives.py`` fails the package group with
+``animated-missing-final-wait`` or ``animated-short-final-wait`` when either
+rule is broken.
+
 Gallery sections
 ~~~~~~~~~~~~~~~~
 

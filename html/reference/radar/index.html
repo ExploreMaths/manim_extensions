@@ -2966,7 +2966,7 @@ read-outs:</p>
     controls
     loop
     autoplay
-    src="./OverflowRadarScene-d519f881.mp4">
+    src="./OverflowRadarScene-3b540788.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.overflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">OverflowRadarChart</span>
 
@@ -2981,6 +2981,7 @@ read-outs:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">burst_in</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">morph_to</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -3220,7 +3221,7 @@ data spheres.</p>
     controls
     loop
     autoplay
-    src="./PolyMorphScene-a5bb9516.mp4">
+    src="./PolyMorphScene-1e506a3f.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.poly</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolyMorph</span><span class="p">,</span> <span class="n">PolyRadarChart</span>
 
@@ -3233,6 +3234,7 @@ data spheres.</p>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">PolyMorph</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -3519,32 +3521,32 @@ up; values above it are shown with <code class="docutils literal notranslate"><s
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.radius">
 <span class="sig-name descname"><span class="pre">radius</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.9</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.radius" title="Link to this definition">¶</a></dt>
-<dd><p>Outer ring radius, in scene units (Manim’s default frame is 14.22 x 8)</p>
+<dd><p>Outer ring radius, in scene units (Manim’s default frame is 14.22 x 8).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.position">
 <span class="sig-name descname"><span class="pre">position</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0.0,</span> <span class="pre">-0.18)</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.position" title="Link to this definition">¶</a></dt>
 <dd><p>Chart centre in scene units <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>; a little below the middle leaves
-room for the nameplate / title above the chart</p>
+room for the nameplate / title above the chart.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.levels">
 <span class="sig-name descname"><span class="pre">levels</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.levels" title="Link to this definition">¶</a></dt>
-<dd><p>Number of concentric grid rings (the outermost ring is the full scale)</p>
+<dd><p>Number of concentric grid rings (the outermost ring is the full scale).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.start_angle">
 <span class="sig-name descname"><span class="pre">start_angle</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">90.0</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.start_angle" title="Link to this definition">¶</a></dt>
-<dd><p>Angle of the first axis, in degrees (90 = straight up)</p>
+<dd><p>Angle of the first axis, in degrees (90 = straight up).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.clockwise">
 <span class="sig-name descname"><span class="pre">clockwise</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.clockwise" title="Link to this definition">¶</a></dt>
-<dd><p>If True the axes run clockwise</p>
+<dd><p>If True the axes run clockwise.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3604,7 +3606,7 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.show_level_labels">
 <span class="sig-name descname"><span class="pre">show_level_labels</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.show_level_labels" title="Link to this definition">¶</a></dt>
-<dd><p>Draw small scale numbers (2/4/6/8…) along one spoke</p>
+<dd><p>Draw small scale numbers (2/4/6/8…) along one spoke.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3658,7 +3660,7 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.glow_layers">
 <span class="sig-name descname"><span class="pre">glow_layers</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.glow_layers" title="Link to this definition">¶</a></dt>
-<dd><p>0 = none, 1 = one soft glow, 2 = glow + wide halo</p>
+<dd><p>0 = none, 1 = one soft glow, 2 = glow + wide halo.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3688,7 +3690,7 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.rainbow_edges">
 <span class="sig-name descname"><span class="pre">rainbow_edges</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.rainbow_edges" title="Link to this definition">¶</a></dt>
-<dd><p>Colour the 6 edges with a gradient between the two axis colours</p>
+<dd><p>Colour the 6 edges with a gradient between the two axis colours.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3718,7 +3720,7 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.label_offset">
 <span class="sig-name descname"><span class="pre">label_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.1</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.label_offset" title="Link to this definition">¶</a></dt>
-<dd><p>Distance of the axis names from the centre, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code></p>
+<dd><p>Distance of the axis names from the centre, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3736,13 +3738,13 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.colored_axis_names">
 <span class="sig-name descname"><span class="pre">colored_axis_names</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.colored_axis_names" title="Link to this definition">¶</a></dt>
-<dd><p>Colour axis names with their axis colour (False -&gt; near-white)</p>
+<dd><p>Colour axis names with their axis colour (False -&gt; near-white).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.numbers">
 <span class="sig-name descname"><span class="pre">numbers</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'roll'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.numbers" title="Link to this definition">¶</a></dt>
-<dd><p>“roll” (odometer tween) | “swap” (snap to integers) | “off”</p>
+<dd><p>“roll” (odometer tween) | “swap” (snap to integers) | “off”.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3760,19 +3762,19 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.numbers_next_to_name">
 <span class="sig-name descname"><span class="pre">numbers_next_to_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.numbers_next_to_name" title="Link to this definition">¶</a></dt>
-<dd><p>Place the numbers right after the axis name (True) or inside the chart</p>
+<dd><p>Place the numbers right after the axis name (True) or inside the chart.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.number_offset">
 <span class="sig-name descname"><span class="pre">number_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.62</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.number_offset" title="Link to this definition">¶</a></dt>
-<dd><p>Radius multiple of the numbers when <code class="docutils literal notranslate"><span class="pre">numbers_next_to_name=False</span></code></p>
+<dd><p>Radius multiple of the numbers when <code class="docutils literal notranslate"><span class="pre">numbers_next_to_name=False</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.number_gap">
 <span class="sig-name descname"><span class="pre">number_gap</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.18</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.number_gap" title="Link to this definition">¶</a></dt>
-<dd><p>Horizontal gap between an axis name and its number</p>
+<dd><p>Horizontal gap between an axis name and its number.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3784,14 +3786,14 @@ room for the nameplate / title above the chart</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_suffix">
 <span class="sig-name descname"><span class="pre">overflow_suffix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'+'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_suffix" title="Link to this definition">¶</a></dt>
-<dd><p>Appended when a value exceeds the full scale (e.g. <code class="docutils literal notranslate"><span class="pre">10</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">10+</span></code>)</p>
+<dd><p>Appended when a value exceeds the full scale (e.g. <code class="docutils literal notranslate"><span class="pre">10</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">10+</span></code>).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.roll_height">
 <span class="sig-name descname"><span class="pre">roll_height</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.44</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.roll_height" title="Link to this definition">¶</a></dt>
 <dd><p>Vertical travel of the odometer wheel, in scene units (one line height
-keeps the outgoing and incoming digits cleanly separated while rolling)</p>
+keeps the outgoing and incoming digits cleanly separated while rolling).</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3827,7 +3829,7 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.shockwave">
 <span class="sig-name descname"><span class="pre">shockwave</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.shockwave" title="Link to this definition">¶</a></dt>
-<dd><p>Add a shockwave ring on every morph</p>
+<dd><p>Add a shockwave ring on every morph.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3845,19 +3847,19 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.dip_ratio">
 <span class="sig-name descname"><span class="pre">dip_ratio</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.24</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.dip_ratio" title="Link to this definition">¶</a></dt>
-<dd><p>Fraction of the morph spent “dipping” before values roll up</p>
+<dd><p>Fraction of the morph spent “dipping” before values roll up.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.morph_run_time">
 <span class="sig-name descname"><span class="pre">morph_run_time</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.3</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.morph_run_time" title="Link to this definition">¶</a></dt>
-<dd><p>Default run time of <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a></p>
+<dd><p>Default run time of <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.dip_drop">
 <span class="sig-name descname"><span class="pre">dip_drop</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.dip_drop" title="Link to this definition">¶</a></dt>
-<dd><p>How far values dip below their target (in value units)</p>
+<dd><p>How far values dip below their target (in value units).</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3869,19 +3871,19 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.stepped">
 <span class="sig-name descname"><span class="pre">stepped</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.stepped" title="Link to this definition">¶</a></dt>
-<dd><p>Quantise values to integers while rolling (classic snap-in look)</p>
+<dd><p>Quantise values to integers while rolling (classic snap-in look).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.stagger">
 <span class="sig-name descname"><span class="pre">stagger</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.12</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.stagger" title="Link to this definition">¶</a></dt>
-<dd><p>Seconds each extra dataset waits before starting its own morph</p>
+<dd><p>Seconds each extra dataset waits before starting its own morph.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.rim">
 <span class="sig-name descname"><span class="pre">rim</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.rim" title="Link to this definition">¶</a></dt>
-<dd><p>Emphasise the dataset with an extra orange/cyan double outline</p>
+<dd><p>Emphasise the dataset with an extra orange/cyan double outline.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3929,25 +3931,25 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.burst_overshoot">
 <span class="sig-name descname"><span class="pre">burst_overshoot</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.16</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.burst_overshoot" title="Link to this definition">¶</a></dt>
-<dd><p>Fraction of the target a value overshoots past before settling</p>
+<dd><p>Fraction of the target a value overshoots past before settling.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow">
 <span class="sig-name descname"><span class="pre">overflow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow" title="Link to this definition">¶</a></dt>
-<dd><p>Allow values above the full scale to escape the outer ring as spikes</p>
+<dd><p>Allow values above the full scale to escape the outer ring as spikes.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_dash">
 <span class="sig-name descname"><span class="pre">overflow_dash</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_dash" title="Link to this definition">¶</a></dt>
-<dd><p>Draw a dashed track along spokes that poke beyond the outer ring</p>
+<dd><p>Draw a dashed track along spokes that poke beyond the outer ring.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_dash_on">
 <span class="sig-name descname"><span class="pre">overflow_dash_on</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.085</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_dash_on" title="Link to this definition">¶</a></dt>
-<dd><p>Width of the dashed segments (and of the gaps), as radius multiples</p>
+<dd><p>Width of the dashed segments (and of the gaps), as radius multiples.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3959,7 +3961,7 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_breach_glow">
 <span class="sig-name descname"><span class="pre">overflow_breach_glow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_breach_glow" title="Link to this definition">¶</a></dt>
-<dd><p>Glowing “breach” where a spike pierces the outer ring</p>
+<dd><p>Glowing “breach” where a spike pierces the outer ring.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3973,26 +3975,26 @@ keeps the outgoing and incoming digits cleanly separated while rolling)</p>
 <span class="sig-name descname"><span class="pre">overflow_min_over</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.05</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_min_over" title="Link to this definition">¶</a></dt>
 <dd><p>Spike must exceed the full scale by this fraction before the overflow
 decorations (track / breach / big number) kick in — keeps transient
-overshoots from burst morphs from popping spurious read-outs</p>
+overshoots from burst morphs from popping spurious read-outs.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_number_size">
 <span class="sig-name descname"><span class="pre">overflow_number_size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_number_size" title="Link to this definition">¶</a></dt>
-<dd><p>Font size of the unclamped read-outs that ride the spikes</p>
+<dd><p>Font size of the unclamped read-outs that ride the spikes.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.overflow_number_offset">
 <span class="sig-name descname"><span class="pre">overflow_number_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.17</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.overflow_number_offset" title="Link to this definition">¶</a></dt>
-<dd><p>How far beyond the vertex the overflow number sits (radius multiple)</p>
+<dd><p>How far beyond the vertex the overflow number sits (radius multiple).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.web_rainbow">
 <span class="sig-name descname"><span class="pre">web_rainbow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.web_rainbow" title="Link to this definition">¶</a></dt>
 <dd><p>adjacent segments use different colours (rings take separated hues by angle, spokes use axis colours),
-with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web()</p>
+with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Rainbow web</p>
@@ -4003,37 +4005,37 @@ with thicker, brighter strokes and clear boundaries on black; draw with chart.tr
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.web_trace_time">
 <span class="sig-name descname"><span class="pre">web_trace_time</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.32</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.web_trace_time" title="Link to this definition">¶</a></dt>
-<dd><p>Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second)</p>
+<dd><p>Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.legend">
 <span class="sig-name descname"><span class="pre">legend</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.legend" title="Link to this definition">¶</a></dt>
-<dd><p>Draw a legend (colour chip + name) when several datasets share a chart</p>
+<dd><p>Draw a legend (colour chip + name) when several datasets share a chart.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.legend_size">
 <span class="sig-name descname"><span class="pre">legend_size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.legend_size" title="Link to this definition">¶</a></dt>
-<dd><p>Font size of legend names</p>
+<dd><p>Font size of legend names.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.legend_gap">
 <span class="sig-name descname"><span class="pre">legend_gap</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.3</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.legend_gap" title="Link to this definition">¶</a></dt>
-<dd><p>Gap between legend chips, in scene units</p>
+<dd><p>Gap between legend chips, in scene units.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.legend_chip">
 <span class="sig-name descname"><span class="pre">legend_chip</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.16</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.legend_chip" title="Link to this definition">¶</a></dt>
-<dd><p>Height of the colour chip, in scene units</p>
+<dd><p>Height of the colour chip, in scene units.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.legend_offset">
 <span class="sig-name descname"><span class="pre">legend_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.62</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.legend_offset" title="Link to this definition">¶</a></dt>
-<dd><p>Vertical position of the legend row, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code></p>
+<dd><p>Vertical position of the legend row, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -4041,19 +4043,19 @@ with thicker, brighter strokes and clear boundaries on black; draw with chart.tr
 <span class="sig-name descname"><span class="pre">compare_numbers</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'legend'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.compare_numbers" title="Link to this definition">¶</a></dt>
 <dd><p>How the per-axis numbers behave when several datasets share a chart:
 “legend” (none, names in the legend) | “all” (every dataset, at its
-vertices) | “first” (dataset 0 only) | “focus” (follows chart.focus)</p>
+vertices) | “first” (dataset 0 only) | “focus” (follows chart.focus).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.compare_number_scale">
 <span class="sig-name descname"><span class="pre">compare_number_scale</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.62</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.compare_number_scale" title="Link to this definition">¶</a></dt>
-<dd><p>Font-size multiplier for the per-vertex comparison numbers</p>
+<dd><p>Font-size multiplier for the per-vertex comparison numbers.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.focus_dim">
 <span class="sig-name descname"><span class="pre">focus_dim</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.22</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.focus_dim" title="Link to this definition">¶</a></dt>
-<dd><p>Opacity a dataset is dimmed to when it is not the focused one</p>
+<dd><p>Opacity a dataset is dimmed to when it is not the focused one.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -4077,19 +4079,19 @@ vertices) | “first” (dataset 0 only) | “focus” (follows chart.focus)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.title_offset">
 <span class="sig-name descname"><span class="pre">title_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.3</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.title_offset" title="Link to this definition">¶</a></dt>
-<dd><p>Vertical position of the header, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code></p>
+<dd><p>Vertical position of the header, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.show_dataset_name">
 <span class="sig-name descname"><span class="pre">show_dataset_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.show_dataset_name" title="Link to this definition">¶</a></dt>
-<dd><p>Show <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> above the chart</p>
+<dd><p>Show <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> above the chart.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.name_offset">
 <span class="sig-name descname"><span class="pre">name_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.28</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.name_offset" title="Link to this definition">¶</a></dt>
-<dd><p>Vertical position of the nameplate, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code></p>
+<dd><p>Vertical position of the nameplate, as a multiple of <code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -4101,19 +4103,19 @@ vertices) | “first” (dataset 0 only) | “focus” (follows chart.focus)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.name_gap">
 <span class="sig-name descname"><span class="pre">name_gap</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.55</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.name_gap" title="Link to this definition">¶</a></dt>
-<dd><p>Extra gap between nameplate and header when both are shown</p>
+<dd><p>Extra gap between nameplate and header when both are shown.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.opacity">
 <span class="sig-name descname"><span class="pre">opacity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.opacity" title="Link to this definition">¶</a></dt>
-<dd><p>Global opacity multiplier (1 = fully visible)</p>
+<dd><p>Global opacity multiplier (1 = fully visible).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarConfig.seed">
 <span class="sig-name descname"><span class="pre">seed</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></span><a class="headerlink" href="#manim_extensions.radar.RadarConfig.seed" title="Link to this definition">¶</a></dt>
-<dd><p>Random seed for decorations that live on the chart</p>
+<dd><p>Random seed for decorations that live on the chart.</p>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -4184,85 +4186,85 @@ chart (grid, axes, data polygon, labels, decorations) in one go.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.background">
 <span class="sig-name descname"><span class="pre">background</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#070B16'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.background" title="Link to this definition">¶</a></dt>
-<dd><p>Flat background colour used by <a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></p>
+<dd><p>Flat background colour used by <a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.glow">
 <span class="sig-name descname"><span class="pre">glow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1A2547'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.glow" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of the soft radial glow in the middle of the backdrop</p>
+<dd><p>Colour of the soft radial glow in the middle of the backdrop.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.vignette">
 <span class="sig-name descname"><span class="pre">vignette</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#03040A'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.vignette" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of the corner vignette layers</p>
+<dd><p>Colour of the corner vignette layers.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.grid">
 <span class="sig-name descname"><span class="pre">grid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#8B9BB8'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.grid" title="Link to this definition">¶</a></dt>
-<dd><p>Grid (rings) colour</p>
+<dd><p>Grid (rings) colour.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.axis_colors">
 <span class="sig-name descname"><span class="pre">axis_colors</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#4DD0E1',</span> <span class="pre">'#FFB74D',</span> <span class="pre">'#F06292',</span> <span class="pre">'#FFD54F',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.axis_colors" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of each axis spoke / axis label (cycles if fewer than axes)</p>
+<dd><p>Colour of each axis spoke / axis label (cycles if fewer than axes).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.palette">
 <span class="sig-name descname"><span class="pre">palette</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#17B8BA',</span> <span class="pre">'#B89AF0',</span> <span class="pre">'#E868C8',</span> <span class="pre">'#E8944A',</span> <span class="pre">'#4A90D9',</span> <span class="pre">'#8F86E8',</span> <span class="pre">'#1FA8C8',</span> <span class="pre">'#40C878',</span> <span class="pre">'#C8C830',</span> <span class="pre">'#E07A4A',</span> <span class="pre">'#30C8C0',</span> <span class="pre">'#D878C8')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.palette" title="Link to this definition">¶</a></dt>
-<dd><p>Colours used for datasets that do not carry an explicit <code class="docutils literal notranslate"><span class="pre">color</span></code></p>
+<dd><p>Colours used for datasets that do not carry an explicit <code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.number">
 <span class="sig-name descname"><span class="pre">number</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFFFF'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.number" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of the axis value numbers</p>
+<dd><p>Colour of the axis value numbers.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.title_gradient">
 <span class="sig-name descname"><span class="pre">title_gradient</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#9FB2CC',</span> <span class="pre">'#EAF2FF')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.title_gradient" title="Link to this definition">¶</a></dt>
-<dd><p>Gradient used for the header title</p>
+<dd><p>Gradient used for the header title.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.name_gradient">
 <span class="sig-name descname"><span class="pre">name_gradient</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#FFD166',</span> <span class="pre">'#F59E62')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.name_gradient" title="Link to this definition">¶</a></dt>
-<dd><p>Gradient used for the dataset nameplate</p>
+<dd><p>Gradient used for the dataset nameplate.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.rim_outer">
 <span class="sig-name descname"><span class="pre">rim_outer</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FF9C3C'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.rim_outer" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of the outer rim stroke</p>
+<dd><p>Colour of the outer rim stroke.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.rim_inner">
 <span class="sig-name descname"><span class="pre">rim_inner</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#3CC8FF'</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.rim_inner" title="Link to this definition">¶</a></dt>
-<dd><p>Colour of the inner rim stroke</p>
+<dd><p>Colour of the inner rim stroke.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.star_accents">
 <span class="sig-name descname"><span class="pre">star_accents</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#FFD54F',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#F06292',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8',</span> <span class="pre">'#FFB74D')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.star_accents" title="Link to this definition">¶</a></dt>
-<dd><p>Accent colours for the occasional coloured star</p>
+<dd><p>Accent colours for the occasional coloured star.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.glitch_split">
 <span class="sig-name descname"><span class="pre">glitch_split</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('#FF7A00',</span> <span class="pre">'#00CFFF')</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.glitch_split" title="Link to this definition">¶</a></dt>
-<dd><p>Chromatic split colours used by the glitch transition</p>
+<dd><p>Chromatic split colours used by the glitch transition.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.RadarTheme.brighten">
 <span class="sig-name descname"><span class="pre">brighten</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.08</span></span><a class="headerlink" href="#manim_extensions.radar.RadarTheme.brighten" title="Link to this definition">¶</a></dt>
-<dd><p>How much dataset colours are pushed towards white (0 = none)</p>
+<dd><p>How much dataset colours are pushed towards white (0 = none).</p>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -4385,7 +4387,7 @@ per-dataset <code class="docutils literal notranslate"><span class="pre">stagger
     controls
     loop
     autoplay
-    src="./RadarMorphScene-ab61e7de.mp4">
+    src="./RadarMorphScene-be9a3401.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarMorph</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -4396,6 +4398,7 @@ per-dataset <code class="docutils literal notranslate"><span class="pre">stagger
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarMorph</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -4526,7 +4529,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
     controls
     loop
     autoplay
-    src="./RadarRevealScene-eedaa9a6.mp4">
+    src="./RadarRevealScene-0015e8dc.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarReveal</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -4536,6 +4539,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
         <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarReveal</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -4618,7 +4622,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
     controls
     loop
     autoplay
-    src="./RadarBurstInScene-a2a2edea.mp4">
+    src="./RadarBurstInScene-1817fbc3.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarBurstIn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -4628,6 +4632,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
         <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarBurstIn</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -4706,7 +4711,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
     controls
     loop
     autoplay
-    src="./RadarFadeScene-1cd3d9e4.mp4">
+    src="./RadarFadeScene-45afc42e.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarFade</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -4717,6 +4722,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarFade</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -4787,7 +4793,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
     controls
     loop
     autoplay
-    src="./ShockwaveScene-3505efae.mp4">
+    src="./ShockwaveScene-db7a3232.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
 
@@ -4797,6 +4803,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">shockwave</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#E868C8"</span><span class="p">,</span> <span class="n">radius_end</span><span class="o">=</span><span class="mf">3.2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -4846,7 +4853,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
     controls
     loop
     autoplay
-    src="./GlitchFlashScene-e3aa026b.mp4">
+    src="./GlitchFlashScene-95efeda8.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlitchFlash</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -4857,6 +4864,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">None</spa
         <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">GlitchFlash</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -5082,7 +5090,7 @@ whose camera owns a frame.</p>
     controls
     loop
     autoplay
-    src="./CameraRigScene-4d1d15e2.mp4">
+    src="./CameraRigScene-b8d0ae33.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.camera</span><span class="w"> </span><span class="kn">import</span> <span class="n">CameraRig</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
@@ -5094,6 +5102,7 @@ whose camera owns a frame.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
         <span class="n">rig</span> <span class="o">=</span> <span class="n">CameraRig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">rig</span><span class="o">.</span><span class="n">push_in</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.25</span><span class="p">))</span>
+        <span class="c1"># loops seamlessly</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">rig</span><span class="o">.</span><span class="n">pull_out</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -5719,7 +5728,7 @@ outer ring before settling.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">59bc6cf170c590104f5676b2435f2cb1d0c06c7b</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/FTZ-OPUS/manim-radar/commit/59bc6cf170c590104f5676b2435f2cb1d0c06c7b">59bc6cf</a> (2026-09-21).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> (2026-09-21).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -5752,7 +5761,7 @@ reveal and morph animations, and a reusable radar reel.</p>
     controls
     loop
     autoplay
-    src="./RadarChartDemo-77c1518a.mp4">
+    src="./RadarChartDemo-51d44957.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
 
@@ -5764,6 +5773,7 @@ reveal and morph animations, and a reusable radar reel.</p>
             <span class="n">title</span><span class="o">=</span><span class="s2">"Demo"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">reveal</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.radar.RadarChart" title="manim_extensions.radar.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></p>

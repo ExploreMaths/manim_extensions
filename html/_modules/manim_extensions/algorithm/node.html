@@ -1966,7 +1966,7 @@
 <span class="sd">                   self.add(nodes)</span>
 <span class="sd">                   self.play(Node.Select(nodes[1]))</span>
 <span class="sd">                   self.play(Node.Select(nodes[2], nodes[3], color=PURE_YELLOW, opacity=0.6))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2018,7 +2018,7 @@
 <span class="sd">                   self.play(Node.Select(a, b))</span>
 <span class="sd">                   self.play(Node.Unselect(a))</span>
 <span class="sd">                   self.play(Node.Unselect(b))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2062,7 +2062,7 @@
 <span class="sd">                   self.add(node)</span>
 <span class="sd">                   for i in range(1, 4):</span>
 <span class="sd">                       self.play(Node.UpdateValue(node, str(i)))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">NodeValue</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2106,7 +2106,7 @@
 <span class="sd">                   b = Node("2").next_to(a, RIGHT)</span>
 <span class="sd">                   self.add(a, b)</span>
 <span class="sd">                   self.play(Node.MoveAndOverWrite(a, b, select_color=PURE_YELLOW))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2169,7 +2169,7 @@
 <span class="sd">                   self.add(a, b)</span>
 <span class="sd">                   self.play(Node.CopyAndOverWrite(a, b))</span>
 <span class="sd">                   self.play(Node.Select(a))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2227,7 +2227,7 @@
 <span class="sd">                   self.add(a, b)</span>
 <span class="sd">                   self.play(Node.SwapAndOverWrite(a, b))</span>
 <span class="sd">                   self.play(Node.SwapAndOverWrite(a, b))</span>
-<span class="sd">                   self.wait(0.5)</span>
+<span class="sd">                   self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

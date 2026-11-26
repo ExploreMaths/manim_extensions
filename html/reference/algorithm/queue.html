@@ -1517,7 +1517,7 @@
     controls
     loop
     autoplay
-    src="./QueueScene-d54ab762.mp4">
+    src="./QueueScene-d7527d96.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
@@ -1529,7 +1529,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"4"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py class">
@@ -1557,7 +1557,7 @@ before the animation starts.</p></li>
     controls
     loop
     autoplay
-    src="./Enqueue-d79d53d2.mp4">
+    src="./Enqueue-ec81bee1.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
@@ -1568,7 +1568,7 @@ before the animation starts.</p></li>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"3"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -1599,7 +1599,7 @@ item simply leaves the queue and fades out.</p></li>
     controls
     loop
     autoplay
-    src="./Dequeue-c7a80b5f.mp4">
+    src="./Dequeue-113dac29.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 
@@ -1608,7 +1608,7 @@ item simply leaves the queue and fades out.</p></li>
         <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init_data</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">target_pos</span><span class="o">=</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>

@@ -63,6 +63,7 @@ interference.
            # position gear2 next to gear1 so that they mesh together
            gear2.mesh_to(gear1)
            self.add(gear1, gear2)
+           # loops seamlessly
            self.play(Rotate(gear1, gear1.pitch_angle, rate_func=linear),
                      Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
                      run_time=4)

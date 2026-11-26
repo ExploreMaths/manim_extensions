@@ -56,6 +56,7 @@ Build an indexed array and animate a change on one slot.
            arr = Array([-1, 0, 3], total_width=7)
            self.add(arr)
            self.play(Node.Select(arr[1]))
+           self.wait()
 
 Modules
 -------

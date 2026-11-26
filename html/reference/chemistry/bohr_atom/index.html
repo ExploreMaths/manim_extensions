@@ -1515,7 +1515,7 @@
     controls
     loop
     autoplay
-    src="./BohrScene-64d2ebd8.mp4">
+    src="./BohrScene-ff18acc0.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.bohr_atom</span><span class="w"> </span><span class="kn">import</span> <span class="n">BohrAtom</span>
 
@@ -1523,6 +1523,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">atom</span> <span class="o">=</span> <span class="n">BohrAtom</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">atom</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="bohr_atom.BohrAtom.html#manim_extensions.chemistry.bohr_atom.bohr_atom.BohrAtom" title="manim_extensions.chemistry.bohr_atom.bohr_atom.BohrAtom"><code class="xref py py-class docutils literal notranslate"><span class="pre">BohrAtom</span></code></a></p>

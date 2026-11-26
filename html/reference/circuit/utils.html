@@ -1606,7 +1606,7 @@
     controls
     loop
     autoplay
-    src="./CircuitScene-96c436fc.mp4">
+    src="./CircuitScene-f26d80e7.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ground</span><span class="p">,</span> <span class="n">Resistor</span><span class="p">,</span> <span class="n">VoltageSource</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circuit</span>
@@ -1642,6 +1642,7 @@
         <span class="c1"># Automatic node detection</span>
         <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">node_list</span><span class="p">,</span> <span class="p">[</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">ORANGE</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">

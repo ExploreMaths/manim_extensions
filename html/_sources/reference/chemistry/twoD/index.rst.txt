@@ -23,6 +23,7 @@ Load a MOL file into a flat graph molecule, or build one from atom and bond dict
            molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
            molecule.scale_to_fit_height(6)
            self.play(FadeIn(molecule))
+           self.wait()
 
 Modules
 -------

@@ -69,6 +69,7 @@ returned by a shock method one animation at a time.
            for anim in diagram.positive_demand_shock(m=30, show_arrows=True):
                self.play(anim)
                self.wait(0.5)
+           self.wait()
 
 Supply and demand
 ^^^^^^^^^^^^^^^^^

@@ -74,6 +74,7 @@ distance:
            self.play(MoveNiddleTipTo(compass, ORIGIN))
            self.play(RotateCompass(compass, PI / 2))
            self.play(SplitCompass(compass, 2))
+           self.wait()
 
 :class:`~manim_extensions.compass.animations.animation_compass.PutCompass`
 
@@ -128,6 +129,7 @@ for readability in construction scenes:
            self.play(MovePencilAlongPath(pencil, path))
            self.play(DrawPath(pencil, path))
            self.play(PutPencilAway(pencil, point=4 * LEFT))
+           self.wait()
 
 Ruler animations
 ^^^^^^^^^^^^^^^^
@@ -149,6 +151,7 @@ otherwise vertically):
            ruler = Ruler().scale(0.7).to_edge(LEFT)
            self.play(PutRuler(ruler, start=LEFT, end=UR * 0.8))
            self.play(PutRulerAway(ruler, point=LEFT, is_flat=False))
+           self.wait()
 
 To draw a straightedge line, place the ruler, move the pencil to the line's
 

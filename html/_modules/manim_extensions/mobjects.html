@@ -2357,7 +2357,7 @@
 <span class="sd">               self.add(tree)</span>
 <span class="sd">               self.play(tree.highlight(1, YELLOW))</span>
 <span class="sd">               self.play(tree.highlight(4, RED))</span>
-<span class="sd">               self.wait(0.5)</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2597,6 +2597,7 @@
 <span class="sd">               vid = VideoMobject("3Blue1Brown.mp4")</span>
 <span class="sd">               self.add(vid)</span>
 <span class="sd">               vid.play(self)</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2996,6 +2997,7 @@
 <span class="sd">               trail.stop_trace()</span>
 <span class="sd">               self.play(dot.animate.shift(RIGHT * 1.5))</span>
 <span class="sd">               VGroup(trail, dot).scale(8.0).move_to(ORIGIN)</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

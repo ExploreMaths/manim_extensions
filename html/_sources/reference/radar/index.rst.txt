@@ -50,6 +50,7 @@ Reveal a radar chart built from four axes:
                title="Demo",
            )
            self.play(chart.reveal())
+           self.wait()
 
 Modules
 ----------

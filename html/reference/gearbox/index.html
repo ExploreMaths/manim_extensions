@@ -1747,7 +1747,7 @@ for proper meshing.</p>
     controls
     loop
     autoplay
-    src="./RackScene-417e9808.mp4">
+    src="./RackScene-da7afef1.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.gearbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gear</span><span class="p">,</span> <span class="n">Rack</span>
 
@@ -1766,6 +1766,7 @@ for proper meshing.</p>
             <span class="n">run_time</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2040,7 +2041,7 @@ Anchors are added automatically.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">5fe6d6f93c204da1966e855ea5ba3a953449bf7d</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/GarryBGoode/manim-GearBox/commit/5fe6d6f93c204da1966e855ea5ba3a953449bf7d">5fe6d6f</a> (2022-07-21).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -2080,7 +2081,7 @@ interference.</p>
     controls
     loop
     autoplay
-    src="./GearMesh-1c866526.mp4">
+    src="./GearMesh-52f57308.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.gearbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gear</span>
 
@@ -2095,6 +2096,7 @@ interference.</p>
         <span class="c1"># position gear2 next to gear1 so that they mesh together</span>
         <span class="n">gear2</span><span class="o">.</span><span class="n">mesh_to</span><span class="p">(</span><span class="n">gear1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gear1</span><span class="p">,</span> <span class="n">gear2</span><span class="p">)</span>
+        <span class="c1"># loops seamlessly</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Rotate</span><span class="p">(</span><span class="n">gear1</span><span class="p">,</span> <span class="n">gear1</span><span class="o">.</span><span class="n">pitch_angle</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span><span class="p">),</span>
                   <span class="n">Rotate</span><span class="p">(</span><span class="n">gear2</span><span class="p">,</span> <span class="o">-</span><span class="n">gear2</span><span class="o">.</span><span class="n">pitch_angle</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span><span class="p">),</span>
                   <span class="n">run_time</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>

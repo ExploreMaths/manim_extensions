@@ -48,6 +48,7 @@ Add a linear dimension to a line:
            self.add(line)
            dimension = LinearDimension(LEFT * 3, RIGHT * 3, text="6")
            self.play(Create(dimension))
+           self.wait()
 
 Modules
 ----------

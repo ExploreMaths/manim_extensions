@@ -1520,7 +1520,7 @@ default names.</p></li>
     controls
     loop
     autoplay
-    src="./NeuralNetworkScene-ae54fb49.mp4">
+    src="./NeuralNetworkScene-36c8f628.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Convolutional2DLayer</span><span class="p">,</span>
@@ -1550,6 +1550,7 @@ default names.</p></li>
         <span class="c1"># Animate the forward pass</span>
         <span class="n">forward_pass</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">make_forward_pass_animation</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">forward_pass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">

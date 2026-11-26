@@ -1567,6 +1567,7 @@
 <span class="sd">               self.play(animations.animate_highlight_transition(transition))</span>
 <span class="sd">               self.play(animations.animate_transition_to_default_color(transition))</span>
 <span class="sd">               self.play(transition.animate_transition(True))</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1974,6 +1975,7 @@
 <span class="sd">               animations = ManimAnimations()</span>
 <span class="sd">               self.play(animations.animate_highlight_transition(transition))</span>
 <span class="sd">               self.play(animations.animate_transition_to_default_color(transition))</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

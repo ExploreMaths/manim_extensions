@@ -1695,7 +1695,7 @@ animations when a title is present.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/CasualCodersProjects/manim-code-blocks/commit/0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297">0eb9e5d</a> (2024-02-20).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -1730,7 +1730,7 @@ Rust, SQL, and TypeScript.</p></li>
     controls
     loop
     autoplay
-    src="./CodeBlockDemo-a324e455.mp4">
+    src="./CodeBlockDemo-9a97efc3.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.code_blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeBlock</span><span class="p">,</span> <span class="n">Python</span>
 
@@ -1738,6 +1738,7 @@ Rust, SQL, and TypeScript.</p></li>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">block</span> <span class="o">=</span> <span class="n">CodeBlock</span><span class="p">(</span><span class="s1">'print("hello")'</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">Python</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">block</span><span class="o">.</span><span class="n">create</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.code_blocks.CodeBlock" title="manim_extensions.code_blocks.CodeBlock"><code class="xref py py-class docutils literal notranslate"><span class="pre">CodeBlock</span></code></a></p>

@@ -1882,7 +1882,7 @@
     controls
     loop
     autoplay
-    src="./MArrayInsertRemove-5cba8201.mp4">
+    src="./MArrayInsertRemove-ebde6328.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">MArray</span>
 
@@ -1904,7 +1904,7 @@
         <span class="n">arr</span><span class="o">.</span><span class="n">remove_elem</span><span class="p">(</span>
             <span class="n">index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">removal_anim</span><span class="o">=</span><span class="n">ShowPassingFlash</span><span class="p">,</span> <span class="n">update_anim</span><span class="o">=</span><span class="n">Write</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2426,7 +2426,7 @@ remaining elements and returns a list of update animations.</p>
     controls
     loop
     autoplay
-    src="./MArrayPointerScene-a61532e4.mp4">
+    src="./MArrayPointerScene-a4dbb5c9.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">MArray</span><span class="p">,</span> <span class="n">MArrayPointer</span><span class="p">,</span> <span class="n">MArrayDirection</span>
@@ -2449,7 +2449,7 @@ remaining elements and returns a list of update animations.</p>
         <span class="n">ptr</span><span class="o">.</span><span class="n">update_mob_label</span><span class="p">(</span><span class="s2">"mid"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="n">ptr</span><span class="o">.</span><span class="n">attach_to_elem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py class">
@@ -3482,7 +3482,7 @@ Align vector for <a class="reference internal" href="m_array.MArraySlidingWindow
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">1465eefab154c4016b41e918b585e83132372782</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/drageelr/manim-data-structures/commit/1465eefab154c4016b41e918b585e83132372782">1465eef</a> (2023-01-08).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">0.1.7</span></code> (2023-01-08).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -3519,7 +3519,7 @@ triggered on an array play automatically through that scene; pass
     controls
     loop
     autoplay
-    src="./MArrayUsage-2d8c64c1.mp4">
+    src="./MArrayUsage-bcedec58.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">MArray</span>
 
@@ -3541,6 +3541,7 @@ triggered on an array play automatically through that scene; pass
             <span class="n">arr</span><span class="o">.</span><span class="n">animate_elem_value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">RED</span><span class="p">),</span>
             <span class="n">arr</span><span class="o">.</span><span class="n">animate_elem_index</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.data_structures.MArray" title="manim_extensions.data_structures.MArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArray</span></code></a></p>
@@ -3672,7 +3673,7 @@ a window of a given width to an array; <code class="docutils literal notranslate
     controls
     loop
     autoplay
-    src="./PairSum-cf663fc7.mp4">
+    src="./PairSum-3ba7fec5.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">MArray</span><span class="p">,</span> <span class="n">MArrayPointer</span><span class="p">,</span> <span class="n">MVariable</span><span class="p">,</span>
@@ -3708,6 +3709,7 @@ a window of a given width to an array; <code class="docutils literal notranslate
         <span class="n">arr</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_pair_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.data_structures.MArray" title="manim_extensions.data_structures.MArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArray</span></code></a> <a class="reference internal" href="#manim_extensions.data_structures.MArrayPointer" title="manim_extensions.data_structures.MArrayPointer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArrayPointer</span></code></a> <a class="reference internal" href="#manim_extensions.data_structures.MVariable" title="manim_extensions.data_structures.MVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">MVariable</span></code></a></p>
@@ -3719,7 +3721,7 @@ a window of a given width to an array; <code class="docutils literal notranslate
     controls
     loop
     autoplay
-    src="./MaxKSum-11a4aad4.mp4">
+    src="./MaxKSum-8a0439ed.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">MArray</span><span class="p">,</span> <span class="n">MArraySlidingWindow</span><span class="p">,</span> <span class="n">MVariable</span><span class="p">,</span>
@@ -3749,6 +3751,7 @@ a window of a given width to an array; <code class="docutils literal notranslate
         <span class="n">arr</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_k_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.data_structures.MArray" title="manim_extensions.data_structures.MArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArray</span></code></a> <a class="reference internal" href="#manim_extensions.data_structures.MArraySlidingWindow" title="manim_extensions.data_structures.MArraySlidingWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArraySlidingWindow</span></code></a> <a class="reference internal" href="#manim_extensions.data_structures.MVariable" title="manim_extensions.data_structures.MVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">MVariable</span></code></a></p>

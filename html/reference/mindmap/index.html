@@ -2212,7 +2212,7 @@ second-level nodes.</p></li>
     controls
     loop
     autoplay
-    src="./LayoutAnimationScene-37e69e56.mp4">
+    src="./LayoutAnimationScene-faaefea0.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">LayoutAnimation</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutConfig</span>
@@ -2244,6 +2244,7 @@ second-level nodes.</p></li>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">12</span><span class="p">:</span>
             <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2436,7 +2437,7 @@ layout animation.</p>
     controls
     loop
     autoplay
-    src="./AlterNodeScene-834db56e.mp4">
+    src="./AlterNodeScene-c82a4d8a.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">InsertNode</span><span class="p">,</span> <span class="n">AlterNode</span>
 
@@ -2448,6 +2449,7 @@ layout animation.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">AlterNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">{</span><span class="n">a1</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{A}</span><span class="s2">_1 \to \text</span><span class="si">{Altered}</span><span class="s2">"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">)}))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
         <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.2</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2476,7 +2478,7 @@ layout animation.</p>
     controls
     loop
     autoplay
-    src="./ScaleNodeScene-7b338b99.mp4">
+    src="./ScaleNodeScene-7898c314.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">InsertNode</span><span class="p">,</span> <span class="n">ScaleNode</span>
 
@@ -2491,6 +2493,7 @@ layout animation.</p>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
             <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2673,7 +2676,7 @@ layout animation.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">7fe1e5adddfd579aa2b27a0eace3a90560344b30</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/jj-math/manim-mindmap/commit/7fe1e5adddfd579aa2b27a0eace3a90560344b30">7fe1e5a</a> (2026-06-02).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>

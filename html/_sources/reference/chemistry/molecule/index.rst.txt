@@ -31,6 +31,7 @@ Load a MOL file and get a ready-to-add molecule mobject.
            molecule = Molecule().molecule_from_file("acetone_2d.mol")
            molecule.scale_to_fit_height(6)
            self.play(FadeIn(molecule))
+           self.wait()
 
 Modules
 -------

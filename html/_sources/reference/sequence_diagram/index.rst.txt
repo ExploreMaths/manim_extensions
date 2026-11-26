@@ -81,6 +81,7 @@ generators that yield the animations to play:
                target=actor_delivery,
            ):
                self.play(anim)
+           self.wait()
 
 
 Modules

@@ -1496,6 +1496,11 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">validate-manim-directives</span></code> now rejects an animated <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code>
+example that does not end with <code class="docutils literal notranslate"><span class="pre">self.wait()</span></code> or longer. Seamless loops
+stay exempt: mark the code with <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">loops</span> <span class="pre">seamlessly</span></code> or use
+<code class="docutils literal notranslate"><span class="pre">:save_as_gif:</span></code>. All existing examples were updated, including the
+gear rotations and fade-out loops.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_deprecations.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">validate-deprecations</span></code>
 static check reject deprecated APIs across the package, tests, scripts,
 workflow tools and Sphinx extensions. Deprecations are discovered from

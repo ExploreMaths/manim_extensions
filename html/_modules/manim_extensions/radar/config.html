@@ -1521,16 +1521,16 @@
 <span class="sd">    """</span>
 
     <span class="c1"># ---- geometry --------------------------------------------------------</span>
-    <span class="c1">#: Outer ring radius, in scene units (Manim's default frame is 14.22 x 8)</span>
+    <span class="c1">#: Outer ring radius, in scene units (Manim's default frame is 14.22 x 8).</span>
     <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.9</span>
     <span class="c1">#: Chart centre in scene units ``(x, y)``; a little below the middle leaves</span>
-    <span class="c1">#: room for the nameplate / title above the chart</span>
+    <span class="c1">#: room for the nameplate / title above the chart.</span>
     <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.18</span><span class="p">)</span>
-    <span class="c1">#: Number of concentric grid rings (the outermost ring is the full scale)</span>
+    <span class="c1">#: Number of concentric grid rings (the outermost ring is the full scale).</span>
     <span class="n">levels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="c1">#: Angle of the first axis, in degrees (90 = straight up)</span>
+    <span class="c1">#: Angle of the first axis, in degrees (90 = straight up).</span>
     <span class="n">start_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">90.0</span>
-    <span class="c1">#: If True the axes run clockwise</span>
+    <span class="c1">#: If True the axes run clockwise.</span>
     <span class="n">clockwise</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="c1"># ---- grid ------------------------------------------------------------</span>
@@ -1552,7 +1552,7 @@
     <span class="n">grid_glow_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span>
     <span class="c1">#: Opacity of the grid glow.</span>
     <span class="n">grid_glow_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.10</span>
-    <span class="c1">#: Draw small scale numbers (2/4/6/8…) along one spoke</span>
+    <span class="c1">#: Draw small scale numbers (2/4/6/8…) along one spoke.</span>
     <span class="n">show_level_labels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1">#: Index of the spoke that carries the scale labels.</span>
     <span class="n">level_label_axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1574,7 +1574,7 @@
     <span class="n">inner_tint_mix</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.45</span>
     <span class="c1">#: Stroke width of the data polygon.</span>
     <span class="n">line_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4.5</span>
-    <span class="c1">#: 0 = none, 1 = one soft glow, 2 = glow + wide halo</span>
+    <span class="c1">#: 0 = none, 1 = one soft glow, 2 = glow + wide halo.</span>
     <span class="n">glow_layers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="c1">#: Stroke width of the polygon glow.</span>
     <span class="n">glow_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span>
@@ -1584,7 +1584,7 @@
     <span class="n">halo_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span>
     <span class="c1">#: Opacity of the wide polygon halo.</span>
     <span class="n">halo_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span>
-    <span class="c1">#: Colour the 6 edges with a gradient between the two axis colours</span>
+    <span class="c1">#: Colour the 6 edges with a gradient between the two axis colours.</span>
     <span class="n">rainbow_edges</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1">#: Number of segments used to colour each polygon edge.</span>
     <span class="n">edge_segments</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1596,32 +1596,32 @@
     <span class="c1"># ---- axis labels &amp; numbers -------------------------------------------</span>
     <span class="c1">#: Whether to draw the axis names.</span>
     <span class="n">show_axis_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: Distance of the axis names from the centre, as a multiple of ``radius``</span>
+    <span class="c1">#: Distance of the axis names from the centre, as a multiple of ``radius``.</span>
     <span class="n">label_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.10</span>
     <span class="c1">#: Font family used for the axis names.</span>
     <span class="n">name_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font weight used for the axis names.</span>
     <span class="n">name_weight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"BOLD"</span>
-    <span class="c1">#: Colour axis names with their axis colour (False -&gt; near-white)</span>
+    <span class="c1">#: Colour axis names with their axis colour (False -&gt; near-white).</span>
     <span class="n">colored_axis_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: "roll" (odometer tween) | "swap" (snap to integers) | "off"</span>
+    <span class="c1">#: "roll" (odometer tween) | "swap" (snap to integers) | "off".</span>
     <span class="n">numbers</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"roll"</span>
     <span class="c1">#: Font family used for the axis numbers.</span>
     <span class="n">number_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font size of the axis numbers.</span>
     <span class="n">number_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">28</span>
-    <span class="c1">#: Place the numbers right after the axis name (True) or inside the chart</span>
+    <span class="c1">#: Place the numbers right after the axis name (True) or inside the chart.</span>
     <span class="n">numbers_next_to_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: Radius multiple of the numbers when ``numbers_next_to_name=False``</span>
+    <span class="c1">#: Radius multiple of the numbers when ``numbers_next_to_name=False``.</span>
     <span class="n">number_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.62</span>
-    <span class="c1">#: Horizontal gap between an axis name and its number</span>
+    <span class="c1">#: Horizontal gap between an axis name and its number.</span>
     <span class="n">number_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.18</span>
     <span class="c1">#: Format string applied to each axis number.</span>
     <span class="n">number_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{:g}</span><span class="s2">"</span>
-    <span class="c1">#: Appended when a value exceeds the full scale (e.g. ``10`` -&gt; ``10+``)</span>
+    <span class="c1">#: Appended when a value exceeds the full scale (e.g. ``10`` -&gt; ``10+``).</span>
     <span class="n">overflow_suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"+"</span>
     <span class="c1">#: Vertical travel of the odometer wheel, in scene units (one line height</span>
-    <span class="c1">#: keeps the outgoing and incoming digits cleanly separated while rolling)</span>
+    <span class="c1">#: keeps the outgoing and incoming digits cleanly separated while rolling).</span>
     <span class="n">roll_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.44</span>
 
     <span class="c1"># ---- decorations -----------------------------------------------------</span>
@@ -1637,25 +1637,25 @@
     <span class="n">sweep_edge_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.6</span>
 
     <span class="c1"># ---- transitions -----------------------------------------------------</span>
-    <span class="c1">#: Add a shockwave ring on every morph</span>
+    <span class="c1">#: Add a shockwave ring on every morph.</span>
     <span class="n">shockwave</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1">#: Duration of the shockwave pulse in seconds.</span>
     <span class="n">shock_duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.40</span>
     <span class="c1">#: Maximum radius of the shockwave pulse.</span>
     <span class="n">shock_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span>
-    <span class="c1">#: Fraction of the morph spent "dipping" before values roll up</span>
+    <span class="c1">#: Fraction of the morph spent "dipping" before values roll up.</span>
     <span class="n">dip_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.24</span>
-    <span class="c1">#: Default run time of :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`</span>
+    <span class="c1">#: Default run time of :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`.</span>
     <span class="n">morph_run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.3</span>
-    <span class="c1">#: How far values dip below their target (in value units)</span>
+    <span class="c1">#: How far values dip below their target (in value units).</span>
     <span class="n">dip_drop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="c1">#: Lowest value used by the dip animation.</span>
     <span class="n">dip_floor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
-    <span class="c1">#: Quantise values to integers while rolling (classic snap-in look)</span>
+    <span class="c1">#: Quantise values to integers while rolling (classic snap-in look).</span>
     <span class="n">stepped</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1">#: Seconds each extra dataset waits before starting its own morph</span>
+    <span class="c1">#: Seconds each extra dataset waits before starting its own morph.</span>
     <span class="n">stagger</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.12</span>
-    <span class="c1">#: Emphasise the dataset with an extra orange/cyan double outline</span>
+    <span class="c1">#: Emphasise the dataset with an extra orange/cyan double outline.</span>
     <span class="n">rim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="c1">#: Radial offset of the outer rim.</span>
     <span class="n">rim_offset_outer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.030</span>
@@ -1675,56 +1675,56 @@
     <span class="n">glitch_bar_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span>
 
     <span class="c1"># ---- burst (used by transition="burst" / OverflowRadarChart) ---------</span>
-    <span class="c1">#: Fraction of the target a value overshoots past before settling</span>
+    <span class="c1">#: Fraction of the target a value overshoots past before settling.</span>
     <span class="n">burst_overshoot</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.16</span>
 
     <span class="c1"># ---- overflow (OverflowRadarChart) -----------------------------------</span>
-    <span class="c1">#: Allow values above the full scale to escape the outer ring as spikes</span>
+    <span class="c1">#: Allow values above the full scale to escape the outer ring as spikes.</span>
     <span class="n">overflow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1">#: Draw a dashed track along spokes that poke beyond the outer ring</span>
+    <span class="c1">#: Draw a dashed track along spokes that poke beyond the outer ring.</span>
     <span class="n">overflow_dash</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: Width of the dashed segments (and of the gaps), as radius multiples</span>
+    <span class="c1">#: Width of the dashed segments (and of the gaps), as radius multiples.</span>
     <span class="n">overflow_dash_on</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.085</span>
     <span class="c1">#: Gap between the overflow marker dashes.</span>
     <span class="n">overflow_dash_off</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.055</span>
-    <span class="c1">#: Glowing "breach" where a spike pierces the outer ring</span>
+    <span class="c1">#: Glowing "breach" where a spike pierces the outer ring.</span>
     <span class="n">overflow_breach_glow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1">#: Radius of the glow shown when a value breaches the scale.</span>
     <span class="n">breach_glow_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.16</span>
     <span class="c1">#: Spike must exceed the full scale by this fraction before the overflow</span>
     <span class="c1">#: decorations (track / breach / big number) kick in — keeps transient</span>
-    <span class="c1">#: overshoots from burst morphs from popping spurious read-outs</span>
+    <span class="c1">#: overshoots from burst morphs from popping spurious read-outs.</span>
     <span class="n">overflow_min_over</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
-    <span class="c1">#: Font size of the unclamped read-outs that ride the spikes</span>
+    <span class="c1">#: Font size of the unclamped read-outs that ride the spikes.</span>
     <span class="n">overflow_number_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="c1">#: How far beyond the vertex the overflow number sits (radius multiple)</span>
+    <span class="c1">#: How far beyond the vertex the overflow number sits (radius multiple).</span>
     <span class="n">overflow_number_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.17</span>
 
     <span class="c1"># ---- rainbow web (0.1.2) -------------------------------------------</span>
     <span class="c1">#: Rainbow web: adjacent segments use different colours (rings take separated hues by angle, spokes use axis colours),</span>
-    <span class="c1">#: with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web()</span>
+    <span class="c1">#: with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web().</span>
     <span class="n">web_rainbow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1">#: Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second)</span>
+    <span class="c1">#: Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second).</span>
     <span class="n">web_trace_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.32</span>
 
     <span class="c1"># ---- legend &amp; comparisons --------------------------------------------</span>
-    <span class="c1">#: Draw a legend (colour chip + name) when several datasets share a chart</span>
+    <span class="c1">#: Draw a legend (colour chip + name) when several datasets share a chart.</span>
     <span class="n">legend</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: Font size of legend names</span>
+    <span class="c1">#: Font size of legend names.</span>
     <span class="n">legend_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">21</span>
-    <span class="c1">#: Gap between legend chips, in scene units</span>
+    <span class="c1">#: Gap between legend chips, in scene units.</span>
     <span class="n">legend_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.30</span>
-    <span class="c1">#: Height of the colour chip, in scene units</span>
+    <span class="c1">#: Height of the colour chip, in scene units.</span>
     <span class="n">legend_chip</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.16</span>
-    <span class="c1">#: Vertical position of the legend row, as a multiple of ``radius``</span>
+    <span class="c1">#: Vertical position of the legend row, as a multiple of ``radius``.</span>
     <span class="n">legend_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.62</span>
     <span class="c1">#: How the per-axis numbers behave when several datasets share a chart:</span>
     <span class="c1">#: "legend" (none, names in the legend) | "all" (every dataset, at its</span>
-    <span class="c1">#: vertices) | "first" (dataset 0 only) | "focus" (follows chart.focus)</span>
+    <span class="c1">#: vertices) | "first" (dataset 0 only) | "focus" (follows chart.focus).</span>
     <span class="n">compare_numbers</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"legend"</span>
-    <span class="c1">#: Font-size multiplier for the per-vertex comparison numbers</span>
+    <span class="c1">#: Font-size multiplier for the per-vertex comparison numbers.</span>
     <span class="n">compare_number_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.62</span>
-    <span class="c1">#: Opacity a dataset is dimmed to when it is not the focused one</span>
+    <span class="c1">#: Opacity a dataset is dimmed to when it is not the focused one.</span>
     <span class="n">focus_dim</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.22</span>
 
     <span class="c1"># ---- title &amp; nameplate ----------------------------------------------</span>
@@ -1734,23 +1734,23 @@
     <span class="n">title_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font size of the chart title.</span>
     <span class="n">title_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="c1">#: Vertical position of the header, as a multiple of ``radius``</span>
+    <span class="c1">#: Vertical position of the header, as a multiple of ``radius``.</span>
     <span class="n">title_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.30</span>
-    <span class="c1">#: Show :attr:`~manim_extensions.radar.data.RadarData.name` above the chart</span>
+    <span class="c1">#: Show :attr:`~manim_extensions.radar.data.RadarData.name` above the chart.</span>
     <span class="n">show_dataset_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1">#: Vertical position of the nameplate, as a multiple of ``radius``</span>
+    <span class="c1">#: Vertical position of the nameplate, as a multiple of ``radius``.</span>
     <span class="n">name_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.28</span>
     <span class="c1">#: Font size of the dataset nameplate.</span>
     <span class="n">name_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">34</span>
-    <span class="c1">#: Extra gap between nameplate and header when both are shown</span>
+    <span class="c1">#: Extra gap between nameplate and header when both are shown.</span>
     <span class="n">name_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.55</span>
 
     <span class="c1"># ---- misc ------------------------------------------------------------</span>
-    <span class="c1">#: Global opacity multiplier (1 = fully visible)</span>
+    <span class="c1">#: Global opacity multiplier (1 = fully visible).</span>
     <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
-    <span class="c1">#: Random seed for decorations that live on the chart</span>
+    <span class="c1">#: Random seed for decorations that live on the chart.</span>
     <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">7</span>
-    <span class="c1">#: Extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject</span>
+    <span class="c1">#: Extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject.</span>
     <span class="n">text_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>

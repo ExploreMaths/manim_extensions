@@ -1528,7 +1528,7 @@ the number of branches ending in each state.</p></li>
     controls
     loop
     autoplay
-    src="./ManimAutomaton-8dfa1e9e.mp4">
+    src="./ManimAutomaton-b83e7da3.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ManimAnimations</span><span class="p">,</span>
@@ -1554,6 +1554,7 @@ the number of branches ending in each state.</p></li>
             <span class="n">result</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span> <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">"ACCEPTED"</span> <span class="k">else</span> <span class="n">RED</span>
         <span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">dfa</span><span class="o">.</span><span class="n">manim_automata_input</span><span class="p">,</span> <span class="n">UP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">verdict</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -1986,7 +1987,7 @@ can be constructed from a JSON template or an XML file (JFLAP format).</p>
     controls
     loop
     autoplay
-    src="./DFAOverviewScene-00f52ae3.mp4">
+    src="./DFAOverviewScene-0f0c96f3.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimDeterministicFiniteAutomaton</span>
 
@@ -2011,6 +2012,7 @@ can be constructed from a JSON template or an XML file (JFLAP format).</p>
         <span class="c1"># Play all the animations generated from play_string()</span>
         <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">dfa</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2050,7 +2052,7 @@ interactively exploring accepting paths through the automaton.</p>
     controls
     loop
     autoplay
-    src="./ManimNondeterministicFiniteAutomatonScene-a5e04c67.mp4">
+    src="./ManimNondeterministicFiniteAutomatonScene-ef3b827d.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimNondeterministicFiniteAutomaton</span>
 
@@ -2076,6 +2078,7 @@ interactively exploring accepting paths through the automaton.</p>
         <span class="c1"># Play all the animations generated from play_string()</span>
         <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">nda</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2098,7 +2101,7 @@ or <a class="reference external" href="https://docs.manim.community/en/stable/re
     controls
     loop
     autoplay
-    src="./ManimAnimationsScene-ba59d224.mp4">
+    src="./ManimAnimationsScene-cf5dc848.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
 
@@ -2113,6 +2116,7 @@ or <a class="reference external" href="https://docs.manim.community/en/stable/re
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_input_token_spent</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_dead_branch_state</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_state_to_default_color</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="field-list simple">
@@ -2298,7 +2302,7 @@ or <a class="reference external" href="https://docs.manim.community/en/stable/re
     controls
     loop
     autoplay
-    src="./ManimPushDownAutomatonScene-adb4eaef.mp4">
+    src="./ManimPushDownAutomatonScene-18427004.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_pushdown_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimPushDownAutomaton</span>
 
@@ -2333,6 +2337,7 @@ or <a class="reference external" href="https://docs.manim.community/en/stable/re
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">stack_label</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
         <span class="n">pda</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">stack_label</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2607,7 +2612,7 @@ of a finite-state transition.</p>
     controls
     loop
     autoplay
-    src="./ManimTransition-d76960d0.mp4">
+    src="./ManimTransition-7fa7b1a1.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -2623,6 +2628,7 @@ of a finite-state transition.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_transition</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_transition_to_default_color</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">transition</span><span class="o">.</span><span class="n">animate_transition</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2823,7 +2829,7 @@ exists, both arrows are rendered as curved paths.</p>
     controls
     loop
     autoplay
-    src="./ManimPushDownAutomatonTransition-35571672.mp4">
+    src="./ManimPushDownAutomatonTransition-0355e8ae.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_pushdown_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimPushDownAutomaton</span>
@@ -2836,6 +2842,7 @@ exists, both arrows are rendered as curved paths.</p>
         <span class="n">animations</span> <span class="o">=</span> <span class="n">ManimAnimations</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_transition</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_transition_to_default_color</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2862,7 +2869,7 @@ exists, both arrows are rendered as curved paths.</p>
     controls
     loop
     autoplay
-    src="./ManimAutomataInputScene-d851fba8.mp4">
+    src="./ManimAutomataInputScene-f7c45cda.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_automaton_input</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAutomataInput</span>
@@ -2876,6 +2883,7 @@ exists, both arrows are rendered as curved paths.</p>
         <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">inp</span><span class="o">.</span><span class="n">tokens</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_input_token</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_input_token_spent</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -2930,7 +2938,7 @@ spacing offset so that tokens can be laid out sequentially.</p>
     controls
     loop
     autoplay
-    src="./TokenScene-99f39eb8.mp4">
+    src="./TokenScene-14f43a95.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_automaton_input</span><span class="w"> </span><span class="kn">import</span> <span class="n">Token</span>
 
@@ -2941,6 +2949,7 @@ spacing offset so that tokens can be laid out sequentially.</p>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeToColor</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">PURE_YELLOW</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>

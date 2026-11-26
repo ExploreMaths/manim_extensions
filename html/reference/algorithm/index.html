@@ -1832,7 +1832,7 @@ the same mapping is applied to the corresponding quarter-arc.</p>
     controls
     loop
     autoplay
-    src="./Select-ed470237.mp4">
+    src="./Select-d9acf0f1.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -1842,7 +1842,7 @@ the same mapping is applied to the corresponding quarter-arc.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.6</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -1869,7 +1869,7 @@ by setting its opacity back to <code class="docutils literal notranslate"><span 
     controls
     loop
     autoplay
-    src="./Unselect-fac87c78.mp4">
+    src="./Unselect-a1995c10.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -1881,7 +1881,7 @@ by setting its opacity back to <code class="docutils literal notranslate"><span 
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Unselect</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Unselect</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -1907,7 +1907,7 @@ by setting its opacity back to <code class="docutils literal notranslate"><span 
     controls
     loop
     autoplay
-    src="./UpdateValue-c87d0539.mp4">
+    src="./UpdateValue-1bc23963.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -1917,7 +1917,7 @@ by setting its opacity back to <code class="docutils literal notranslate"><span 
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -1948,7 +1948,7 @@ fades the source node out.</p>
     controls
     loop
     autoplay
-    src="./MoveAndOverWrite-7e9cdd69.mp4">
+    src="./MoveAndOverWrite-bf6977f2.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -1958,7 +1958,7 @@ fades the source node out.</p>
         <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">MoveAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">select_color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -1989,7 +1989,7 @@ overwrite the target’s value before fading out.</p>
     controls
     loop
     autoplay
-    src="./CopyAndOverWrite-073418fc.mp4">
+    src="./CopyAndOverWrite-d824bdcb.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -2000,7 +2000,7 @@ overwrite the target’s value before fading out.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">CopyAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2031,7 +2031,7 @@ fading the copies out.</p>
     controls
     loop
     autoplay
-    src="./SwapAndOverWrite-80580cfd.mp4">
+    src="./SwapAndOverWrite-2148b1af.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
@@ -2042,7 +2042,7 @@ fading the copies out.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">SwapAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">SwapAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2280,7 +2280,7 @@ way to switch the overall look of an algorithm scene.</p>
     controls
     loop
     autoplay
-    src="./QueueScene-d54ab762.mp4">
+    src="./QueueScene-d7527d96.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
@@ -2292,7 +2292,7 @@ way to switch the overall look of an algorithm scene.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"4"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py class">
@@ -2320,7 +2320,7 @@ before the animation starts.</p></li>
     controls
     loop
     autoplay
-    src="./Enqueue-d79d53d2.mp4">
+    src="./Enqueue-ec81bee1.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
@@ -2331,7 +2331,7 @@ before the animation starts.</p></li>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"3"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2362,7 +2362,7 @@ item simply leaves the queue and fades out.</p></li>
     controls
     loop
     autoplay
-    src="./Dequeue-c7a80b5f.mp4">
+    src="./Dequeue-113dac29.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 
@@ -2371,7 +2371,7 @@ item simply leaves the queue and fades out.</p></li>
         <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init_data</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">target_pos</span><span class="o">=</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></dd></dl>
@@ -2383,7 +2383,7 @@ item simply leaves the queue and fades out.</p></li>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">5d69236739e80facf3a98540a58785e901784a77</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/sinianluoye/manim-algorithm/commit/5d69236739e80facf3a98540a58785e901784a77">5d69236</a> (2024-10-06).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.0.4</span></code> (2024-08-10).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -2424,7 +2424,7 @@ targets Manim Community Edition (CE).</p>
     controls
     loop
     autoplay
-    src="./ArrayScene-ce2ce3e6.mp4">
+    src="./ArrayScene-ee83aa71.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Node</span>
 
@@ -2433,6 +2433,7 @@ targets Manim Community Edition (CE).</p>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.algorithm.Array" title="manim_extensions.algorithm.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> <a class="reference internal" href="#manim_extensions.algorithm.Node" title="manim_extensions.algorithm.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></p>

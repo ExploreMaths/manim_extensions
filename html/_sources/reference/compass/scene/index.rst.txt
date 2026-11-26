@@ -28,3 +28,4 @@ These scene classes provide the moving-camera rig used by the straightedge-and-c
            self.put_ruler_aside(3 * DOWN)
            self.draw_arc(niddle_point=A, pen_point=B, angle=PI / 2)
            self.put_compass_aside(4 * LEFT)
+           self.wait()

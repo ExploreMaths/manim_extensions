@@ -1506,7 +1506,7 @@ style visualisations in Manim.</p>
     controls
     loop
     autoplay
-    src="./SeqActionMessages-8c053ac9.mp4">
+    src="./SeqActionMessages-b9b7ca59.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_action</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqAction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqActor</span>
@@ -1524,6 +1524,7 @@ style visualisations in Manim.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><div id="seqactioncamera" class="admonition admonition-manim-example">
@@ -1533,7 +1534,7 @@ style visualisations in Manim.</p>
     controls
     loop
     autoplay
-    src="./SeqActionCamera-ad44b0c2.mp4">
+    src="./SeqActionCamera-79041b4f.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_action</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqAction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqActor</span>
@@ -1596,6 +1597,7 @@ style visualisations in Manim.</p>
         <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="field-list simple">
@@ -1755,7 +1757,7 @@ actors have been created.</p>
     controls
     loop
     autoplay
-    src="./SeqObjectScene-ae6c4b4c.mp4">
+    src="./SeqObjectScene-580418cc.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_action</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqAction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram.seq_actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqActor</span>
@@ -1772,6 +1774,7 @@ actors have been created.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span>
         <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="py method">
@@ -1799,7 +1802,7 @@ displaying the object name.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">8232636ead85af41b720561252d4749926b03ba7</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/foxnewsnetwork/manim-sequence-diagram/commit/8232636ead85af41b720561252d4749926b03ba7">8232636</a> (2023-01-05).</p></li>
-<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 16:28 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -1841,7 +1844,7 @@ generators that yield the animations to play:</p>
     controls
     loop
     autoplay
-    src="./ClientRaceDatabaseNetwork-da7ac0f7.mp4">
+    src="./ClientRaceDatabaseNetwork-debc5fa9.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.sequence_diagram</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SeqActor</span><span class="p">,</span>
@@ -1873,6 +1876,7 @@ generators that yield the animations to play:</p>
             <span class="n">target</span><span class="o">=</span><span class="n">actor_delivery</span><span class="p">,</span>
         <span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>References: <a class="reference internal" href="#manim_extensions.sequence_diagram.SeqActor" title="manim_extensions.sequence_diagram.SeqActor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SeqActor</span></code></a> <a class="reference internal" href="#manim_extensions.sequence_diagram.SeqAction" title="manim_extensions.sequence_diagram.SeqAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SeqAction</span></code></a> <a class="reference internal" href="#manim_extensions.sequence_diagram.SeqObject" title="manim_extensions.sequence_diagram.SeqObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SeqObject</span></code></a></p>

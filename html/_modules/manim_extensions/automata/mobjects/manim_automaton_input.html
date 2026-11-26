@@ -1536,6 +1536,7 @@
 <span class="sd">               for token in inp.tokens:</span>
 <span class="sd">                   self.play(animations.animate_highlight_input_token(token))</span>
 <span class="sd">                   self.play(animations.animate_input_token_spent(token))</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1621,6 +1622,7 @@
 <span class="sd">               content.scale_to_fit_height(2.5).move_to(ORIGIN)</span>
 <span class="sd">               self.add(content)</span>
 <span class="sd">               self.play(FadeToColor(tokens[1], PURE_YELLOW))</span>
+<span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
     <span class="n">id_iter</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>

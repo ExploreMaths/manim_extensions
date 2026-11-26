@@ -1505,7 +1505,7 @@ compass placement, arc drawing, and ruler/pencil animations.</p>
     controls
     loop
     autoplay
-    src="./CompassSceneUsage-f36763b8.mp4">
+    src="./CompassSceneUsage-0d2dd00e.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">CompassScene</span>
 
@@ -1523,6 +1523,7 @@ compass placement, arc drawing, and ruler/pencil animations.</p>
         <span class="c1"># draw an arc centred at A through B, then put the compass aside</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">draw_arc</span><span class="p">(</span><span class="n">niddle_point</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">pen_point</span><span class="o">=</span><span class="n">B</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">put_compass_aside</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">LEFT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="field-list simple">
