@@ -6,8 +6,12 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 WORKFLOW = Path(__file__).resolve().parents[1] / "workflow"
 sys.path.insert(0, str(WORKFLOW))
+
+pytest.importorskip("docutils")
 
 import validate_docstrings as docstrings  # noqa: E402
 import validate_rst as rst  # noqa: E402
