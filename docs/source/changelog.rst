@@ -115,99 +115,6 @@ Added (21)
   ``Classes`` index pages instead of two sibling sections in one document.
   ``Classes`` keeps its own ``_AnimationBuilder`` entry and hidden toctree.
 
-Fixed (19)
-~~~~~~~~~~
-
-* The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
-  a ``Text`` object instead of a formula, so the per-glyph random order is
-  visible in the rendered clip.
-* Python standard-library type links, including ``None``, now use the
-  inherited text colour in parameter descriptions.  ``None`` no longer keeps
-  a blue link colour while ``str`` and the other builtins stay plain.
-* The QR-code logger reference page now renders the module description
-  instead of an empty page.  The QR-code and Nerd Font docstrings link to the
-  bundled Icon Gallery, and Python docstrings no longer use Sphinx
-  ``:doc:`` roles that editors cannot resolve.
-* Image layers and grayscale image mobjects convert floating-point pixel
-  arrays to ``uint8`` before handing them to Manim, so examples built from
-  ``np.zeros`` no longer fail under Pillow with
-  ``Cannot handle this data type: (1, 1, 4), <f8``.  Images normalized to
-  ``[0, 1]`` are rescaled to ``[0, 255]`` first.
-* ``validate-types`` installs the ``docs`` extra alongside ``all`` because
-  mypy analyses the Sphinx directive helper and needs ``sphinx`` and
-  ``jinja2`` stubs to import it.
-* Type aliases now refer to the configuration classes directly:
-  ``SurfaceConfig`` and ``GraphSurfaceConfig`` are defined after their
-  classes, so their source no longer needs quoted forward references.  Both
-  render as ``GaussianSurface | SaddleSurface | ...`` with each class linked
-  to its reference page; ``autoall`` still strips quotes from other aliases
-  when the name resolves to a class in the alias module.
-* The Manim documentation supplement now documents the private animation
-  builder returned by ``.animate`` under its real name, and its page title
-  keeps the leading underscore.  A short summary is installed for the class
-  when Manim supplies no docstring, so the ``Classes`` autosummary row is no
-  longer empty.
-* Project type aliases render by name again under postponed annotations:
-  ``SurfaceConfig``, ``GraphSurfaceConfig``, ``GeometrySpec``, ``ContourSpec``,
-  ``ColorRamp`` and ``SurfaceFunction`` stay aliases in parameter and return
-  types instead of expanding to ``Union[...]`` or ``tuple[VGroup, bool]``.
-  The Sphinx hook now patches
-  ``sphinx_autodoc_typehints._resolve.hints.type_hints`` — the binding the
-  installed 3.17.5 release actually calls — and restores aliases parsed from
-  the original annotation string, including names nested inside ``list[...]``
-  and unions.
-* Project aliases are also registered with Sphinx's official
-  ``autodoc_type_aliases`` option.  ``autodoc_all`` discovers public alias
-  assignments from the package AST and merges them on ``config-inited``, so
-  direct annotations such as ``ramp: ColorRamp`` and ``type[SurfaceConfig]``
-  render as linked alias names instead of expanded structures.  Sphinx 9
-  replaces a ``typehints_formatter`` assigned during ``setup()`` with the
-  configured value, so the earlier wrapper never saw parameter annotations.
-* Every vendored package that defines type aliases now has a ``Type Aliases``
-  section on its reference page.  ``autoall`` gained a ``typealias``
-  classification that renders real ``py:type`` targets with the alias source
-  from the module AST, so signatures such as
-  :type:`~manim_extensions.three_d.core.ContourSpec` link to the definition
-  instead of appearing as plain text.  Re-exported aliases are not duplicated.
-* Deprecation and runtime warnings no longer flood the pytest and CI logs:
-  internal calls to the compatibility rate functions use their unwrapped
-  implementations, Manim mobject getters use properties (``width``,
-  ``height``, ``points``, ``z_index``, ``axes``, ``states``, ``bonds``),
-  stroke updates use ``set_stroke``, and zero-length bonds and pymunk
-  constraint lines skip line updates that would divide by zero or warn.
-* Constant entries no longer render as empty blocks: re-exported constants
-  carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
-  ``= repr`` signature. Values longer than 1,000 characters, such as
-  :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE`, show
-  ``= dict with 10,083 entries`` with a ``Show`` button; the button
-  replaces the summary with the exact value inline in the signature. Class
-  and type names inside every constant value, whether it is folded or shown
-  in full, use the same cross-reference pass as signature defaults.
-  Fully-qualified ``<class 'module.Class'>`` spellings are replaced by the
-  linked short class name, and ``type[module.Class]`` by ``type[Class]``,
-  so values such as :data:`~manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS` keep compact links to their parser
-  classes.
-* Corrected the spelling of the node-state enum to
-  :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
-* ``validate_docstrings.py`` rejects a docstring that contains a backslash
-  without the ``r`` prefix (``non-raw-docstring``), and every existing
-  docstring now follows that rule.
-* Documentation examples render their real output again: the nbcell
-  execution cache is read by the directive, the sample molecule files ship
-  with the repository, and the chemistry examples run against them.
-* Nerd Font examples render the icon again instead of a
-  ``0F0320``-style tofu box: the media-cache renderer now finds the font at
-  ``<package>/nerdfont`` and installs it before the worker pool starts.
-* ``:output-language: pytb`` examples no longer show CI machine paths or the
-  documentation runner's own stack frame.
-* The :class:`~manim_extensions.meshes.exceptions.InvalidRequestException`
-  example raises again: it projects a five-dimensional mesh, because
-  four-dimensional meshes are now supported.
-* The installation page no longer tells Python 3.13+ users to install
-  ``manim-mobject-svg`` with ``--ignore-requires-python``. Both that plugin
-  and ``manim-nerdfont-icons`` are vendored as package submodules and need
-  no separate installation.
-
 Changed (33)
 ~~~~~~~~~~~~
 
@@ -330,9 +237,6 @@ Changed (33)
   checks against its own package and documentation tree without installing a
   separate distribution.
 
-Mypy
-~~~~
-
 * The whole package, vendored modules included, now passes
   ``mypy --strict``: the baseline of **3,875 errors across 198 of 295 files**
   is down to **0 errors in 295 files**.  ``follow_imports = "silent"`` and the
@@ -393,6 +297,99 @@ Mypy
 * The changelog entry for ``validate-types`` in the *Added* section above is
   updated to describe the package-wide check rather than the first-party
   allowlist.
+
+Fixed (19)
+~~~~~~~~~~
+
+* The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
+  a ``Text`` object instead of a formula, so the per-glyph random order is
+  visible in the rendered clip.
+* Python standard-library type links, including ``None``, now use the
+  inherited text colour in parameter descriptions.  ``None`` no longer keeps
+  a blue link colour while ``str`` and the other builtins stay plain.
+* The QR-code logger reference page now renders the module description
+  instead of an empty page.  The QR-code and Nerd Font docstrings link to the
+  bundled Icon Gallery, and Python docstrings no longer use Sphinx
+  ``:doc:`` roles that editors cannot resolve.
+* Image layers and grayscale image mobjects convert floating-point pixel
+  arrays to ``uint8`` before handing them to Manim, so examples built from
+  ``np.zeros`` no longer fail under Pillow with
+  ``Cannot handle this data type: (1, 1, 4), <f8``.  Images normalized to
+  ``[0, 1]`` are rescaled to ``[0, 255]`` first.
+* ``validate-types`` installs the ``docs`` extra alongside ``all`` because
+  mypy analyses the Sphinx directive helper and needs ``sphinx`` and
+  ``jinja2`` stubs to import it.
+* Type aliases now refer to the configuration classes directly:
+  ``SurfaceConfig`` and ``GraphSurfaceConfig`` are defined after their
+  classes, so their source no longer needs quoted forward references.  Both
+  render as ``GaussianSurface | SaddleSurface | ...`` with each class linked
+  to its reference page; ``autoall`` still strips quotes from other aliases
+  when the name resolves to a class in the alias module.
+* The Manim documentation supplement now documents the private animation
+  builder returned by ``.animate`` under its real name, and its page title
+  keeps the leading underscore.  A short summary is installed for the class
+  when Manim supplies no docstring, so the ``Classes`` autosummary row is no
+  longer empty.
+* Project type aliases render by name again under postponed annotations:
+  ``SurfaceConfig``, ``GraphSurfaceConfig``, ``GeometrySpec``, ``ContourSpec``,
+  ``ColorRamp`` and ``SurfaceFunction`` stay aliases in parameter and return
+  types instead of expanding to ``Union[...]`` or ``tuple[VGroup, bool]``.
+  The Sphinx hook now patches
+  ``sphinx_autodoc_typehints._resolve.hints.type_hints`` — the binding the
+  installed 3.17.5 release actually calls — and restores aliases parsed from
+  the original annotation string, including names nested inside ``list[...]``
+  and unions.
+* Project aliases are also registered with Sphinx's official
+  ``autodoc_type_aliases`` option.  ``autodoc_all`` discovers public alias
+  assignments from the package AST and merges them on ``config-inited``, so
+  direct annotations such as ``ramp: ColorRamp`` and ``type[SurfaceConfig]``
+  render as linked alias names instead of expanded structures.  Sphinx 9
+  replaces a ``typehints_formatter`` assigned during ``setup()`` with the
+  configured value, so the earlier wrapper never saw parameter annotations.
+* Every vendored package that defines type aliases now has a ``Type Aliases``
+  section on its reference page.  ``autoall`` gained a ``typealias``
+  classification that renders real ``py:type`` targets with the alias source
+  from the module AST, so signatures such as
+  :type:`~manim_extensions.three_d.core.ContourSpec` link to the definition
+  instead of appearing as plain text.  Re-exported aliases are not duplicated.
+* Deprecation and runtime warnings no longer flood the pytest and CI logs:
+  internal calls to the compatibility rate functions use their unwrapped
+  implementations, Manim mobject getters use properties (``width``,
+  ``height``, ``points``, ``z_index``, ``axes``, ``states``, ``bonds``),
+  stroke updates use ``set_stroke``, and zero-length bonds and pymunk
+  constraint lines skip line updates that would divide by zero or warn.
+* Constant entries no longer render as empty blocks: re-exported constants
+  carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
+  ``= repr`` signature. Values longer than 1,000 characters, such as
+  :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE`, show
+  ``= dict with 10,083 entries`` with a ``Show`` button; the button
+  replaces the summary with the exact value inline in the signature. Class
+  and type names inside every constant value, whether it is folded or shown
+  in full, use the same cross-reference pass as signature defaults.
+  Fully-qualified ``<class 'module.Class'>`` spellings are replaced by the
+  linked short class name, and ``type[module.Class]`` by ``type[Class]``,
+  so values such as :data:`~manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS` keep compact links to their parser
+  classes.
+* Corrected the spelling of the node-state enum to
+  :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
+* ``validate_docstrings.py`` rejects a docstring that contains a backslash
+  without the ``r`` prefix (``non-raw-docstring``), and every existing
+  docstring now follows that rule.
+* Documentation examples render their real output again: the nbcell
+  execution cache is read by the directive, the sample molecule files ship
+  with the repository, and the chemistry examples run against them.
+* Nerd Font examples render the icon again instead of a
+  ``0F0320``-style tofu box: the media-cache renderer now finds the font at
+  ``<package>/nerdfont`` and installs it before the worker pool starts.
+* ``:output-language: pytb`` examples no longer show CI machine paths or the
+  documentation runner's own stack frame.
+* The :class:`~manim_extensions.meshes.exceptions.InvalidRequestException`
+  example raises again: it projects a five-dimensional mesh, because
+  four-dimensional meshes are now supported.
+* The installation page no longer tells Python 3.13+ users to install
+  ``manim-mobject-svg`` with ``--ignore-requires-python``. Both that plugin
+  and ``manim-nerdfont-icons`` are vendored as package submodules and need
+  no separate installation.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
@@ -556,9 +553,6 @@ Fixed (51)
   joints being added to a non-existent ``space`` attribute, so
   ``start_swinging`` no longer fails with ``AttributeError``.
 
-Documentation and hygiene
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 * Reorganised the reference manual package by package: :mod:`~manim_extensions.chemistry`,
   :mod:`~manim_extensions.automata`, :mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.data_structures`, :mod:`~manim_extensions.economics`,
   :mod:`~manim_extensions.pymunk`, :mod:`~manim_extensions.mindmap`, :mod:`~manim_extensions.machine_learning`, :mod:`~manim_extensions.table`, and the rest
@@ -618,9 +612,6 @@ Documentation and hygiene
 * Rewrote ``CODE_OF_CONDUCT`` as the project's own code and removed
   duplicate chemistry overview pages plus stray rendered images.
 
-CI
-~~
-
 * Consumed the shared ``ExploreMaths/setup-manim-env@v1`` action across
   workflows.
 * Extended the Validate workflow with type-annotation, return-annotation,
@@ -656,7 +647,6 @@ CI
   the vendored modules are reformatted as well, a pre-commit hook formats
   staged files inside the commit being made, and a ``black --check`` job in
   the Validate workflow keeps the tree clean.
-
 
 v1.0.5
 ---------------------------------
