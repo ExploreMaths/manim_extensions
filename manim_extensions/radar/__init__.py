@@ -4,27 +4,9 @@
 
 """``manim-radar`` — animated radar (spider) charts for Manim.
 
-Build a chart, morph it into another one with a single command, or play a whole
-sequence::
-
-    from manim import *
-    from manim_extensions.radar import RadarChart, RadarData, RadarReel, DeepSpace
-
-    AXES = ["Speed", "Power", "Range", "Comfort", "Price", "Safety"]
-
-    class Demo(Scene):
-        def construct(self):
-            chart = RadarChart(axes=AXES, values=[8, 6, 7, 9, 5, 8], title="Six axes")
-            self.add(DeepSpace().link(chart))          # optional starfield
-            self.play(chart.reveal())
-
-            # one command morphs into another snapshot
-            self.play(chart.morph_to([5, 9, 4, 6, 9, 7], color="#E868C8"))
-
-            # ...or play a whole sequence in one go
-            RadarReel(chart, [
-                RadarData(axes=AXES, values=[9, 9, 8, 9, 9, 9], name="All round"),
-            ], backdrop=True).play_on(self)
+Provides radar chart construction, reveal and morph animations, comparison
+reels, colour themes, numeric displays, and camera helpers.  The reference
+page carries the rendered usage examples.
 """
 
 from __future__ import annotations

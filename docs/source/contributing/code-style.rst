@@ -137,7 +137,7 @@ Docstrings use the **numpydoc** style. The project enforces this with several AS
 Module docstrings
 ~~~~~~~~~~~~~~~~~
 
-Every ``.py`` file must have a module docstring immediately after any SPDX license header (and before any import). The docstring must open with ``"""`` or ``r"""``.
+Every ``.py`` file must have a module docstring immediately after any SPDX license header (and before any import). The docstring must open with ``"""`` or ``r"""``. A module docstring **describes only**: do not put rendered examples, ``.. manim::`` / ``.. code-block::`` directives, doctest prompts, or code snippets in it. Those belong on the reference page, which already carries a Usage section. ``validate_docstrings.py`` rejects them as ``module-example``.
 
 Raw docstrings and backslashes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

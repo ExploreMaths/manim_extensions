@@ -670,6 +670,37 @@ def iter_py_files() -> list[Path]:
 # ---------------------------------------------------------------------------
 # Reporting
 # ---------------------------------------------------------------------------
+
+
+def check_automodule_options(lines: list[str]) -> list[tuple[int, str]]:
+    """Reject member options on ``automodule`` reference pages.
+
+    Module pages render only the module docstring; the autodoc skip handler in
+    ``docs/source/conf.py`` also drops every module member.  A page that asks
+    for ``:members:`` contradicts that layout and would silently produce
+    duplicate API entries.
+    """
+    issues: list[tuple[int, str]] = []
+    forbidden = (":members:", ":undoc-members:", ":private-members:")
+    for index, line in enumerate(lines):
+        if ".. automodule::" not in line:
+            continue
+        cursor = index + 1
+        while cursor < len(lines):
+            stripped = lines[cursor].strip()
+            if stripped and not stripped.startswith(":"):
+                break
+            if stripped.startswith(forbidden):
+                issues.append(
+                    (
+                        cursor + 1,
+                        "automodule: module pages render the docstring only; remove member options",
+                    )
+                )
+            cursor += 1
+    return issues
+
+
 def check_rst_file(path: Path) -> list[tuple[str, int, str]]:
     """Run both checks on a single ``.rst`` file."""
     text = path.read_text(encoding="utf-8")
@@ -683,6 +714,9 @@ def check_rst_file(path: Path) -> list[tuple[str, int, str]]:
         issues.append((rel, idx + 1, f"indentation: {msg}"))
     for line_no, msg in check_docutils(text):
         issues.append((rel, line_no, f"docutils: {msg}"))
+    if "reference" in path.parts:
+        for line_no, msg in check_automodule_options(lines):
+            issues.append((rel, line_no, msg))
     return issues
 
 

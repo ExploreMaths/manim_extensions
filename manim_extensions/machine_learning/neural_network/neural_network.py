@@ -5,15 +5,9 @@
 
 """Neural Network Manim Visualization.
 
-This module is responsible for generating a neural network visualization with
-manim, specifically a fully connected neural network diagram.
-
-.. code-block:: python
-
-    # Specify how many nodes are in each node layer
-    layer_node_count = [5, 3, 5]
-    # Create the object with default style settings
-    NeuralNetwork(layer_node_count)
+Builds fully connected neural network diagrams with configurable layer sizes
+and forward-pass animations.  Usage examples live on the neural-network
+reference page.
 """
 
 from __future__ import annotations

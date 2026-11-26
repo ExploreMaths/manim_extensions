@@ -7,9 +7,7 @@ The reference manual documents constants through ``autodoc_all``'s ``data``
 classification under its ``Constants`` sections.  The project convention is
 to document a constant with a ``#:`` comment block immediately above the
 assignment; ``autodoc_all`` reads those ``#:`` lines as the entry
-description, the same way a docstring documents a class or function.  A
-bare string-literal statement trailing the assignment is also accepted as
-the constant description.
+description, the same way a docstring documents a class or function.
 
 Class-scope constants are checked too.  A public class assignment is a
 constant when it is all-uppercase, annotated as ``ClassVar``, or an annotated
@@ -127,25 +125,6 @@ def hashdoc_ends_period(lines: list[str], lineno: int) -> bool:
     return bool(re.search(r"[.!?][`'\")\]}]*$", text))
 
 
-def trailing_docstring(body: list[ast.stmt], node: ast.stmt) -> bool:
-    """Return whether *node* is followed by a bare string-literal docstring.
-
-    Some constants document themselves with a trailing triple-quoted
-    string statement instead of a ``#:`` comment; that bare string expression
-    counts as the constant description.
-    """
-    try:
-        index = body.index(node)
-    except ValueError:
-        return False
-    if index + 1 >= len(body):
-        return False
-    nxt = body[index + 1]
-    if not (isinstance(nxt, ast.Expr) and isinstance(nxt.value, ast.Constant)):
-        return False
-    return isinstance(nxt.value.value, str) and nxt.value.value.strip() != ""
-
-
 def constant_assignments(
     tree: ast.Module,
 ) -> list[tuple[str, ast.AnnAssign | ast.Assign]]:
@@ -192,9 +171,7 @@ def check_module(module: types.ModuleType) -> list[tuple[int, str]]:
             continue
         if classify(obj) in {"class", "function", "typealias"}:
             continue
-        documented = preceding_hashdoc(lines, node.lineno) or trailing_docstring(
-            tree.body, node
-        )
+        documented = preceding_hashdoc(lines, node.lineno)
         if not documented:
             missing.append((node.lineno, name))
         elif preceding_hashdoc(lines, node.lineno) and not hashdoc_starts_upper(
@@ -321,13 +298,9 @@ def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int,
                     continue
                 if not _is_class_constant(name, node, cls):
                     continue
-                documented = (
-                    preceding_hashdoc(lines, node.lineno)
-                    or trailing_docstring(cls.body, node)
-                    or (
-                        _is_instance_data_class(cls)
-                        and class_docstring_documents(cls, name)
-                    )
+                documented = preceding_hashdoc(lines, node.lineno) or (
+                    _is_instance_data_class(cls)
+                    and class_docstring_documents(cls, name)
                 )
                 if not documented:
                     missing.append((node.lineno, f"{cls.name}.{name}"))

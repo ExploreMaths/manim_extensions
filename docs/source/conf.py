@@ -565,12 +565,12 @@ _INTERNAL_ATTRIBUTES = {"_abc_impl", "_original__init__"}
 
 def _skip_internal_autodoc_member(app, what, name, obj, skip, options):
     """Skip special members and autodoc bookkeeping in private-members mode."""
+    # Module pages only render the module docstring.  ``autoall`` sections and
+    # member pages own the API listing, so an ``automodule`` directive must
+    # not repeat every member after the description.
+    if what == "module":
+        return True
     short = name.rsplit(".", 1)[-1]
-    try:
-        with open("/tmp/skip.log", "a", encoding="utf-8") as _f:
-            _f.write(f"{what}\t{name}\t{skip}\n")
-    except Exception:
-        pass
     if short in _INTERNAL_ATTRIBUTES:
         return True
     if short.startswith("__") and short.endswith("__"):

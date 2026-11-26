@@ -10,6 +10,18 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* Module docstrings now describe only; ``validate-docstrings`` rejects
+  ``.. manim::`` / ``.. code-block::`` blocks, doctest prompts and code
+  snippets inside them. ``radar`` and the neural-network module moved their
+  usage examples to the reference pages.
+* Every reference page renders its module description with
+  ``automodule``; the autodoc skip handler drops module-level members so the
+  page no longer repeats classes, functions and constants owned by member
+  pages and ``autoall`` sections. ``validate-rst`` fails if an ``automodule``
+  block asks for members.
+* Module and class constants now require a ``#:`` description immediately
+  above the assignment; trailing string literals are no longer accepted
+  because autodoc cannot render them. All existing constants were converted.
 * ``validate-manim-directives`` now rejects an animated ``.. manim::``
   example that does not end with ``self.wait()`` or longer. Seamless loops
   stay exempt: mark the code with ``# loops seamlessly`` or use

@@ -149,6 +149,7 @@ class RadarTheme:
 # ---------------------------------------------------------------------------
 # built-in themes
 # ---------------------------------------------------------------------------
+#: Bundled radar colour themes keyed by theme name.
 THEMES: dict[str, RadarTheme] = {
     t.name: t
     for t in [
@@ -226,7 +227,6 @@ THEMES: dict[str, RadarTheme] = {
         ),
     ]
 }
-"""Bundled radar colour themes keyed by theme name."""
 
 
 def theme_names() -> list[str]:

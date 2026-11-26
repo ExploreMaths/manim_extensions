@@ -62,6 +62,14 @@ SPDX_PATTERNS = [  # REUSE-IgnoreStart
 
 MANIM_BLOCK_PATTERN = ".. manim::"
 
+MODULE_EXAMPLE_DIRECTIVE_RE = re.compile(
+    r"^\s*\.\.\s+(?:manim|code-block|sourcecode|code|testcode|doctest)::"
+)
+MODULE_DOCTEST_RE = re.compile(r"^\s*>>>")
+MODULE_CODE_LINE_RE = re.compile(
+    r"^\s*(?:from manim import|class\s+\w+\s*\(|def\s+\w+\s*\(|self\.play\s*\()"
+)
+
 
 def has_spdx_header(lines):
     """Check if file starts with SPDX/license header."""
@@ -215,6 +223,37 @@ def has_duplicate_docstring(lines):
             break
 
     return len(docstring_positions) > 1
+
+
+def check_module_examples(filepath):
+    """Return example/usage lines inside a module-level docstring.
+
+    Module docstrings are rendered by ``automodule`` above the package
+    description.  Code examples there duplicate the rendered Usage section
+    and clutter the module page, so they belong in the page, not the
+    docstring.
+    """
+    try:
+        source = filepath.read_text(encoding="utf-8")
+        tree = ast.parse(source)
+    except (OSError, SyntaxError, UnicodeDecodeError):
+        return []
+    if not tree.body or not isinstance(tree.body[0], ast.Expr):
+        return []
+    node = tree.body[0]
+    if not (isinstance(node.value, ast.Constant) and isinstance(node.value.value, str)):
+        return []
+    hits = []
+    lines = source.splitlines()
+    for index in range(node.lineno - 1, node.end_lineno):
+        line = lines[index]
+        if MODULE_EXAMPLE_DIRECTIVE_RE.match(line):
+            hits.append((index + 1, "example directive"))
+        elif MODULE_DOCTEST_RE.match(line):
+            hits.append((index + 1, "doctest prompt"))
+        elif MODULE_CODE_LINE_RE.match(line):
+            hits.append((index + 1, "code example"))
+    return hits
 
 
 def check_init_param_docs(filepath):
@@ -561,6 +600,7 @@ def main():
     init_errors = []
     raw_errors = []
     cjk_errors = []
+    module_example_errors = []
     fixed_count = 0
     checked = 0
 
@@ -631,9 +671,20 @@ def main():
         for line_no, text in check_cjk_strings(py_file):
             cjk_errors.append((py_file, line_no, text))
 
+        for line_no, kind in check_module_examples(py_file):
+            module_example_errors.append((py_file, line_no, kind))
+
         checked += 1
 
-    if errors or func_errors or args_errors or init_errors or raw_errors or cjk_errors:
+    if (
+        errors
+        or func_errors
+        or args_errors
+        or init_errors
+        or raw_errors
+        or cjk_errors
+        or module_example_errors
+    ):
         total = (
             len(errors)
             + len(func_errors)
@@ -641,6 +692,7 @@ def main():
             + len(init_errors)
             + len(raw_errors)
             + len(cjk_errors)
+            + len(module_example_errors)
         )
         print(f"FAIL  docstrings  {total} issue(s)\n")
         for filepath, error_type in sorted(errors, key=lambda x: str(x[0])):
@@ -671,6 +723,14 @@ def main():
             print(
                 f"  {rel_path}:{line_no}  cjk-string: public source strings must "
                 f"be English: {text!r}"
+            )
+        for filepath, line_no, kind in sorted(
+            module_example_errors, key=lambda x: (str(x[0]), x[1])
+        ):
+            rel_path = filepath.relative_to(ROOT)
+            print(
+                f"  {rel_path}:{line_no}  module-example: module docstrings describe, "
+                f"not contain {kind}; move it to the reference page"
             )
         for filepath, line_no, name in sorted(
             raw_errors, key=lambda x: (str(x[0]), x[1])

@@ -42,17 +42,17 @@ class MArrayElementComp(Enum):
         component = MArrayElementComp.BODY
     """
 
+    #: :class:`~manim.mobject.geometry.polygram.Square` that represents the body.
     BODY = 0
-    """:class:`~manim.mobject.geometry.polygram.Square` that represents the body."""
 
+    #: :class:`~manim.mobject.text.text_mobject.Text` that represents the value.
     VALUE = 1
-    """:class:`~manim.mobject.text.text_mobject.Text` that represents the value."""
 
+    #: :class:`~manim.mobject.text.text_mobject.Text` that represents the index.
     INDEX = 2
-    """:class:`~manim.mobject.text.text_mobject.Text` that represents the index."""
 
+    #: :class:`~manim.mobject.text.text_mobject.Text` that represents the label.
     LABEL = 3
-    """:class:`~manim.mobject.text.text_mobject.Text` that represents the label."""
 
 
 class MArrayDirection(Enum):
@@ -90,14 +90,14 @@ class MArrayDirection(Enum):
         direction = MArrayDirection.RIGHT
     """
 
+    #: Upward direction.
     UP = 0
-    """Upward direction."""
 
+    #: Downward direction.
     DOWN = 1
-    """Downward direction."""
 
+    #: Rightward direction.
     RIGHT = 2
-    """Rightward direction."""
 
+    #: Leftward direction.
     LEFT = 3
-    """Leftward direction."""

@@ -120,6 +120,7 @@ class Theme:
         return "#FFFFFF"
 
 
+#: The 'One Dark' theme from the `Atom` text editor.
 OneDark = Theme(
     colors={
         "#C678DD": ["keyword", "directive"],  # Purple
@@ -133,9 +134,13 @@ OneDark = Theme(
     },
     group_matchers=["#D19A66", "#C678DD", "#56B6C2"],  # Orange  # Purple  # Cyan
 )
-"""The 'One Dark' theme from the `Atom` text editor."""
 
 
+#: GitHub language colours bundled for the languages exposed by this module.
+#:
+#: The upstream module downloaded this table from ``ozh/github-colors`` on
+#: import.  Only the fourteen languages constructed below are included here, so the
+#: module works offline and does not need to parse a network response.
 language_colors = {
     "C": {"color": "#555555"},
     "C++": {"color": "#f34b7d"},
@@ -152,12 +157,6 @@ language_colors = {
     "SQL": {"color": "#e38c00"},
     "TypeScript": {"color": "#3178c6"},
 }
-"""GitHub language colours bundled for the languages exposed by this module.
-
-The upstream module downloaded this table from ``ozh/github-colors`` on
-import.  Only the fourteen languages constructed below are included here, so the
-module works offline and does not need to parse a network response.
-"""
 
 
 class ProgrammingLanguage(abstract):
@@ -447,44 +446,44 @@ class CodeBlock(VGroup):
         )
 
 
+#: The C programming language, used to render C code in code blocks.
 C = ProgrammingLanguage("C")
-"""The :func:`~manim_extensions.physics.optics.lenses.Lens.C` programming language, used to render :func:`~manim_extensions.physics.optics.lenses.Lens.C` code in `CodeBlocks`"""
 
+#: The `C++` programming language, used to render `C++` code in `CodeBlocks`.
 Cpp = ProgrammingLanguage("C++", tokenize_name="Cpp")
-"""The `C++` programming language, used to render `C++` code in `CodeBlocks`."""
 
+#: The `C#` programming language, used to render `C#` code in `CodeBlocks`.
 CSharp = ProgrammingLanguage("C#", tokenize_name="CSharp")
-"""The `C#` programming language, used to render `C#` code in `CodeBlocks`."""
 
+#: The `Fortran` programming language, used to render Fortran code in `CodeBlocks`.
 Fortran = ProgrammingLanguage("Fortran")
-"""The `Fortran` programming language, used to render Fortran code in `CodeBlocks`."""
 
+#: The `Go` programming language, used to render `Go` code in `CodeBlocks`.
 Go = ProgrammingLanguage("Go")
-"""The `Go` programming language, used to render `Go` code in `CodeBlocks`."""
 
+#: The `Haskell` programming language, used to render `Haskell` code in `CodeBlocks`.
 Haskell = ProgrammingLanguage("Haskell")
-"""The `Haskell` programming language, used to render `Haskell` code in `CodeBlocks`."""
 
+#: The `Java` programming language, used to render `Java` code in `CodeBlocks`.
 Java = ProgrammingLanguage("Java")
-"""The `Java` programming language, used to render `Java` code in `CodeBlocks`."""
 
+#: The `JavaScript` programming language, used to render `JavaScript` code in `CodeBlocks`.
 JavaScript = ProgrammingLanguage("JavaScript")
-"""The `JavaScript` programming language, used to render `JavaScript` code in `CodeBlocks`."""
 
+#: The `Lua` programming language, used to render `Lua` code in `CodeBlocks`.
 Lua = ProgrammingLanguage("Lua")
-"""The `Lua` programming language, used to render `Lua` code in `CodeBlocks`. """
 
+#: The `Python` programming language, used to render `Python` code in `CodeBlocks`.
 Python = ProgrammingLanguage("Python")
-"""The `Python` programming language, used to render `Python` code in `CodeBlocks`."""
 
+#: The `Ruby` programming language, used to render `Ruby` code in `CodeBlocks`.
 Ruby = ProgrammingLanguage("Ruby")
-"""The `Ruby` programming language, used to render `Ruby` code in `CodeBlocks`."""
 
+#: The `Rust` programming language, used to render `Rust` code in `CodeBlocks`.
 Rust = ProgrammingLanguage("Rust")
-"""The `Rust` programming language, used to render `Rust` code in `CodeBlocks`."""
 
+#: The `SQL` programming language, used to render `SQL` code in `CodeBlocks`.
 SQL = ProgrammingLanguage("SQL")
-"""The `SQL` programming language, used to render `SQL` code in `CodeBlocks`."""
 
+#: The `TypeScript` programming language, used to render `TypeScript` code in `CodeBlocks`.
 TypeScript = ProgrammingLanguage("TypeScript")
-"""The `TypeScript` programming language, used to render `TypeScript` code in `CodeBlocks`"""

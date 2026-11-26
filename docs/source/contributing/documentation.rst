@@ -308,7 +308,9 @@ API Documentation Coverage
 
 Every **public** name (class, function, constant) exported by the package must appear in the documentation under ``docs/source/reference/``. This is enforced by ``validate_api_coverage.py``.
 
-Every public class and function must have a docstring. Every public module-level constant and all-uppercase class constant must carry a ``#:`` description immediately above its assignment. These rules are enforced by ``validate_docstrings.py`` and ``validate_constant_docstrings.py``.
+Every public class and function must have a docstring. Every public module-level constant and all-uppercase class constant must carry a ``#:`` description immediately above its assignment; a bare string literal after the assignment is invisible to autodoc and is **not** accepted. These rules are enforced by ``validate_docstrings.py`` and ``validate_constant_docstrings.py``.
+
+Module pages render their description with ``.. automodule::``. The autodoc skip handler in ``docs/source/conf.py`` drops every module-level member, so the page shows only the module docstring; classes, functions, constants and type aliases belong to the member pages and ``autoall`` sections. Do not add ``:members:``, ``:undoc-members:`` or ``:private-members:`` to an ``automodule`` block: ``validate_rst.py`` rejects those options.
 
 The docs use a custom ``.. autoall::`` directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an ``autoall`` block (or an explicit ``autoclass`` / ``autofunction`` / ``autodata``).
 

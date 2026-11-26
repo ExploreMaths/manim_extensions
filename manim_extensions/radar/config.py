@@ -331,6 +331,7 @@ class RadarConfig:
 # ---------------------------------------------------------------------------
 # style presets — "neo" is the 2.0 look, "classic" is the 1.0 look
 # ---------------------------------------------------------------------------
+#: Bundled radar style presets keyed by style name.
 STYLES: dict[str, RadarConfig] = {
     # 2.0: rainbow stroke + vertex glow + ticks + sweep + double-layer glow + rolling numbers
     "neo": RadarConfig(),
@@ -393,7 +394,6 @@ STYLES: dict[str, RadarConfig] = {
         morph_run_time=1.1,
     ),
 }
-"""Bundled radar style presets keyed by style name."""
 
 
 def style_names() -> list[str]:
