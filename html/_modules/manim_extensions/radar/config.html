@@ -1492,7 +1492,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">replace</span>
 
@@ -1601,7 +1601,7 @@
     <span class="c1">#: Distance of the axis names from the centre, as a multiple of ``radius``.</span>
     <span class="n">label_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.10</span>
     <span class="c1">#: Font family used for the axis names.</span>
-    <span class="n">name_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">name_font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font weight used for the axis names.</span>
     <span class="n">name_weight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"BOLD"</span>
     <span class="c1">#: Colour axis names with their axis colour (False -&gt; near-white).</span>
@@ -1609,7 +1609,7 @@
     <span class="c1">#: "roll" (odometer tween) | "swap" (snap to integers) | "off".</span>
     <span class="n">numbers</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"roll"</span>
     <span class="c1">#: Font family used for the axis numbers.</span>
-    <span class="n">number_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">number_font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font size of the axis numbers.</span>
     <span class="n">number_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">28</span>
     <span class="c1">#: Place the numbers right after the axis name (True) or inside the chart.</span>
@@ -1731,9 +1731,9 @@
 
     <span class="c1"># ---- title &amp; nameplate ----------------------------------------------</span>
     <span class="c1">#: Optional chart title; None hides the title.</span>
-    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font family used for the chart title.</span>
-    <span class="n">title_font</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">title_font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Font size of the chart title.</span>
     <span class="n">title_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
     <span class="c1">#: Vertical position of the header, as a multiple of ``radius``.</span>
@@ -1904,7 +1904,7 @@
 
 <div class="viewcode-block" id="get_style">
 <a class="viewcode-back" href="../../../reference/radar/config.html#manim_extensions.radar.config.get_style">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_style</span><span class="p">(</span><span class="n">style</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RadarConfig</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">RadarConfig</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_style</span><span class="p">(</span><span class="n">style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">RadarConfig</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Resolve a style name, configuration, or ``None`` to a copy.</span>
 
 <span class="sd">    Parameters</span>

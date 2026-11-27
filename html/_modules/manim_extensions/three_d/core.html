@@ -1490,7 +1490,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">"""Three-dimensional geometry and animation presets for Manim.</span>
@@ -1581,8 +1581,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
 <span class="n">SurfaceFunction</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span>
-<span class="n">ColorRamp</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">],</span> <span class="nb">float</span><span class="p">]]</span>
-<span class="n">GeometrySpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+<span class="n">ColorRamp</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+<span class="n">GeometrySpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
 <span class="n">ContourSpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
 <span class="n">FeatureSpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
 
@@ -1736,7 +1736,7 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.html#manim_extensions.three_d.core._radius_for_level">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_radius_for_level</span><span class="p">(</span>
     <span class="n">f</span><span class="p">:</span> <span class="n">SurfaceFunction</span><span class="p">,</span> <span class="n">d_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Find the nearest radius where the surface reaches a level.</span>
 
 <span class="sd">    Parameters</span>
@@ -1809,9 +1809,9 @@
 <span class="sd">    """</span>
 
     <span class="c1">#: Surface function; None selects the built-in shape.</span>
-    <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
     <span class="c1">#: LaTeX label for the surface function.</span>
-    <span class="n">func_tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">func_tex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kc">None</span>  <span class="c1"># corner formula; None = custom function without a displayed formula</span>
     <span class="p">)</span>
     <span class="c1">#: Parameter domain covered by the surface.</span>
@@ -1835,9 +1835,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># peak label</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># captions aligned by slot; omit for none</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># captions aligned by slot; omit for none</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># content budget in seconds; None = use pace</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># content budget in seconds; None = use pace</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>  <span class="c1"># fast=10 / normal=24 / full=45</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -1851,7 +1851,7 @@
 
 <div class="viewcode-block" id="GaussianSurface.resolve">
 <a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurface.html#manim_extensions.three_d.core.GaussianSurface.resolve">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Resolve the surface function and its displayed formula.</span>
 
 <span class="sd">        Returns</span>
@@ -1859,7 +1859,7 @@
 <span class="sd">            The height function and the formula string, with defaults filled in.</span>
 <span class="sd">        """</span>
 
-        <span class="n">tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+        <span class="n">tex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">)))</span>
             <span class="n">tex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"z = e^{-x^</span><span class="si">{2}</span><span class="s2">-y^</span><span class="si">{2}</span><span class="s2">}"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_tex</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_tex</span>
@@ -1908,9 +1908,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># saddle label (projected HUD label)</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -1961,9 +1961,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top label (projected HUD label)</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -2012,9 +2012,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top vertex label (3D label)</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -2065,9 +2065,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># highest-point label (3D label + antenna)</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -2120,9 +2120,9 @@
     <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># waist front label (HUD label, no dashed line)</span>
     <span class="c1">#: Optional captions aligned with the animation slots.</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
     <span class="c1">#: Background colour of the scene.</span>
@@ -2138,23 +2138,23 @@
 
 <span class="c1"># These aliases must follow the classes they name: assignment expressions are</span>
 <span class="c1"># evaluated at import time, unlike annotations postponed by the future import.</span>
-<span class="n">SurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
-    <span class="n">GaussianSurface</span><span class="p">,</span>
-    <span class="n">SaddleSurface</span><span class="p">,</span>
-    <span class="n">ParaboloidSurface</span><span class="p">,</span>
-    <span class="n">EllipsoidSurface</span><span class="p">,</span>
-    <span class="n">TorusSurface</span><span class="p">,</span>
-    <span class="n">HyperboloidOneSheet</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">GraphSurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">GaussianSurface</span><span class="p">,</span> <span class="n">SaddleSurface</span><span class="p">,</span> <span class="n">ParaboloidSurface</span><span class="p">]</span>
-<span class="n">SurfaceConfigClass</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">GaussianSurface</span><span class="p">],</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">SaddleSurface</span><span class="p">],</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">ParaboloidSurface</span><span class="p">],</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">EllipsoidSurface</span><span class="p">],</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">TorusSurface</span><span class="p">],</span>
-    <span class="nb">type</span><span class="p">[</span><span class="n">HyperboloidOneSheet</span><span class="p">],</span>
-<span class="p">]</span>
+<span class="n">SurfaceConfig</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">GaussianSurface</span>
+    <span class="o">|</span> <span class="n">SaddleSurface</span>
+    <span class="o">|</span> <span class="n">ParaboloidSurface</span>
+    <span class="o">|</span> <span class="n">EllipsoidSurface</span>
+    <span class="o">|</span> <span class="n">TorusSurface</span>
+    <span class="o">|</span> <span class="n">HyperboloidOneSheet</span>
+<span class="p">)</span>
+<span class="n">GraphSurfaceConfig</span> <span class="o">=</span> <span class="n">GaussianSurface</span> <span class="o">|</span> <span class="n">SaddleSurface</span> <span class="o">|</span> <span class="n">ParaboloidSurface</span>
+<span class="n">SurfaceConfigClass</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="nb">type</span><span class="p">[</span><span class="n">GaussianSurface</span><span class="p">]</span>
+    <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">SaddleSurface</span><span class="p">]</span>
+    <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">ParaboloidSurface</span><span class="p">]</span>
+    <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">EllipsoidSurface</span><span class="p">]</span>
+    <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">TorusSurface</span><span class="p">]</span>
+    <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">HyperboloidOneSheet</span><span class="p">]</span>
+<span class="p">)</span>
 
 
 <span class="c1"># ---------------- Beat skeleton (shared graph surfaces) ----------------</span>
@@ -2520,7 +2520,7 @@
         <span class="c1"># ---------- caption HUD (text + formula VGroup, screen-fixed) ----------</span>
         <span class="n">cur_cap</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">make_cap</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">live</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">make_cap</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">live</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Build one caption line and optionally register it as HUD.</span>
 
 <span class="sd">            Parameters</span>
@@ -2552,7 +2552,7 @@
                 <span class="p">)</span>  <span class="c1"># registered on entry; caller must self.remove to detach</span>
             <span class="k">return</span> <span class="n">g</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">swap_caption</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">swap_caption</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Crossfade the caption line without a Transform.</span>
 
 <span class="sd">            Parameters</span>
