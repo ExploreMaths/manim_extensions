@@ -43,7 +43,7 @@ Constants
    Solid
 
 Classes
-========
+---------
 
 .. autoclass:: manim_extensions.fontawesome.manim_fontawesome.BrandEnum
    :show-inheritance:

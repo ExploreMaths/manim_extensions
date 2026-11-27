@@ -26,7 +26,7 @@ Classes
    alg_tidy_tree.WrappedTree
 
 Functions
-=========
+---------
 
 .. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.convert_back
 .. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.get_min

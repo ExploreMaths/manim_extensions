@@ -24,7 +24,7 @@ Classes
    alg_standard.TreeNode
 
 Functions
-=========
+---------
 
 .. autofunction:: manim_extensions.mindmap.algorithms.alg_standard.copy_node
 .. autofunction:: manim_extensions.mindmap.algorithms.alg_standard.split_integer

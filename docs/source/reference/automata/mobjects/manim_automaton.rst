@@ -22,6 +22,6 @@ Classes
    manim_automaton.ManimAutomaton
 
 Constants
-=========
+---------
 
 .. autodata:: manim_extensions.automata.mobjects.manim_automaton.default_animation_style

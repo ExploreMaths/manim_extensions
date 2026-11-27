@@ -12,6 +12,6 @@ svg
 
 
 Constants
-=========
+---------
 
 .. autodata:: manim_extensions.mobject_svg.svg.CAIRO_LINE_WIDTH_MULTIPLE

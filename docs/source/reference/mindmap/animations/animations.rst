@@ -32,7 +32,7 @@ Classes
    animations.AbstractLayoutAnimation
 
 Functions
-=========
+---------
 
 .. autofunction:: manim_extensions.mindmap.animations.animations.animate_of_alter
 .. autofunction:: manim_extensions.mindmap.animations.animations.animate_of_create
