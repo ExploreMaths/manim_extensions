@@ -343,6 +343,13 @@ def _alias_from_annotation_string(_src, _obj):
     return _value
 
 
+def _union_args(value):
+    """Return the member set of a PEP 604 or ``typing.Union`` annotation."""
+    if _typing.get_origin(value) in (_typing.Union, _types.UnionType):
+        return set(_typing.get_args(value))
+    return None
+
+
 def _simple_type_repr(x):
     if x is getattr(_typing, "Self", object()):
         return ":py:obj:`Self`"
@@ -376,6 +383,23 @@ def _typehints_formatter(annotation, *args):
     for _target, _dotted in _PROJECT_ALIASES.values():
         if annotation is _target:
             return f":py:type:`~{_dotted}`"
+    # ``ParsableManimColor`` is a PEP 604 union alias, so
+    # ``Optional[ParsableManimColor]`` is flattened by
+    # ``typing.get_type_hints`` into ``typing.Union[..., None]`` and the
+    # alias identity is lost.  Collapse only when every member of the alias
+    # is present and the sole extra member is ``None``; otherwise the
+    # annotation is a wider union and must keep its expanded form.
+    try:
+        _color = _resolve_alias("manim.utils.color.core.ParsableManimColor")
+    except Exception:
+        _color = None
+    _ann_args = _union_args(annotation)
+    _tgt_args = _union_args(_color)
+    if _ann_args is not None and _tgt_args is not None:
+        _extra = _ann_args - _tgt_args
+        if _tgt_args <= _ann_args and _extra <= {type(None)}:
+            _none = " | :py:obj:`None`" if _extra else ""
+            return f":py:obj:`~manim.utils.color.core.ParsableManimColor`{_none}"
     # Structural match (the typehints plugin rebuilds annotations via
     # ``get_all_type_hints``, so identity is lost for every alias; the
     # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` and
