@@ -398,8 +398,12 @@ def _typehints_formatter(annotation, *args):
     if _ann_args is not None and _tgt_args is not None:
         _extra = _ann_args - _tgt_args
         if _tgt_args <= _ann_args and _extra <= {type(None)}:
-            _none = " | :py:obj:`None`" if _extra else ""
-            return f":py:obj:`~manim.utils.color.core.ParsableManimColor`{_none}"
+            if _extra:
+                return (
+                    ":py:obj:`~typing.Optional`\\ \\["
+                    ":py:obj:`~manim.utils.color.core.ParsableManimColor`]"
+                )
+            return ":py:obj:`~manim.utils.color.core.ParsableManimColor`"
     # Structural match (the typehints plugin rebuilds annotations via
     # ``get_all_type_hints``, so identity is lost for every alias; the
     # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` and
