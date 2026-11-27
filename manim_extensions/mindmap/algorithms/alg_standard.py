@@ -5,7 +5,7 @@
 """Standard mind map layout algorithm."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any, assert_never, cast
 
 # unlinked-class-ok: Source
 
@@ -257,6 +257,8 @@ class StandardLayout(Layout):
                 return LayoutDirection.BottomToTop
             case LayoutDirection.BottomToTop:
                 return LayoutDirection.TopToBottom
+            case _:
+                assert_never(direction)
 
     def _split(self) -> Any:
         """Split the root's children into left/right (or top/bottom) parts.

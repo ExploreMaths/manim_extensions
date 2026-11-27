@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, Union
+from typing import Any
 
 from dataclasses import dataclass, replace
 
@@ -240,7 +240,7 @@ def theme_names() -> list[str]:
     return list(THEMES)
 
 
-def get_theme(theme: Union[str, RadarTheme, None]) -> RadarTheme:
+def get_theme(theme: str | RadarTheme | None) -> RadarTheme:
     """Resolve a theme name, theme object, or ``None`` to a theme.
 
     Parameters

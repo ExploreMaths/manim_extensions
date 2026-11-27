@@ -9,7 +9,7 @@ transition timing). Colours live in :class:`manim_extensions.radar.theme.RadarTh
 """
 
 from __future__ import annotations
-from typing import Any, Optional, Union
+from typing import Any
 
 from dataclasses import dataclass, field, replace
 
@@ -116,7 +116,7 @@ class RadarConfig:
     #: Distance of the axis names from the centre, as a multiple of ``radius``.
     label_offset: float = 1.10
     #: Font family used for the axis names.
-    name_font: Optional[str] = None
+    name_font: str | None = None
     #: Font weight used for the axis names.
     name_weight: str = "BOLD"
     #: Colour axis names with their axis colour (False -> near-white).
@@ -124,7 +124,7 @@ class RadarConfig:
     #: "roll" (odometer tween) | "swap" (snap to integers) | "off".
     numbers: str = "roll"
     #: Font family used for the axis numbers.
-    number_font: Optional[str] = None
+    number_font: str | None = None
     #: Font size of the axis numbers.
     number_size: int = 28
     #: Place the numbers right after the axis name (True) or inside the chart.
@@ -246,9 +246,9 @@ class RadarConfig:
 
     # ---- title & nameplate ----------------------------------------------
     #: Optional chart title; None hides the title.
-    title: Optional[str] = None
+    title: str | None = None
     #: Font family used for the chart title.
-    title_font: Optional[str] = None
+    title_font: str | None = None
     #: Font size of the chart title.
     title_size: int = 30
     #: Vertical position of the header, as a multiple of ``radius``.
@@ -407,7 +407,7 @@ def style_names() -> list[str]:
     return list(STYLES)
 
 
-def get_style(style: Union[str, RadarConfig, None]) -> RadarConfig:
+def get_style(style: str | RadarConfig | None) -> RadarConfig:
     """Resolve a style name, configuration, or ``None`` to a copy.
 
     Parameters

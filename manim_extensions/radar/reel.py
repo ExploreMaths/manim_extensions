@@ -12,7 +12,6 @@ keeps its colour across the whole reel.
 
 from __future__ import annotations
 from collections.abc import Iterable
-from typing import Optional, Union
 
 from dataclasses import replace
 
@@ -79,11 +78,11 @@ class RadarReel:
         datasets: Iterable[RadarInputList],
         *,
         hold: float = 0.6,
-        transition: Optional[str] = None,
-        run_time: Optional[float] = None,
-        intro: Union[bool, float] = True,
-        outro: Union[bool, float] = True,
-        backdrop: Union[bool, DeepSpace, None] = None,
+        transition: str | None = None,
+        run_time: float | None = None,
+        intro: bool | float = True,
+        outro: bool | float = True,
+        backdrop: bool | DeepSpace | None = None,
         gap_hold: float = 1.5,
         auto_color: bool = True,
         verbose: bool = False,
@@ -98,7 +97,7 @@ class RadarReel:
         self.auto_color = auto_color
         self.verbose = verbose
         self.backdrop_spec = backdrop
-        self.backdrop: Optional[DeepSpace] = None
+        self.backdrop: DeepSpace | None = None
 
         items = list(datasets)
         if not items:

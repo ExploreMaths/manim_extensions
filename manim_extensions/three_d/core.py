@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
 
 # -*- coding: utf-8 -*-
 """Three-dimensional geometry and animation presets for Manim.
@@ -98,8 +98,8 @@ import numpy as np
 from dataclasses import dataclass
 
 SurfaceFunction = Callable[[float, float], float]
-ColorRamp = Sequence[tuple[Union[str, ManimColor], float]]
-GeometrySpec = tuple[SurfaceFunction, Optional[str], float, float, float]
+ColorRamp = Sequence[tuple[str | ManimColor, float]]
+GeometrySpec = tuple[SurfaceFunction, str | None, float, float, float]
 ContourSpec = tuple[VGroup, bool]
 FeatureSpec = tuple[float, float, float, str, bool, float]
 
@@ -245,7 +245,7 @@ def _ramp_color(ramp: ColorRamp, t: float) -> ManimColor:
 
 def _radius_for_level(
     f: SurfaceFunction, d_max: float, c: float, n: int = 60
-) -> Optional[float]:
+) -> float | None:
     """Find the nearest radius where the surface reaches a level.
 
     Parameters
@@ -312,9 +312,9 @@ class GaussianSurface:
     """
 
     #: Surface function; None selects the built-in shape.
-    func: Optional[Callable[..., float]] = None  # z=f(x,y); None = built-in Gaussian
+    func: Callable[..., float] | None = None  # z=f(x,y); None = built-in Gaussian
     #: LaTeX label for the surface function.
-    func_tex: Optional[str] = (
+    func_tex: str | None = (
         None  # corner formula; None = custom function without a displayed formula
     )
     #: Parameter domain covered by the surface.
@@ -338,9 +338,9 @@ class GaussianSurface:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # peak label
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None  # captions aligned by slot; omit for none
+    captions: Sequence[str] | None = None  # captions aligned by slot; omit for none
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None  # content budget in seconds; None = use pace
+    duration: float | None = None  # content budget in seconds; None = use pace
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"  # fast=10 / normal=24 / full=45
     #: Background colour of the scene.
@@ -352,7 +352,7 @@ class GaussianSurface:
     #: Camera zoom factor.
     zoom: float = 0.95
 
-    def resolve(self) -> tuple[SurfaceFunction, Optional[str]]:
+    def resolve(self) -> tuple[SurfaceFunction, str | None]:
         """Resolve the surface function and its displayed formula.
 
         Returns
@@ -360,7 +360,7 @@ class GaussianSurface:
             The height function and the formula string, with defaults filled in.
         """
 
-        tex: Optional[str]
+        tex: str | None
         if self.func is None:
             f = lambda x, y: float(np.exp(-(x * x + y * y)))
             tex = r"z = e^{-x^{2}-y^{2}}" if self.func_tex is None else self.func_tex
@@ -405,9 +405,9 @@ class SaddleSurface:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # saddle label (projected HUD label)
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None
+    captions: Sequence[str] | None = None
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None
+    duration: float | None = None
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
     #: Background colour of the scene.
@@ -455,9 +455,9 @@ class ParaboloidSurface:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # top label (projected HUD label)
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None
+    captions: Sequence[str] | None = None
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None
+    duration: float | None = None
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
     #: Background colour of the scene.
@@ -503,9 +503,9 @@ class EllipsoidSurface:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # top vertex label (3D label)
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None
+    captions: Sequence[str] | None = None
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None
+    duration: float | None = None
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
     #: Background colour of the scene.
@@ -553,9 +553,9 @@ class TorusSurface:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # highest-point label (3D label + antenna)
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None
+    captions: Sequence[str] | None = None
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None
+    duration: float | None = None
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
     #: Background colour of the scene.
@@ -605,9 +605,9 @@ class HyperboloidOneSheet:
     #: Whether to add the geometric callout label.
     annotate: bool = True  # waist front label (HUD label, no dashed line)
     #: Optional captions aligned with the animation slots.
-    captions: Optional[Sequence[str]] = None
+    captions: Sequence[str] | None = None
     #: Optional content duration in seconds; None uses the pace preset.
-    duration: Optional[float] = None
+    duration: float | None = None
     #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
     #: Background colour of the scene.
@@ -622,23 +622,23 @@ class HyperboloidOneSheet:
 
 # These aliases must follow the classes they name: assignment expressions are
 # evaluated at import time, unlike annotations postponed by the future import.
-SurfaceConfig = Union[
-    GaussianSurface,
-    SaddleSurface,
-    ParaboloidSurface,
-    EllipsoidSurface,
-    TorusSurface,
-    HyperboloidOneSheet,
-]
-GraphSurfaceConfig = Union[GaussianSurface, SaddleSurface, ParaboloidSurface]
-SurfaceConfigClass = Union[
-    type[GaussianSurface],
-    type[SaddleSurface],
-    type[ParaboloidSurface],
-    type[EllipsoidSurface],
-    type[TorusSurface],
-    type[HyperboloidOneSheet],
-]
+SurfaceConfig = (
+    GaussianSurface
+    | SaddleSurface
+    | ParaboloidSurface
+    | EllipsoidSurface
+    | TorusSurface
+    | HyperboloidOneSheet
+)
+GraphSurfaceConfig = GaussianSurface | SaddleSurface | ParaboloidSurface
+SurfaceConfigClass = (
+    type[GaussianSurface]
+    | type[SaddleSurface]
+    | type[ParaboloidSurface]
+    | type[EllipsoidSurface]
+    | type[TorusSurface]
+    | type[HyperboloidOneSheet]
+)
 
 
 # ---------------- Beat skeleton (shared graph surfaces) ----------------
@@ -976,7 +976,7 @@ class GraphSurfaceScene(ThreeDScene):
         # ---------- caption HUD (text + formula VGroup, screen-fixed) ----------
         cur_cap = None
 
-        def make_cap(text: str, tex: Optional[str] = None, live: bool = True) -> VGroup:
+        def make_cap(text: str, tex: str | None = None, live: bool = True) -> VGroup:
             """Build one caption line and optionally register it as HUD.
 
             Parameters
@@ -1008,7 +1008,7 @@ class GraphSurfaceScene(ThreeDScene):
                 )  # registered on entry; caller must self.remove to detach
             return g
 
-        def swap_caption(text: str, tex: Optional[str] = None) -> VGroup:
+        def swap_caption(text: str, tex: str | None = None) -> VGroup:
             """Crossfade the caption line without a Transform.
 
             Parameters

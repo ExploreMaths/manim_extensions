@@ -12,7 +12,7 @@ transitions whose overshoot makes the escape visible.
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, Optional, Union
+from typing import Any
 
 from manim import Animation
 
@@ -111,27 +111,27 @@ class OverflowRadarChart(RadarChart):
 
     def __init__(
         self,
-        data: Optional[RadarData] = None,
+        data: RadarData | None = None,
         *,
-        axes: Optional[Sequence[str]] = None,
-        values: Optional[Sequence[float]] = None,
-        datasets: Optional[Sequence[Any]] = None,
-        name: Optional[str] = None,
-        color: Optional[str] = None,
-        max_value: Optional[float] = None,
-        compare_numbers: Optional[str] = None,
-        legend: Optional[bool] = None,
-        style: Union[str, RadarConfig, None] = "neo",
-        theme: Union[str, RadarTheme, None] = "midnight",
-        config: Optional[RadarConfig] = None,
-        radius: Optional[float] = None,
-        position: Optional[Sequence[float]] = None,
-        title: Optional[str] = None,
-        levels: Optional[int] = None,
-        numbers: Optional[str] = None,
-        sweep: Optional[bool] = None,
-        rim: Optional[bool] = None,
-        opacity: Optional[float] = None,
+        axes: Sequence[str] | None = None,
+        values: Sequence[float] | None = None,
+        datasets: Sequence[Any] | None = None,
+        name: str | None = None,
+        color: str | None = None,
+        max_value: float | None = None,
+        compare_numbers: str | None = None,
+        legend: bool | None = None,
+        style: str | RadarConfig | None = "neo",
+        theme: str | RadarTheme | None = "midnight",
+        config: RadarConfig | None = None,
+        radius: float | None = None,
+        position: Sequence[float] | None = None,
+        title: str | None = None,
+        levels: int | None = None,
+        numbers: str | None = None,
+        sweep: bool | None = None,
+        rim: bool | None = None,
+        opacity: float | None = None,
         **kwargs: Any,
     ) -> None:
         base = config if config is not None else get_style(style)

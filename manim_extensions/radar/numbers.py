@@ -5,7 +5,7 @@
 """Odometer style value numbers (the "rolling digits" used by style ``neo``)."""
 
 from __future__ import annotations
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import math
 
@@ -69,7 +69,7 @@ class RollingNumber(VGroup):
     def __init__(
         self,
         *,
-        font: Optional[str] = None,
+        font: str | None = None,
         size: int = 28,
         color: str = "#FFFFFF",
         decimals: int = 0,

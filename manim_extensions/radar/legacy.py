@@ -12,7 +12,7 @@ Both play the same 23-snapshot demo reel that ships with the package.
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Optional, cast
+from typing import cast
 
 from manim import Scene
 
@@ -108,7 +108,7 @@ def replica_datasets(
     for i, seg in enumerate(REPLICA_TIMELINE):
         nxt = REPLICA_TIMELINE[i + 1]["t"] if i + 1 < n else REPLICA_TOTAL
         dur = cast(float, nxt) - cast(float, seg["t"])
-        emphasis: Optional[str] = None
+        emphasis: str | None = None
         if seg.get("gap"):
             emphasis = "gap"
         elif seg.get("zoom"):
@@ -150,7 +150,7 @@ class RadarV1Scene(Scene):
     #: 2.0 chart theme preset.
     theme = "midnight"
     #: Optional chart title; ``None`` keeps the generated nameplate text.
-    title: Optional[str] = None
+    title: str | None = None
 
     def construct(self) -> None:
         """Build the 1.0 chart and play its reel without a transition."""
@@ -200,7 +200,7 @@ class RadarV2Scene(Scene):
     #: 2.0 chart theme preset.
     theme = "midnight"
     #: Default title shown above the 2.0 chart.
-    title: Optional[str] = "Six-Axis Capability · Radar Atlas"
+    title: str | None = "Six-Axis Capability · Radar Atlas"
 
     def construct(self) -> None:
         """Build the 2.0 chart with its themed backdrop and play the reel."""

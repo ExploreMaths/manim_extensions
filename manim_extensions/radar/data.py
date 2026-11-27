@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, Optional, Union
+from typing import Any
 
 import math
 from dataclasses import dataclass, field, replace
@@ -69,14 +69,14 @@ class RadarData:
 
     axes: Sequence[str]
     values: Sequence[float]
-    name: Optional[str] = None
-    color: Optional[str] = None
-    max_value: Optional[float] = None
+    name: str | None = None
+    color: str | None = None
+    max_value: float | None = None
     rim: bool = False
-    emphasis: Optional[str] = None
-    hold: Optional[float] = None
-    transition: Optional[str] = None
-    note: Optional[str] = None
+    emphasis: str | None = None
+    hold: float | None = None
+    transition: str | None = None
+    note: str | None = None
     #: Arbitrary metadata carried with the snapshot.
     meta: dict[Any, Any] = field(default_factory=dict)
 
@@ -172,7 +172,7 @@ class RadarData:
             return float(levels * math.ceil(top / levels))
         return float(levels)
 
-    def ratios(self, scale: Optional[float] = None) -> list[float]:
+    def ratios(self, scale: float | None = None) -> list[float]:
         """Express values as fractions of the full scale.
 
         Parameters
@@ -188,9 +188,7 @@ class RadarData:
         sc = float(scale if scale is not None else self.full_scale) or 1.0
         return [v / sc for v in self.values]
 
-    def radius_values(
-        self, radius: float, scale: Optional[float] = None
-    ) -> list[float]:
+    def radius_values(self, radius: float, scale: float | None = None) -> list[float]:
         """Convert values to scene-unit radii.
 
         Parameters
@@ -207,7 +205,7 @@ class RadarData:
 
         return [r * radius for r in self.ratios(scale)]
 
-    def color_or(self, fallback: Union[str, ManimColor]) -> ManimColor:
+    def color_or(self, fallback: str | ManimColor) -> ManimColor:
         """Resolve the polygon colour for this snapshot.
 
         Parameters
@@ -239,7 +237,7 @@ class RadarData:
 
         return replace(self, values=tuple(float(v) for v in values), **changes)
 
-    def renamed(self, name: Optional[str]) -> "RadarData":
+    def renamed(self, name: str | None) -> "RadarData":
         """Copy this snapshot with another dataset name.
 
         Parameters

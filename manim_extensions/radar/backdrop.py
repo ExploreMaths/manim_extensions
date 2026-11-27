@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, TYPE_CHECKING, Union, cast
+from typing import Any, TYPE_CHECKING, cast
 
 import math
 import random
@@ -25,7 +25,7 @@ from .utils import mix
 __all__ = ["DeepSpace", "set_scene_background"]
 
 
-def set_scene_background(theme: Union[str, RadarTheme, None] = "midnight") -> str:
+def set_scene_background(theme: str | RadarTheme | None = "midnight") -> str:
     """Set Manim's global background colour to a theme background.
 
     Parameters
@@ -113,7 +113,7 @@ class DeepSpace(VGroup):
 
     def __init__(
         self,
-        theme: Union[str, RadarTheme, None] = "midnight",
+        theme: str | RadarTheme | None = "midnight",
         *,
         center: Sequence[float] = (0.0, 0.0),
         glow: bool = True,

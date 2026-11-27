@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Iterable, Sequence
-from typing import Any, Optional
+from typing import Any
 
 import math
 
@@ -176,12 +176,10 @@ def ease_out_overshoot(t: float, fraction: float = 0.16) -> float:
     return ease_out_back(t, overshoot=c)
 
 
-_FONT_CACHE: dict[tuple[Any, ...], Optional[str]] = {}
+_FONT_CACHE: dict[tuple[Any, ...], str | None] = {}
 
 
-def pick_font(
-    candidates: Sequence[str], default: Optional[str] = None
-) -> Optional[str]:
+def pick_font(candidates: Sequence[str], default: str | None = None) -> str | None:
     """Return the first installed font from a candidate list.
 
     This lets the library look right on macOS, Windows and Linux without

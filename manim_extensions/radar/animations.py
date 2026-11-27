@@ -12,7 +12,7 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, Optional, TYPE_CHECKING, cast
+from typing import Any, TYPE_CHECKING, cast
 
 import math
 
@@ -215,7 +215,7 @@ class Shockwave(Animation):
 
     def __init__(
         self,
-        center: Optional[Point3D] = None,
+        center: Point3D | None = None,
         *,
         color: ParsableManimColor = "#FFFFFF",
         radius_start: float = 0.18,
@@ -344,23 +344,23 @@ class RadarMorph(Animation):
         chart: RadarChart,
         target: Sequence[RadarData],
         *,
-        transition: Optional[str] = None,
-        run_time: Optional[float] = None,
+        transition: str | None = None,
+        run_time: float | None = None,
         rate_func: Callable[[float], float] = smooth,
-        dip: Optional[bool] = None,
-        dip_ratio: Optional[float] = None,
-        shockwave: Optional[bool] = None,
-        shock_color: Optional[ParsableManimColor] = None,
-        stepped: Optional[bool] = None,
-        dim: Optional[bool] = None,
-        glitch: Optional[bool] = None,
-        burst: Optional[bool] = None,
+        dip: bool | None = None,
+        dip_ratio: float | None = None,
+        shockwave: bool | None = None,
+        shock_color: ParsableManimColor | None = None,
+        stepped: bool | None = None,
+        dim: bool | None = None,
+        glitch: bool | None = None,
+        burst: bool | None = None,
         colors: bool = True,
-        rim: Optional[float] = None,
-        opacity: Optional[float] = None,
+        rim: float | None = None,
+        opacity: float | None = None,
         fade_name: bool = True,
         name_shift: float = 0.30,
-        stagger: Optional[float] = None,
+        stagger: float | None = None,
         **kwargs: Any,
     ) -> None:
         if transition is not None and transition not in TRANSITIONS:
@@ -393,9 +393,9 @@ class RadarMorph(Animation):
         self.fade_name = fade_name
         self.name_shift = name_shift
         self.stagger = cfg.stagger if stagger is None else float(stagger)
-        self._ring: Optional[Ring] = None
-        self._cam: Optional[dict[str, Any]] = None
-        self._legend_path: Optional[str] = None
+        self._ring: Ring | None = None
+        self._cam: dict[str, Any] | None = None
+        self._legend_path: str | None = None
         super().__init__(
             chart,
             run_time=run_time if run_time is not None else cfg.morph_run_time,
@@ -493,7 +493,7 @@ class RadarMorph(Animation):
 
         self._cam = self._prepare_camera()
 
-    def _prepare_camera(self) -> Optional[dict[str, Any]]:
+    def _prepare_camera(self) -> dict[str, Any] | None:
         """Compute the automatic micro-push target for a burst morph.
 
         Returns
@@ -770,8 +770,8 @@ class RadarReveal(Animation):
         *,
         run_time: float = 0.9,
         rate_func: Callable[[float], float] = smooth,
-        from_values: Optional[Sequence[float]] = None,
-        with_shockwave: Optional[bool] = None,
+        from_values: Sequence[float] | None = None,
+        with_shockwave: bool | None = None,
         **kwargs: Any,
     ) -> None:
         self.chart = chart
@@ -781,7 +781,7 @@ class RadarReveal(Animation):
         self.with_shockwave = (
             chart.config.shockwave if with_shockwave is None else with_shockwave
         )
-        self._ring: Optional[Ring] = None
+        self._ring: Ring | None = None
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
@@ -890,7 +890,7 @@ class RadarBurstIn(Animation):
         *,
         run_time: float = 1.1,
         rate_func: Callable[[float], float] = smooth,
-        with_shockwave: Optional[bool] = None,
+        with_shockwave: bool | None = None,
         **kwargs: Any,
     ) -> None:
         self.chart = chart
@@ -898,7 +898,7 @@ class RadarBurstIn(Animation):
         self.with_shockwave = (
             chart.config.shockwave if with_shockwave is None else with_shockwave
         )
-        self._ring: Optional[Ring] = None
+        self._ring: Ring | None = None
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
@@ -1086,7 +1086,7 @@ class GlitchFlash(Animation):
         self.chart = chart
         self.bars = bars
         self.flickers = max(1, int(flickers))
-        self._bars: Optional[VGroup] = None
+        self._bars: VGroup | None = None
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:

@@ -23,9 +23,9 @@ Usage:
 """
 
 import argparse
+import contextlib
 import json
 import multiprocessing
-import os
 import platform
 import re
 import shutil
@@ -328,17 +328,13 @@ def render_block(task):
             *user_code,
             f"{class_name}().render()",
         ]
-        previous_cwd = os.getcwd()
-        os.chdir(workdir)
-        copy_assets(assets, Path(workdir))
-        try:
+        with contextlib.chdir(workdir):
+            copy_assets(assets, Path(workdir))
             with tempconfig(example_config):
                 exec(
                     "\n".join(exec_code),
                     {"__file__": DIRECTIVE_FILE, "__name__": "__manim_docgen__"},
                 )
-        finally:
-            os.chdir(previous_cwd)
 
         if save_last_frame:
             hits = list(Path(workdir).rglob(f"{output_file}.png"))
@@ -413,8 +409,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    # Absolute so the per-block ``os.chdir(workdir)`` cannot retarget the
-    # relative path another worker is about to enter.
+    # Absolute so the per-block ``contextlib.chdir(workdir)`` cannot retarget
+    # the relative path another worker is about to enter.
     out = Path(args.out).resolve()
     videos_out = out / "videos"
     images_out = out / "images"

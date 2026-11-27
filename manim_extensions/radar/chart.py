@@ -12,7 +12,7 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, Optional, TYPE_CHECKING, Union, cast
+from typing import Any, TYPE_CHECKING, cast
 
 import math
 from dataclasses import replace
@@ -50,8 +50,8 @@ if TYPE_CHECKING:
     from .camera import CameraRig
 
 
-RadarInput = Union[RadarData, dict[Any, Any], Sequence[float]]
-RadarInputList = Union[RadarInput, Sequence[RadarInput]]
+RadarInput = RadarData | dict[Any, Any] | Sequence[float]
+RadarInputList = RadarInput | Sequence[RadarInput]
 
 __all__ = ["RadarChart"]
 
@@ -128,14 +128,14 @@ class Series:
         self.rim = float(rim)
         self.opacity = 1.0
         self.opacity_target = 1.0
-        self.numbers: Optional[VGroup] = None  # per-axis RollingNumbers (compare modes)
+        self.numbers: VGroup | None = None  # per-axis RollingNumbers (compare modes)
 
         # overflow decorations, owned per dataset (lazily built on first spike)
-        self.fx_group: Optional[VGroup] = None  # dash tracks, in the chart's fx layer
-        self.dash_pool: list[Optional[VGroup]] = []  # per axis
-        self.breach: list[Optional[VGroup]] = []  # per axis
+        self.fx_group: VGroup | None = None  # dash tracks, in the chart's fx layer
+        self.dash_pool: list[VGroup | None] = []  # per axis
+        self.breach: list[VGroup | None] = []  # per axis
         self.big_numbers: dict[Any, Any] = {}  # axis -> unclamped RollingNumber
-        self.big_numbers_group: Optional[VGroup] = None
+        self.big_numbers_group: VGroup | None = None
 
         cfg = chart.config
         n = chart._n
@@ -335,29 +335,29 @@ class RadarChart(VGroup):
 
     def __init__(
         self,
-        data: Optional[RadarData] = None,
+        data: RadarData | None = None,
         *,
-        axes: Optional[Sequence[str]] = None,
-        values: Optional[Sequence[float]] = None,
-        name: Optional[str] = None,
-        color: Optional[str] = None,
-        max_value: Optional[float] = None,
-        datasets: Optional[Sequence[Any]] = None,
-        style: Union[str, RadarConfig, None] = "neo",
-        theme: Union[str, RadarTheme, None] = "midnight",
-        config: Optional[RadarConfig] = None,
-        radius: Optional[float] = None,
-        position: Optional[Sequence[float]] = None,
-        title: Optional[str] = None,
-        levels: Optional[int] = None,
-        numbers: Optional[str] = None,
-        web_rainbow: Optional[bool] = None,
-        compare_numbers: Optional[str] = None,
-        legend: Optional[bool] = None,
-        sweep: Optional[bool] = None,
-        rim: Optional[bool] = None,
-        overflow: Optional[bool] = None,
-        opacity: Optional[float] = None,
+        axes: Sequence[str] | None = None,
+        values: Sequence[float] | None = None,
+        name: str | None = None,
+        color: str | None = None,
+        max_value: float | None = None,
+        datasets: Sequence[Any] | None = None,
+        style: str | RadarConfig | None = "neo",
+        theme: str | RadarTheme | None = "midnight",
+        config: RadarConfig | None = None,
+        radius: float | None = None,
+        position: Sequence[float] | None = None,
+        title: str | None = None,
+        levels: int | None = None,
+        numbers: str | None = None,
+        web_rainbow: bool | None = None,
+        compare_numbers: str | None = None,
+        legend: bool | None = None,
+        sweep: bool | None = None,
+        rim: bool | None = None,
+        overflow: bool | None = None,
+        opacity: float | None = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
@@ -531,8 +531,8 @@ class RadarChart(VGroup):
 
         # z-order: grid -> [gap lobes -> series 0 -> series 1 ...] -> labels
         self._poly_layers = VGroup()
-        self.gap_group: Optional[VGroup] = None
-        self._gap_spec: Optional[dict[Any, Any]] = None
+        self.gap_group: VGroup | None = None
+        self._gap_spec: dict[Any, Any] | None = None
         self._series: list[Series] = []
         self.add(self._poly_layers)
 
@@ -578,22 +578,22 @@ class RadarChart(VGroup):
 
         # ---- nameplate & header & legend ------------------------------------
         self._name_holder = VGroup()
-        self._name_text: Optional[Text] = None
-        self._name_old: Optional[Text] = None
+        self._name_text: Text | None = None
+        self._name_old: Text | None = None
         self._name_alpha = 1.0
         self._name_old_alpha = 0.0
         self._name_dy = 0.0
         self._name_old_dy = 0.0
         self.add(self._name_holder)
-        self.header: Optional[Text] = None
+        self.header: Text | None = None
         self._title_visible = False
         if cfg.title:
             self.header = self._make_title(cfg.title)
             self.add(self.header)
 
         self.legend = VGroup()
-        self._legend_content: Optional[VGroup] = None
-        self._legend_old: Optional[VGroup] = None
+        self._legend_content: VGroup | None = None
+        self._legend_old: VGroup | None = None
         self._legend_alpha = 1.0
         self._legend_old_alpha = 0.0
         self._legend_dy = 0.0
@@ -601,8 +601,8 @@ class RadarChart(VGroup):
         self.add(self.legend)
 
         # ---- datasets --------------------------------------------------------
-        self._focus: Optional[int] = None
-        self._rig: Optional[CameraRig] = None  # set by attach_camera
+        self._focus: int | None = None
+        self._rig: CameraRig | None = None  # set by attach_camera
         self._install_datasets(self._initial)
         if cfg.overflow:
             # above every series polygon, below the labels & numbers
@@ -917,7 +917,7 @@ class RadarChart(VGroup):
         a: int = 0,
         b: int = 1,
         *,
-        color: Optional[ParsableManimColor] = None,
+        color: ParsableManimColor | None = None,
         opacity: float = 0.32,
         side: str = "both",
         live: bool = True,
@@ -1075,7 +1075,7 @@ class RadarChart(VGroup):
     # imperative setters (driven by the animations, usable directly too)
     # ==================================================================
     def set_values(
-        self, values: Sequence[float], scale: Optional[float] = None
+        self, values: Sequence[float], scale: float | None = None
     ) -> "RadarChart":
         """Snap the first dataset to new values without animating.
 
@@ -1301,9 +1301,9 @@ class RadarChart(VGroup):
         self,
         data: RadarInputList,
         *,
-        color: Optional[str] = None,
-        name: Optional[str] = None,
-        max_value: Optional[float] = None,
+        color: str | None = None,
+        name: str | None = None,
+        max_value: float | None = None,
         **kwargs: Any,
     ) -> Animation:
         """Morph this chart into one or more target snapshots.
@@ -1461,7 +1461,7 @@ class RadarChart(VGroup):
             np.ndarray, self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0]
         )
 
-    def trace_web(self, run_time: Optional[float] = None) -> Animation:
+    def trace_web(self, run_time: float | None = None) -> Animation:
         """Trace the rainbow web before revealing the data.
 
         The data layer is hidden when this starts and is restored by
@@ -1485,7 +1485,7 @@ class RadarChart(VGroup):
     # scene helpers
     # ==================================================================
     def attach_backdrop(
-        self, scene: Scene, theme: Optional[RadarTheme] = None, **kwargs: Any
+        self, scene: Scene, theme: RadarTheme | None = None, **kwargs: Any
     ) -> Mobject:
         """Add a deep-space backdrop behind the chart.
 
@@ -1574,7 +1574,7 @@ class RadarChart(VGroup):
             target = self._series[0].data.with_values(data)
         return target
 
-    def _resolve_color(self, color: Optional[str], index: int) -> ManimColor:
+    def _resolve_color(self, color: str | None, index: int) -> ManimColor:
         """Resolve the colour for one dataset.
 
         Parameters
@@ -2474,7 +2474,7 @@ class RadarChart(VGroup):
         y = self._legend_row_y(label_top, frame_limit)
         base = a + v * y
 
-        def paint(content: Optional[VGroup], alpha: float, dy: float) -> None:
+        def paint(content: VGroup | None, alpha: float, dy: float) -> None:
             """Place and fade one legend row at the current layout slot.
 
             Parameters
@@ -2517,7 +2517,7 @@ class RadarChart(VGroup):
     @staticmethod
     def _seg_intersect(
         p0: np.ndarray, p1: np.ndarray, q0: np.ndarray, q1: np.ndarray
-    ) -> Optional[np.ndarray]:
+    ) -> np.ndarray | None:
         """Find the intersection of two line segments.
 
         Parameters

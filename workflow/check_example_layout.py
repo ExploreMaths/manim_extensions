@@ -27,8 +27,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import multiprocessing
-import os
 import shutil
 import sys
 import tempfile
@@ -183,9 +183,7 @@ def probe_block(task):
         root = _WORKER_ROOT or Path(tempfile.mkdtemp())
         workdir = Path(tempfile.mkdtemp(dir=root))
         stage_assets(assets, workdir)
-        previous = Path.cwd()
-        os.chdir(workdir)
-        try:
+        with contextlib.chdir(workdir):
             with tempconfig(
                 {
                     "disable_caching": True,
@@ -258,8 +256,6 @@ def probe_block(task):
                 # mobjects can lose their points once the context is torn down,
                 # which previously made every OpenGL example look empty.
                 measurement = measure_pool(pool, scene.camera)
-        finally:
-            os.chdir(previous)
 
         if measurement is None:
             return (class_name, source, None, "no mobjects in scene")

@@ -13,7 +13,7 @@ scales the chart instead — same idea, zero setup.
 """
 
 from __future__ import annotations
-from typing import Any, Optional
+from typing import Any
 
 import numpy as np
 from manim import Mobject, MovingCameraScene
@@ -95,7 +95,7 @@ class CameraRig:
 
     def pull_out(
         self,
-        factor: Optional[float] = None,
+        factor: float | None = None,
         target: Mobject | Point3D | None = None,
         run_time: float = 1.0,
         **kwargs: Any,
