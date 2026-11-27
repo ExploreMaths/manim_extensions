@@ -30,6 +30,6 @@ Type Aliases
    :types: typealias
 
 Constants
-=========
+---------
 
 .. autodata:: manim_extensions.radar.chart.TAU

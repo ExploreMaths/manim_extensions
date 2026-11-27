@@ -24,6 +24,6 @@ Classes
    alg_time_line.TimelineNode
 
 Functions
-=========
+---------
 
 .. autofunction:: manim_extensions.mindmap.algorithms.alg_time_line.walk
