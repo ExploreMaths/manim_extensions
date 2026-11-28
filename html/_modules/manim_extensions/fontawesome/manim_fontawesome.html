@@ -1535,17 +1535,6 @@
 <span class="c1">#: Font Awesome release bundled with the package.</span>
 <span class="n">FONT_AWESOME_VERSION</span> <span class="o">=</span> <span class="s2">"6.5.1"</span>
 
-<span class="c1"># Enum members whose Font Awesome names collide with Python builtins use a</span>
-<span class="c1"># trailing underscore. The style namespaces keep accepting the original names.</span>
-<span class="n">_RESERVED_ICON_NAMES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"copyright"</span><span class="p">:</span> <span class="s2">"copyright_"</span><span class="p">,</span>
-    <span class="s2">"filter"</span><span class="p">:</span> <span class="s2">"filter_"</span><span class="p">,</span>
-    <span class="s2">"list"</span><span class="p">:</span> <span class="s2">"list_"</span><span class="p">,</span>
-    <span class="s2">"map"</span><span class="p">:</span> <span class="s2">"map_"</span><span class="p">,</span>
-    <span class="s2">"print"</span><span class="p">:</span> <span class="s2">"print_"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">_ORIGINAL_ICON_NAMES</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">_RESERVED_ICON_NAMES</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
 
 <div class="viewcode-block" id="BrandEnum">
 <a class="viewcode-back" href="../../../reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.BrandEnum">[docs]</a>
@@ -5863,9 +5852,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The requested regular icon.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span>
-            <span class="n">RegularEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">_RESERVED_ICON_NAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)]</span><span class="o">.</span><span class="n">value</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span><span class="n">RegularEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 </div>
 
 
@@ -5911,9 +5898,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The requested solid icon.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span>
-            <span class="n">SolidEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">_RESERVED_ICON_NAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)]</span><span class="o">.</span><span class="n">value</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span><span class="n">SolidEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 </div>
 
 
@@ -5936,7 +5921,7 @@
 <span class="sd">        (or the matching namespace) to obtain the icon mobject.</span>
 <span class="sd">    """</span>
     <span class="n">enums</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"solid"</span><span class="p">:</span> <span class="n">SolidEnum</span><span class="p">,</span> <span class="s2">"regular"</span><span class="p">:</span> <span class="n">RegularEnum</span><span class="p">,</span> <span class="s2">"brand"</span><span class="p">:</span> <span class="n">BrandEnum</span><span class="p">}</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">_ORIGINAL_ICON_NAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">enums</span><span class="p">[</span><span class="n">style</span><span class="p">]</span><span class="o">.</span><span class="n">__members__</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">enums</span><span class="p">[</span><span class="n">style</span><span class="p">]</span><span class="o">.</span><span class="n">__members__</span><span class="p">)</span></div>
 
 
 
