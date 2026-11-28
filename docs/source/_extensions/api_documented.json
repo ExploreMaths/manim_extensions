@@ -744,8 +744,6 @@
  "manim_extensions.fontawesome.manim_fontawesome.RegularEnum",
  "manim_extensions.fontawesome.manim_fontawesome.Solid",
  "manim_extensions.fontawesome.manim_fontawesome.SolidEnum",
- "manim_extensions.fontawesome.manim_fontawesome._ORIGINAL_ICON_NAMES",
- "manim_extensions.fontawesome.manim_fontawesome._RESERVED_ICON_NAMES",
  "manim_extensions.fontawesome.manim_fontawesome._get_svg_object",
  "manim_extensions.fontawesome.manim_fontawesome.brand",
  "manim_extensions.fontawesome.manim_fontawesome.brand_dir",

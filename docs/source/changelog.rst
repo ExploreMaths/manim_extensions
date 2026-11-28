@@ -122,12 +122,10 @@ Changed (34)
   a trailing underscore: :attr:`~manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_`,
   ``map_``, ``filter_``, ``print_``, ``copyright_`` and
   :attr:`~manim_extensions.fontawesome.manim_fontawesome.RegularEnum.map_`,
-  ``copyright_``.  The ``solid`` and ``regular`` namespaces still accept the
-  public icon names (``solid.list``, ``regular.map``, ...), and
-  ``list_icons()`` keeps returning the original icon names.  This removes
-  the ambiguous Sphinx target that made ``list`` in a type alias link to the
-  icon constant.
-
+  ``copyright_``.  The old names are not kept as compatibility aliases;
+  use ``solid.list_``, ``regular.map_`` and the matching new member names.
+  ``list_icons()`` also returns the new names.  This removes the ambiguous
+  Sphinx target that made ``list`` in a type alias link to the icon constant.
 * The QR code factory is now the :class:`~manim_extensions.qr_codes.qr.QRCode`
   mobject class.  The refactored version no longer exposes a separate
   ``qr_code`` function or compatibility alias.  Each instance is a

@@ -52,17 +52,6 @@ solid_dir = svg_dir / "solid"
 #: Font Awesome release bundled with the package.
 FONT_AWESOME_VERSION = "6.5.1"
 
-# Enum members whose Font Awesome names collide with Python builtins use a
-# trailing underscore. The style namespaces keep accepting the original names.
-_RESERVED_ICON_NAMES = {
-    "copyright": "copyright_",
-    "filter": "filter_",
-    "list": "list_",
-    "map": "map_",
-    "print": "print_",
-}
-_ORIGINAL_ICON_NAMES = {value: key for key, value in _RESERVED_ICON_NAMES.items()}
-
 
 class BrandEnum(Enum):
     """Bundled brand-style icon paths.
@@ -4358,9 +4347,7 @@ class Regular:
         -------
             The requested regular icon.
         """
-        return _get_svg_object(
-            RegularEnum.__members__[_RESERVED_ICON_NAMES.get(name, name)].value
-        )
+        return _get_svg_object(RegularEnum.__members__[name].value)
 
 
 class Solid:
@@ -4400,9 +4387,7 @@ class Solid:
         -------
             The requested solid icon.
         """
-        return _get_svg_object(
-            SolidEnum.__members__[_RESERVED_ICON_NAMES.get(name, name)].value
-        )
+        return _get_svg_object(SolidEnum.__members__[name].value)
 
 
 # patched: added list_icons() — upstream offers no public way to enumerate
@@ -4421,7 +4406,7 @@ def list_icons(style: str = "solid") -> list[str]:
         (or the matching namespace) to obtain the icon mobject.
     """
     enums = {"solid": SolidEnum, "regular": RegularEnum, "brand": BrandEnum}
-    return [_ORIGINAL_ICON_NAMES.get(name, name) for name in enums[style].__members__]
+    return list(enums[style].__members__)
 
 
 #: Enum of brand-style icon names mapped to their SVG paths.
