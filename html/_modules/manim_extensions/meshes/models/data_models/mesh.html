@@ -1495,7 +1495,6 @@
 <span class="sd">""":class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="c1"># unlinked-class-ok: Array</span>
 
@@ -1973,7 +1972,7 @@
 
 <div class="viewcode-block" id="Mesh.convert_vertices_to_3d">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.convert_vertices_to_3d">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">convert_vertices_to_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_vertices_to_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""transforms currents mesh vertices permanently to be 3D, works if dim is &lt; 3.</span>
 
 <span class="sd">        A 4-D mesh is projected onto three dimensions first, so the mesh</span>
@@ -1984,11 +1983,6 @@
 <span class="sd">        perspective</span>
 <span class="sd">            Distance of the projection centre for a 4-D mesh.  Ignored for</span>
 <span class="sd">            lower dimensions; defaults to the mesh dimensionality.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2081,18 +2075,13 @@
 <div class="viewcode-block" id="Mesh.add_vertices">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.add_vertices">[docs]</a>
     <span class="nd">@dangling_vert_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_vertices</span><span class="p">:</span> <span class="n">Vertices</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_vertices</span><span class="p">:</span> <span class="n">Vertices</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append new vertices to the mesh.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        new_vertices</span>
 <span class="sd">            Array of vertex coordinates to add.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2112,7 +2101,7 @@
 
 <div class="viewcode-block" id="Mesh.remove_vertices">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_vertices">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove vertices at the given indices and update references.</span>
 
 <span class="sd">        Parameters</span>
@@ -2120,11 +2109,6 @@
 <span class="sd">        indices</span>
 <span class="sd">            Indices of the vertices to remove.  Negative indexing is not</span>
 <span class="sd">            supported.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2147,7 +2131,7 @@
 
 <div class="viewcode-block" id="Mesh.update_vertex">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.update_vertex">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_vert</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_vert</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the coordinates of a single vertex.</span>
 
 <span class="sd">        Parameters</span>
@@ -2156,11 +2140,6 @@
 <span class="sd">            Index of the vertex to update.  Negative indexing is not supported.</span>
 <span class="sd">        new_vert</span>
 <span class="sd">            New coordinates for the vertex.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2196,18 +2175,13 @@
 <div class="viewcode-block" id="Mesh.add_faces">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.add_faces">[docs]</a>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_faces</span><span class="p">:</span> <span class="n">Faces</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_faces</span><span class="p">:</span> <span class="n">Faces</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append new faces to the mesh.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        new_faces</span>
 <span class="sd">            Faces to add.  Each face is an iterable of vertex indices.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2244,7 +2218,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_faces">[docs]</a>
     <span class="nd">@dangling_vert_decorator</span><span class="p">()</span>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove faces at the given indices and update parts.</span>
 
 <span class="sd">        Parameters</span>
@@ -2252,11 +2226,6 @@
 <span class="sd">        indices</span>
 <span class="sd">            Indices of the faces to remove.  Negative indexing is not</span>
 <span class="sd">            supported.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2280,7 +2249,7 @@
 <div class="viewcode-block" id="Mesh.update_face">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.update_face">[docs]</a>
     <span class="nd">@dangling_vert_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_face</span><span class="p">:</span> <span class="n">Face</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_face</span><span class="p">:</span> <span class="n">Face</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the vertices of a single face.</span>
 
 <span class="sd">        Parameters</span>
@@ -2289,11 +2258,6 @@
 <span class="sd">            Index of the face to update.  Negative indexing is not supported.</span>
 <span class="sd">        new_face</span>
 <span class="sd">            New vertex indices for the face.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2320,18 +2284,13 @@
 <div class="viewcode-block" id="Mesh.add_parts">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.add_parts">[docs]</a>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_parts</span><span class="p">:</span> <span class="n">Parts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_parts</span><span class="p">:</span> <span class="n">Parts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append new parts to the mesh.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        new_parts</span>
 <span class="sd">            Parts to add.  Each part is an iterable of face indices.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2365,7 +2324,7 @@
 <div class="viewcode-block" id="Mesh.remove_parts">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_parts">[docs]</a>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove parts at the given indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2373,11 +2332,6 @@
 <span class="sd">        indices</span>
 <span class="sd">            Indices of the parts to remove.  Negative indexing is not</span>
 <span class="sd">            supported.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2395,7 +2349,7 @@
 <div class="viewcode-block" id="Mesh.update_part">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.update_part">[docs]</a>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_part</span><span class="p">:</span> <span class="n">Part</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_part</span><span class="p">:</span> <span class="n">Part</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the faces of a single part.</span>
 
 <span class="sd">        Parameters</span>
@@ -2404,11 +2358,6 @@
 <span class="sd">            Index of the part to update.  Negative indexing is not supported.</span>
 <span class="sd">        new_part</span>
 <span class="sd">            New face indices for the part.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2433,7 +2382,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.add_to_mesh">[docs]</a>
     <span class="nd">@dangling_vert_decorator</span><span class="p">()</span>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">"Mesh"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">"Mesh"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Merge another mesh into this one by shifting its indices.</span>
 
 <span class="sd">        The vertices, faces and parts of ``other`` are appended with</span>
@@ -2445,11 +2394,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        other</span>
 <span class="sd">            Another mesh to merge into this one.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2625,7 +2569,7 @@
 
 <div class="viewcode-block" id="Mesh.scale_mesh">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.scale_mesh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale all vertices by a uniform factor.</span>
 
 <span class="sd">        Parameters</span>
@@ -2634,11 +2578,6 @@
 <span class="sd">            Scale factor applied to every vertex.</span>
 <span class="sd">        about_point</span>
 <span class="sd">            If given, the scaling is performed around this point.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span> <span class="o">-=</span> <span class="n">about_point</span>
@@ -2652,7 +2591,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.stretch_mesh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stretch_mesh</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stretch all vertices along a single dimension.</span>
 
 <span class="sd">        Parameters</span>
@@ -2663,11 +2602,6 @@
 <span class="sd">            Index of the dimension to stretch.</span>
 <span class="sd">        about_point</span>
 <span class="sd">            If given, the stretch is performed around this point.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span> <span class="o">-=</span> <span class="n">about_point</span>
@@ -2679,7 +2613,7 @@
 
 <div class="viewcode-block" id="Mesh.translate_mesh">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_mesh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">translate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">translation</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">translate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">translation</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Translate (shift) all vertices by the given vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -2687,11 +2621,6 @@
 <span class="sd">        translation</span>
 <span class="sd">            Translation vector.  Its length must equal the mesh</span>
 <span class="sd">            dimension.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2713,7 +2642,7 @@
 
 <div class="viewcode-block" id="Mesh.translate_vertex">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_vertex">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">translate_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">translation</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">translate_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">translation</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Translate a single vertex by the given vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -2723,11 +2652,6 @@
 <span class="sd">        translation</span>
 <span class="sd">            Translation vector.  Its length must equal the mesh</span>
 <span class="sd">            dimension.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2760,7 +2684,7 @@
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
         <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate all vertices around a given axis.</span>
 
 <span class="sd">        For 2-D meshes the rotation is performed around the implicit z-axis,</span>
@@ -2778,11 +2702,6 @@
 <span class="sd">            rotation plane (used for 4-D).</span>
 <span class="sd">        about_point</span>
 <span class="sd">            If given, the rotation is performed around this point.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2910,7 +2829,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
         <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Flip all vertices across the plane orthogonal to ``axis``.</span>
 
 <span class="sd">        This mirrors :meth:`~manim.mobject.mobject.Mobject.flip`, which is</span>
@@ -2927,11 +2846,6 @@
 <span class="sd">            Axis orthogonal to the mirror plane.</span>
 <span class="sd">        about_point</span>
 <span class="sd">            If given, the flip is performed around this point.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -3066,18 +2980,13 @@
 
 <div class="viewcode-block" id="Mesh.remove_duplicate_vertices">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove duplicate vertices and update all face references.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        precision</span>
 <span class="sd">            Decimal places used when comparing vertices; i.e. equality up to ``1e-10``.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">old_vertices</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">)</span>
         <span class="c1"># get unique vertices, indices, and the inverse references</span>
@@ -3102,17 +3011,12 @@
 
 <div class="viewcode-block" id="Mesh.remove_duplicate_faces">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_faces">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_faces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove duplicate faces and update part references.</span>
 
 <span class="sd">        Faces are considered equal when their vertex indices match</span>
 <span class="sd">        up to a cyclic permutation (rolling order), not necessarily</span>
 <span class="sd">        at the exact same positions.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i_face</span><span class="p">,</span> <span class="n">face</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">):</span>
@@ -3132,16 +3036,11 @@
 
 <div class="viewcode-block" id="Mesh.remove_duplicate_parts">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_parts">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicate_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove duplicate parts from the mesh.</span>
 
 <span class="sd">        Parts are considered equal when they contain the same face indices</span>
 <span class="sd">        regardless of their order.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i_part</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">):</span>
@@ -3157,7 +3056,7 @@
 
 <div class="viewcode-block" id="Mesh.remove_duplicates">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicates">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove all duplicate vertices, faces and parts.</span>
 
 <span class="sd">        Parameters</span>
@@ -3165,11 +3064,6 @@
 <span class="sd">        precision</span>
 <span class="sd">            Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`</span>
 <span class="sd">            .</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicate_vertices</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicate_faces</span><span class="p">()</span>

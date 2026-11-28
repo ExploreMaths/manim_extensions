@@ -1556,7 +1556,9 @@
 <div class="viewcode-block" id="MolParser.read_file">
 <a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/mol_parser.MolParser.html#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Read a MOL file and return its lines.</span>
 
 <span class="sd">        Parameters</span>

@@ -1570,7 +1570,6 @@
 
 <span class="sd">    .. doc-example-covers: make_connective_lines, make_input_feature_map_rectangles, make_output_feature_map_rectangles</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layer</span>
@@ -1860,14 +1859,14 @@
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""NOTE This create override animation</span>
-<span class="sd">        is a workaround to make sure that the filter</span>
-<span class="sd">        does not show up in the scene before the create animation.</span>
+<span class="sd">                is a workaround to make sure that the filter</span>
+<span class="sd">                does not show up in the scene before the create animation.</span>
 
-<span class="sd">        Without this override the filters were shown at the beginning</span>
-<span class="sd">        of the neural network forward pass animation</span>
-<span class="sd">        instead of just when the filters were supposed to appear.</span>
-<span class="sd">        I think this is a bug with :class:`~manim.animation.composition.Succession` in the core</span>
-<span class="sd">        Manim Community Library.</span>
+<span class="sd">                Without this override the filters were shown at the beginning</span>
+<span class="sd">                of the neural network forward pass animation</span>
+<span class="sd">                instead of just when the filters were supposed to appear.</span>
+<span class="sd">                I think this is a bug with :class:`~manim.animation.composition.Succession` in the core</span>
+<span class="sd">                Manim Community Library.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2262,7 +2261,9 @@
 
 <div class="viewcode-block" id="Convolutional2DToConvolutional2D.scale">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.scale">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Convolutional2DToConvolutional2D"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale the layer and adjust cell_width proportionally.</span>
 
 <span class="sd">        Parameters</span>
@@ -2272,13 +2273,13 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">            The object itself, allowing method chaining.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">*=</span> <span class="n">scale_factor</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Convolutional2DToConvolutional2D._create_override">

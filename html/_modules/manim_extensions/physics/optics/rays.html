@@ -1576,26 +1576,21 @@
 
 <div class="viewcode-block" id="Ray.propagate">
 <a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray.propagate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">propagate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">lenses</span><span class="p">:</span> <span class="n">Lens</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">lenses</span><span class="p">:</span> <span class="n">Lens</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Let the ray propagate through the list</span>
-<span class="sd">        of lenses passed.</span>
+<span class="sd">                of lenses passed.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        lenses</span>
 <span class="sd">            All the lenses for the ray to propagate through.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">sorted_lens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_lens</span><span class="p">(</span><span class="n">lenses</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">lens</span> <span class="ow">in</span> <span class="n">sorted_lens</span><span class="p">:</span>
-            <span class="n">intersects</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">(</span><span class="n">lens</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersects</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">raw_intersects</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">(</span><span class="n">lens</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_intersects</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">intersects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_intersections</span><span class="p">(</span><span class="n">intersects</span><span class="p">)</span>
+            <span class="n">intersects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_intersections</span><span class="p">(</span><span class="n">raw_intersects</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagated</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">put_start_and_end_on</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
@@ -1615,14 +1610,14 @@
             <span class="n">r_ang</span> <span class="o">=</span> <span class="n">snell</span><span class="p">(</span><span class="n">i_ang</span><span class="p">,</span> <span class="n">lens</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
             <span class="n">r_ang</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">lens</span><span class="o">.</span><span class="n">f</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
             <span class="n">ref_ray</span> <span class="o">=</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">lens</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">r_ang</span><span class="p">)</span>
-            <span class="n">intersects</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">(</span>
+            <span class="n">raw_intersects</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">(</span>
                 <span class="n">lens</span><span class="p">,</span>
                 <span class="n">Line</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">ref_ray</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_length</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">+</span> <span class="n">ref_ray</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_length</span><span class="p">,</span>
                 <span class="p">),</span>
             <span class="p">)</span>
-            <span class="n">intersects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_intersections</span><span class="p">(</span><span class="n">intersects</span><span class="p">)</span>
+            <span class="n">intersects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_intersections</span><span class="p">(</span><span class="n">raw_intersects</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_line_to</span><span class="p">(</span><span class="n">intersects</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">intersects</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>

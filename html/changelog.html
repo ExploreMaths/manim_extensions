@@ -1607,9 +1607,16 @@ cannot stand in for a real demonstration.</p></li>
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
 </ul>
 </section>
-<section id="changed-34">
-<h3>Changed (34)<a class="headerlink" href="#changed-34" title="Link to this heading">¶</a></h3>
+<section id="changed-35">
+<h3>Changed (35)<a class="headerlink" href="#changed-35" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Docstring formatting is stricter. The summary and every numpydoc section
+now need exactly one blank line before the next section, and a
+<code class="docutils literal notranslate"><span class="pre">Returns</span></code>/<code class="docutils literal notranslate"><span class="pre">Yields</span></code> body must be indented exactly four spaces below its
+header. Bare <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">Any</span></code> return annotations are rejected: side-effect-only
+functions use <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">None</span></code> and no <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section, while value-returning
+functions declare a concrete type. This removed every placeholder
+<code class="docutils literal notranslate"><span class="pre">Returns</span></code> block and replaced every bare <code class="docutils literal notranslate"><span class="pre">Any</span></code> return annotation.</p></li>
 <li><p>Font Awesome enum members whose names collide with Python builtins now use
 a trailing underscore: <a class="reference internal" href="reference/fontawesome/manim_fontawesome/SolidEnum.html#manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_" title="manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">list_</span></code></a>,
 <code class="docutils literal notranslate"><span class="pre">map_</span></code>, <code class="docutils literal notranslate"><span class="pre">filter_</span></code>, <code class="docutils literal notranslate"><span class="pre">print_</span></code>, <code class="docutils literal notranslate"><span class="pre">copyright_</span></code> and
@@ -2556,7 +2563,7 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#">Changelog</a><ul>
 <li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a><ul>
 <li><a class="reference internal" href="#added-21">Added (21)</a></li>
-<li><a class="reference internal" href="#changed-34">Changed (34)</a></li>
+<li><a class="reference internal" href="#changed-35">Changed (35)</a></li>
 <li><a class="reference internal" href="#fixed-21">Fixed (21)</a></li>
 </ul>
 </li>

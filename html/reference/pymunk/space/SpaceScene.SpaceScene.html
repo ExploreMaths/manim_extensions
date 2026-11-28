@@ -1694,9 +1694,11 @@ affect how objects bounce off it.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_constraints">
 <span class="sig-name descname"><span class="pre">add_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/space/SpaceScene.html#SpaceScene.add_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_constraints" title="Link to this definition">¶</a></dt>
-<dd><p>Adds constraint Mobjects to the scene and installs them into the physical space.
-This method ensures that the constraints (such as springs, joints, or motors)
+<dd><dl class="simple">
+<dt>Adds constraint Mobjects to the scene and installs them into the physical space.</dt><dd><p>This method ensures that the constraints (such as springs, joints, or motors)
 are both visually rendered in Manim and physically simulated in Pymunk.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a></span>) – The <a class="reference internal" href="../constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a> objects to be added. Each must implement an <code class="docutils literal notranslate"><span class="pre">install</span></code>
@@ -1711,9 +1713,11 @@ method to link with the physical space.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.space.SpaceScene.SpaceScene.active_body">
 <span class="sig-name descname"><span class="pre">active_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/space/SpaceScene.html#SpaceScene.active_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.space.SpaceScene.SpaceScene.active_body" title="Link to this definition">¶</a></dt>
-<dd><p>Activates the physical bodies of the given Mobjects if they are sleeping.
-In physics simulations, bodies that have come to rest are often put to ‘sleep’
+<dd><dl class="simple">
+<dt>Activates the physical bodies of the given Mobjects if they are sleeping.</dt><dd><p>In physics simulations, bodies that have come to rest are often put to ‘sleep’
 to save computation. This method forces those bodies back into an active state.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The Mobjects whose associated physical bodies should be activated.
@@ -1728,10 +1732,12 @@ This includes all sub-mobjects within the family tree of each provided Mobject.<
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.space.SpaceScene.SpaceScene.sleep_body">
 <span class="sig-name descname"><span class="pre">sleep_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/space/SpaceScene.html#SpaceScene.sleep_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.space.SpaceScene.SpaceScene.sleep_body" title="Link to this definition">¶</a></dt>
-<dd><p>Forces the physical bodies of the given Mobjects into a sleeping state.
-Sleeping bodies are removed from the physics simulation update loop until
+<dd><dl class="simple">
+<dt>Forces the physical bodies of the given Mobjects into a sleeping state.</dt><dd><p>Sleeping bodies are removed from the physics simulation update loop until
 they are touched by another active body or manually activated, which
 helps reduce CPU usage.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The Mobjects whose associated physical bodies should be put to sleep.

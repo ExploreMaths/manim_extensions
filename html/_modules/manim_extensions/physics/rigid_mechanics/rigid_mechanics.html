@@ -1515,6 +1515,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1555,7 +1556,7 @@
 
 <div class="viewcode-block" id="_load_pymunk">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._load_pymunk">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_load_pymunk</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_load_pymunk</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Import pymunk lazily, as it belongs to the ``physics`` extra.</span>
 
 <span class="sd">    Returns</span>
@@ -1734,20 +1735,15 @@
 
 <div class="viewcode-block" id="SpaceScene.setup">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.setup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Add the physics space to the scene and advance it every frame.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Add the physics space to the scene and advance it every frame."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="n">_step</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpaceScene.add_body">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.add_body">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register a pymunk body's shape in the physics space.</span>
 
 <span class="sd">        Parameters</span>
@@ -1755,11 +1751,6 @@
 <span class="sd">        body</span>
 <span class="sd">            A mobject whose ``body`` and ``shape`` attributes are pymunk</span>
 <span class="sd">            objects to be added to the simulation space.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">body</span><span class="o">.</span><span class="n">body</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">static_body</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
@@ -1774,7 +1765,7 @@
         <span class="n">elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
         <span class="n">density</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Make any mobject movable by gravity.</span>
 <span class="sd">        Equivalent to :class:`~manim.scene.scene.Scene`'s ``add`` function.</span>
 
@@ -1789,11 +1780,6 @@
 <span class="sd">        friction</span>
 <span class="sd">            Friction of the mobjects in regards to</span>
 <span class="sd">            interacting with other rigid and static objects.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">mob</span> <span class="ow">in</span> <span class="n">mobs</span><span class="p">:</span>
@@ -1823,7 +1809,7 @@
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_static_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_static_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">elasticity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Make any mobject interactable by rigid objects.</span>
 
 <span class="sd">        Parameters</span>
@@ -1835,11 +1821,6 @@
 <span class="sd">        friction</span>
 <span class="sd">            Friction of the mobjects in regards to</span>
 <span class="sd">            interacting with rigid objects.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">mob</span> <span class="ow">in</span> <span class="n">mobs</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">Group</span><span class="p">)):</span>
@@ -1854,18 +1835,13 @@
 
 <div class="viewcode-block" id="SpaceScene.stop_rigidity">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.stop_rigidity">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">stop_rigidity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_rigidity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the mobjects rigidity.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mobs</span>
 <span class="sd">            Mobs processed by this operation.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">mob</span> <span class="ow">in</span> <span class="n">mobs</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">Group</span><span class="p">)):</span>
@@ -1878,7 +1854,7 @@
 
 <div class="viewcode-block" id="_step">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_step</span><span class="p">(</span><span class="n">space</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_step</span><span class="p">(</span><span class="n">space</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Advance the pymont simulation by one time step.</span>
 
 <span class="sd">    Parameters</span>
@@ -1887,11 +1863,6 @@
 <span class="sd">        The physics space containing the simulation.</span>
 <span class="sd">    dt</span>
 <span class="sd">        Time step size in seconds.</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span></div>
 
@@ -1899,18 +1870,13 @@
 
 <div class="viewcode-block" id="_simulate">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics._simulate">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_simulate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_simulate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Read the current state of a pymont body and update the Manim mobject.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    b</span>
 <span class="sd">        The physics body whose state is synchronised to its mobject.</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">position</span>
     <span class="n">b</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">UP</span><span class="p">)</span>
@@ -1921,18 +1887,13 @@
 
 <div class="viewcode-block" id="get_shape">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_shape</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_shape</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Obtains the shape of the body from the mobject.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    mob</span>
 <span class="sd">        The mobject to manipulate.</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
@@ -1958,7 +1919,7 @@
 
 <div class="viewcode-block" id="get_angle">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/rigid_mechanics.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_angle</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_angle</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Obtains the angle of the body from the mobject.</span>
 <span class="sd">    Used internally for updaters.</span>
 
@@ -1966,11 +1927,6 @@
 <span class="sd">    ----------</span>
 <span class="sd">    mob</span>
 <span class="sd">        The mobject to manipulate.</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mob</span><span class="p">),</span> <span class="n">Polygon</span><span class="p">):</span>
         <span class="n">vec1</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>

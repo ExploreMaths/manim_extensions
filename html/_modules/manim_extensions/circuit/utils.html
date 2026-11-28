@@ -1781,18 +1781,13 @@
 
 <div class="viewcode-block" id="Circuit.add_components">
 <a class="viewcode-back" href="../../../reference/circuit/utils.Circuit.html#manim_extensions.circuit.utils.Circuit.add_components">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append circuit components to the circuit definition.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        *args</span>
 <span class="sd">            Components to add to the circuit.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">component_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span></div>
@@ -1927,13 +1922,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Rebuild the internal wire paths for this junction node.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Rebuild the internal wire paths for this junction node."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear_points</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">start_new_path</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1982,18 +1972,13 @@
 
 <div class="viewcode-block" id="Node.add_dot">
 <a class="viewcode-back" href="../../../reference/circuit/utils.Node.html#manim_extensions.circuit.utils.Node.add_dot">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dot_coord</span><span class="p">:</span> <span class="n">Point3DLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dot_coord</span><span class="p">:</span> <span class="n">Point3DLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add a junction dot at the provided coordinate.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        dot_coord</span>
 <span class="sd">            Position of the dot to place on the node.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">junction_dots</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dot</span><span class="p">(</span><span class="n">dot_coord</span><span class="p">))</span></div>
 
@@ -2002,18 +1987,13 @@
     <span class="c1"># depending entirely on if it is a diagonal wire or not</span>
 <div class="viewcode-block" id="Node.add_wire">
 <a class="viewcode-back" href="../../../reference/circuit/utils.Node.html#manim_extensions.circuit.utils.Node.add_wire">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_wire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wire_param</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3DLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_wire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wire_param</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3DLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append a wire path to the node's internal connectivity list.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        wire_param</span>
 <span class="sd">            Sequence of points describing a wire path.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wire_param</span><span class="p">)</span>
@@ -2053,7 +2033,7 @@
 
 <div class="viewcode-block" id="Node.merge">
 <a class="viewcode-back" href="../../../reference/circuit/utils.Node.html#manim_extensions.circuit.utils.Node.merge">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">,</span> <span class="n">wire</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3DLike</span><span class="p">]</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">,</span> <span class="n">wire</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3DLike</span><span class="p">]</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Merge this node with another node and optionally attach a wire.</span>
 
 <span class="sd">        Parameters</span>
@@ -2062,11 +2042,6 @@
 <span class="sd">            Other node to merge into this one.</span>
 <span class="sd">        wire</span>
 <span class="sd">            Optional wire path to add before or during the merge.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">wire</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">wire</span><span class="p">))</span>

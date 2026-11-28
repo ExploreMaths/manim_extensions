@@ -1585,14 +1585,16 @@ at once.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Filters._create_override">
 <span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.html#Filters._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Filters._create_override" title="Link to this definition">¶</a></dt>
-<dd><p>NOTE This create override animation
-is a workaround to make sure that the filter
+<dd><dl>
+<dt>NOTE This create override animation</dt><dd><p>is a workaround to make sure that the filter
 does not show up in the scene before the create animation.</p>
 <p>Without this override the filters were shown at the beginning
 of the neural network forward pass animation
 instead of just when the filters were supposed to appear.
 I think this is a bug with <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a> in the core
 Manim Community Library.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to the animation.</p>

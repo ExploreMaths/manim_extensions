@@ -1739,7 +1739,6 @@
 
 <span class="sd">    .. doc-example-covers: uncreate</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    text</span>
@@ -1886,12 +1885,17 @@
 <div class="viewcode-block" id="CodeBlock.create">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""Return a tuple of animations for creating the code block. Use such as:\n</span>
-<span class="sd">        ```</span>
-<span class="sd">        python = CodeBlock('print("Hello World!")', language = Python)</span>
-<span class="sd">        self.play(*python.create())</span>
-<span class="sd">        ```</span>
-<span class="sd">        By default the animation will :class:`~manim.animation.fading.FadeIn` the `background` and `title_background`, and :class:`~manim.animation.creation.AddTextLetterByLetter` the `code` and `title`.</span>
+<span class="w">        </span><span class="sd">"""Return a tuple of animations for creating the code block.</span>
+
+<span class="sd">        Use the returned animations with :meth:`~manim.scene.scene.Scene.play`:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            python = CodeBlock('print("Hello World!")', language=Python)</span>
+<span class="sd">            self.play(*python.create())</span>
+
+<span class="sd">        By default the animation fades in the background and title background, and</span>
+<span class="sd">        writes the code and title letter by letter.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1921,11 +1925,11 @@
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uncreate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a tuple of animations for uncreating the code block. Use such as:</span>
-<span class="sd">        ```</span>
-<span class="sd">        python = CodeBlock('print("Hello World!")', language = Python)</span>
-<span class="sd">        self.play(*python.uncreate())</span>
-<span class="sd">        ```</span>
-<span class="sd">        By default the animation will :class:`~manim.animation.fading.FadeOut` the `background` and `title_background`, and :class:`~manim.animation.creation.Uncreate` the `code` and `title`.</span>
+<span class="sd">                ```</span>
+<span class="sd">                python = CodeBlock('print("Hello World!")', language = Python)</span>
+<span class="sd">                self.play(*python.uncreate())</span>
+<span class="sd">                ```</span>
+<span class="sd">                By default the animation will :class:`~manim.animation.fading.FadeOut` the `background` and `title_background`, and :class:`~manim.animation.creation.Uncreate` the `code` and `title`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

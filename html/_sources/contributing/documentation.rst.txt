@@ -338,3 +338,16 @@ The public-name rules:
 
 * A module defines ``__all__`` → those are the public names.
 * No ``__all__`` → names defined at module level (not imported) that do not start with ``_``.
+
+Docstring Formatting
+--------------------
+
+``validate_doc_sections.py`` enforces the paragraph and section layout:
+
+* The summary and every numpydoc section are separated from the next section by **exactly one blank line**. Two blank lines before ``Returns``, ``Parameters`` or any other header are rejected.
+* A section header starts at the docstring margin, exactly like the summary; an indented header is rejected because docutils treats it as a nested section title.
+* A section header is followed immediately by its ``----------`` underline and its first entry; a blank line between the underline and the first entry is rejected.
+* The body of ``Returns`` and ``Yields`` is indented exactly **four spaces** below the header. An eight-space description is rejected because docutils would render it as an over-indented code block.
+* A ``Returns`` section documents a value. Functions that only perform side effects are annotated ``-> None`` and do not carry a ``Returns`` section.
+
+``scripts/check_return_annotations.py`` enforces return annotations: a function with a value-returning ``return`` must declare one, and a bare ``-> Any`` is always rejected. Use the concrete type, or ``-> None`` for a side-effect-only function.

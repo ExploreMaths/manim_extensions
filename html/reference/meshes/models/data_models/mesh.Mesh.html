@@ -1769,15 +1769,12 @@ dimensionality becomes 3 afterwards.</p>
 <dd class="field-odd"><p><strong>perspective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Distance of the projection centre for a 4-D mesh.  Ignored for
 lower dimensions; defaults to the mesh dimensionality.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the current dimensionality is greater than 4, or if a 4-D
     vertex lies at or beyond the projection centre.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1853,17 +1850,14 @@ the faces are listed does not matter.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_vertices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a></span>) – Array of vertex coordinates to add.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_vertices</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the shape of <code class="docutils literal notranslate"><span class="pre">new_vertices</span></code> does not match the mesh dimension.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1877,14 +1871,11 @@ the faces are listed does not matter.</p>
 <dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float64</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the vertices to remove.  Negative indexing is not
 supported.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1900,18 +1891,15 @@ supported.</p>
 <li><p><strong>new_vert</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Vertex" title="manim_extensions.meshes.types.Vertex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertex</span></code></a></span>) – New coordinates for the vertex.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> is out of range.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_vert</span></code> has an unexpected shape.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If the coordinate dimension does not match the mesh.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1924,12 +1912,6 @@ supported.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_faces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – Faces to add.  Each face is an iterable of vertex indices.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_faces</span></code> is not a twice-nested iterable or contains
@@ -1938,6 +1920,9 @@ supported.</p>
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a vertex index in <code class="docutils literal notranslate"><span class="pre">new_faces</span></code> is out of range or not
     defined.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1951,14 +1936,11 @@ supported.</p>
 <dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float64</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the faces to remove.  Negative indexing is not
 supported.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1974,17 +1956,14 @@ supported.</p>
 <li><p><strong>new_face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Face" title="manim_extensions.meshes.types.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></span>) – New vertex indices for the face.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> or any vertex index in <code class="docutils literal notranslate"><span class="pre">new_face</span></code> is out of range.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_face</span></code> has an unexpected shape.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1997,12 +1976,6 @@ supported.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_parts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Parts to add.  Each part is an iterable of face indices.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> is not a twice-nested iterable or contains
@@ -2010,6 +1983,9 @@ supported.</p>
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> has an unsupported type.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a face index in <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> is out of range.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2023,14 +1999,11 @@ supported.</p>
 <dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float64</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the parts to remove.  Negative indexing is not
 supported.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2046,17 +2019,14 @@ supported.</p>
 <li><p><strong>new_part</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../types.html#manim_extensions.meshes.types.Part" title="manim_extensions.meshes.types.Part"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Part</span></code></a></span>) – New face indices for the part.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> or any face index in <code class="docutils literal notranslate"><span class="pre">new_part</span></code> is out of range.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_part</span></code> has an unexpected shape.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2073,12 +2043,6 @@ appended one (e.g. <code class="docutils literal notranslate"><span class="pre">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Another mesh to merge into this one.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If the meshes have different vertex dimensionalities or
@@ -2086,6 +2050,9 @@ appended one (e.g. <code class="docutils literal notranslate"><span class="pre">
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a face or part index would be out of bounds after the
     merge.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2145,10 +2112,7 @@ current mesh is not changed.</p>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2166,10 +2130,7 @@ current mesh is not changed.</p>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2183,17 +2144,14 @@ current mesh is not changed.</p>
 <dd class="field-odd"><p><strong>translation</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Translation vector.  Its length must equal the mesh
 dimension.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">translation</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the length of <code class="docutils literal notranslate"><span class="pre">translation</span></code> does not match the mesh dimension.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2210,18 +2168,15 @@ dimension.</p>
 dimension.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">v_id</span></code> is out of range.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">translation</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the length of <code class="docutils literal notranslate"><span class="pre">translation</span></code> does not match the mesh dimension.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2244,15 +2199,12 @@ rotation plane (used for 4-D).</p></li>
 <li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – If given, the rotation is performed around this point.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the mesh dimension is above 4, or if the 4-D rotation plane is
     not given by two linearly independent vectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2313,17 +2265,14 @@ and the other three are negated.</p>
 <li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – If given, the flip is performed around this point.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the mesh dimension is greater than 4.</p></li>
 <li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If a 4-D mesh is flipped without a 4-D <code class="docutils literal notranslate"><span class="pre">axis</span></code>.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2378,10 +2327,7 @@ duplicates are removed.</p></li>
 <dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places used when comparing vertices; i.e. equality up to <code class="docutils literal notranslate"><span class="pre">1e-10</span></code>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2395,10 +2341,7 @@ up to a cyclic permutation (rolling order), not necessarily
 at the exact same positions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting value.</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2411,10 +2354,7 @@ at the exact same positions.</p>
 regardless of their order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resulting value.</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2429,10 +2369,7 @@ regardless of their order.</p>
 .</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>

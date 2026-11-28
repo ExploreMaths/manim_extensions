@@ -1530,7 +1530,6 @@
 <span class="sd">       the state of the neural network layers after previous animations have been run.</span>
 <span class="sd">       To fix this issue I needed to use an :class:`~manim.animation.updaters.update.UpdateFromFunc`.</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    layer</span>
@@ -1736,7 +1735,7 @@
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anim_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">create_new_connective</span><span class="p">(</span><span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">create_new_connective</span><span class="p">(</span><span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Creates new connective layer.</span>
 
 <span class="sd">            This is a closure that creates a new connective layer and animates it.</span>
@@ -1771,7 +1770,6 @@
 <span class="w">    </span><span class="sd">"""Animation for inserting layer at given index.</span>
 
 <span class="sd">    .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation</span>
-
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

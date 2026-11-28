@@ -1584,12 +1584,12 @@
 
 <div class="viewcode-block" id="Cubie.generate_points">
 <a class="viewcode-back" href="../../../reference/rubikscube/cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cubie"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Construct the six square faces that correspond to this cubie.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
+<span class="sd">            The constructed object itself.</span>
 <span class="sd">        """</span>
         <span class="n">faces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="n">get_faces_of_cubie</span><span class="p">(</span>
@@ -1618,7 +1618,8 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">faces</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vect</span><span class="p">)]</span> <span class="o">=</span> <span class="n">face</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Cubie.get_face">

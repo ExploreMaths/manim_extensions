@@ -1572,18 +1572,13 @@
 
 <div class="viewcode-block" id="CubeMove.interpolate_mobject">
 <a class="viewcode-back" href="../../../reference/rubikscube/cube_animations.CubeMove.html#manim_extensions.rubikscube.cube_animations.CubeMove.interpolate_mobject">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Interpolate the cube rotation at progress ``alpha``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        alpha</span>
 <span class="sd">            Animation progress between ``0`` and ``1``.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">starting_mobject</span><span class="p">)</span>
 
@@ -1594,13 +1589,8 @@
 
 <div class="viewcode-block" id="CubeMove.finish">
 <a class="viewcode-back" href="../../../reference/rubikscube/cube_animations.CubeMove.html#manim_extensions.rubikscube.cube_animations.CubeMove.finish">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Finalise the cube move and update face indices after animation completes.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Finalise the cube move and update face indices after animation completes."""</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
         <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="p">)</span><span class="o">.</span><span class="n">adjust_indices</span><span class="p">(</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="p">)</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">False</span><span class="p">)</span>

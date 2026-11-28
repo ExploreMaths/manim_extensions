@@ -1543,7 +1543,6 @@
 
 <span class="sd">    .. doc-example-covers: draw_line</span>
 
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: CompassSceneUsage</span>
@@ -1570,13 +1569,8 @@
 
 <div class="viewcode-block" id="CompassScene.setup">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.setup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Arrange the compass, ruler and pencil around the canvas edges.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Arrange the compass, ruler and pencil around the canvas edges."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">(</span><span class="n">span</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ruler</span> <span class="o">=</span> <span class="n">Ruler</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span> <span class="o">=</span> <span class="n">Pencil</span><span class="p">()</span><span class="o">.</span><span class="n">to_corner</span><span class="p">(</span><span class="n">UR</span><span class="p">)</span></div>
@@ -1586,7 +1580,7 @@
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.compass_move_niddle_tip_to">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compass_move_niddle_tip_to</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the compass needle tip to a target position.</span>
 
 <span class="sd">        Parameters</span>
@@ -1595,11 +1589,6 @@
 <span class="sd">            Target position for the needle tip.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the animation.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_niddle_tip_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
@@ -1616,7 +1605,7 @@
         <span class="n">arc</span><span class="p">:</span> <span class="n">Arc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">added_anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the compass about its needle tip.</span>
 
 <span class="sd">        Parameters</span>
@@ -1630,11 +1619,6 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments forwarded to</span>
 <span class="sd">            :meth:`~manim.scene.scene.Scene.play()`.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Rotate</span><span class="p">(</span>
@@ -1657,7 +1641,7 @@
 
 <div class="viewcode-block" id="CompassScene.compass_split_span">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.compass_split_span">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compass_split_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compass_split_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Open both compass legs so the distance between tips equals ``span``.</span>
 
 <span class="sd">        Parameters</span>
@@ -1666,11 +1650,6 @@
 <span class="sd">            Target distance between the compass tips.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the opening animation.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="n">SplitCompass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">linear</span>
@@ -1679,7 +1658,7 @@
 
 <div class="viewcode-block" id="CompassScene.split_cmpass_span">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.split_cmpass_span">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">split_cmpass_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_cmpass_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adjust the pen tip while holding the needle fixed to reach a span.</span>
 
 <span class="sd">        Parameters</span>
@@ -1688,11 +1667,6 @@
 <span class="sd">            Desired distance between the compass tips.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the animation.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="o">.</span><span class="n">get_compass_rotate_angle_with_span</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
@@ -1710,7 +1684,7 @@
         <span class="n">niddle_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">pen_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place the compass at the specified positions: move niddle_tip to niddle_pos and pen_tip to pen_pos.</span>
 
 <span class="sd">        Parameters</span>
@@ -1721,11 +1695,6 @@
 <span class="sd">            Target position for the compass pen tip (pen_tip).</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the placement animation in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="n">PutCompass</span><span class="p">(</span>
@@ -1799,18 +1768,13 @@
 
 <div class="viewcode-block" id="CompassScene.flip_compass">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.flip_compass">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">flip_compass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flip_compass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Flip the compass, swapping the needle and pen tips.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the flip animation in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">reverse_tip</span><span class="p">(),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">)</span></div>
 
@@ -1822,7 +1786,7 @@
         <span class="n">aside_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">span_buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Put the compass aside.</span>
 
 <span class="sd">        Parameters</span>
@@ -1833,11 +1797,6 @@
 <span class="sd">            Distance between the two compass tips when placed aside.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Time required to place the compass.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="o">.</span><span class="n">leg_length</span>
         <span class="n">vec</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">DOWN</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compass</span><span class="o">.</span><span class="n">get_compass_rotate_angle_direction</span><span class="p">()</span> <span class="k">else</span> <span class="n">r</span> <span class="o">*</span> <span class="n">UP</span>
@@ -1857,7 +1816,7 @@
         <span class="n">lag_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">with_pencil</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place the ruler so that one of its edges aligns with start and end.</span>
 
 <span class="sd">        Parameters</span>
@@ -1872,11 +1831,6 @@
 <span class="sd">            Time to place the ruler.</span>
 <span class="sd">        with_pencil</span>
 <span class="sd">            Whether to place the pencil at the same time.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">with_pencil</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
@@ -1893,7 +1847,7 @@
 
 <div class="viewcode-block" id="CompassScene.set_pencil">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.set_pencil">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_pencil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_pencil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the pencil nib to the specified position.</span>
 
 <span class="sd">        Parameters</span>
@@ -1902,11 +1856,6 @@
 <span class="sd">            Target position for the pencil nib.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the move animation in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_nid_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
@@ -1962,7 +1911,7 @@
 
 <div class="viewcode-block" id="CompassScene.put_pencil_away">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.put_pencil_away">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">put_pencil_away</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">put_pencil_away</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Translate the pencil as a whole to the specified position.</span>
 
 <span class="sd">        Parameters</span>
@@ -1971,11 +1920,6 @@
 <span class="sd">            Target position for the pencil.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Duration of the translation animation in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">curr_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pencil</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="n">curr_pos</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">)</span></div>
@@ -1988,7 +1932,7 @@
         <span class="n">aside_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">,</span>
         <span class="n">horizontal_or_vertical</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Put the ruler aside at the specified position.</span>
 
 <span class="sd">        The ruler is first rotated to a horizontal or vertical orientation</span>
@@ -2002,11 +1946,6 @@
 <span class="sd">            If ``True``, align the ruler horizontally; otherwise vertically.</span>
 <span class="sd">        run_time</span>
 <span class="sd">            Total duration of the put-away animation in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">vec_w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ruler</span><span class="o">.</span><span class="n">get_direction_vector_of_ruler</span><span class="p">()</span>
         <span class="n">vec</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="k">if</span> <span class="n">horizontal_or_vertical</span> <span class="k">else</span> <span class="n">DOWN</span>

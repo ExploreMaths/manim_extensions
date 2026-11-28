@@ -1522,7 +1522,6 @@
 
 <span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    operation_type</span>
@@ -1612,7 +1611,7 @@
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Creates the neural network layer.</span>
 
 <span class="sd">        Parameters</span>
@@ -1623,11 +1622,6 @@
 <span class="sd">            The layer following this layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Draw the operation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operation_text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operation_type</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font_size</span><span class="p">)</span>
@@ -1644,13 +1638,8 @@
 
 <div class="viewcode-block" id="MathOperationLayer.construct_activation_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/math_operation_layer.MathOperationLayer.html#manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer.construct_activation_function">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Build the activation-function plot for this math-operation layer.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Build the activation-function plot for this math-operation layer."""</span>
         <span class="c1"># Add the activation function</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Check if it is a string</span>
@@ -1750,7 +1739,7 @@
         <span class="n">mobject_or_point</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="n">aligned_edge</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">coor_mask</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MathOperationLayer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Moves the center of the layer to the given mobject or point.</span>
 
 <span class="sd">        Parameters</span>
@@ -1764,10 +1753,9 @@
 <span class="sd">            Coordinate mask forwarded to the underlying ``move_to``</span>
 <span class="sd">            implementation.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">            The object itself, allowing method chaining.</span>
 <span class="sd">        """</span>
         <span class="n">layer_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_circle</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mobject_or_point</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
@@ -1775,7 +1763,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">target_center</span> <span class="o">=</span> <span class="n">mobject_or_point</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">target_center</span> <span class="o">-</span> <span class="n">layer_center</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">target_center</span> <span class="o">-</span> <span class="n">layer_center</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 </div>
 
 </pre></div>

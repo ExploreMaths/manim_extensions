@@ -2027,12 +2027,12 @@
 
 <div class="viewcode-block" id="Gear.generate_points">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.Gear.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Gear"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the gear outline from involute curves, fillets, and arcs.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
+<span class="sd">            The constructed object itself.</span>
 <span class="sd">        """</span>
 
         <span class="c1"># involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle</span>
@@ -2269,7 +2269,7 @@
 
         <span class="n">involute_curve</span><span class="o">.</span><span class="n">reverse_direction</span><span class="p">()</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">smooth_curve_joint</span><span class="p">(</span><span class="n">curve1</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">curve2</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">smooth_curve_joint</span><span class="p">(</span><span class="n">curve1</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">curve2</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Smoothly join two curves by inserting a midpoint between their ends.</span>
 
 <span class="sd">            Parameters</span>
@@ -2318,12 +2318,13 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_teeth</span><span class="p">:</span>
             <span class="n">Outer_ring</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ra</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">append_points</span><span class="p">(</span><span class="n">Outer_ring</span><span class="o">.</span><span class="n">points</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_points</span><span class="p">(</span><span class="n">Outer_ring</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Gear.mesh_to">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.Gear.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear.mesh_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mesh_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gear2</span><span class="p">:</span> <span class="s2">"Gear"</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bias</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mesh_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gear2</span><span class="p">:</span> <span class="s2">"Gear"</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bias</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.</span>
 
 <span class="sd">        Parameters</span>
@@ -2335,11 +2336,6 @@
 <span class="sd">        bias</span>
 <span class="sd">            When offset is used, there will play between gears. If bias is ``False``,</span>
 <span class="sd">            This function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -2669,12 +2665,12 @@
 
 <div class="viewcode-block" id="Rack.generate_points">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.Rack.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Rack"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the rack outline from trapezoidal teeth.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
+<span class="sd">            The constructed object itself.</span>
 <span class="sd">        """</span>
 
         <span class="n">h_amax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span>
@@ -2701,7 +2697,8 @@
         <span class="n">point2</span> <span class="o">=</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_line_to</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_line_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_line_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_line_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Rack.get_center">

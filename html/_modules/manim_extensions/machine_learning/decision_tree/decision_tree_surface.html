@@ -1708,7 +1708,7 @@
 
 <div class="viewcode-block" id="plot_areas">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree_surface.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.plot_areas">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_areas</span><span class="p">(</span><span class="n">rectangles</span><span class="p">:</span> <span class="n">MatrixMN</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_areas</span><span class="p">(</span><span class="n">rectangles</span><span class="p">:</span> <span class="n">MatrixMN</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Plot decision area rectangles on the current matplotlib axes.</span>
 
 <span class="sd">    Parameters</span>
@@ -1717,11 +1717,6 @@
 <span class="sd">        Array of decision-area rectangles as returned by</span>
 <span class="sd">        :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;</span>
 <span class="sd">        each row is ``[left, right, bottom, top, class_index]``.</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">plt</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"ml"</span><span class="p">,</span> <span class="s2">"matplotlib.pyplot"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rectangles</span><span class="p">:</span>
@@ -1840,7 +1835,6 @@
 <span class="w">    </span><span class="sd">"""Plot of the first two features of the Iris dataset.</span>
 
 <span class="sd">    .. doc-example-covers: create_animation</span>
-
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2061,7 +2055,6 @@
 
 <span class="sd">    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    tree_clf</span>
@@ -2072,7 +2065,6 @@
 <span class="sd">        Manim axes the surface rectangles are drawn in.</span>
 <span class="sd">    class_colors</span>
 <span class="sd">        Colors, one per class, used to fill the decision areas.</span>
-
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>

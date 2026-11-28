@@ -1523,7 +1523,6 @@
 
 <span class="sd">    .. doc-example-covers: draw_line_with_pencil</span>
 
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: SingleRulerSceneUsage</span>
@@ -1540,13 +1539,8 @@
 
 <div class="viewcode-block" id="SingleRulerScene.setup">
 <a class="viewcode-back" href="../../../../reference/compass/scene/ruler_scene.SingleRulerScene.html#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.setup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Place the ruler at the bottom edge and the pencil at the right edge.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Place the ruler at the bottom edge and the pencil at the right edge."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ruler</span> <span class="o">=</span> <span class="n">Ruler</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span> <span class="o">=</span> <span class="n">Pencil</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pen_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -1604,7 +1598,7 @@
 <a class="viewcode-back" href="../../../../reference/compass/scene/ruler_scene.SingleRulerScene.html#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.put_ruler_back">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">put_ruler_back</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">added_anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Restore the ruler to its saved state and move the pencil back.</span>
 
 <span class="sd">        Parameters</span>
@@ -1615,11 +1609,6 @@
 <span class="sd">            Run time for the play.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to the play.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Restore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ruler</span><span class="p">),</span>

@@ -1591,13 +1591,8 @@
 
 <div class="viewcode-block" id="ActivationFunction.construct_activation_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/activation_functions/activation_function.ActivationFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.construct_activation_function">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Build the axes, curve and labels for the activation function.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Build the axes, curve and labels for the activation function."""</span>
         <span class="c1"># Make an axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">(</span>
             <span class="n">x_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">,</span>
@@ -1642,7 +1637,7 @@
 <div class="viewcode-block" id="ActivationFunction.apply_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/activation_functions/activation_function.ActivationFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.apply_function">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
 <span class="w">        </span><span class="sd">"""Evaluates function at given x_val.</span>
 
 <span class="sd">        Abstract method: concrete subclasses implement the actual</span>
@@ -1654,13 +1649,18 @@
 <span class="sd">            Input value at which to evaluate the function. If ``None``,</span>
 <span class="sd">            a random value within ``x_range`` is used instead.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">            The evaluated function value.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If called directly on the abstract base class.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">x_val</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">x_val</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+            <span class="n">x_val</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ActivationFunction.make_evaluate_animation">

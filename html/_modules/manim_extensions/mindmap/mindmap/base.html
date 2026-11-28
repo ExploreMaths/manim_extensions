@@ -1667,7 +1667,6 @@
 
 <span class="sd">    .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    layout_method</span>
@@ -1714,18 +1713,13 @@
 
 <div class="viewcode-block" id="AbstractMap._set_node_position">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap._set_node_position">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_node_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_node_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively position a node and all its descendants.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        node</span>
 <span class="sd">            The root of the subtree to position.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
@@ -1736,13 +1730,8 @@
 
 <div class="viewcode-block" id="AbstractMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set connection lines.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>

@@ -1611,18 +1611,13 @@
     <span class="c1"># override ManimAutomaton method</span>
 <div class="viewcode-block" id="ManimPushDownAutomaton.construct_transitions">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_pushdown_automaton.ManimPushDownAutomaton.html#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transitions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Build pushdown-automaton transitions from XML or JSON definitions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        transitions</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># counts the number of transitions between two states</span>
         <span class="n">transition_counter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">PushDownAutomatonRule</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1665,7 +1660,7 @@
         <span class="n">transition_from</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">,</span>
         <span class="n">transition_to</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">,</span>
         <span class="n">rules</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create and attach a pushdown transition between two states.</span>
 
 <span class="sd">        Parameters</span>
@@ -1677,11 +1672,6 @@
 <span class="sd">        rules</span>
 <span class="sd">            Pushdown rules (input symbol, pop symbol, push symbol)</span>
 <span class="sd">            associated with this transition.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">new_transition</span> <span class="o">=</span> <span class="n">ManimPushDownAutomatonTransition</span><span class="p">(</span>
             <span class="n">transition_from</span><span class="p">,</span>

@@ -1646,14 +1646,15 @@
 
 <div class="viewcode-block" id="FastManimMesh.init_points">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">init_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"FastManimMesh"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the mesh vertices as the mobject's points.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
+<span class="sd">            The object itself, allowing method chaining.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="FastManimMesh.refresh_from_mesh">

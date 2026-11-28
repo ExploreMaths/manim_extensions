@@ -1521,7 +1521,6 @@
 
 <span class="sd">    .. doc-example-covers: make_assets, make_forward_pass_animation</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    anchor</span>
@@ -1591,7 +1590,7 @@
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the triplet assets and add them to the layer.</span>
 
 <span class="sd">        Parameters</span>
@@ -1602,11 +1601,6 @@
 <span class="sd">            The layer following this layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Make the assets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_assets</span><span class="p">()</span>

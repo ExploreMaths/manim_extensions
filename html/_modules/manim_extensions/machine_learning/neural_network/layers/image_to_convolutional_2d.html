@@ -1762,7 +1762,9 @@
 
 <div class="viewcode-block" id="ImageToConvolutional2DLayer.scale">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image_to_convolutional_2d.ImageToConvolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.image_to_convolutional_2d.ImageToConvolutional2DLayer.scale">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ImageToConvolutional2DLayer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale the layer by forwarding to the parent class.</span>
 
 <span class="sd">        Parameters</span>
@@ -1772,12 +1774,12 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">            The object itself, allowing method chaining.</span>
 <span class="sd">        """</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="ImageToConvolutional2DLayer._create_override">

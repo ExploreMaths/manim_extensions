@@ -1681,7 +1681,7 @@
 
 <div class="viewcode-block" id="ManimTransition.create_reflexive_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.create_reflexive_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_reflexive_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point1</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">point2</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_reflexive_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point1</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">point2</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a curved reflexive arrow from the source state back to itself.</span>
 
 <span class="sd">        Parameters</span>
@@ -1690,11 +1690,6 @@
 <span class="sd">            Start point on the state circle.</span>
 <span class="sd">        point2</span>
 <span class="sd">            End point on the state circle.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">)</span>
 
@@ -1747,18 +1742,13 @@
 
 <div class="viewcode-block" id="ManimTransition.position_text">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.position_text">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">position_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">position_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place each read-symbol label next to the transition arrow.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        buffer</span>
 <span class="sd">            Padding distance used to separate multiple labels stacked around the arrow.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Obtain coordinates for the centre of the line</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1797,15 +1787,10 @@
 
 <div class="viewcode-block" id="ManimTransition.convert_straight_arrow_to_curved_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">convert_straight_arrow_to_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_straight_arrow_to_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Converts a straight arrow transition to a curved arrow transition.</span>
 <span class="sd">        This method is primarily used when there are two opposing transitions</span>
 <span class="sd">        between two states.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># remove existing manim arrow</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arrow</span><span class="p">)</span>
@@ -1821,7 +1806,7 @@
 
 <div class="viewcode-block" id="ManimTransition.construct_curved_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.construct_curved_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># create a straight line and use the points locations to create curved arrow</span>
 <span class="w">        </span><span class="sd">"""Construct a curved arrow and position its read-symbol labels.</span>
 
@@ -1829,11 +1814,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        buffer</span>
 <span class="sd">            Extra offset applied to stacked labels near the arc.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">temp_arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span>
         <span class="n">from_point</span> <span class="o">=</span> <span class="n">temp_arrow</span><span class="o">.</span><span class="n">start</span>
@@ -1899,13 +1879,8 @@
 
 <div class="viewcode-block" id="ManimTransition.rotate_symbols_parallel_to_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_symbols_parallel_to_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Rotate all read symbols so they are aligned parallel to the arrow.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_symbols_parallel_to_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Rotate all read symbols so they are aligned parallel to the arrow."""</span>
         <span class="k">for</span> <span class="n">read_symbol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_symbols</span><span class="p">:</span>
             <span class="n">slope</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_slope_of_line</span><span class="p">()</span>
 

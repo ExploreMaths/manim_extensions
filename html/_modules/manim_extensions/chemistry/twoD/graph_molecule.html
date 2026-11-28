@@ -1653,7 +1653,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_points_by_ends</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Reposition both arcs of the double bond to span from start to end.</span>
 
 <span class="sd">        Parameters</span>
@@ -1665,10 +1665,6 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to</span>
 <span class="sd">            :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The arcs now span from ``start`` to ``end``.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">put_start_and_end_on</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span></div>
 </div>
@@ -1730,7 +1726,6 @@
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim.</span>
 
 <span class="sd">    .. doc-example-covers: get_atoms_vgroup_from_index, get_bonds_vgroup_from_index, get_connected_atoms_and_bonds, get_connected_atoms_and_bonds_group_from_index, get_connected_atoms_v_group, make_labels, select_bond_from_edge, select_bond_type</span>
-
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2055,7 +2050,6 @@
 
 <span class="sd">           Only works properly for non cyclic structures. If you use</span>
 <span class="sd">           an atom from a cycle as the starting point, it will take the whole cycle.</span>
-
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

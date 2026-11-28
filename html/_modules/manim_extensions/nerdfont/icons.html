@@ -1542,17 +1542,12 @@
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">pkg_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">"manim_extensions.nerdfont"</span><span class="p">)</span> <span class="o">/</span> <span class="n">_FONT_FILENAME</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_install_font_linux</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_install_font_linux</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Install the TTF into the fontconfig user font dir (Linux only).</span>
 
 <span class="sd">    Idempotent and best-effort: a missing ``fc-cache`` binary or an</span>
 <span class="sd">    unwritable home directory is silently ignored (``register_font``</span>
 <span class="sd">    remains sufficient on Windows/macOS and older pango).</span>
-
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="k">global</span> <span class="n">_font_installed</span>
     <span class="k">if</span> <span class="n">_font_installed</span> <span class="ow">or</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">"Linux"</span><span class="p">:</span>

@@ -1546,8 +1546,7 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">GrayscaleImageMobject</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Mobject for creating images in Manim from numpy arrays.</span>
 
-<span class="sd">    .. doc-example-covers: create, from_path</span>
-
+<span class="sd">    .. doc-example-covers: create, from_path, scale</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1633,7 +1632,7 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/image.GrayscaleImageMobject.html#manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject.scale">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span>  <span class="c1"># intentionally returns None instead of the group</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"GrayscaleImageMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scales the image mobject.</span>
 
 <span class="sd">        Parameters</span>
@@ -1643,14 +1642,14 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments for scaling.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">            The object itself, allowing method chaining.</span>
 <span class="sd">        """</span>
         <span class="c1"># super().scale(scale_factor)</span>
         <span class="c1"># height = self.height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
         <span class="c1"># self.scale_to_fit_height(2)</span>
         <span class="c1"># self.apply_points_function_about_point(</span>
@@ -1659,18 +1658,13 @@
 
 <div class="viewcode-block" id="GrayscaleImageMobject.set_opacity">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/image.GrayscaleImageMobject.html#manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject.set_opacity">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the opacity.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        opacity</span>
 <span class="sd">            Opacity to apply to the image mobject.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="n">opacity</span><span class="p">)</span></div>
 </div>

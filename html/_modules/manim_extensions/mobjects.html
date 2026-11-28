@@ -2649,7 +2649,7 @@
 
 <div class="viewcode-block" id="VideoMobject._video_updater">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject._video_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_video_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="s2">"VideoMobject"</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_video_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="s2">"VideoMobject"</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Internal updater that advances the video frame on each render step.</span>
 
 <span class="sd">        Parameters</span>
@@ -2658,11 +2658,6 @@
 <span class="sd">            The mobject this updater is attached to.</span>
 <span class="sd">        dt</span>
 <span class="sd">            Elapsed time (in seconds) since the last frame.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">cv2</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"video"</span><span class="p">,</span> <span class="s2">"cv2"</span><span class="p">)</span>
 
@@ -2839,13 +2834,8 @@
 
 <div class="viewcode-block" id="VideoMobject.__del__">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.__del__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Release the OpenCV capture on garbage collection.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Release the OpenCV capture on garbage collection."""</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_cap"</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
 </div>
@@ -3030,18 +3020,13 @@
 
 <div class="viewcode-block" id="Trail.get_path_xyz">
 <a class="viewcode-back" href="../../reference/basic/mobjects.Trail.html#manim_extensions.mobjects.Trail.get_path_xyz">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_path_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_path_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Record the latest centre position if the mobject has moved.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        err</span>
 <span class="sd">            Minimum displacement required to record a new point.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pos_new</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="n">pos_old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_old</span>
@@ -3081,7 +3066,7 @@
 
 <div class="viewcode-block" id="Trail.update_path">
 <a class="viewcode-back" href="../../reference/basic/mobjects.Trail.html#manim_extensions.mobjects.Trail.update_path">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trail</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trail</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updater: replace ``trail`` by the freshly created path.</span>
 
 <span class="sd">        Parameters</span>
@@ -3089,11 +3074,6 @@
 <span class="sd">        trail</span>
 <span class="sd">            The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance</span>
 <span class="sd">            with a custom shape).</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">trail</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_path</span><span class="p">())</span></div>
 
@@ -3302,13 +3282,8 @@
 
 <div class="viewcode-block" id="ObjectBorder._rebuild">
 <a class="viewcode-back" href="../../reference/basic/mobjects.ObjectBorder.html#manim_extensions.mobjects.ObjectBorder._rebuild">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Recreate the border and corner markers around the current position of ``obj``.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Recreate the border and corner markers around the current position of ``obj``."""</span>
         <span class="n">border</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">buff</span><span class="p">,</span>
             <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">buff</span><span class="p">,</span>

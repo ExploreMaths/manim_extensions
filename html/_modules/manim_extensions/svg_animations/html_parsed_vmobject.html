@@ -1498,7 +1498,7 @@
 <span class="sd">animated Manim objects from them.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span>
 
 <span class="c1"># unlinked-class-ok: Arrays</span>
 
@@ -1585,7 +1585,7 @@
 <span class="s2">var keys = Object.keys(combsDict);</span>
 <span class="s2">var ithElements = [];</span>
 <span class="s2">for (let arr of keys) {</span>
-<span class="s2">    if (Array.isArray(arr[i])) {   </span>
+<span class="s2">    if (Array.isArray(arr[i])) {</span>
 <span class="s2">        ithElements.push(arr[i]);</span>
 <span class="s2">    }</span>
 <span class="s2">    else {</span>
@@ -1701,7 +1701,7 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.updater">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Export the vmobject to an SVG frame and append the JS update.</span>
 
 <span class="sd">        Called once per rendered frame through the scene updater registered</span>
@@ -1713,11 +1713,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        dt</span>
 <span class="sd">            Elapsed time since the previous frame, in seconds.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continue_updating</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1781,16 +1776,11 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.update_html">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.update_html">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_html</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_html</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rewrite the HTML page with the current frame and time.</span>
 
 <span class="sd">        Called on every scene update; embeds the current SVG frame and</span>
 <span class="sd">        renderer time into the HTML/JS output.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">camera</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Camera</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">camera</span><span class="p">)</span>
         <span class="n">bg_color</span> <span class="o">=</span> <span class="n">color_to_int_rgba</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span> <span class="n">camera</span><span class="o">.</span><span class="n">background_opacity</span><span class="p">)</span>
@@ -1820,17 +1810,12 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.finish">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the updater and write the final HTML and JS files.</span>
 
 <span class="sd">        Removes the scene updater and flushes the accumulated</span>
 <span class="sd">        JavaScript updates to ``&lt;scene_name&gt;.js`` and the final page to</span>
 <span class="sd">        ``&lt;scene_name&gt;.html``.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updater</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">js_updates</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
@@ -1858,7 +1843,7 @@
         <span class="n">value_trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ValueTracker</span><span class="p">],</span>
         <span class="n">linspaces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">VectorND</span><span class="p">],</span>
         <span class="n">animate_this</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Precompute the interactive JavaScript state for value combinations.</span>
 
 <span class="sd">        Iterates over the cartesian product of ``linspaces``, sets each</span>
@@ -1877,12 +1862,6 @@
 <span class="sd">        animate_this</span>
 <span class="sd">            If ``False``, stop the per-frame updater before sweeping and</span>
 <span class="sd">            record the current scene time as ``self.last_t``.</span>
-
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">svg2paths</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"svgpathtools"</span><span class="p">)</span><span class="o">.</span><span class="n">svg2paths</span>
         <span class="k">if</span> <span class="n">animate_this</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>

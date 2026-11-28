@@ -1527,7 +1527,6 @@
 
 <span class="sd">    .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    point_radius</span>
@@ -1603,7 +1602,7 @@
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the axes, point cloud, and latent distribution for the embedding.</span>
 
 <span class="sd">        Parameters</span>
@@ -1614,11 +1613,6 @@
 <span class="sd">            The layer following this layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">(</span>
             <span class="n">tips</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1910,13 +1904,8 @@
 
 <div class="viewcode-block" id="NeuralNetworkEmbeddingTestScene.construct">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding.NeuralNetworkEmbeddingTestScene.html#manim_extensions.machine_learning.neural_network.layers.embedding.NeuralNetworkEmbeddingTestScene.construct">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Build the test scene with an embedding layer and Gaussian distribution.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Build the test scene with an embedding layer and Gaussian distribution."""</span>
         <span class="n">nne</span> <span class="o">=</span> <span class="n">EmbeddingLayer</span><span class="p">()</span>
         <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>

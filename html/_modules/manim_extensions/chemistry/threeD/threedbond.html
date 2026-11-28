@@ -1628,13 +1628,8 @@
 
 <div class="viewcode-block" id="ThreeDCylinder.add_bases">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Adds the end caps of the cylinder.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Adds the end caps of the cylinder."""</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
             <span class="n">opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span>
@@ -1662,13 +1657,8 @@
 
 <div class="viewcode-block" id="ThreeDCylinder._rotate_to_direction">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_rotate_to_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Orient the bond along its target direction.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rotate_to_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Orient the bond along its target direction."""</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
 
         <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1705,18 +1695,13 @@
 
 <div class="viewcode-block" id="ThreeDCylinder.set_direction">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.set_direction">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Align the cylinder to point along the given direction vector.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        direction</span>
 <span class="sd">            Direction the cylinder is aligned to.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rotate_to_direction</span><span class="p">()</span></div>
@@ -1804,7 +1789,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.set_start_and_end_attrs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_start_and_end_attrs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets the start and end points of the line.</span>
 
 <span class="sd">        If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,</span>
@@ -1819,11 +1804,6 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to</span>
 <span class="sd">            :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">rough_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pointify</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="n">rough_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pointify</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
@@ -2022,7 +2002,6 @@
 <span class="sd">    Uses an origin atom and a target atom to be drawn.</span>
 
 <span class="sd">    .. doc-example-covers: add_double_bond, add_single_bond, add_triple_bond</span>
-
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

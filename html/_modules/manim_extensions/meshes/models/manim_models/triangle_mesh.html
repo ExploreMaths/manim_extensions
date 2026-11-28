@@ -1568,7 +1568,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh.edge_flip">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">edge_flip</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">face_idx_1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">face_idx_2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Flip the shared edge between two adjacent triangle faces.</span>
 
 <span class="sd">        The edge connecting the two non-shared vertices of the original</span>
@@ -1585,11 +1585,6 @@
 <span class="sd">            Index of the second triangle face (must share an edge with the first).</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>

@@ -1793,6 +1793,18 @@ Arrays of shape (4, 3) hold the control points.
 <li><p>No <code class="docutils literal notranslate"><span class="pre">__all__</span></code> → names defined at module level (not imported) that do not start with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p></li>
 </ul>
 </section>
+<section id="docstring-formatting">
+<h2>Docstring Formatting<a class="headerlink" href="#docstring-formatting" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">validate_doc_sections.py</span></code> enforces the paragraph and section layout:</p>
+<ul class="simple">
+<li><p>The summary and every numpydoc section are separated from the next section by <strong>exactly one blank line</strong>. Two blank lines before <code class="docutils literal notranslate"><span class="pre">Returns</span></code>, <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> or any other header are rejected.</p></li>
+<li><p>A section header starts at the docstring margin, exactly like the summary; an indented header is rejected because docutils treats it as a nested section title.</p></li>
+<li><p>A section header is followed immediately by its <code class="docutils literal notranslate"><span class="pre">----------</span></code> underline and its first entry; a blank line between the underline and the first entry is rejected.</p></li>
+<li><p>The body of <code class="docutils literal notranslate"><span class="pre">Returns</span></code> and <code class="docutils literal notranslate"><span class="pre">Yields</span></code> is indented exactly <strong>four spaces</strong> below the header. An eight-space description is rejected because docutils would render it as an over-indented code block.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section documents a value. Functions that only perform side effects are annotated <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">None</span></code> and do not carry a <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">scripts/check_return_annotations.py</span></code> enforces return annotations: a function with a value-returning <code class="docutils literal notranslate"><span class="pre">return</span></code> must declare one, and a bare <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">Any</span></code> is always rejected. Use the concrete type, or <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">None</span></code> for a side-effect-only function.</p>
+</section>
 </section>
 
         </article>
@@ -1867,6 +1879,7 @@ Arrays of shape (4, 3) hold the control points.
 </li>
 <li><a class="reference internal" href="#cross-references">Cross-References</a></li>
 <li><a class="reference internal" href="#api-documentation-coverage">API Documentation Coverage</a></li>
+<li><a class="reference internal" href="#docstring-formatting">Docstring Formatting</a></li>
 </ul>
 </li>
 </ul>

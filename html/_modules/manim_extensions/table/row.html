@@ -1574,13 +1574,8 @@
 
 <div class="viewcode-block" id="Row.create_cells">
 <a class="viewcode-back" href="../../../reference/table/row.Row.html#manim_extensions.table.row.Row.create_cells">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Create and position all cells in this row.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The resulting value.</span>
-<span class="sd">        """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Create and position all cells in this row."""</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
             <span class="n">cell</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">(</span>
                 <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>

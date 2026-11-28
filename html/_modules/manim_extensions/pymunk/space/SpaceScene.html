@@ -1841,8 +1841,8 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_constraints">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">VConstraint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds constraint Mobjects to the scene and installs them into the physical space.</span>
-<span class="sd">        This method ensures that the constraints (such as springs, joints, or motors)</span>
-<span class="sd">        are both visually rendered in Manim and physically simulated in Pymunk.</span>
+<span class="sd">                This method ensures that the constraints (such as springs, joints, or motors)</span>
+<span class="sd">                are both visually rendered in Manim and physically simulated in Pymunk.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1859,8 +1859,8 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.active_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">active_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Activates the physical bodies of the given Mobjects if they are sleeping.</span>
-<span class="sd">        In physics simulations, bodies that have come to rest are often put to 'sleep'</span>
-<span class="sd">        to save computation. This method forces those bodies back into an active state.</span>
+<span class="sd">                In physics simulations, bodies that have come to rest are often put to 'sleep'</span>
+<span class="sd">                to save computation. This method forces those bodies back into an active state.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1881,9 +1881,9 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.sleep_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">sleep_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Forces the physical bodies of the given Mobjects into a sleeping state.</span>
-<span class="sd">        Sleeping bodies are removed from the physics simulation update loop until</span>
-<span class="sd">        they are touched by another active body or manually activated, which</span>
-<span class="sd">        helps reduce CPU usage.</span>
+<span class="sd">                Sleeping bodies are removed from the physics simulation update loop until</span>
+<span class="sd">                they are touched by another active body or manually activated, which</span>
+<span class="sd">                helps reduce CPU usage.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2337,7 +2337,6 @@
 <span class="sd">        point</span>
 <span class="sd">            The local point :math:`(x, y, z)` at which to compute velocity.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The velocity vector (vx, vy, 0) at the given point.</span>
@@ -2359,7 +2358,6 @@
 <span class="sd">            The :class:`~manim.mobject.mobject.Mobject` whose body is queried.</span>
 <span class="sd">        point</span>
 <span class="sd">            The world point :math:`(x, y, z)` at which to compute velocity.</span>
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

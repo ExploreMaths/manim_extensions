@@ -1493,8 +1493,6 @@
 
 <span class="sd">"""functions to display voronoi diagram and create delaunay meshes as its dual."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="c1"># python imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1515,7 +1513,6 @@
 <span class="sd">    delaunay triangulation.</span>
 
 <span class="sd">    .. doc-example-covers: create_voronoi, get_circum_circle</span>
-
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1678,7 +1675,7 @@
 
 <div class="viewcode-block" id="VoronoiDelaunay.create_triangle">
 <a class="viewcode-back" href="../../../../reference/meshes/delaunay/voronoi.VoronoiDelaunay.html#manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.create_triangle">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_triangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">voronoi_vertex_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_triangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">voronoi_vertex_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the dual triangle for a given Voronoi vertex and add it to the mesh.</span>
 
 <span class="sd">        The triangle is formed by the three mesh vertices whose Voronoi</span>
@@ -1688,11 +1685,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        voronoi_vertex_index</span>
 <span class="sd">            Index of the Voronoi vertex whose dual triangle is created.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
 
         <span class="n">triangle_indices</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>

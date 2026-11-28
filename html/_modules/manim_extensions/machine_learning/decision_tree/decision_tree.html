@@ -1616,18 +1616,13 @@
 
 <div class="viewcode-block" id="LeafNode._construct_text_node">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree.LeafNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode._construct_text_node">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_text_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_text_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a text leaf node.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        class_index</span>
 <span class="sd">            Index of the represented class.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">label</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_index</span><span class="p">)</span>
@@ -1642,18 +1637,13 @@
 
 <div class="viewcode-block" id="LeafNode._construct_image_node">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree.LeafNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode._construct_image_node">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_image_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_image_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build an image leaf node.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        class_index</span>
 <span class="sd">            Index of the represented class.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Get image</span>
         <span class="n">image_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span><span class="p">[</span><span class="n">class_index</span><span class="p">]</span>
@@ -1719,7 +1709,6 @@
 
 <span class="sd">    .. doc-example-covers: create_decision_tree, make_expand_tree_animation</span>
 
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sklearn_tree</span>
@@ -1732,7 +1721,6 @@
 <span class="sd">        Image file paths, one per class, used for the leaf nodes.</span>
 <span class="sd">    class_colors</span>
 <span class="sd">        Colors, one per class, used for the leaf node borders.</span>
-
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -1898,7 +1886,7 @@
             <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">parent_object</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
             <span class="n">parent_node</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Recursively build tree nodes and connections at the given depth."""</span>
             <span class="c1"># make the node object</span>
             <span class="n">is_leaf</span> <span class="o">=</span> <span class="p">(</span>

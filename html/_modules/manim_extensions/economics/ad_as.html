@@ -1876,7 +1876,7 @@
 <a class="viewcode-back" href="../../../reference/economics/ad_as.ADASDiagram.html#manim_extensions.economics.ad_as.ADASDiagram._append_long_run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_append_long_run</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">lr_run_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append the long-run adjustment to an animation list.</span>
 
 <span class="sd">        Parameters</span>
@@ -1887,11 +1887,6 @@
 <span class="sd">            Duration of the long-run adjustment.</span>
 <span class="sd">        show_arrows</span>
 <span class="sd">            Whether the adjustment draws guide arrows.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">clear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_arrows</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">clear</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1932,7 +1927,6 @@
 <span class="sd">            Short run: AD shifts right → output rises above potential, price unchanged.</span>
 
 <span class="sd">            Long run: SRAS slowly shifts up → output returns to potential at higher price.</span>
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1976,7 +1970,6 @@
 
 <span class="sd">            Long run: SRAS slowly shifts down → output returns to potential at lower price.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            A list of animations to play in sequence.</span>
@@ -2016,7 +2009,6 @@
 
 <span class="sd">            Long run: SRAS slowly shifts back down as economy self-corrects.</span>
 
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            A list of animations to play in sequence.</span>
@@ -2053,7 +2045,6 @@
 <span class="sd">            Short run: SRAS shifts down → price falls, output rises.</span>
 
 <span class="sd">            Long run: SRAS slowly shifts back up as economy self-corrects.</span>
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

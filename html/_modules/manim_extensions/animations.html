@@ -1585,7 +1585,7 @@
 
 <div class="viewcode-block" id="TypeWriter.interpolate_mobject">
 <a class="viewcode-back" href="../../reference/basic/animations.TypeWriter.html#manim_extensions.animations.TypeWriter.interpolate_mobject">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the visible characters based on the animation progress ``alpha``.</span>
 
 <span class="sd">        This method is called internally by Manim during the animation.  It</span>
@@ -1595,11 +1595,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        alpha</span>
 <span class="sd">            Animation progress from ``0`` to ``1``.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">current_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">char_count</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">submobjects</span><span class="p">):</span>
@@ -2156,18 +2151,13 @@
 
 <div class="viewcode-block" id="PassingRectangle.interpolate_mobject">
 <a class="viewcode-back" href="../../reference/basic/animations.PassingRectangle.html#manim_extensions.animations.PassingRectangle.interpolate_mobject">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Slide and resize the sweep rectangle based on ``alpha``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        alpha</span>
 <span class="sd">            Animation progress from ``0`` to ``1``.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">a_left</span> <span class="o">=</span> <span class="n">rush_into</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
         <span class="n">a_right</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rush_into</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>

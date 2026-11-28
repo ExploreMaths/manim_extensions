@@ -1627,9 +1627,11 @@ attribute linked to a Pymunk body.</p>
 <dt class="sig sig-object py" id="manim_extensions.pymunk.space.VSpace.VSpace.remove_body_shapes_constraints">
 <span class="sig-name descname"><span class="pre">remove_body_shapes_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/space/VSpace.html#VSpace.remove_body_shapes_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.space.VSpace.VSpace.remove_body_shapes_constraints" title="Link to this definition">¶</a></dt>
 <dd><p>Removes physical bodies, shapes, or constraints from the physical space.</p>
-<p>This method handles the unregistration of Pymunk objects. It is crucial for
+<blockquote>
+<div><p>This method handles the unregistration of Pymunk objects. It is crucial for
 maintaining simulation performance and preventing memory leaks or unexpected
 physical interactions after a Mobject has been removed from the scene.</p>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>items</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Body" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>, <a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Shape" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shape</span></code></a>, <a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.constraints.html#pymunk.constraints.Constraint" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constraint</span></code></a>]</span>) – The Pymunk objects (Body, Shape, or Constraint) to be removed from

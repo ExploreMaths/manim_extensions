@@ -1533,12 +1533,14 @@
 </div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create" title="Link to this definition">¶</a></dt>
-<dd><p>Return a tuple of animations for creating the code block. Use such as:n
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">python</span> <span class="pre">=</span> <span class="pre">CodeBlock('print(&quot;Hello</span> <span class="pre">World!&quot;)',</span> <span class="pre">language</span> <span class="pre">=</span> <span class="pre">Python)</span>
-<span class="pre">self.play(*python.create())</span>
-<span class="pre">`</span></code>
-By default the animation will <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a> the <cite>background</cite> and <cite>title_background</cite>, and <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.AddTextLetterByLetter.html#manim.animation.creation.AddTextLetterByLetter" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AddTextLetterByLetter</span></code></a> the <cite>code</cite> and <cite>title</cite>.</p>
+<dd><p>Return a tuple of animations for creating the code block.</p>
+<p>Use the returned animations with <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">=</span> <span class="n">CodeBlock</span><span class="p">(</span><span class="s1">'print("Hello World!")'</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">Python</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">python</span><span class="o">.</span><span class="n">create</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>By default the animation fades in the background and title background, and
+writes the code and title letter by letter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to each animation.</p>
@@ -1556,12 +1558,14 @@ animations when a title is present.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate">
 <span class="sig-name descname"><span class="pre">uncreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/code_blocks/manim_code_blocks.html#CodeBlock.uncreate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate" title="Link to this definition">¶</a></dt>
-<dd><p>Return a tuple of animations for uncreating the code block. Use such as:
-<code class="docutils literal notranslate"><span class="pre">`</span>
+<dd><dl class="simple">
+<dt>Return a tuple of animations for uncreating the code block. Use such as:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`</span>
 <span class="pre">python</span> <span class="pre">=</span> <span class="pre">CodeBlock('print(&quot;Hello</span> <span class="pre">World!&quot;)',</span> <span class="pre">language</span> <span class="pre">=</span> <span class="pre">Python)</span>
 <span class="pre">self.play(*python.uncreate())</span>
 <span class="pre">`</span></code>
 By default the animation will <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> the <cite>background</cite> and <cite>title_background</cite>, and <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.Uncreate.html#manim.animation.creation.Uncreate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Uncreate</span></code></a> the <cite>code</cite> and <cite>title</cite>.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to each animation.</p>
