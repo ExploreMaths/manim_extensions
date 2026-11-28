@@ -1604,9 +1604,18 @@ cannot stand in for a real demonstration.</p></li>
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
 </ul>
 </section>
-<section id="changed-33">
-<h3>Changed (33)<a class="headerlink" href="#changed-33" title="Link to this heading">¶</a></h3>
+<section id="changed-34">
+<h3>Changed (34)<a class="headerlink" href="#changed-34" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Font Awesome enum members whose names collide with Python builtins now use
+a trailing underscore: <a class="reference internal" href="reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_" title="manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">list_</span></code></a>,
+<code class="docutils literal notranslate"><span class="pre">map_</span></code>, <code class="docutils literal notranslate"><span class="pre">filter_</span></code>, <code class="docutils literal notranslate"><span class="pre">print_</span></code>, <code class="docutils literal notranslate"><span class="pre">copyright_</span></code> and
+<a class="reference internal" href="reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.RegularEnum.map_" title="manim_extensions.fontawesome.manim_fontawesome.RegularEnum.map_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">map_</span></code></a>,
+<code class="docutils literal notranslate"><span class="pre">copyright_</span></code>.  The <code class="docutils literal notranslate"><span class="pre">solid</span></code> and <code class="docutils literal notranslate"><span class="pre">regular</span></code> namespaces still accept the
+public icon names (<code class="docutils literal notranslate"><span class="pre">solid.list</span></code>, <code class="docutils literal notranslate"><span class="pre">regular.map</span></code>, …), and
+<code class="docutils literal notranslate"><span class="pre">list_icons()</span></code> keeps returning the original icon names.  This removes
+the ambiguous Sphinx target that made <code class="docutils literal notranslate"><span class="pre">list</span></code> in a type alias link to the
+icon constant.</p></li>
 <li><p>The QR code factory is now the <a class="reference internal" href="reference/qr_codes/qr.html#manim_extensions.qr_codes.qr.QRCode" title="manim_extensions.qr_codes.qr.QRCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">QRCode</span></code></a>
 mobject class.  The refactored version no longer exposes a separate
 <code class="docutils literal notranslate"><span class="pre">qr_code</span></code> function or compatibility alias.  Each instance is a
@@ -2537,7 +2546,7 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#">Changelog</a><ul>
 <li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a><ul>
 <li><a class="reference internal" href="#added-21">Added (21)</a></li>
-<li><a class="reference internal" href="#changed-33">Changed (33)</a></li>
+<li><a class="reference internal" href="#changed-34">Changed (34)</a></li>
 <li><a class="reference internal" href="#fixed-19">Fixed (19)</a></li>
 </ul>
 </li>
