@@ -54,14 +54,14 @@ class Ruler(VGroup):
                self.add(ruler, Dot(start, color=RED), Dot(end, color=RED))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         length: float = 12,
         width: float = 0.8,
         ruler_color: ParsableManimColor = WHITE,
         stroke_width: float = 2,
         fill_opacity: float = 0.4,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.ruler_length = length

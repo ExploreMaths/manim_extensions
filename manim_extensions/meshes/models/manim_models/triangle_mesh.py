@@ -4,7 +4,7 @@
 
 """2D triangle manim mesh with functionality useful for delaunay meshes."""
 
-from typing import Any, cast
+from typing import Any
 
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
@@ -67,14 +67,18 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     """
 
     # pylint:disable=abstract-method
-    def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, mesh: Mesh, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         if any(len(face) != 3 for face in mesh.faces):
             raise InvalidMeshException("Mesh must only consist of triangles!")
         # init Manim2DMesh
         super().__init__(mesh, *args, **kwargs)
 
     def edge_flip(
-        self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs: Any
+        self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs: object
     ) -> None:
         """Flip the shared edge between two adjacent triangle faces.
 
@@ -128,10 +132,10 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
                 triangle = [self.mesh.get_3d_vertices()[i] for i in face_indices]
                 face_mob = self.get_face(face_idx)
                 new_face = face_mob.copy()
-                cast(Any, new_face).set_points_as_corners(
+                new_face.set_points_as_corners(
                     [triangle[0], triangle[1], triangle[2], triangle[0]],
                 )
-                anims.append(cast(Any, face_mob).animate(**kwargs).become(new_face))
+                anims.append(face_mob.animate.become(new_face))
         if self.display_edges:
             self.edges.remove(old_edge)
             self.edges.insert(
@@ -141,6 +145,6 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             new_edge.set_points_as_corners(
                 [self.mesh.get_3d_vertices()[v_1], self.mesh.get_3d_vertices()[v_2]]
             )
-            anims.append(cast(Any, old_edge.animate)(**kwargs).become(new_edge))
+            anims.append(old_edge.animate.become(new_edge))
         if len(anims) > 0:
             scene.play(*anims)

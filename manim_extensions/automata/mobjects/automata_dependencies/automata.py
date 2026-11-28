@@ -12,6 +12,7 @@ from .xml_parser import parse_xml_file
 
 
 from .state import State
+from .transition import ReadSymbol
 from .transition import Transition
 
 import itertools
@@ -90,7 +91,9 @@ class FiniteStateAutomaton:
 
     id_iter = itertools.count()
 
-    def __init__(self, json_template: dict[Any, Any] | None = None) -> None:
+    def __init__(  # explicit-any-ok: external graph JSON has nested vendor-specific keys
+        self, json_template: dict[Any, Any] | None = None
+    ) -> None:
         self.id = next(self.id_iter)
         self.states: list[State] = []
         self.transitions: list[Transition] = []
@@ -110,7 +113,9 @@ class FiniteStateAutomaton:
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
-    def construct_from_json(self, json_dictionary: dict[Any, Any]) -> None:
+    def construct_from_json(  # explicit-any-ok: external graph JSON has nested vendor-specific keys
+        self, json_dictionary: dict[Any, Any]
+    ) -> None:
         """Construct the automaton from a JSON-like dictionary.
 
         Parameters
@@ -135,7 +140,7 @@ class FiniteStateAutomaton:
         for state_data in states:
             initial = "initial" in state_data
             final = "final" in state_data
-            state_id = int(cast(Any, state_data.get("@id", 0)))
+            state_id = int(str(state_data.get("@id", 0)))
             name = str(state_data.get("@name", str(state_id)))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
@@ -148,14 +153,14 @@ class FiniteStateAutomaton:
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
         """
         for trans_data in transitions:
-            from_id = int(cast(Any, trans_data["from"]))
-            to_id = int(cast(Any, trans_data["to"]))
+            from_id = int(str(trans_data["from"]))
+            to_id = int(str(trans_data["to"]))
             read = trans_data.get("read")
             from_state = self.get_state_by_id(from_id)
             to_state = self.get_state_by_id(to_id)
             if from_state and to_state:
                 transition = Transition(from_state, to_state)
-                cast(Any, transition).read_symbols = [read] if read else []
+                transition.read_symbols = [cast(ReadSymbol, read)] if read else []
                 self.transitions.append(transition)
                 from_state.add_transition_to_state(transition)
 
@@ -207,7 +212,7 @@ class FiniteStateAutomaton:
         return None
 
     def automaton_step(
-        self, token: str, state_pointer: State
+        self, token: ReadSymbol | str, state_pointer: State
     ) -> tuple[bool, list[State], Sequence[Transition | int]]:
         """Advance the automaton by one token from the current state.
 
@@ -229,15 +234,18 @@ class FiniteStateAutomaton:
             []
         )  # store the transitions that transition from current to next states.
 
+        token_text = token if isinstance(token, str) else token.tex_string
         # go through each transition of this state
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
             # check if any transition's symbols match the input token
-            for read_symbol in cast(
-                Any, transition
-            ).read_symbols:  # Iterate through the transtion's read options
+            for (
+                read_symbol
+            ) in (
+                transition.read_symbols
+            ):  # Iterate through the transtion's read options
                 if (
-                    cast(Any, read_symbol).tex_string == cast(Any, token).tex_string
+                    read_symbol.tex_string == token_text
                     or read_symbol.tex_string == r"\epsilon"
                 ):
                     next_states.append(transition.transition_to)
@@ -327,7 +335,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
         super().__init__()
 
     def automaton_step(
-        self, token: str, state_pointer: State, deterministic: bool = True
+        self, token: ReadSymbol | str, state_pointer: State, deterministic: bool = True
     ) -> tuple[bool, list[State], list[int]]:
         """Perform one step of the automaton on the given token.
 
@@ -351,14 +359,17 @@ class PushDownAutomaton(FiniteStateAutomaton):
             []
         )  # store the ids of the transitions that transition from current to next states.
 
+        token_text = token if isinstance(token, str) else token.tex_string
         # go through each transition of this state
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
             # check if any transition's symbols match the input token
-            for read_symbol in cast(
-                Any, transition
-            ).read_symbols:  # Iterate through the transtion's read options
-                if cast(Any, read_symbol).tex_string == cast(Any, token).tex_string:
+            for (
+                read_symbol
+            ) in (
+                transition.read_symbols
+            ):  # Iterate through the transtion's read options
+                if read_symbol.tex_string == token_text:
                     next_states.append(transition.transition_to)
                     transition_ids.append(transition.id)
                     if (

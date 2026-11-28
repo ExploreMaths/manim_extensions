@@ -6,9 +6,12 @@
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
+from collections.abc import Hashable
 from typing import Any, cast, overload
 
 import numpy as np
+from numpy.typing import NDArray
+from manim.typing import Point3D
 from manim import (
     Circle,
     PI,
@@ -51,8 +54,11 @@ class PathMapper(VMobject):
                 self.add(path, dot)
     """
 
-    def __init__(
-        self, path_source: VMobject, num_of_path_points: int = 100, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        path_source: VMobject,
+        num_of_path_points: int = 100,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.num_of_path_points = num_of_path_points
@@ -75,7 +81,7 @@ class PathMapper(VMobject):
         self.pathdata_lengths = np.cumsum(norms)
         self.pathdata_alpha = np.linspace(0, 1, self.pathdata_lengths.size)
 
-    def cubic_to_quads(self, cubic_points: np.ndarray) -> np.ndarray:
+    def cubic_to_quads(self, cubic_points: NDArray[np.float64]) -> NDArray[np.float64]:
         """Approximate one cubic Bezier segment with two quadratic ones.
 
         Parameters
@@ -102,7 +108,7 @@ class PathMapper(VMobject):
         q_points = np.append(q_points, np.array((q0, q1, q2, q2, q3, q4)), axis=0)
         return q_points
 
-    def calc_len_bezier_quad(self, points: np.ndarray) -> float:
+    def calc_len_bezier_quad(self, points: NDArray[np.float64]) -> float:
         """Compute the exact arc length of a quadratic Bezier segment.
 
         Parameters
@@ -282,8 +288,8 @@ class PathMapper(VMobject):
         return eq_func
 
     def point_from_proportion(
-        self, alpha: float | Sequence[float] | np.ndarray
-    ) -> np.ndarray:
+        self, alpha: float | Sequence[float] | NDArray[np.float64]
+    ) -> NDArray[np.float64]:
         """Return the point at a normalized path position.
 
         This overrides the base implementation with a precomputed length
@@ -325,7 +331,7 @@ class PathMapper(VMobject):
             else:
                 index = int(a * self.path.get_num_curves() // 1)
                 remainder = (a * self.path.get_num_curves()) % 1
-            return cast(np.ndarray, self.path.get_nth_curve_function(index)(remainder))
+            return self.path.get_nth_curve_function(index)(remainder)
 
     def get_length_between_points(self, b: float, a: float) -> float:
         """Return the signed arc length between two path positions.
@@ -407,7 +413,7 @@ class PathMapper(VMobject):
             bz_a = 1.0
         return (indx, bz_a)
 
-    def get_tangent_unit_vector(self, s: float) -> np.ndarray:
+    def get_tangent_unit_vector(self, s: float) -> NDArray[np.float64]:
         """Return the unit tangent vector at an arc length.
 
         Parameters
@@ -442,7 +448,7 @@ class PathMapper(VMobject):
         tv = self.get_tangent_unit_vector(s)
         return angle_of_vector(tv)
 
-    def get_normal_unit_vector(self, s: float) -> np.ndarray:
+    def get_normal_unit_vector(self, s: float) -> NDArray[np.float64]:
         """Return the unit normal vector at an arc length.
 
         Parameters
@@ -457,7 +463,7 @@ class PathMapper(VMobject):
         tv = self.get_tangent_unit_vector(s)
         return rotate_vector(tv, PI / 2)
 
-    def get_curvature_vector(self, s: float) -> np.ndarray:
+    def get_curvature_vector(self, s: float) -> NDArray[np.float64]:
         """Return the curvature vector at an arc length.
 
         Parameters
@@ -529,13 +535,13 @@ class DashedLineMobject(VDict):
                self.add(dashed)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target_mobject: VMobject,
         num_dashes: int = 15,
         dashed_ratio: float = 0.5,
         dash_offset: float = 0.0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.path = PathMapper(
@@ -548,7 +554,7 @@ class DashedLineMobject(VDict):
                 num_dashes, dash_ratio=dashed_ratio, offset=dash_offset
             )
         )
-        self.add(cast(Any, {"dashes": dshgrp}))
+        self.add(cast(dict[Hashable, VMobject], {"dashes": dshgrp}))
         self["dashes"].match_style(target_mobject)
 
     def generate_dash_pattern_metric(
@@ -681,14 +687,14 @@ class DashDotMobject(DashedLineMobject):
                 self.add(DashDotMobject(path, num_dashes=8, dashed_ratio=0.45))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target_mobject: VMobject,
         num_dashes: int = 15,
         dashed_ratio: float = 0.35,
         dash_offset: float = 0.0,
         dot_scale: float = 1.0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             target_mobject, num_dashes, dashed_ratio, dash_offset, **kwargs
@@ -770,14 +776,14 @@ class PathOffsetMobject(VMobject):
                 self.add(base, offset)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target_mobject: VMobject,
         ofs_func: Callable[..., float],
         ofs_func_kwargs: dict[str, object] = {},
         num_of_samples: int = 100,
         discontinuities: Sequence[float] = (),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.ofs_func_kwargs = ofs_func_kwargs
@@ -815,12 +821,12 @@ class PathOffsetMobject(VMobject):
         """
         self.ofs_func_kwargs = ofs_func_kwargs
 
-    def generate_bezier_points(
+    def generate_bezier_points(  # explicit-any-ok: supports scalar- and vector-valued sampling functions
         self,
         input_func: Callable[[float], Any],
-        t_range: np.ndarray,
+        t_range: NDArray[np.float64],
         Smoothing: bool = True,
-    ) -> list[list[np.ndarray]]:
+    ) -> list[list[NDArray[np.float64]]]:
         """Sample a function and build cubic Bezier control points.
 
         Parameters
@@ -865,7 +871,8 @@ class PathOffsetMobject(VMobject):
         """
         self.ref_curve = VMobject()
         bez_point = self.generate_bezier_points(
-            self.PM.point_from_proportion, self.t_range
+            cast(Callable[[float], Point3D], self.PM.point_from_proportion),
+            self.t_range,
         )
         for point in bez_point:
             self.ref_curve.append_points(point)
@@ -873,7 +880,7 @@ class PathOffsetMobject(VMobject):
 
     def generate_offset_func_points(
         self, Smoothing: bool = True
-    ) -> list[list[np.ndarray]]:
+    ) -> list[list[NDArray[np.float64]]]:
         """Sample the offset function and build Bezier control points.
 
         Parameters
@@ -892,7 +899,7 @@ class PathOffsetMobject(VMobject):
         )
         return points
 
-    def generate_normal_vectors(self) -> list[list[np.ndarray]]:
+    def generate_normal_vectors(self) -> list[list[NDArray[np.float64]]]:
         """Build normal vectors at every sampled path position.
 
         Returns
@@ -910,7 +917,7 @@ class PathOffsetMobject(VMobject):
 
     def generate_offset_paths(
         self, gen_ofs_point: bool = True, gen_ref_curve: bool = True
-    ) -> np.ndarray:
+    ) -> NDArray[np.float64]:
         """Build the offset path points.
 
         Parameters
@@ -956,9 +963,7 @@ class PathOffsetMobject(VMobject):
         -------
             The points are replaced in place.
         """
-        self.points = cast(
-            Any, self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
-        )
+        self.points = self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
 
 
 class CurveWarp(VMobject):
@@ -992,12 +997,12 @@ class CurveWarp(VMobject):
                 self.add(guide, warped)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         warp_source: VMobject,
         warp_curve: VMobject,
         anchor_point: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
 
         self.warp_curve = warp_curve
@@ -1022,40 +1027,34 @@ class CurveWarp(VMobject):
         if self.warp_curve.is_closed():
             # if the curve is closed, out-of-bound x values can wrap around to the beginning
             x_points = x_points % L
-            x_curve_points = self.PM.point_from_proportion(cast(Any, x_points / L))
+            x_curve_points = self.PM.point_from_proportion(x_points / L)
             nv = [self.PM.get_normal_unit_vector(x) for x in x_points]
             y_curve_points = np.array(
                 [tuplie[0] * tuplie[1] for tuplie in zip(nv, y_points)]
             )
-            self.points = cast(Any, x_curve_points + y_curve_points)
+            self.points = x_curve_points + y_curve_points
         else:
-            self.points = cast(Any, np.empty((0, 3)))
-            p: Any
+            self.points = np.empty((0, 3))
+            p: Point3D
             for x, y in zip(x_points, y_points):
                 if 0 < x <= L:
                     p = (
                         self.PM.point_from_proportion(x / L)
                         + self.PM.get_normal_unit_vector(x) * y
                     )
-                    self.points = cast(
-                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
-                    )
+                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
                 elif x > L:
                     endpoint = self.PM.point_from_proportion(1)
                     tanv = self.PM.get_tangent_unit_vector(L)
                     normal_v = rotate_vector(tanv, PI / 2)
                     x_1 = x - L
                     p = endpoint + x_1 * tanv + y * normal_v
-                    self.points = cast(
-                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
-                    )
+                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
                 else:
                     startpoint = self.PM.point_from_proportion(0)
                     tanv = self.PM.get_tangent_unit_vector(0)
                     normal_v = rotate_vector(tanv, PI / 2)
                     x_1 = x
                     p = startpoint + x_1 * tanv + y * normal_v
-                    self.points = cast(
-                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
-                    )
+                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
         return self

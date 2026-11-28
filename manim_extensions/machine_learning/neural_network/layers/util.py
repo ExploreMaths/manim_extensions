@@ -11,7 +11,6 @@ from typing import Any, cast
 from .parent_layers import BlankConnective, ConnectiveLayer
 from . import connective_layers_list
 
-
 from manim import Mobject
 
 
@@ -31,7 +30,9 @@ def get_connective_layer(
     -------
         The connective layer class selected for the pair.
     """
-    connective_layer_class: Any = None
+    connective_layer_class: Any = (
+        None  # explicit-any-ok: class resolved dynamically from the paired-layer table
+    )
     for candidate_class in connective_layers_list:
         input_class = candidate_class.input_class
         output_class = candidate_class.output_class
@@ -47,8 +48,6 @@ def get_connective_layer(
             f"Unrecognized input/output class pair: {input_layer} and {output_layer}"
         )
     # Make the instance now
-    connective_layer = connective_layer_class(
-        cast(Any, input_layer), cast(Any, output_layer)
-    )
+    connective_layer = connective_layer_class(input_layer, output_layer)
 
     return cast(ConnectiveLayer, connective_layer)

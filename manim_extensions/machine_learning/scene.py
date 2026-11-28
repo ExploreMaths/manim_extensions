@@ -45,10 +45,18 @@ class ManimML3DScene(ThreeDScene):
                self.add(network)
     """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         super().__init__(*args, **kwargs)  # type: ignore[no-untyped-call]
 
-    def play(self, *args: Any, **kwargs: Any) -> None:
+    def play(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
         Parameters

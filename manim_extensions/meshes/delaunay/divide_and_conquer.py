@@ -5,7 +5,7 @@
 """functions to create delaunay meshes by divide and conquer."""
 
 from collections.abc import Sequence
-from typing import Any
+from manim.typing import Point3D
 
 from manim import Create, DashedLine, FadeOut, Scene, Uncreate
 
@@ -125,7 +125,7 @@ class DivideAndConquer:
 
     def split_points(
         self,
-        vert_indices: list[Any],
+        vert_indices: list[int],
         dash_length: float = 0.2,
         line_width: float = 1,
         speed: float = 1.0,
@@ -184,7 +184,7 @@ class DivideAndConquer:
             split_line,
         )
 
-    def triangulate_leq_3(self, vert_indices: list[Any]) -> None:
+    def triangulate_leq_3(self, vert_indices: list[int]) -> None:
         """Triangulate a base case of at most three vertices.
 
         Creates a triangle (or a degenerate segment when only two vertices
@@ -218,7 +218,7 @@ class DivideAndConquer:
     def _right_candidate(
         self,
         base_lr: tuple[int, int],
-        rr_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
+        rr_edges: set[tuple[int, int]] | list[tuple[int, int]],
         speed: float = 1.0,
     ) -> int | None:
         """Find the best right-side candidate vertex for the merge step.
@@ -303,7 +303,7 @@ class DivideAndConquer:
     def _left_candidate(
         self,
         base_lr: tuple[int, int],
-        ll_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
+        ll_edges: set[tuple[int, int]] | list[tuple[int, int]],
         speed: float = 1.0,
     ) -> int | None:
         """Find the best left-side candidate vertex for the merge step.
@@ -383,8 +383,8 @@ class DivideAndConquer:
 
     def merge_sets(
         self,
-        indices_left: list[Any],
-        indices_right: list[Any],
+        indices_left: list[int],
+        indices_right: list[int],
         split_line: DashedLine,
         speed: float = 1.0,
     ) -> list[int]:
@@ -476,7 +476,7 @@ class DivideAndConquer:
         return merged_indices
 
     def _find_base_lr(
-        self, indices_left: list[Any], indices_right: list[Any]
+        self, indices_left: list[int], indices_right: list[int]
     ) -> tuple[int, int]:
         """Find the initial base edge connecting the left and right vertex sets.
 
@@ -520,7 +520,7 @@ class DivideAndConquer:
                     return indices[(i + 1) % len(indices)]
             raise ValueError(f"index {cur_idx} not found in {indices}")
 
-        def on_right(tangent: Any, point: Any) -> bool:
+        def on_right(tangent: tuple[Point3D, Point3D], point: Point3D) -> bool:
             """Check whether a point lies to the right of a tangent line.
 
             Parameters
@@ -610,7 +610,7 @@ class DivideAndConquer:
         self._divide_and_conquer_recursive(vert_indices, speed)
 
     def _divide_and_conquer_recursive(
-        self, vert_indices: list[Any], speed: float = 1.0
+        self, vert_indices: list[int], speed: float = 1.0
     ) -> list[int]:
         """Internal recursive implementation of the divide-and-conquer algorithm.
 

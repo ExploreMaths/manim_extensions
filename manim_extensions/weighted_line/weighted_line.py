@@ -97,34 +97,38 @@ class WeightedLine(Line):
                self.add(g)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
-        *args: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         weight: str | int | float | None = None,
         weight_config: dict[str, Any] | None = None,
         weight_alpha: float = 0.5,
         bg_config: dict[str, Any] | None = None,
         add_bg: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.weight = weight
         self.alpha = weight_alpha
         self.add_bg = add_bg
         super().__init__(*args, **kwargs)
 
-        self.weight_config: dict[str, Any] = {
-            "color": WHITE,
-            "slant": ITALIC,
-            "font_size": DEFAULT_FONT_SIZE * 0.5,
-        }
+        self.weight_config: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous Manim style keyword arguments
+                "color": WHITE,
+                "slant": ITALIC,
+                "font_size": DEFAULT_FONT_SIZE * 0.5,
+            }
+        )
 
         if weight_config:
             self.weight_config.update(weight_config)
 
-        self.bg_config: dict[str, Any] = {
-            "color": config.background_color,
-            "opacity": 1,
-        }
+        self.bg_config: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous Manim style keyword arguments
+                "color": config.background_color,
+                "opacity": 1,
+            }
+        )
         if bg_config:
             self.bg_config.update(bg_config)
 

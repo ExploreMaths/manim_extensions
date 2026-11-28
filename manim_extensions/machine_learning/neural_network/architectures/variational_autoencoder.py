@@ -9,7 +9,7 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 """
 
-from typing import Any, cast
+from typing import cast
 
 from ..layers.parent_layers import NeuralNetworkLayer
 from manim import (
@@ -20,6 +20,7 @@ from manim import (
     Group,
     ImageMobject,
     ManimColor,
+    VMobject,
     override_animation,
 )
 import numpy as np
@@ -118,7 +119,7 @@ class VariationalAutoencoder(Group):
         -------
             The creation animation for the neural network.
         """
-        return Create(cast(Any, self.neural_network))
+        return Create(cast(VMobject, self.neural_network))
 
     def make_triplet_forward_pass(
         self, triplet: tuple[PixelArray, PixelArray, PixelArray], run_time: float = 1.5
@@ -147,7 +148,7 @@ class VariationalAutoencoder(Group):
         """
         if len(triplet) != 3:
             raise ValueError("A triplet must contain exactly three images.")
-        images: list[Any] = []
+        images: list[ImageMobject | GrayscaleImageMobject] = []
         for pixels in triplet:
             pixels = np.asarray(pixels)
             if pixels.ndim == 2:
@@ -174,7 +175,7 @@ class VariationalAutoencoder(Group):
         wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
         animation_group = AnimationGroup(
-            Create(cast(Any, wrapper_neural_network)),
+            Create(cast(VMobject, wrapper_neural_network)),
             cast(
                 Animation,
                 wrapper_neural_network.make_forward_pass_animation(run_time=run_time),
@@ -217,7 +218,7 @@ class VariationalAutoencoder(Group):
         wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
         animation_group = AnimationGroup(
-            Create(cast(Any, wrapper_neural_network)),
+            Create(cast(VMobject, wrapper_neural_network)),
             cast(Animation, wrapper_neural_network.make_forward_pass_animation()),
             lag_ratio=1.0,
         )

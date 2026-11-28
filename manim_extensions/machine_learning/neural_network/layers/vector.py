@@ -61,21 +61,21 @@ class VectorLayer(VGroupNeuralNetworkLayer):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_values: int,
-        value_func: Callable[..., Any] = lambda: random.uniform(0, 1),
-        **kwargs: Any,
+        value_func: Callable[..., object] = lambda: random.uniform(0, 1),
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.num_values = num_values
         self.value_func = value_func
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the vector label and add it to the layer.
 
@@ -106,7 +106,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         return vector_label
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Return an empty animation group; the vector layer has no forward pass effect.
 

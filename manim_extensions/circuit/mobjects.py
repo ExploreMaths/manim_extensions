@@ -82,13 +82,13 @@ class VoltageSource(Source):
                self.add(circuit)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         value: int | float | str = 1,
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # + and -
         markings = VGroup()
@@ -139,13 +139,13 @@ class CurrentSource(Source):
                self.add(independent, dependent)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         value: int | float | str = 1,
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # Arrow
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
@@ -195,11 +195,11 @@ class Inductor(VMobject):
                )
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -266,7 +266,11 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Inductor":
+    def rotate(
+        self, angle: float, *args: Any, **kwargs: Any
+    ) -> (
+        "Inductor"
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -320,11 +324,11 @@ class Resistor(VMobject):
                self.add(upright, rotated)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -399,7 +403,11 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Resistor":
+    def rotate(
+        self, angle: float, *args: Any, **kwargs: Any
+    ) -> (
+        "Resistor"
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -457,12 +465,12 @@ class Capacitor(VMobject):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
         polarized: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -530,7 +538,11 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Capacitor":
+    def rotate(
+        self, angle: float, *args: Any, **kwargs: Any
+    ) -> (
+        "Capacitor"
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -587,11 +599,11 @@ class Ground(VMobject):
                VGroup(digital, analog, earth, terminals).scale(2.0).move_to(ORIGIN)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         ground_type: Literal["ground", "earth"] = "ground",
         label: str | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -619,7 +631,7 @@ class Ground(VMobject):
 
         self.main_body.center().scale(0.25).center()
 
-    def get_terminals(self, *args: Any) -> Point3D:
+    def get_terminals(self, *args: object) -> Point3D:
         """Return the top connection point of the ground symbol.
 
         Parameters
@@ -679,11 +691,11 @@ class Opamp(VMobject):
                    self.add(Dot(both.get_terminals(name), color=PURE_YELLOW))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         bias_supply: str | None = None,
         label: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)

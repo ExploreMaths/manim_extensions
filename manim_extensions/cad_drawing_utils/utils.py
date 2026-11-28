@@ -67,7 +67,11 @@ class BezierHandlebars(VDict):
                self.add(curve, handles)
     """
 
-    def __init__(self, target_mobject: VMobject, **kwargs: Any) -> None:
+    def __init__(
+        self, target_mobject: VMobject, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
         self.target = target_mobject
         self.generate_circles(0.03)

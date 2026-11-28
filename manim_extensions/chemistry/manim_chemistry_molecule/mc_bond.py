@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 if TYPE_CHECKING:
     from .mc_atom import MCAtom
@@ -135,7 +135,7 @@ class MCBond:
 
     @staticmethod
     def construct_from_bond_dict(
-        bond_index: int, bond_data_dict: dict[Any, Any], molecule: MCMolecule
+        bond_index: int, bond_data_dict: dict[str, object], molecule: MCMolecule
     ) -> "MCBond":
         r"""Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.
 
@@ -173,9 +173,12 @@ class MCBond:
 
         try:
             from_atom_index = bond_data_dict.get("from_atom_index", None)
-            from_mc_atom = molecule.atoms_by_index[from_atom_index]
-
             to_atom_index = bond_data_dict.get("to_atom_index", None)
+            if not isinstance(from_atom_index, int) or not isinstance(
+                to_atom_index, int
+            ):
+                raise TypeError("Bond indices must be integers.")
+            from_mc_atom = molecule.atoms_by_index[from_atom_index]
             to_mc_atom = molecule.atoms_by_index[to_atom_index]
 
         except Exception as error:
@@ -184,11 +187,13 @@ class MCBond:
             )
 
         return MCBond(
-            bond_type=bond_type,
+            bond_type=cast(int, bond_type),
             from_atom=from_mc_atom,
             to_atom=to_mc_atom,
             molecule_index=bond_index,
-            stereo=bond_data_dict.get("stereo"),
-            topology=bond_data_dict.get("topology"),
-            reacting_center_status=bond_data_dict.get("reacting_center_status"),
+            stereo=cast(int | None, bond_data_dict.get("stereo")),
+            topology=cast(int | None, bond_data_dict.get("topology")),
+            reacting_center_status=cast(
+                int | None, bond_data_dict.get("reacting_center_status")
+            ),
         )

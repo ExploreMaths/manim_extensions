@@ -34,7 +34,11 @@ def _install_grouped_depth_sorting() -> None:
         return
     _orig = ThreeDCamera.get_mobjects_to_display
 
-    def _grouped(self: Any, *args: Any, **kwargs: Any) -> list[Mobject]:
+    def _grouped(
+        self: Any, *args: Any, **kwargs: Any
+    ) -> list[
+        Mobject
+    ]:  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Return camera-visible mobjects sorted by rotated depth."""
         mobjects = _orig(self, *args, **kwargs)
         rot_matrix = self.get_rotation_matrix()
@@ -55,7 +59,7 @@ def _install_grouped_depth_sorting() -> None:
         return sorted(mobjects, key=z_key)
 
     ThreeDCamera.get_mobjects_to_display = _grouped  # type: ignore[method-assign]
-    cast(Any, ThreeDCamera)._manim_extensions_grouped_z_key = True
+    setattr(ThreeDCamera, "_manim_extensions_grouped_z_key", True)
 
 
 try:

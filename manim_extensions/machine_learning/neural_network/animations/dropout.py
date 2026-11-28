@@ -9,9 +9,10 @@ feed forward layers of a neural network.
 from __future__ import annotations
 
 import numpy as np
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, cast
 
 from manim import (
+    Mobject,
     Animation,
     AnimationGroup,
     Create,
@@ -382,7 +383,7 @@ def make_forward_pass_with_dropout_animation(
     -------
         The forward pass animation with dropout.
     """
-    layer_args: dict[object, Any] = {}
+    layer_args: dict[Mobject, dict[str, object]] = {}
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = cast(
         list[FeedForwardLayer],

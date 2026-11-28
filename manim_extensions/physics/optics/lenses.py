@@ -28,13 +28,14 @@ from manim import (
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.typing import Point3D
 import numpy as np
+from numpy.typing import NDArray
 
 from ...utils.deps import require
 
 __all__ = ["Lens", "snell", "antisnell", "intersection"]
 
 
-def intersection(vmob1: VMobject, vmob2: VMobject) -> np.ndarray:
+def intersection(vmob1: VMobject, vmob2: VMobject) -> NDArray[np.float64]:
     """Compute the intersection points of two VMobject curves.
 
     Parameters
@@ -141,7 +142,11 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
                )
     """
 
-    def __init__(self, f: float, d: float, n: float = 1.52, **kwargs: Any) -> None:
+    def __init__(
+        self, f: float, d: float, n: float = 1.52, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
         self.f = f
         f *= 50 / 7 * f if f > 0 else -50 / 7 * f  # this is odd, but it works

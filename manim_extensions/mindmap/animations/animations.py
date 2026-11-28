@@ -38,7 +38,7 @@ import numpy as np
 
 from ..algorithms.layout_factory import LayoutFactory
 from ..algorithms import LayoutType, LayoutConfig
-from ..nodes import Node, bfs_walker, NodeState, NodeStyle
+from ..nodes import Node, bfs_walker, NodeState, NodeStyle, StyleSpec
 from manim.typing import Point3D, Vector3D
 
 
@@ -89,8 +89,8 @@ def animate_of_create(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: dict[Any, Any],
-    node_styles: dict[Any, Any],
+    line_styles: StyleSpec,
+    node_styles: StyleSpec,
     layout_type: LayoutType,
 ) -> list[Animation]:
     r"""Create-node animation.
@@ -150,7 +150,7 @@ def animate_of_create(
         AnimateClass = Create
     anims.extend(
         [
-            AnimateClass(cast(Any, node.vmobject).move_to(pos)),
+            AnimateClass(node.vmobject.move_to(pos)),
             Create(
                 node.surr_rect.become(
                     Rectangle(
@@ -170,8 +170,8 @@ def animate_of_display(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: dict[Any, Any],
-    node_styles: dict[Any, Any],
+    line_styles: StyleSpec,
+    node_styles: StyleSpec,
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -232,7 +232,7 @@ def animate_of_display(
                self.wait()
     """
     anims = [
-        cast(Any, node.vmobject).animate.move_to(pos),
+        node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -240,15 +240,15 @@ def animate_of_display(
     node.change_connector(
         change_dir, change_layout, layout_type, direction, **line_styles
     )
-    return anims
+    return cast(list[Animation], anims)
 
 
 def animate_of_scale(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: dict[Any, Any],
-    node_styles: dict[Any, Any],
+    line_styles: StyleSpec,
+    node_styles: StyleSpec,
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -307,7 +307,7 @@ def animate_of_scale(
                self.wait()
     """
     anims = [
-        cast(Any, node.vmobject).animate.scale(node.scale_factor).move_to(pos),
+        node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -316,15 +316,15 @@ def animate_of_scale(
         change_dir, change_layout, layout_type, direction, **line_styles
     )
     node.node_state = NodeState.DISPLAY
-    return anims
+    return cast(list[Animation], anims)
 
 
 def animate_of_alter(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: dict[Any, Any],
-    node_styles: dict[Any, Any],
+    line_styles: StyleSpec,
+    node_styles: StyleSpec,
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -383,7 +383,7 @@ def animate_of_alter(
                self.wait()
     """
     anims = [
-        cast(Any, node.vmobject).animate.become(node.alter_vmobject.move_to(pos)),
+        node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -392,15 +392,15 @@ def animate_of_alter(
     node.change_connector(
         change_dir, change_layout, layout_type, direction, **line_styles
     )
-    return anims
+    return cast(list[Animation], anims)
 
 
 def animate_of_node(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: dict[Any, Any],
-    node_styles: dict[Any, Any],
+    line_styles: StyleSpec,
+    node_styles: StyleSpec,
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -561,7 +561,7 @@ def animate_of_layout(
     direction = layout_config.direction
     change_dir = is_direction_change(root, direction)
     change_layout = is_layout_change(root, layout_type)
-    current_x, current_y, _ = cast(Any, root.vmobject).get_center()
+    current_x, current_y, _ = root.vmobject.get_center()
     layout = LayoutFactory.create_layout(layout_type, root, layout_config)
     root = cast(Node, layout.layout())
     setattr(root, "layout_type", layout_type)
@@ -638,14 +638,14 @@ class AbstractLayoutAnimation(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         root: Node,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.scene = scene
         self.root = root
@@ -811,14 +811,14 @@ class LayoutAnimation(AbstractLayoutAnimation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         root: Node,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             scene,
@@ -885,14 +885,14 @@ class RemoveNode(LayoutAnimation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         nodes: Node | list[Node],
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.is_whole_tree = False
         nodes_list: list[Node] = [nodes] if isinstance(nodes, Node) else list(nodes)
@@ -990,14 +990,14 @@ class InsertNode(LayoutAnimation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         father_children: dict[Node, list[Node]] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.father_children: dict[Node, list[Node]] = father_children or {}
         root = self.get_root(list(self.father_children.keys()))
@@ -1088,14 +1088,14 @@ class ScaleNode(LayoutAnimation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         node_scale: dict[Node, float] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         node_scale_dict: dict[Node, float] = node_scale or {}
         for node, scale in node_scale_dict.items():
@@ -1149,14 +1149,14 @@ class AlterNode(LayoutAnimation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         node_vmobject: dict[Node, VMobject] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         node_vmobject_dict: dict[Node, VMobject] = node_vmobject or {}
         for node, content in node_vmobject_dict.items():

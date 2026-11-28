@@ -7,7 +7,7 @@
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser` class for parsing XML format chemical files.
 """
 
-from typing import Any, cast
+from typing import cast
 
 from types import ModuleType
 
@@ -105,17 +105,17 @@ class XMLParser(BaseParser):
         """
         xmltodict: ModuleType = require("chemistry", "xmltodict")
         parsed_xml: dict[str, object] = xmltodict.parse(data)
-        molecule_data = cast(Any, cast(Any, parsed_xml).get("PC-Compounds")).get(
+        molecule_data = cast(dict[str, object], parsed_xml.get("PC-Compounds")).get(
             "PC-Compound"
         )
         molecule_parsed_data = XMLParser.parse_molecule_data(
-            molecule_data=molecule_data
+            molecule_data=cast(dict[str, object], molecule_data)
         )
 
         return molecule_parsed_data
 
     @staticmethod
-    def parse_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+    def parse_molecule_data(molecule_data: dict[str, object]) -> MoleculeData:
         """Parse a single molecule entry into atoms and bonds dicts.
 
         Parameters
@@ -133,7 +133,7 @@ class XMLParser(BaseParser):
         return atoms_data, bonds_data
 
     @staticmethod
-    def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+    def extract_atoms_data(molecule_data: dict[str, object]) -> AtomsDict:
         """Extract the atoms data from a single molecule entry.
 
         Parameters
@@ -150,57 +150,58 @@ class XMLParser(BaseParser):
         Exception
             Raised when the atoms data has no dictionary structure.
         """
-        compound_atoms: dict[str, Any] = cast(
-            dict[str, Any], molecule_data.get("PC-Compound_atoms")
+        compound_atoms: dict[str, object] = cast(
+            dict[str, object], molecule_data.get("PC-Compound_atoms")
         )
         atoms_data_dict = compound_atoms.get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
             raise Exception(f"Atoms data has no dictionary structure {atoms_data_dict}")
 
-        atoms_aid: dict[str, Any] = cast(
-            dict[str, Any], atoms_data_dict.get("PC-Atoms_aid")
+        atoms_aid: dict[str, object] = cast(
+            dict[str, object], atoms_data_dict.get("PC-Atoms_aid")
         )
-        atoms_indices_raw = cast(list[Any], atoms_aid.get("PC-Atoms_aid_E"))
+        atoms_indices_raw = cast(list[str], atoms_aid.get("PC-Atoms_aid_E"))
         atoms_indices = [int(atom_index) for atom_index in atoms_indices_raw]
 
-        atoms_element: dict[str, Any] = cast(
-            dict[str, Any], atoms_data_dict.get("PC-Atoms_element")
+        atoms_element: dict[str, object] = cast(
+            dict[str, object], atoms_data_dict.get("PC-Atoms_element")
         )
-        atoms_elements_raw = cast(list[Any], atoms_element.get("PC-Element"))
+        atoms_elements_raw = cast(list[dict[str, str]], atoms_element.get("PC-Element"))
         atoms_elements: list[str] = []
         for atom_element_dict in atoms_elements_raw:
-            atoms_elements.append(atom_element_dict.get("@value"))
+            atoms_elements.append(atom_element_dict["@value"])
 
-        compound_coords: dict[str, Any] = cast(
-            dict[str, Any], molecule_data.get("PC-Compound_coords")
+        compound_coords: dict[str, object] = cast(
+            dict[str, object], molecule_data.get("PC-Compound_coords")
         )
-        coords_data_dict = compound_coords.get("PC-Coordinates")
-        conformers_section: dict[str, object] = cast(Any, coords_data_dict).get(
-            "PC-Coordinates_conformers"
+        coords_data_dict = cast(
+            dict[str, object], compound_coords.get("PC-Coordinates")
         )
-        atoms_coords_raw = cast(dict[str, Any], conformers_section.get("PC-Conformer"))
+        conformers_section = cast(
+            dict[str, object],
+            coords_data_dict.get("PC-Coordinates_conformers"),
+        )
+        atoms_coords_raw: dict[str, object] = cast(
+            dict[str, object], conformers_section.get("PC-Conformer")
+        )
 
-        conformer_x: dict[str, object] = cast(Any, atoms_coords_raw).get(
-            "PC-Conformer_x"
-        )
+        conformer_x = cast(dict[str, object], atoms_coords_raw.get("PC-Conformer_x"))
         coords_x = [
             float(coord)
-            for coord in cast(list[Any], conformer_x.get("PC-Conformer_x_E"))
+            for coord in cast(list[str], conformer_x.get("PC-Conformer_x_E"))
         ]
-        conformer_y: dict[str, object] = cast(Any, atoms_coords_raw).get(
-            "PC-Conformer_y"
-        )
+        conformer_y = cast(dict[str, object], atoms_coords_raw.get("PC-Conformer_y"))
         coords_y = [
             float(coord)
-            for coord in cast(list[Any], conformer_y.get("PC-Conformer_y_E"))
+            for coord in cast(list[str], conformer_y.get("PC-Conformer_y_E"))
         ]
-        conformer_z: dict[str, object] | None = cast(Any, atoms_coords_raw).get(
-            "PC-Conformer_z"
+        conformer_z: dict[str, object] | None = cast(
+            dict[str, object] | None, atoms_coords_raw.get("PC-Conformer_z")
         )
         if conformer_z:
             coords_z = [
                 float(coord)
-                for coord in cast(list[Any], conformer_z.get("PC-Conformer_z_E"))
+                for coord in cast(list[str], conformer_z.get("PC-Conformer_z_E"))
             ]
 
         else:
@@ -221,7 +222,7 @@ class XMLParser(BaseParser):
         return atoms_data
 
     @staticmethod
-    def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+    def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:
         """Extract the bonds data from a single molecule entry.
 
         Parameters
@@ -233,31 +234,27 @@ class XMLParser(BaseParser):
         -------
             Bonds data of the molecule.
         """
-        compound_bonds: dict[str, Any] = cast(
-            dict[str, Any], molecule_data.get("PC-Compound_bonds")
+        compound_bonds: dict[str, object] = cast(
+            dict[str, object], molecule_data.get("PC-Compound_bonds")
         )
-        bonds_data_dict = compound_bonds.get("PC-Bonds")
+        bonds_data_dict = cast(dict[str, object], compound_bonds.get("PC-Bonds"))
 
-        aid1_section: dict[str, object] = cast(Any, bonds_data_dict).get(
-            "PC-Bonds_aid1"
-        )
-        from_atoms_raw_data = cast(list[Any], aid1_section.get("PC-Bonds_aid1_E"))
+        aid1_section = cast(dict[str, object], bonds_data_dict.get("PC-Bonds_aid1"))
+        from_atoms_raw_data = cast(list[str], aid1_section.get("PC-Bonds_aid1_E"))
         from_atoms_data = [
             int(from_atom_index) for from_atom_index in from_atoms_raw_data
         ]
 
-        aid2_section: dict[str, object] = cast(Any, bonds_data_dict).get(
-            "PC-Bonds_aid2"
-        )
-        to_atoms_raw_data = cast(list[Any], aid2_section.get("PC-Bonds_aid2_E"))
+        aid2_section = cast(dict[str, object], bonds_data_dict.get("PC-Bonds_aid2"))
+        to_atoms_raw_data = cast(list[str], aid2_section.get("PC-Bonds_aid2_E"))
         to_atoms_data = [int(to_atom_index) for to_atom_index in to_atoms_raw_data]
 
-        order_section: dict[str, object] = cast(Any, bonds_data_dict).get(
-            "PC-Bonds_order"
+        order_section = cast(dict[str, object], bonds_data_dict.get("PC-Bonds_order"))
+        bonds_type_raw_data = cast(
+            list[dict[str, str]], order_section.get("PC-BondType")
         )
-        bonds_type_raw_data = cast(list[Any], order_section.get("PC-BondType"))
         bonds_type_data = [
-            int(bond_type_data.get("#text")) for bond_type_data in bonds_type_raw_data
+            int(bond_type_data["#text"]) for bond_type_data in bonds_type_raw_data
         ]
 
         bonds_data: BondsDict = {}

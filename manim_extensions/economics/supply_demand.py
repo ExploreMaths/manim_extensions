@@ -47,12 +47,12 @@ class SupplyDemandDiagram(EconDiagram):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         demand_func: Callable[[float], float] | None = None,
         supply_func: Callable[[float], float] | None = None,
         show_equilibrium: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(x_label="Q", y_label="P", **kwargs)
 

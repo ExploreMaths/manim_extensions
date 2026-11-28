@@ -71,7 +71,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         *sources: Point3D,
         wavelength: float = 1,
@@ -79,7 +79,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.wavelength = wavelength
         self.period = period
@@ -185,14 +185,14 @@ class LinearWave(RadialWave):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         wavelength: float = 1,
         period: float = 1,
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             ORIGIN,
@@ -263,13 +263,13 @@ class StandingWave(ParametricFunction):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         n: int = 2,
         length: float = 4,
         period: float = 1,
         amplitude: float = 1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.n = n
         self.length = length

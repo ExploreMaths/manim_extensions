@@ -53,12 +53,12 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
                self.add(loop, label)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         stroke: VMobject,
         current: float = 1,
         samples: int = 16,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.current = current
         self.samples = samples
@@ -98,7 +98,11 @@ class MagneticField(ArrowVectorField):
                self.add(mag_field)
     """
 
-    def __init__(self, *wires: Wire, **kwargs: Any) -> None:
+    def __init__(
+        self, *wires: Wire, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         dls = []
         currents = []
         for wire in wires:

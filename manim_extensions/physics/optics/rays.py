@@ -69,13 +69,13 @@ class Ray(Line):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D,
         direction: Point3D,
         init_length: float = 5,
         propagate: Iterable[Lens] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.init_length = init_length
         self.propagated = False
@@ -152,15 +152,18 @@ class Ray(Line):
         -------
             Lenses ordered by increasing distance from the ray start.
         """
-        dists: list[list[Any]] = []
+        dists: list[tuple[float, Lens]] = []
         for lens in lenses:
             try:
                 dists.append(
-                    [np.linalg.norm(intersection(self, lens)[0] - self.start), lens]
+                    (
+                        float(np.linalg.norm(intersection(self, lens)[0] - self.start)),
+                        lens,
+                    )
                 )
             except (IndexError, ValueError):
                 # no valid intersection found — put the lens at infinity
-                dists.append([np.inf, lens])
+                dists.append((np.inf, lens))
         dists.sort(key=lambda x: x[0])
         return [lens for _, lens in dists]
 
@@ -176,8 +179,8 @@ class Ray(Line):
         -------
             Intersections ordered by increasing distance from the ray end.
         """
-        result: list[list[Any]] = []
+        result: list[tuple[float, Point3D]] = []
         for inters in intersections:
-            result.append([np.linalg.norm(inters - self.end), inters])
+            result.append((float(np.linalg.norm(inters - self.end)), inters))
         result.sort(key=lambda x: x[0])
         return [inters for _, inters in result]

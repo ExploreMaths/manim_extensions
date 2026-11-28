@@ -53,7 +53,7 @@ class Row(VGroup):
                self.add(row)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         values: list[str],
         cell_widths: float | list[float] = 1.5,
@@ -62,7 +62,7 @@ class Row(VGroup):
         is_header: bool = False,
         show_border: bool = True,
         index: int = 0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 

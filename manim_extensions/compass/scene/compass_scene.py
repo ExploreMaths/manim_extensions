@@ -9,7 +9,7 @@ This module provides scene classes for compass-based geometry animations.
 
 from typing import Any
 
-from typing import cast
+# from typing import cast
 
 from manim import (
     Animation,
@@ -100,12 +100,12 @@ class CompassScene(MovingCameraScene):
             run_time=run_time,
         )
 
-    def rotate_compass_about_niddle_tip(
+    def rotate_compass_about_niddle_tip(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         angle_or_arc: float | Arc,
         arc: Arc | None = None,
         added_anims: list[Animation] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Rotate the compass about its needle tip.
 
@@ -197,7 +197,7 @@ class CompassScene(MovingCameraScene):
             run_time=run_time,
         )
 
-    def draw_arc(
+    def draw_arc(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         niddle_point: Point3D = ORIGIN,
         pen_point: Point3D = RIGHT,
@@ -206,7 +206,7 @@ class CompassScene(MovingCameraScene):
         wait_time: float = 1.0,
         run_time: float = 1.0,
         arc_color: object | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Arc:
         """Draw an arc with the compass. The arc radius is computed from niddle_point and pen_point.
 
@@ -340,14 +340,14 @@ class CompassScene(MovingCameraScene):
             run_time=run_time,
         )
 
-    def draw_line(
+    def draw_line(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D | None = None,
         end: Point3D | None = None,
         run_time: float = 1.0,
         with_pencil: bool = True,
         color: object = PURE_YELLOW,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Line:
         """Draw a straight line using the ruler and pencil.
 
@@ -375,7 +375,8 @@ class CompassScene(MovingCameraScene):
         self.set_ruler(
             start=start, end=end, run_time=0.5 * run_time, with_pencil=with_pencil
         )
-        line = Line(cast(Any, start), cast(Any, end), color=color, **kwargs)
+        assert start is not None and end is not None
+        line = Line(start, end, color=color, **kwargs)
         if with_pencil:
             self.play(DrawPath(self.pencil, line), run_time=0.5 * run_time)
         else:

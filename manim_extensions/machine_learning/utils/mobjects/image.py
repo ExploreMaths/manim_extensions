@@ -4,7 +4,7 @@
 
 """Image mobject utilities for neural network visualization."""
 
-from typing import Any
+# from typing import Any
 
 import numpy as np
 from manim import (
@@ -132,7 +132,7 @@ class GrayscaleImageMobject(Group):
         return FadeIn(self)
 
     def scale(  # intentionally returns None instead of the group
-        self, scale_factor: float, **kwargs: Any
+        self, scale_factor: float, **kwargs: object
     ) -> "GrayscaleImageMobject":
         """Scales the image mobject.
 

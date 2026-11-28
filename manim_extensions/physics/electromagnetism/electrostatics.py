@@ -75,12 +75,12 @@ class Charge(VGroup):
                self.add(plain)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         magnitude: float = 1,
         point: Point3D = ORIGIN,
         add_glow: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         VGroup.__init__(self, **kwargs)
         self.magnitude = magnitude
@@ -160,7 +160,11 @@ class ElectricField(ArrowVectorField):
                self.add(content)
     """
 
-    def __init__(self, *charges: Charge, **kwargs: Any) -> None:
+    def __init__(
+        self, *charges: Charge, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         self.charges = charges
         positions = []
         magnitudes = []

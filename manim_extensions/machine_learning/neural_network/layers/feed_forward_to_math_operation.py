@@ -5,7 +5,7 @@
 """Feed-forward to math operation layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any
 
 from manim import ManimColor, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
@@ -55,21 +55,21 @@ class FeedForwardToMathOperation(ConnectiveLayer):
     input_class = FeedForwardLayer
     output_class = MathOperationLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: FeedForwardLayer,
         output_layer: MathOperationLayer,
         active_color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.active_color = active_color
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build a straight arrow connection between the feed-forward and math operation layers.
 
@@ -93,7 +93,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> ShowPassingFlash:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 

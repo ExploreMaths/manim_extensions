@@ -62,31 +62,35 @@ class LinkedISLMADAS(VGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         is_lm_kwargs: dict[str, float | int | bool | str] | None = None,
         ad_as_kwargs: dict[str, float | int | bool | str] | None = None,
         spacing: float = 1.0,
         numbered_eq: bool = False,
         show_arrows: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
         self._show_arrows = show_arrows
 
-        is_lm_kw: dict[str, Any] = dict(
-            x_length=4,
-            y_length=3,
-            numbered_eq=numbered_eq,
+        is_lm_kw: dict[str, Any] = (
+            dict(  # explicit-any-ok: Manim plot style kwargs are open-ended
+                x_length=4,
+                y_length=3,
+                numbered_eq=numbered_eq,
+            )
         )
         if is_lm_kwargs:
             is_lm_kw.update(is_lm_kwargs)
 
-        ad_as_kw: dict[str, Any] = dict(
-            x_length=4,
-            y_length=3,
-            numbered_eq=numbered_eq,
+        ad_as_kw: dict[str, Any] = (
+            dict(  # explicit-any-ok: Manim plot style kwargs are open-ended
+                x_length=4,
+                y_length=3,
+                numbered_eq=numbered_eq,
+            )
         )
         if ad_as_kwargs:
             ad_as_kw.update(ad_as_kwargs)

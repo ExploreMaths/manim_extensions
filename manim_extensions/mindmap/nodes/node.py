@@ -9,7 +9,7 @@ This module provides node classes for mindmap visualizations.
 
 from __future__ import annotations
 from collections.abc import Generator
-from typing import Any, cast
+from typing import Any, TypedDict, cast
 
 from manim import (
     BLUE,
@@ -21,13 +21,14 @@ from manim import (
     PURE_YELLOW,
     RED,
     RIGHT,
+    ManimColor,
     Rectangle,
     UP,
     VMobject,
     WHITE,
 )
 
-__all__ = ["Node", "NodeState", "NodeStyle", "dfs_walker", "bfs_walker"]
+__all__ = ["Node", "NodeState", "NodeStyle", "StyleSpec", "dfs_walker", "bfs_walker"]
 from enum import Enum
 from collections import deque
 
@@ -77,6 +78,12 @@ class NodeState(Enum):
     ALTER = 4  # replace node content
 
 
+class StyleSpec(TypedDict, total=False):
+    color: ManimColor
+    stroke_width: float
+    font_size: float
+
+
 class NodeStyle:
     """Overall layout parameters and a list of node-style dicts indexed by node level.
 
@@ -114,19 +121,19 @@ class NodeStyle:
 
     def __init__(
         self,
-        node_style: list[dict[str, Any]] = [
+        node_style: list[StyleSpec] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        line_style: list[dict[str, Any]] = [
+        line_style: list[StyleSpec] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        text_style: list[dict[str, Any]] = [
+        text_style: list[StyleSpec] = [
             {"color": RED, "font_size": 64},
             {"color": PURE_YELLOW, "font_size": 56},
             {"color": GREEN, "font_size": 48},
@@ -154,7 +161,7 @@ class NodeStyle:
             self.text_style = [{"color": PURE_YELLOW, "font_size": 36}]
             self.text_num = 1
 
-    def get_node_style(self, level: int) -> dict[str, Any]:
+    def get_node_style(self, level: int) -> StyleSpec:
         """Return the box style configured for a hierarchy level.
 
         Parameters
@@ -171,7 +178,7 @@ class NodeStyle:
             return self.node_style[level]
         return self.node_style[-1]
 
-    def get_line_style(self, level: int) -> dict[str, Any]:
+    def get_line_style(self, level: int) -> StyleSpec:
         """Return the line style for the requested hierarchy level.
 
         Parameters
@@ -188,7 +195,7 @@ class NodeStyle:
             return self.line_style[level]
         return self.line_style[-1]
 
-    def get_text_style(self, level: int) -> dict[str, Any]:
+    def get_text_style(self, level: int) -> StyleSpec:
         """Return the text style for the requested hierarchy level.
 
         Parameters
@@ -294,19 +301,19 @@ class Node:
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         vmobject: VMobject | None = None,
         buff: float = 0.2,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if vmobject is None:
             vmobject = VMobject()
         self.vmobject: VMobject = vmobject
-        self.ID: tuple[Any, ...] = ()
+        self.ID: tuple[int, ...] = ()
         self.text: str | None = None
-        self.height: float = cast(Any, self.vmobject).height + 2 * buff
-        self.width: float = cast(Any, self.vmobject).width + 2 * buff
+        self.height: float = self.vmobject.height + 2 * buff
+        self.width: float = self.vmobject.width + 2 * buff
         self.buff = buff
         self.surr_rect = Rectangle(width=self.width, height=self.height, **kwargs)
         self.x = 0
@@ -317,8 +324,9 @@ class Node:
         self.children: list[Node] = []
         self.node_state = NodeState.INSERT  # node state
         self.side = None
+        self.is_flip = False
         self.connector: Line | None = None
-        self.connector_style: dict[str, Any] | None = None
+        self.connector_style: StyleSpec | None = None
 
     def scale(self, scale_factor: float) -> None:
         """Scale the node around its current center.
@@ -377,7 +385,11 @@ class Node:
         self.width = self.alter_vmobject.width + 2 * self.buff
         self.height = self.alter_vmobject.height + 2 * self.buff
 
-    def _get_mindmap_connector(self, direction: Vector3D, **kwargs: Any) -> Line:
+    def _get_mindmap_connector(
+        self, direction: Vector3D, **kwargs: Any
+    ) -> (
+        Line
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return the connector line for a mind-map node.
 
         Parameters
@@ -411,7 +423,11 @@ class Node:
             Line(start, start + vec, **kwargs).add_line_to(end - vec).add_line_to(end)
         )
 
-    def _get_timeline_connector(self, **kwargs: Any) -> Line:
+    def _get_timeline_connector(
+        self, **kwargs: Any
+    ) -> (
+        Line
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return the connector line for a timeline node.
 
         Parameters
@@ -449,7 +465,11 @@ class Node:
         middle = np.array([start[0], end[1], 0])
         return Line(start, middle, **kwargs).add_line_to(end)
 
-    def _get_catalog_connector(self, **kwargs: Any) -> Line:
+    def _get_catalog_connector(
+        self, **kwargs: Any
+    ) -> (
+        Line
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return the connector line for a catalog node.
 
         Parameters
@@ -482,11 +502,11 @@ class Node:
         middle = np.array([start[0], end[1], 0])
         return Line(start, middle, **kwargs).add_line_to(end)
 
-    def get_connector(
+    def get_connector(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         layout_type: LayoutType,
         direction: Vector3D,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Line:
         """Return the connector from this node to its parent based on layout type.
 
@@ -509,15 +529,18 @@ class Node:
                 return self._get_mindmap_connector(direction, **kwargs)
             case LayoutType.Standard:
                 return self._get_mindmap_connector(
-                    -direction if cast(Any, self).is_flip else direction, **kwargs
+                    -direction if self.is_flip else direction, **kwargs
                 )
             case LayoutType.TimeLine:
                 return self._get_timeline_connector(**kwargs)
             case LayoutType.Catalog:
                 return self._get_catalog_connector(**kwargs)
 
-    def set_connector(
-        self, layout_type: LayoutType, direction: Vector3D = RIGHT, **kwargs: Any
+    def set_connector(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        layout_type: LayoutType,
+        direction: Vector3D = RIGHT,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Set the connector line.
 
@@ -531,19 +554,19 @@ class Node:
             Kwargs processed by this operation.
         """
         if self.parent is not None and self.connector is None:
-            self.connector_style = kwargs
+            self.connector_style = cast(StyleSpec, kwargs)
             self.connector = self.get_connector(layout_type, direction, **kwargs)
             self.connector.add_updater(
                 lambda m: m.become(self.get_connector(layout_type, direction, **kwargs))
             )
 
-    def change_connector(
+    def change_connector(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         change_dir: bool,
         change_layout: bool,
         layout_type: LayoutType,
         direction: Vector3D = RIGHT,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Change the connector line.
 
@@ -567,7 +590,7 @@ class Node:
             and (change_layout or change_dir or kwargs != current_style)
         ):
             self.connector.clear_updaters()
-            self.connector_style = kwargs
+            self.connector_style = cast(StyleSpec, kwargs)
             self.connector.add_updater(
                 lambda m: m.become(self.get_connector(layout_type, direction, **kwargs))
             )

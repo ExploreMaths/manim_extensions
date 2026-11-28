@@ -6,11 +6,13 @@
 
 from __future__ import annotations
 from collections.abc import Iterable, Sequence
-from typing import Any
+
+# from typing import Any
 
 import math
 
 import numpy as np
+from numpy.typing import NDArray
 from manim import ManimColor, ParsableManimColor, WHITE, interpolate_color
 
 __all__ = [
@@ -26,7 +28,7 @@ __all__ = [
 ]
 
 
-def unit_vector(degrees: float) -> np.ndarray:
+def unit_vector(degrees: float) -> NDArray[np.float64]:
     """Return a unit vector for an angle in degrees.
 
     Parameters
@@ -176,7 +178,7 @@ def ease_out_overshoot(t: float, fraction: float = 0.16) -> float:
     return ease_out_back(t, overshoot=c)
 
 
-_FONT_CACHE: dict[tuple[Any, ...], str | None] = {}
+_FONT_CACHE: dict[tuple[str | None, ...], str | None] = {}
 
 
 def pick_font(candidates: Sequence[str], default: str | None = None) -> str | None:
@@ -215,7 +217,7 @@ def pick_font(candidates: Sequence[str], default: str | None = None) -> str | No
     return found
 
 
-def closed(points: np.ndarray) -> np.ndarray:
+def closed(points: NDArray[np.float64]) -> NDArray[np.float64]:
     """Close a polygon path by appending its first point.
 
     Parameters
@@ -231,7 +233,7 @@ def closed(points: np.ndarray) -> np.ndarray:
     return np.vstack([points, points[:1]])
 
 
-def as_points(values: Iterable[Any]) -> np.ndarray:
+def as_points(values: Iterable[object]) -> NDArray[np.float64]:
     """Coerce 2D or 3D points into a float array with three columns.
 
     Parameters

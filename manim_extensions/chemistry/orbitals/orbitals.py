@@ -11,20 +11,25 @@ from typing import Any, cast
 from manim import BLUE, ORIGIN, PI, RED, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
+from numpy.typing import NDArray
 import scipy.special as spe
 from manim.typing import Point3D, VectorND, MatrixMN
 
 if hasattr(spe, "sph_harm_y"):
     # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
-    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
+    def _sph_harm(
+        m: int, l: int, azimuthal: VectorND, polar: VectorND
+    ) -> NDArray[np.complex128]:
         """Return the spherical harmonic with the new scipy argument order."""
-        return cast(np.ndarray, spe.sph_harm_y(l, m, polar, azimuthal))
+        return cast(NDArray[np.complex128], spe.sph_harm_y(l, m, polar, azimuthal))
 
 else:
     # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
-    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
+    def _sph_harm(
+        m: int, l: int, azimuthal: VectorND, polar: VectorND
+    ) -> NDArray[np.complex128]:
         """Return the spherical harmonic with the legacy scipy argument order."""
-        return cast(np.ndarray, spe.sph_harm(m, l, azimuthal, polar))
+        return cast(NDArray[np.complex128], spe.sph_harm(m, l, azimuthal, polar))
 
 
 class OrbitalBase(OpenGLSurface):
@@ -86,7 +91,7 @@ class OrbitalBase(OpenGLSurface):
     """
 
     def add_background_rectangle_to_family_members_with_points(
-        self, **kwargs: Any
+        self, **kwargs: object
     ) -> "OrbitalBase":
         """No-op override to prevent background rectangle addition on orbital surfaces.
 
@@ -101,17 +106,17 @@ class OrbitalBase(OpenGLSurface):
         """
         return self
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         center: Point3D = ORIGIN,
-        resolution: tuple[Any, ...] = (100, 50),
-        u_range: tuple[Any, ...] = (0, PI),
-        v_range: tuple[Any, ...] = (0, TAU),
+        resolution: tuple[int, int] = (100, 50),
+        u_range: tuple[float, float] = (0, PI),
+        v_range: tuple[float, float] = (0, TAU),
         n_value: int = 1,
         l_value: int = 0,
         m_value: int = 0,
         size: int = 1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.n_value = n_value
         self.l_value = l_value
@@ -364,8 +369,13 @@ class Orbital(OpenGLSurface):
         orbital = Orbital(n=2, l=1, m=0, size=2)
     """
 
-    def __init__(
-        self, n: int | None = None, l: int = 0, m: int = 0, size: int = 3, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        n: int | None = None,
+        l: int = 0,
+        m: int = 0,
+        size: int = 3,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(self.uv_func, **kwargs)
         if not n:

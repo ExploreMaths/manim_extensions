@@ -8,8 +8,8 @@ This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_m
 
 from typing import Any, Literal, cast
 
-from manim import DOWN, Tex, Text, VGroup
-from manim.mobject.opengl.opengl_mobject import OpenGLGroup
+from manim import DOWN, Mobject, Tex, Text, VGroup, VMobject
+from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 from abc import abstractmethod
 
 
@@ -67,19 +67,21 @@ class AbstractMolecule:
         molecule.get_connected_atoms_v_group(1, 2)
     """
 
-    group_class: Any = VGroup
+    group_class: type[Any] = (
+        VGroup  # explicit-any-ok: subclasses install VGroup or OpenGLGroup
+    )
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    def __init__(self, *args: object, **kwargs: object) -> None: ...
 
     @classmethod
-    def molecule_from_file(
+    def molecule_from_file(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         cls,
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "AbstractMolecule":
         """Reads a string and returns a single molecule from the parsed data.
 
@@ -114,14 +116,14 @@ class AbstractMolecule:
         return cls(vertices, edges, *args, **kwargs)
 
     @classmethod
-    def multiple_molecules_from_file(
+    def multiple_molecules_from_file(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         cls,
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> OpenGLGroup | VGroup:
         """Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -161,20 +163,20 @@ class AbstractMolecule:
         mmolecules = cls.group_class()
         for mc_molecule in mc_molecules:
             atoms, bonds = cls.mc_molecule_to_atoms_and_bonds(mc_molecule=mc_molecule)
-            mmolecules.add(cast(Any, cls(atoms, bonds, *args, **kwargs)))
+            mmolecules.add(cast(VMobject, cls(atoms, bonds, *args, **kwargs)))
 
         return cast(OpenGLGroup, mmolecules)
 
     @classmethod
-    def molecule_from_string(
+    def molecule_from_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         cls,
         string: str,
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "AbstractMolecule":
         """Reads a string and returns a single molecule from the parsed data.
 
@@ -213,15 +215,15 @@ class AbstractMolecule:
         return cls(vertices, edges, *args, **kwargs)
 
     @classmethod
-    def multiple_molecules_from_string(
+    def multiple_molecules_from_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         cls,
         string: str,
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> OpenGLGroup:
         """Reads a file and returns a collection of molecules from that file as a OpenGLGroup.
 
@@ -265,12 +267,12 @@ class AbstractMolecule:
         mmolecules = OpenGLGroup()
         for mc_molecule in mc_molecules:
             atoms, bonds = cls.mc_molecule_to_atoms_and_bonds(mc_molecule=mc_molecule)
-            mmolecules.add(cast(Any, cls(atoms, bonds, *args, **kwargs)))
+            mmolecules.add(cast(OpenGLMobject, cls(atoms, bonds, *args, **kwargs)))
 
         return mmolecules
 
     @classmethod
-    def molecule_from_pubchem(
+    def molecule_from_pubchem(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         cls,
         cid: str | None = None,
         name: str | None = None,
@@ -278,8 +280,8 @@ class AbstractMolecule:
         inchi: str | None = None,
         three_d: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "AbstractMolecule":
         """Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.
 
@@ -309,19 +311,23 @@ class AbstractMolecule:
             cid=cid, name=name, smiles=smiles, inchi=inchi, three_d=three_d
         )
 
-        molecule_kwargs: dict[str, Any] = {
-            "string": pubchem_api_manager.get_molecule(),
-            "format": "json",
-            "elements_data_dict": elements_data_dict,
-            **kwargs,
-        }
+        molecule_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous PubChem constructor payload
+                "string": pubchem_api_manager.get_molecule(),
+                "format": "json",
+                "elements_data_dict": elements_data_dict,
+                **kwargs,
+            }
+        )
         return cls.molecule_from_string(*args, **molecule_kwargs)
 
     @classmethod
     @abstractmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
+    ) -> tuple[
+        dict[Any, Any], dict[Any, Any]
+    ]:  # explicit-any-ok: subclasses return format-specific parser records
         """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
@@ -406,6 +412,7 @@ class AbstractMolecule:
         if isinstance(name, str):
             name = Text(name)
 
-        name.scale(scale).next_to(cast(Any, self), direction=direction, buff=buff)
-        cast(Any, self).add(name)
+        molecule = cast(Mobject, self)
+        name.scale(scale).next_to(molecule, direction=direction, buff=buff)
+        molecule.add(name)
         return self

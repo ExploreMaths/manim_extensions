@@ -11,13 +11,14 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 """
 
 from __future__ import annotations
-from collections.abc import Sequence
-from typing import Any, TYPE_CHECKING, cast
+from collections.abc import Mapping, Sequence
+from typing import Any, TYPE_CHECKING, TypedDict, cast
 
 import math
 from dataclasses import replace
 
 import numpy as np
+from numpy.typing import NDArray
 from manim import (
     DOWN,
     Create,
@@ -40,7 +41,7 @@ from manim import (
 
 from manim.utils.color import ParsableManimColor
 from manim.mobject.mobject import _AnimationBuilder
-from .config import RadarConfig, get_style
+from .config import RadarConfig, TextKwargs, get_style
 from .data import RadarData
 from .numbers import RollingNumber
 from .theme import RadarTheme, get_theme
@@ -50,7 +51,17 @@ if TYPE_CHECKING:
     from .camera import CameraRig
 
 
-RadarInput = RadarData | dict[Any, Any] | Sequence[float]
+class _GapSpec(TypedDict):
+    """State captured by :meth:`~manim_extensions.radar.chart.RadarChart.highlight_gap`."""
+
+    a: int
+    b: int
+    color: ParsableManimColor | None
+    opacity: float
+    side: str
+
+
+RadarInput = RadarData | Mapping[str, object] | Sequence[float]
 RadarInputList = RadarInput | Sequence[RadarInput]
 
 __all__ = ["RadarChart"]
@@ -134,7 +145,9 @@ class Series:
         self.fx_group: VGroup | None = None  # dash tracks, in the chart's fx layer
         self.dash_pool: list[VGroup | None] = []  # per axis
         self.breach: list[VGroup | None] = []  # per axis
-        self.big_numbers: dict[Any, Any] = {}  # axis -> unclamped RollingNumber
+        self.big_numbers: dict[int, RollingNumber] = (
+            {}
+        )  # axis -> unclamped RollingNumber
         self.big_numbers_group: VGroup | None = None
 
         cfg = chart.config
@@ -333,7 +346,7 @@ class RadarChart(VGroup):
     before the next animation.
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         data: RadarData | None = None,
         *,
@@ -342,7 +355,7 @@ class RadarChart(VGroup):
         name: str | None = None,
         color: str | None = None,
         max_value: float | None = None,
-        datasets: Sequence[Any] | None = None,
+        datasets: Sequence[RadarInput] | None = None,
         style: str | RadarConfig | None = "neo",
         theme: str | RadarTheme | None = "midnight",
         config: RadarConfig | None = None,
@@ -358,7 +371,7 @@ class RadarChart(VGroup):
         rim: bool | None = None,
         overflow: bool | None = None,
         opacity: float | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -401,7 +414,9 @@ class RadarChart(VGroup):
                 raise ValueError("pass either a RadarData or axes/values, not both")
             self._initial = [data]
         else:
-            self._initial = list(datasets)
+            self._initial = []
+            for dataset in datasets:
+                self._initial.append(self._coerce_data(dataset))
         self._multi = len(self._initial) > 1
 
         # ---- fonts & axes --------------------------------------------------
@@ -532,7 +547,7 @@ class RadarChart(VGroup):
         # z-order: grid -> [gap lobes -> series 0 -> series 1 ...] -> labels
         self._poly_layers = VGroup()
         self.gap_group: VGroup | None = None
-        self._gap_spec: dict[Any, Any] | None = None
+        self._gap_spec: _GapSpec | None = None
         self._series: list[Series] = []
         self.add(self._poly_layers)
 
@@ -647,7 +662,7 @@ class RadarChart(VGroup):
                 base = self._initial[0]
             else:
                 raise ValueError("plain value lists need a RadarData first")
-            out = base.with_values(item)
+            out = base.with_values(self._coerce_values(item))
         if out.n_axes != self._n:
             raise ValueError(f"all datasets need {self._n} axes, got {out.n_axes}")
         if (
@@ -658,7 +673,7 @@ class RadarChart(VGroup):
             raise ValueError("all datasets must share the same axis layout")
         return out
 
-    def _install_datasets(self, items: Sequence[Any]) -> None:
+    def _install_datasets(self, items: Sequence[RadarInput]) -> None:
         """Rebuild the visible series from a sequence of snapshots.
 
         Parameters
@@ -834,7 +849,7 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     # comparison API (new in 0.1.1)
     # ------------------------------------------------------------------
-    def compare(self, *datasets: Any) -> "RadarChart":
+    def compare(self, *datasets: RadarInput) -> "RadarChart":
         """Show several datasets on this grid at once without animating.
 
         Each positional item may be a
@@ -855,7 +870,7 @@ class RadarChart(VGroup):
         ValueError
             If the first item does not define axes or the layouts differ.
         """
-        items: list[Any] = []
+        items: list[RadarInput] = []
         for k, d in enumerate(datasets):
             if isinstance(d, RadarData):
                 items.append(d)
@@ -1047,7 +1062,7 @@ class RadarChart(VGroup):
 
         return self._n
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> NDArray[np.float64]:
         """Return the grid centre rather than the lopsided bounding-box centre.
 
         Spikes, vertex numbers and labels can make the bounding box
@@ -1221,8 +1236,11 @@ class RadarChart(VGroup):
     # ==================================================================
     # camera helpers (new in 0.1.1)
     # ==================================================================
-    def push_in(
-        self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
+    def push_in(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        factor: float = 1.35,
+        run_time: float = 1.0,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> _AnimationBuilder:
         """Zoom the chart up about its own centre.
 
@@ -1250,8 +1268,11 @@ class RadarChart(VGroup):
             builder.set_run_time(run_time) if run_time else builder,
         )
 
-    def pull_out(
-        self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
+    def pull_out(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        factor: float = 1.35,
+        run_time: float = 1.0,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> _AnimationBuilder:
         """Scale the chart back down about its own centre.
 
@@ -1297,14 +1318,14 @@ class RadarChart(VGroup):
     # ==================================================================
     # animations
     # ==================================================================
-    def morph_to(
+    def morph_to(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         data: RadarInputList,
         *,
         color: str | None = None,
         name: str | None = None,
         max_value: float | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Animation:
         """Morph this chart into one or more target snapshots.
 
@@ -1343,7 +1364,11 @@ class RadarChart(VGroup):
             ]
         return RadarMorph(self, targets, **kwargs)
 
-    def reveal(self, run_time: float = 0.9, **kwargs: Any) -> Animation:
+    def reveal(
+        self, run_time: float = 0.9, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Build the intro animation that grows out of the centre.
 
         Parameters
@@ -1362,7 +1387,11 @@ class RadarChart(VGroup):
 
         return RadarReveal(self, run_time=run_time, **kwargs)
 
-    def disappear(self, run_time: float = 0.8, **kwargs: Any) -> Animation:
+    def disappear(
+        self, run_time: float = 0.8, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Build the outro animation that fades the whole chart out.
 
         Parameters
@@ -1381,7 +1410,11 @@ class RadarChart(VGroup):
 
         return RadarFade(self, 0.0, run_time=run_time, **kwargs)
 
-    def glitch_in(self, run_time: float = 0.75, **kwargs: Any) -> Animation:
+    def glitch_in(
+        self, run_time: float = 0.75, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Build a glitchy entrance animation.
 
         Parameters
@@ -1400,7 +1433,11 @@ class RadarChart(VGroup):
 
         return GlitchFlash(self, run_time=run_time, **kwargs)
 
-    def shockwave(self, **kwargs: Any) -> Animation:
+    def shockwave(
+        self, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Build a single shockwave ring centred on the chart.
 
         Parameters
@@ -1439,7 +1476,7 @@ class RadarChart(VGroup):
             )
             idx += 1
 
-    def _corner(self, k: int, i: int) -> np.ndarray:
+    def _corner(self, k: int, i: int) -> NDArray[np.float64]:
         """World position of one grid corner.
 
         Parameters
@@ -1458,7 +1495,8 @@ class RadarChart(VGroup):
         r = self.config.radius * k / self.config.levels
         a, u, v = self._frame()
         return cast(
-            np.ndarray, self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0]
+            NDArray[np.float64],
+            self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0],
         )
 
     def trace_web(self, run_time: float | None = None) -> Animation:
@@ -1484,8 +1522,11 @@ class RadarChart(VGroup):
     # ==================================================================
     # scene helpers
     # ==================================================================
-    def attach_backdrop(
-        self, scene: Scene, theme: RadarTheme | None = None, **kwargs: Any
+    def attach_backdrop(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scene: Scene,
+        theme: RadarTheme | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Mobject:
         """Add a deep-space backdrop behind the chart.
 
@@ -1534,11 +1575,11 @@ class RadarChart(VGroup):
 
         if isinstance(data, (list, tuple)):
             if data and isinstance(data[0], (int, float, np.floating)):
-                items: list[Any] = [data]
+                items: list[RadarInput] = [[float(v) for v in data]]
             else:
-                items = list(data)
+                items = [cast(RadarInput, d) for d in data]
         else:
-            items = [data]
+            items = [cast(RadarInput, data)]
         out = [self._coerce_data(it) for it in items]
         for t in out:
             if len(t.axes) != self._n:
@@ -1550,6 +1591,16 @@ class RadarChart(VGroup):
                     "morphing between different axis layouts is not supported"
                 )
         return out
+
+    @staticmethod
+    def _coerce_values(item: Mapping[str, object] | Sequence[float]) -> Sequence[float]:
+        """Extract a numeric value sequence from a mapping or sequence."""
+        if isinstance(item, Mapping):
+            values = item.get("values")
+            if not isinstance(values, Sequence) or isinstance(values, (str, bytes)):
+                raise ValueError("dataset dict needs a numeric ``values`` sequence")
+            return [float(v) for v in values]
+        return item
 
     def _coerce_data(self, data: RadarInput) -> RadarData:
         """Convert one morph target into a snapshot.
@@ -1567,11 +1618,19 @@ class RadarChart(VGroup):
         if isinstance(data, RadarData):
             target = data
         elif isinstance(data, dict):
+            series = getattr(self, "_series", [])
+            if not series and not self._initial:
+                raise ValueError("dict datasets need axes or a RadarData first")
+            reference = series[0].data if series else self._initial[0]
             payload = dict(data)
-            axes = payload.pop("axes", self._series[0].data.axes)
+            axes = payload.pop("axes", reference.axes)
             target = RadarData(axes=axes, **payload)
         else:
-            target = self._series[0].data.with_values(data)
+            series = getattr(self, "_series", [])
+            if not series and not self._initial:
+                raise ValueError("plain value lists need a RadarData first")
+            reference = series[0].data if series else self._initial[0]
+            target = reference.with_values(self._coerce_values(data))
         return target
 
     def _resolve_color(self, color: str | None, index: int) -> ManimColor:
@@ -1606,13 +1665,13 @@ class RadarChart(VGroup):
         """
 
         cfg = self.config
-        txt = Text(
-            str(name),
-            font=self._font_name,
-            weight=cfg.name_weight,
-            font_size=cfg.name_size,
-            **cfg.text_kwargs,
-        )
+        text_kwargs: TextKwargs = {
+            "font": self._font_name,
+            "weight": cfg.name_weight,
+            "font_size": cfg.name_size,
+        }
+        text_kwargs.update(cfg.text_kwargs)
+        txt = Text(str(name), **text_kwargs)
         grad = list(self.theme.name_gradient)
         if len(grad) >= 2:
             txt.set_color_by_gradient(*grad)
@@ -1632,19 +1691,19 @@ class RadarChart(VGroup):
         """
 
         cfg = self.config
-        txt = Text(
-            str(title),
-            font=self._font_title,
-            weight="BOLD",
-            font_size=cfg.title_size,
-            **cfg.text_kwargs,
-        )
+        text_kwargs: TextKwargs = {
+            "font": self._font_title,
+            "weight": "BOLD",
+            "font_size": cfg.title_size,
+        }
+        text_kwargs.update(cfg.text_kwargs)
+        txt = Text(str(title), **text_kwargs)
         grad = list(self.theme.title_gradient)
         if len(grad) >= 2:
             txt.set_color_by_gradient(*grad)
         return txt
 
-    def _polar_local(self, angle: float, radius: float) -> np.ndarray:
+    def _polar_local(self, angle: float, radius: float) -> NDArray[np.float64]:
         """Convert polar coordinates into the chart's local frame.
 
         Parameters
@@ -1708,7 +1767,7 @@ class RadarChart(VGroup):
 
     def _wedge_local(
         self, radius: float, angle_deg: float, segments: int
-    ) -> np.ndarray:
+    ) -> NDArray[np.float64]:
         """Build a closed polygon approximating the sweep beam.
 
         Parameters
@@ -1734,7 +1793,7 @@ class RadarChart(VGroup):
         pts.append(np.zeros(3))
         return np.array(pts)
 
-    def _set_sweep_local(self, points: np.ndarray) -> None:
+    def _set_sweep_local(self, points: NDArray[np.float64]) -> None:
         """Cache the local sweep polygon.
 
         Parameters
@@ -1745,7 +1804,9 @@ class RadarChart(VGroup):
 
         self._sweep_local = points
 
-    def _polygon_local_for(self, series: Series, scale: float = 1.0) -> np.ndarray:
+    def _polygon_local_for(
+        self, series: Series, scale: float = 1.0
+    ) -> NDArray[np.float64]:
         """Build one dataset's closed polygon in the local frame.
 
         Parameters
@@ -1770,7 +1831,7 @@ class RadarChart(VGroup):
         )
         return np.vstack([pts, pts[:1]])
 
-    def _polygon_local(self, scale: float = 1.0) -> np.ndarray:
+    def _polygon_local(self, scale: float = 1.0) -> NDArray[np.float64]:
         """Build the first dataset's polygon in the local frame.
 
         Parameters
@@ -1785,7 +1846,9 @@ class RadarChart(VGroup):
 
         return self._polygon_local_for(self._series[0], scale)
 
-    def _frame(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    def _frame(
+        self,
+    ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
         """Return the current local frame basis.
 
         Returns
@@ -1800,8 +1863,11 @@ class RadarChart(VGroup):
 
     @staticmethod
     def _to_world(
-        local: np.ndarray, a: np.ndarray, u: np.ndarray, v: np.ndarray
-    ) -> np.ndarray:
+        local: NDArray[np.float64],
+        a: NDArray[np.float64],
+        u: NDArray[np.float64],
+        v: NDArray[np.float64],
+    ) -> NDArray[np.float64]:
         """Map local points into world space.
 
         Parameters
@@ -1821,7 +1887,7 @@ class RadarChart(VGroup):
         """
 
         local = np.atleast_2d(local)
-        return cast(np.ndarray, a + local[:, :1] * u + local[:, 1:2] * v)
+        return a + local[:, :1] * u + local[:, 1:2] * v
 
     # ------------------------------------------------------------------
     def _refresh(self, mob: Mobject, dt: float) -> None:
@@ -1849,20 +1915,28 @@ class RadarChart(VGroup):
         # grid -----------------------------------------------------------
         for lvl, ring in enumerate(self.web[: cfg.levels]):
             ring.set_points_as_corners(self._to_world(self._ring_local[lvl], a, u, v))
-            ring.set_stroke(opacity=cast(Any, ring).base_so * op * grid_dim)
+            ring.set_stroke(
+                opacity=cast(float, getattr(ring, "base_so")) * op * grid_dim
+            )
         for i, spoke in enumerate(self.web[cfg.levels :]):
             end = self._to_world(self._spoke_ends[i], a, u, v)[0]
             spoke.put_start_and_end_on(a, end)
-            spoke.set_stroke(opacity=cast(Any, spoke).base_so * op * grid_dim)
+            spoke.set_stroke(
+                opacity=cast(float, getattr(spoke, "base_so")) * op * grid_dim
+            )
         for g, src in zip(self.grid_glow, self.web):
             # the glow copies must inherit the *painted* geometry every frame —
             # they are built from 1-unit placeholders and 0.1.0 never moved
             # them, leaving a stale grey bar floating next to off-centre charts
             g.set_points_as_corners(src.get_points())
-            g.set_stroke(opacity=cast(Any, g).base_so * op * grid_dim)
+            g.set_stroke(opacity=cast(float, getattr(g, "base_so")) * op * grid_dim)
 
         for txt in self.level_labels:
-            txt.move_to(self._to_world(cast(Any, txt).local_pos, a, u, v)[0])
+            txt.move_to(
+                self._to_world(
+                    cast(NDArray[np.float64], getattr(txt, "local_pos")), a, u, v
+                )[0]
+            )
             txt.set_opacity(0.80 * op * grid_dim)
 
         # sweep ----------------------------------------------------------
@@ -1886,9 +1960,9 @@ class RadarChart(VGroup):
 
         # data polygons ----------------------------------------------------
         for series in self._series:
-            cast(Any, series).opacity += (
-                cast(Any, series).opacity_target - cast(Any, series).opacity
-            ) * min(1.0, dt * 7.0)
+            series.opacity += (series.opacity_target - series.opacity) * min(
+                1.0, dt * 7.0
+            )
             self._paint_series(series, a, u, v, unit, op, multi, pulse)
 
         # labels ------------------------------------------------------------
@@ -2020,9 +2094,9 @@ class RadarChart(VGroup):
     def _paint_series(
         self,
         s: Series,
-        a: np.ndarray,
-        u: np.ndarray,
-        v: np.ndarray,
+        a: NDArray[np.float64],
+        u: NDArray[np.float64],
+        v: NDArray[np.float64],
         unit: float,
         op: float,
         multi: bool,
@@ -2142,7 +2216,7 @@ class RadarChart(VGroup):
                     )
                     dot.set_fill(
                         color=WHITE if k == 2 else base_col,
-                        opacity=cast(Any, dot).base_op * op * sop,
+                        opacity=cast(float, getattr(dot, "base_op")) * op * sop,
                     )
 
         outer = self._to_world(poly_local * (1.0 + cfg.rim_offset_outer), a, u, v)
@@ -2214,7 +2288,7 @@ class RadarChart(VGroup):
         return grp
 
     @staticmethod
-    def _vertex_align(direction: np.ndarray) -> str:
+    def _vertex_align(direction: NDArray[np.float64]) -> str:
         """Choose glyph alignment for a read-out pointing along a direction.
 
         Parameters
@@ -2235,7 +2309,12 @@ class RadarChart(VGroup):
         return "center"
 
     def _paint_compare_numbers(
-        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, unit: float, op: float
+        self,
+        a: NDArray[np.float64],
+        u: NDArray[np.float64],
+        v: NDArray[np.float64],
+        unit: float,
+        op: float,
     ) -> None:
         """Place comparison read-outs for the datasets selected by config.
 
@@ -2287,7 +2366,7 @@ class RadarChart(VGroup):
 
     # ------------------------------------------------------------------
     # legend ---------------------------------------------------------------
-    def _rebuild_legend(self, pairs: list[tuple[Any, ...]]) -> VGroup:
+    def _rebuild_legend(self, pairs: list[tuple[ManimColor, str]]) -> VGroup:
         """Build legend chips for colour and name pairs.
 
         Parameters
@@ -2306,14 +2385,14 @@ class RadarChart(VGroup):
         content = VGroup()
         chips: list[VGroup] = []
         for color, name in pairs:
-            txt = Text(
-                str(name),
-                font=self._font_name,
-                weight="BOLD",
-                font_size=cfg.legend_size,
-                color=self.theme.number,
-                **cfg.text_kwargs,
-            )
+            text_kwargs: TextKwargs = {
+                "font": self._font_name,
+                "weight": "BOLD",
+                "font_size": cfg.legend_size,
+                "color": self.theme.number,
+            }
+            text_kwargs.update(cfg.text_kwargs)
+            txt = Text(str(name), **text_kwargs)
             swatch = RoundedRectangle(
                 corner_radius=cfg.legend_chip * 0.28,
                 width=cfg.legend_chip * 1.35,
@@ -2354,7 +2433,7 @@ class RadarChart(VGroup):
         if len(rows) > 1:
             content.arrange(DOWN, buff=0.12)
         # per-content, so the outgoing legend fades with its own chips during a swap
-        cast(Any, content)._chips = chips
+        setattr(content, "_chips", chips)
         self._legend_chips = chips
         return content
 
@@ -2442,8 +2521,8 @@ class RadarChart(VGroup):
 
     def _paint_legend(
         self,
-        a: np.ndarray,
-        v: np.ndarray,
+        a: NDArray[np.float64],
+        v: NDArray[np.float64],
         label_top: float,
         frame_limit: float,
         op: float,
@@ -2516,8 +2595,11 @@ class RadarChart(VGroup):
     # difference lobes -------------------------------------------------
     @staticmethod
     def _seg_intersect(
-        p0: np.ndarray, p1: np.ndarray, q0: np.ndarray, q1: np.ndarray
-    ) -> np.ndarray | None:
+        p0: NDArray[np.float64],
+        p1: NDArray[np.float64],
+        q0: NDArray[np.float64],
+        q1: NDArray[np.float64],
+    ) -> NDArray[np.float64] | None:
         """Find the intersection of two line segments.
 
         Parameters
@@ -2543,10 +2625,14 @@ class RadarChart(VGroup):
         t = ((q0[0] - p0[0]) * d2[1] - (q0[1] - p0[1]) * d2[0]) / denom
         if not 0.0 <= t <= 1.0:
             return None
-        return cast(np.ndarray, p0 + d1 * t)
+        return cast(NDArray[np.float64], p0 + d1 * t)
 
     def _paint_gap(
-        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, op: float
+        self,
+        a: NDArray[np.float64],
+        u: NDArray[np.float64],
+        v: NDArray[np.float64],
+        op: float,
     ) -> None:
         """Paint the difference lobes between the highlighted datasets.
 
@@ -2579,7 +2665,7 @@ class RadarChart(VGroup):
             a0, a1 = pa[k], pa[k1]
             b0, b1 = pb[k], pb[k1]
             x = self._seg_intersect(a0, a1, b0, b1)
-            lobes: list[tuple[Any, str]] = []
+            lobes: list[tuple[tuple[NDArray[np.float64], ...] | None, str]] = []
             if x is not None:
                 lobes.append(
                     (
@@ -2666,7 +2752,8 @@ class RadarChart(VGroup):
             for _ in range(16):
                 pool.add(Line(ORIGIN, ORIGIN, stroke_width=self.config.spoke_width))
             s.dash_pool[j] = pool
-            cast(Any, s.fx_group).add(pool)
+            assert s.fx_group is not None
+            s.fx_group.add(pool)
         return cast(VGroup, s.dash_pool[j])
 
     def _ensure_breach(self, s: Series, j: int) -> VGroup:
@@ -2700,7 +2787,8 @@ class RadarChart(VGroup):
             g = VGroup(out, mid, core)
             g.set_opacity(0)
             s.breach[j] = g
-            cast(Any, s.fx_group).add(g)
+            assert s.fx_group is not None
+            s.fx_group.add(g)
         return cast(VGroup, s.breach[j])
 
     def _ensure_overflow_number(self, series_index: int, j: int) -> RollingNumber:
@@ -2740,7 +2828,12 @@ class RadarChart(VGroup):
         return num
 
     def _paint_overflow(
-        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, unit: float, op: float
+        self,
+        a: NDArray[np.float64],
+        u: NDArray[np.float64],
+        v: NDArray[np.float64],
+        unit: float,
+        op: float,
     ) -> None:
         """Paint overflow tracks, breach glows and unclamped read-outs.
 
@@ -2858,8 +2951,10 @@ class RadarChart(VGroup):
             if pool is not None:
                 for line in pool:
                     line.set_stroke(opacity=0)
-        if j < len(s.breach) and s.breach[j] is not None:
-            cast(Any, s.breach[j]).set_opacity(0)
+        if j < len(s.breach):
+            breach = s.breach[j]
+            if breach is not None:
+                breach.set_opacity(0)
         num = s.big_numbers.get(j)
         if num is not None:
             num.hide()

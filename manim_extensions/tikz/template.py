@@ -70,14 +70,14 @@ class TikzTemplate(TexTemplate):
         "\n"
     )
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         packages: list[str] | None = None,
         libraries: list[str] | None = None,
         tikzset: list[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (

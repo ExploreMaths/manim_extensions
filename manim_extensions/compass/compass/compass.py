@@ -78,7 +78,7 @@ class Compass(VGroup):
                self.add(narrow, wide)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         span: float = 1.5,
         head_color: ParsableManimColor = WHITE,
@@ -88,7 +88,7 @@ class Compass(VGroup):
         leg_length: float = 3.1,
         leg_width: float = 0.12,
         r: float = 0.2,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(stroke_width=stroke_width, **kwargs)
         self.head_color = head_color

@@ -10,7 +10,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.json_
 # unlinked-class-ok: Element
 
 import json
-from typing import Any, cast
+from typing import cast
 
 import numpy as np
 
@@ -254,7 +254,7 @@ class JSONParser(BaseParser):
         return molecules_parsed_data
 
     @staticmethod
-    def parse_single_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+    def parse_single_molecule_data(molecule_data: dict[str, object]) -> MoleculeData:
         """Parse a single molecule entry into atoms and bonds dicts.
 
         Parameters
@@ -272,7 +272,7 @@ class JSONParser(BaseParser):
         return atoms_data, bonds_data
 
     @staticmethod
-    def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+    def extract_atoms_data(molecule_data: dict[str, object]) -> AtomsDict:
         """Extract the atoms data from a single molecule entry.
 
         Parameters
@@ -305,8 +305,8 @@ class JSONParser(BaseParser):
 
         atoms_elements = JSONParser.clean_elements_data(atoms_elements_raw)
 
-        coords_raw: list[dict[str, Any]] = cast(
-            list[dict[str, Any]], molecule_data.get("coords")
+        coords_raw: list[dict[str, object]] = cast(
+            list[dict[str, object]], molecule_data.get("coords")
         )
         atoms_coords_dict = coords_raw[0]
         if not isinstance(atoms_coords_dict, dict):
@@ -314,8 +314,8 @@ class JSONParser(BaseParser):
                 f"Atomic coords are not defined as a dictionary: {atoms_coords_dict}"
             )
 
-        conformers_raw: list[dict[str, Any]] = cast(
-            list[dict[str, Any]], atoms_coords_dict.get("conformers")
+        conformers_raw: list[dict[str, object]] = cast(
+            list[dict[str, object]], atoms_coords_dict.get("conformers")
         )
         conformers_coords = conformers_raw[0]
         if not isinstance(conformers_coords, dict):
@@ -344,7 +344,7 @@ class JSONParser(BaseParser):
         return atoms_data
 
     @staticmethod
-    def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+    def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:
         """Extract the bonds data from a single molecule entry.
 
         Parameters

@@ -8,11 +8,12 @@ This module provides action classes for sequence diagrams.
 """
 
 from collections.abc import Sequence
-from typing import Any, cast
+from typing import cast
 
 from collections.abc import Iterator
 
 
+from manim.typing import Point3D
 from manim import (
     Animation,
     AnimationGroup,
@@ -204,12 +205,15 @@ class SeqAction(AnimationGroup):
                 max_tip_length_to_length_ratio=0.2,
             )
         iobj_moved_path = TracedPath(gift.get_center)
-        mid_point = utils.space_ops.midpoint(
-            cast(Sequence[float], act_start.get_center()),
-            cast(Sequence[float], act_end.get_center()),
+        mid_point = cast(
+            Point3D,
+            utils.space_ops.midpoint(
+                cast(Sequence[float], act_start.get_center()),
+                cast(Sequence[float], act_end.get_center()),
+            ),
         )
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(
-            cast(Any, mid_point), aligned_edge=UP
+            mid_point, aligned_edge=UP
         )
 
         yield Succession(

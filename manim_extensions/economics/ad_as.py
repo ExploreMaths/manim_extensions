@@ -91,7 +91,7 @@ class ADASDiagram(EconDiagram):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         m: float = 20,
         v: float = 1,
@@ -102,7 +102,7 @@ class ADASDiagram(EconDiagram):
         sras_only: bool = False,
         lras_only: bool = False,
         numbered_eq: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if sras_only and lras_only:
             raise ValueError("sras_only and lras_only cannot both be True")

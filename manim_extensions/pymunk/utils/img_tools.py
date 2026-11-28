@@ -8,7 +8,7 @@ This module provides functions for converting images into Pymunk collision
 shapes. Both transparent-background and solid-color images are handled.
 """
 
-from typing import Any, cast
+from typing import cast
 
 import numpy as np
 from PIL import Image, ImageFilter, ImageOps
@@ -119,7 +119,7 @@ def get_normalized_convex_polygons(
         """
         x, y = int(point[0]), int(point[1])
         if 0 <= x < actual_base_width and 0 <= y < actual_base_height:
-            return float(cast(Any, mask.getpixel((x, y))))
+            return float(cast(float, mask.getpixel((x, y))))
         return 0.0
 
     bb = pymunk.BB(0, 0, actual_base_width - 1, actual_base_height - 1)

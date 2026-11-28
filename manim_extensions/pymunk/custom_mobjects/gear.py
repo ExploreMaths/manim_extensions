@@ -53,7 +53,7 @@ class Gear(VMobject):
                self.add(gears)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_teeth: int = 12,
         radius: float = 1.0,
@@ -61,7 +61,7 @@ class Gear(VMobject):
         width_factor: float = 0.5,  # Tooth width as fraction of tooth pitch space; 0.5 = half tooth, half gap
         roundness: float = 0.05,
         hole_radius: float = 0.1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 

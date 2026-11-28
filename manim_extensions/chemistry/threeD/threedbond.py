@@ -88,7 +88,7 @@ class ThreeDCylinder(OpenGLSurface):
         cylinder = ThreeDCylinder(radius=0.3, height=2)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         radius: float = 1,
         height: float = 2,
@@ -96,7 +96,7 @@ class ThreeDCylinder(OpenGLSurface):
         v_range: list[Any] = [0, TAU],
         show_ends: bool = True,
         resolution: tuple[Any, ...] = (24, 24),
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self._height = height
         self.radius = radius
@@ -135,15 +135,15 @@ class ThreeDCylinder(OpenGLSurface):
     def add_bases(self) -> None:
         """Adds the end caps of the cylinder."""
         if config.renderer == RendererType.OPENGL:
-            color = cast(Any, self.color)
+            color = self.color
             opacity = self.opacity
         elif config.renderer == RendererType.CAIRO:
-            color = cast(Any, self).fill_color
-            opacity = cast(Any, self).fill_opacity
+            color = cast(ManimColor, getattr(self, "fill_color"))
+            opacity = cast(float, getattr(self, "fill_opacity"))
 
         self.base_top = Circle(
             radius=self.radius,
-            color=color,
+            color=cast(ManimColor, color),
             fill_opacity=opacity,
             shade_in_3d=True,
             stroke_width=0,
@@ -151,7 +151,7 @@ class ThreeDCylinder(OpenGLSurface):
         self.base_top.shift(self.u_range[1] * IN)
         self.base_bottom = Circle(
             radius=self.radius,
-            color=color,
+            color=cast(ManimColor, color),
             fill_opacity=opacity,
             shade_in_3d=True,
             stroke_width=0,
@@ -263,21 +263,24 @@ class ThreeDLine(ThreeDCylinder):
         line = ThreeDLine(start=[-1, 0, 0], end=[1, 0, 0], thickness=0.08)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D = LEFT,
         end: Point3D = RIGHT,
         thickness: float = 0.05,
         color: ManimColor | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.thickness = thickness
         self.set_start_and_end_attrs(start, end, **kwargs)
         if color is not None:
             self.set_color(color)
 
-    def set_start_and_end_attrs(
-        self, start: Point3D, end: Point3D, **kwargs: Any
+    def set_start_and_end_attrs(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        start: Point3D,
+        end: Point3D,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Sets the start and end points of the line.
 
@@ -357,8 +360,12 @@ class ThreeDLine(ThreeDCylinder):
         return self.end
 
     @classmethod
-    def parallel_to(
-        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
+    def parallel_to(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        cls,
+        line: Line3D,
+        point: Point3D = ORIGIN,
+        length: float = 5,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "ThreeDLine":
         """Returns a line parallel to another line going through
         a given point.
@@ -405,8 +412,12 @@ class ThreeDLine(ThreeDCylinder):
         )
 
     @classmethod
-    def perpendicular_to(
-        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
+    def perpendicular_to(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        cls,
+        line: Line3D,
+        point: Point3D = ORIGIN,
+        length: float = 5,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "ThreeDLine":
         """Returns a line perpendicular to another line going through
         a given point.
@@ -541,13 +552,13 @@ class ThreeDBond(OpenGLGroup):
         """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
         from_atom: ThreeDAtom,
         to_atom: ThreeDAtom,
         bond_type: int,
-        *mobjects: Any,
-        **kwargs: Any,
+        *mobjects: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -568,7 +579,7 @@ class ThreeDBond(OpenGLGroup):
 
         else:
             raise Exception(
-                f"Unknown or unsupported bond type at bond with from atom {self.from_atom} with index {cast(Any, self.from_atom).index}and to atom {self.to_atom} with index {cast(Any, self.from_atom).index}"
+                f"Unknown or unsupported bond type at bond with from atom {self.from_atom} with index {getattr(self.from_atom, "index", "?")} and to atom {self.to_atom} with index {getattr(self.from_atom, "index", "?")}"
             )
 
         self.add(self.bonds)

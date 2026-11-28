@@ -15,6 +15,7 @@ from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 # pylint: disable-all
 
 import numpy as np
+from numpy.typing import NDArray
 
 from ...helpers import remove_keys_from_dict
 from ..data_models.mesh import Mesh
@@ -94,11 +95,11 @@ class FastManimMesh(OpenGLMobject):
     #: Shader resource folder shipped with the package.
     shader_folder = "mesh"
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mesh: Mesh,
         shader_folder: str | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # imported here because OGLM requires the optional moderngl dependency
         from ...params import OGLM
@@ -106,9 +107,11 @@ class FastManimMesh(OpenGLMobject):
         self._validate_mesh(mesh)
         self.mesh = mesh
         self.triangle_indices = self._flatten_triangles(mesh)
-        call_kwargs: dict[str, Any] = {
-            key: get_param_or_default(key, kwargs, OGLM) for key in OGLM
-        }
+        call_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous shader/mesh construction options
+                key: get_param_or_default(key, kwargs, OGLM) for key in OGLM
+            }
+        )
         call_kwargs.update(remove_keys_from_dict(kwargs, list(OGLM.keys())))
         call_kwargs["shader_folder"] = (
             shader_folder if shader_folder is not None else "mesh"
@@ -228,7 +231,7 @@ class FastManimMesh(OpenGLMobject):
         return self.triangle_indices
 
     # For shaders
-    def get_shader_data(self) -> np.ndarray:
+    def get_shader_data(self) -> NDArray[np.void]:
         """Build the shader data array from the mobject's points and colours.
 
         Returns
@@ -241,7 +244,9 @@ class FastManimMesh(OpenGLMobject):
         self.fill_in_shader_color_info(shader_data)
         return shader_data
 
-    def fill_in_shader_color_info(self, shader_data: np.ndarray) -> np.ndarray:
+    def fill_in_shader_color_info(
+        self, shader_data: NDArray[np.void]
+    ) -> NDArray[np.void]:
         """Write colour information into the shader data array.
 
         Parameters

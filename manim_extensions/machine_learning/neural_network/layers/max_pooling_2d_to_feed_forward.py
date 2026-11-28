@@ -8,6 +8,7 @@ from __future__ import annotations
 from typing import Any, cast
 
 from manim import ManimColor, ORANGE
+from .convolutional_2d import Convolutional2DLayer
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .feed_forward import FeedForwardLayer
 from .max_pooling_2d import MaxPooling2DLayer
@@ -59,20 +60,22 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
     input_class = MaxPooling2DLayer
     output_class = FeedForwardLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: MaxPooling2DLayer,
         output_layer: FeedForwardLayer,
         passing_flash_color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(
+            cast(Convolutional2DLayer, input_layer), output_layer, **kwargs
+        )
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 

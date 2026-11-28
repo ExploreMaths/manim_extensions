@@ -14,11 +14,22 @@ Layout characteristics:
 
 from __future__ import annotations
 from collections.abc import Callable
-from typing import Any, cast
+from typing import Protocol, cast
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
 from .layout import Layout
+
+
+class _CatalogInput(Protocol):
+    """Raw tree node consumed by :class:`~manim_extensions.mindmap.nodes.node.CatalogNode`."""
+
+    x: float
+    y: float
+    level: int
+    width: float
+    height: float
+    children: "list[_CatalogInput]"
 
 
 @dataclass
@@ -78,7 +89,9 @@ class CatalogNode:
     """
 
     #: Payload carried by this catalog node.
-    data: object | None = None
+    data: _CatalogInput | None = None
+    #: Original tree node whose coordinates are updated after layout.
+    node: _CatalogInput | None = None
     #: Measured width of the catalog node.
     width: float = 0.0
     #: Measured height of the catalog node.
@@ -99,7 +112,7 @@ class CatalogNode:
     children_area_width: float = 0.0
 
     @classmethod
-    def from_data(cls, node: object) -> "CatalogNode":
+    def from_data(cls, node: _CatalogInput) -> "CatalogNode":
         """Recursively create a node tree from raw data.
 
         Parameters
@@ -112,12 +125,14 @@ class CatalogNode:
             The root of the created catalog node tree.
         """
         org_node = cls()
-        cast(Any, org_node).node = node
+        org_node.node = node
         org_node.width = getattr(node, "width", 0)
         org_node.height = getattr(node, "height", 0)
 
         children = getattr(node, "children", [])
-        org_node.children = [cls.from_data(child) for child in children]
+        org_node.children = [
+            cls.from_data(cast(_CatalogInput, child)) for child in children
+        ]
         return org_node
 
 
@@ -171,7 +186,7 @@ class CatalogLayout(Layout):
     """
 
     def __init__(
-        self, root: object, node_spacing: float = 0.5, level_spacing: float = 0.5
+        self, root: _CatalogInput, node_spacing: float = 0.5, level_spacing: float = 0.5
     ) -> None:
         self.root = CatalogNode.from_data(root)
         self.margin_root_child = node_spacing
@@ -225,7 +240,7 @@ class CatalogLayout(Layout):
                 self._update_children(node.children, prop, offset)
 
     def _update_children_pro(
-        self, nodes: list[CatalogNode], props: dict[Any, Any]
+        self, nodes: list[CatalogNode], props: dict[str, float]
     ) -> None:
         """Recursively update multiple child-node attributes in one pass.
 
@@ -245,8 +260,8 @@ class CatalogLayout(Layout):
     def _walk(
         self,
         node: CatalogNode,
-        pre_cb: Callable[..., Any] | None = None,
-        post_cb: Callable[..., Any] | None = None,
+        pre_cb: Callable[[CatalogNode, int, int], None] | None = None,
+        post_cb: Callable[[CatalogNode, int, int], None] | None = None,
         layer: int = 0,
         index: int = 0,
     ) -> None:
@@ -534,15 +549,17 @@ class CatalogLayout(Layout):
             node
                 The root of the subtree to update.
             """
-            cast(Any, node).node.x = node.left + node.width / 2
-            cast(Any, node).node.y = -node.top - node.height / 2
-            cast(Any, node).node.level = node.layer_index
+            payload = node.node
+            if payload is not None:
+                payload.x = node.left + node.width / 2
+                payload.y = -node.top - node.height / 2
+                payload.level = node.layer_index
             for child in node.children:
                 _applay_coords_for_node(child)
 
         _applay_coords_for_node(self.root)
 
-    def layout(self) -> object:
+    def layout(self) -> _CatalogInput:
         """Run the full layout and return the root node (with coordinates filled in).
 
         Returns
@@ -554,4 +571,5 @@ class CatalogLayout(Layout):
         self._compute_left_top_value()
         self._adjust_left_top_value()
         self._applay_coords()
-        return cast(Any, self.root).node
+        assert self.root.node is not None
+        return self.root.node

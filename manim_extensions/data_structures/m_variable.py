@@ -71,7 +71,7 @@ class MVariable(MArrayElement):
                self.play(FadeOut(var))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         value: object = "",
@@ -81,7 +81,7 @@ class MVariable(MArrayElement):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
 
         self.__value: object = value
@@ -131,7 +131,7 @@ class MVariable(MArrayElement):
 
         return self.__label
 
-    def update_value(
+    def update_value(  # explicit-any-ok: Manim style, animation and play kwargs are open-ended
         self,
         value: object,
         mob_value_args: dict[Any, Any] = {},
@@ -168,7 +168,7 @@ class MVariable(MArrayElement):
             mob_value_args, update_anim, update_anim_args, play_anim, play_anim_args
         )
 
-    def update_index(
+    def update_index(  # explicit-any-ok: Manim style, animation and play kwargs are open-ended
         self,
         index: str | int,
         mob_index_args: dict[Any, Any] = {},
@@ -205,7 +205,7 @@ class MVariable(MArrayElement):
             mob_index_args, update_anim, update_anim_args, play_anim, play_anim_args
         )
 
-    def update_label(
+    def update_label(  # explicit-any-ok: Manim style, animation and play kwargs are open-ended
         self,
         label: str,
         mob_label_args: dict[Any, Any] = {},

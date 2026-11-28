@@ -7,7 +7,7 @@
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.
 """
 
-from typing import Any, cast
+from typing import cast
 
 from manim import (
     Animation,
@@ -73,7 +73,7 @@ class ManimAnimations:
         -------
             The animation marking the state as dead.
         """
-        return FadeToColor(state, color=cast(Any, RED))
+        return FadeToColor(state, color=RED.to_hex())
 
     def animate_state_to_default_color(self, state: Mobject) -> Animation:
         """Return an animation resetting a state to its default color.
@@ -87,7 +87,7 @@ class ManimAnimations:
         -------
             The animation resetting the state color.
         """
-        return FadeToColor(state, color=cast(Any, BLUE))
+        return FadeToColor(state, color=BLUE.to_hex())
 
     def animate_highlight_state(self, state: Mobject) -> Animation:
         """Return an animation highlighting a state.
@@ -101,7 +101,7 @@ class ManimAnimations:
         -------
             The animation highlighting the state.
         """
-        return FadeToColor(state, color=cast(Any, PURE_YELLOW))
+        return FadeToColor(state, color=PURE_YELLOW.to_hex())
 
     # transition animations
     def animate_transition_to_default_color(self, transition: Mobject) -> Animation:
@@ -116,7 +116,7 @@ class ManimAnimations:
         -------
             The animation resetting the transition color.
         """
-        return FadeToColor(transition, color=cast(Any, WHITE))
+        return FadeToColor(transition, color=WHITE.to_hex())
 
     def animate_highlight_transition(self, transition: Mobject) -> Animation:
         """Return an animation highlighting a transition.
@@ -130,7 +130,7 @@ class ManimAnimations:
         -------
             The animation highlighting the transition.
         """
-        return FadeToColor(transition, color=cast(Any, PURE_YELLOW))
+        return FadeToColor(transition, color=PURE_YELLOW.to_hex())
 
     # input animations
     def animate_input_token_spent(self, token: Mobject) -> Animation:
@@ -159,7 +159,7 @@ class ManimAnimations:
         -------
             The animation highlighting the token.
         """
-        return FadeToColor(token, color=cast(Any, PURE_YELLOW))
+        return FadeToColor(token, color=PURE_YELLOW.to_hex())
 
     def animate_display_input(self, input: Mobject) -> Animation:
         """Return an animation that reveals the input display.

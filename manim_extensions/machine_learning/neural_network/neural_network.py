@@ -12,15 +12,19 @@ reference page.
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, Literal, cast
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 # unlinked-class-ok: Layout, Filters
 
 
 import textwrap
+
+if TYPE_CHECKING:
+    from .. import ManimMLConfig
 from ..utils.mobjects.connections import NetworkConnection
 import numpy as np
 from manim import (
+    VMobject,
     Animation,
     AnimationGroup,
     Create,
@@ -113,7 +117,9 @@ class NeuralNetwork(Group):
         self,
         input_layers: Sequence[NeuralNetworkLayer],
         layer_spacing: float = 0.2,
-        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+        animation_dot_color: ManimColor = cast(
+            "ManimMLConfig", config
+        ).color_scheme.active_color,
         edge_width: float = 2.5,
         dot_radius: float = 0.03,
         title: str = " ",
@@ -123,7 +129,7 @@ class NeuralNetwork(Group):
     ) -> None:
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
-        self.input_layers = ListGroup(*cast(Any, self.input_layers_dict).values())
+        self.input_layers = ListGroup(*self.input_layers_dict.values())
         self.edge_width = edge_width
         self.layer_spacing = layer_spacing
         self.animation_dot_color = animation_dot_color
@@ -158,7 +164,7 @@ class NeuralNetwork(Group):
 
     def make_input_layers_dict(
         self, input_layers: Sequence[NeuralNetworkLayer]
-    ) -> dict[str, NeuralNetworkLayer] | None:
+    ) -> dict[str, NeuralNetworkLayer]:
         """Make dictionary of input layers.
 
         Parameters
@@ -219,11 +225,15 @@ class NeuralNetwork(Group):
             if isinstance(start_mobject_or_name, Mobject):
                 input_mobject = start_mobject_or_name
             else:
-                input_mobject = cast(Any, self.input_layers_dict)[start_mobject_or_name]
+                input_mobject = cast(dict[str, Mobject], self.input_layers_dict)[
+                    start_mobject_or_name
+                ]
             if isinstance(end_mobject_or_name, Mobject):
                 output_mobject = end_mobject_or_name
             else:
-                output_mobject = cast(Any, self.input_layers_dict)[end_mobject_or_name]
+                output_mobject = cast(dict[str, Mobject], self.input_layers_dict)[
+                    end_mobject_or_name
+                ]
 
             connection = NetworkConnection(
                 input_mobject, output_mobject, arc_direction=arc_direction, buffer=0.05
@@ -239,16 +249,19 @@ class NeuralNetwork(Group):
         next_layer = None
         # Go through all the input layers and run their construct method
         print("Constructing layers")
-        for layer_index in range(len(self.input_layers)):
-            current_layer = self.input_layers[layer_index]
+        layers = [cast(NeuralNetworkLayer, layer) for layer in self.input_layers]
+        for layer_index in range(len(layers)):
+            current_layer = layers[layer_index]
             print(f"Current layer: {current_layer}")
-            if layer_index < len(self.input_layers) - 1:
-                next_layer = self.input_layers[layer_index + 1]
+            if layer_index < len(layers) - 1:
+                next_layer = layers[layer_index + 1]
             if layer_index > 0:
-                prev_layer = self.input_layers[layer_index - 1]
+                prev_layer = layers[layer_index - 1]
             # Run the construct layer method for each
-            cast(Any, current_layer).construct_layer(
-                prev_layer, next_layer, debug_mode=self.debug_mode
+            current_layer.construct_layer(
+                cast(NeuralNetworkLayer, prev_layer),
+                cast(NeuralNetworkLayer, next_layer),
+                debug_mode=self.debug_mode,
             )
 
     def _place_layers(
@@ -271,55 +284,51 @@ class NeuralNetwork(Group):
             If an unsupported layout mode is requested.
         """
         # Default: Linear layout
-        for layer_index in range(1, len(self.input_layers)):
-            previous_layer = self.input_layers[layer_index - 1]
-            current_layer = self.input_layers[layer_index]
-            cast(Any, current_layer).move_to(cast(Any, previous_layer).get_center())
+        layers = [cast(NeuralNetworkLayer, layer) for layer in self.input_layers]
+        for layer_index in range(1, len(layers)):
+            previous_layer = layers[layer_index - 1]
+            current_layer = layers[layer_index]
+            current_layer.move_to(previous_layer.get_center())
 
             if layout_direction == "left_to_right":
                 x_shift = (
-                    cast(Any, previous_layer).width / 2
-                    + cast(Any, current_layer).width / 2
+                    previous_layer.width / 2
+                    + current_layer.width / 2
                     + self.layer_spacing
                 )
                 shift_vector = np.array([x_shift, 0, 0])
             elif layout_direction == "top_to_bottom":
                 y_shift = -(
-                    (
-                        cast(Any, previous_layer).width / 2
-                        + cast(Any, current_layer).width / 2
-                    )
+                    (previous_layer.width / 2 + current_layer.width / 2)
                     + self.layer_spacing
                 )
                 shift_vector = np.array([0, y_shift, 0])
             else:
                 raise Exception(f"Unrecognized layout direction: {layout_direction}")
-            cast(Any, current_layer).shift(shift_vector)
+            current_layer.shift(shift_vector)
 
         # After all layers have been placed place their activation functions
-        layer_max_height = max([layer.height for layer in self.input_layers])
-        for current_layer in self.input_layers:
+        layer_max_height = max([layer.height for layer in layers])
+        for current_layer in layers:
             # Place activation function
-            if hasattr(current_layer, "activation_function"):
-                if not current_layer.activation_function is None:
-                    # Get max height of layer
-                    up_movement = np.array(
-                        [
-                            0,
-                            layer_max_height / 2
-                            + cast(Any, current_layer.activation_function).height / 2
-                            + 0.5 * self.layer_spacing,
-                            0,
-                        ]
-                    )
-                    cast(Any, current_layer.activation_function).move_to(
-                        current_layer,
-                    )
-                    cast(Any, current_layer.activation_function).match_y(
-                        self.input_layers[0]
-                    )
-                    cast(Any, current_layer.activation_function).shift(up_movement)
-                    self.add(cast(Any, current_layer).activation_function)
+            activation = cast(
+                "Mobject | None", getattr(current_layer, "activation_function", None)
+            )
+            if activation is not None:
+                # Get max height of layer
+                up_movement = np.array(
+                    [
+                        0,
+                        layer_max_height / 2
+                        + activation.height / 2
+                        + 0.5 * self.layer_spacing,
+                        0,
+                    ]
+                )
+                activation.move_to(current_layer)
+                activation.match_y(layers[0])
+                activation.shift(up_movement)
+                self.add(activation)
 
     def _construct_connective_layers(self) -> tuple[ListGroup, ListGroup]:
         """Draws connecting lines between layers.
@@ -349,7 +358,8 @@ class NeuralNetwork(Group):
             connective_layers.add(connective_layer)
             # Construct the connective layer
             connective_layer.construct_layer(
-                cast(Any, current_layer), cast(Any, next_layer)
+                cast(NeuralNetworkLayer, current_layer),
+                cast(NeuralNetworkLayer, next_layer),
             )
             # Add the layer to the list of layers
             all_layers.add(connective_layer)
@@ -361,10 +371,11 @@ class NeuralNetwork(Group):
     def _place_connective_layers(self) -> None:
         """Center each connective layer between its input and output layers."""
         # Place each of the connective layers halfway between the adjacent layers
-        for connective_layer in self.connective_layers:
+        for connective_mobject in self.connective_layers:
+            connective_layer = cast(ConnectiveLayer, connective_mobject)
             layer_midpoint = (
-                cast(Any, connective_layer.input_layer).get_center()
-                + cast(Any, connective_layer.output_layer).get_center()
+                connective_layer.input_layer.get_center()
+                + connective_layer.output_layer.get_center()
             ) / 2
             connective_layer.move_to(layer_midpoint)
 
@@ -401,7 +412,9 @@ class NeuralNetwork(Group):
         neural_network = self
         return RemoveLayer(layer, neural_network, layer_spacing=self.layer_spacing)
 
-    def replace_layer(self, old_layer: Mobject, new_layer: Mobject) -> Succession:
+    def replace_layer(
+        self, old_layer: NeuralNetworkLayer, new_layer: NeuralNetworkLayer
+    ) -> Succession:
         """Replaces given layer object.
 
         The old layer is faded out, the new layer is constructed in the
@@ -434,20 +447,26 @@ class NeuralNetwork(Group):
             else None
         )
         # Build the new layer in the context of its neighbours
-        new_layer.construct_layer(previous_layer, next_layer)
+        new_layer.construct_layer(
+            cast(NeuralNetworkLayer, previous_layer),
+            cast(NeuralNetworkLayer, next_layer),
+        )
         new_layer.move_to(old_layer)
         prior_center = self.all_layers.get_center()
 
-        def swap_layer(network: NeuralNetwork) -> None:
+        def swap_layer(mobject: Mobject) -> None:
             """Replace the layer and rebuild the surrounding connections."""
+            network = cast(NeuralNetwork, mobject)
             network.input_layers.replace(input_index, new_layer)
-            for name, layer in cast(Any, network.input_layers_dict).items():
+            for name, layer in network.input_layers_dict.items():
                 if layer is old_layer:
-                    cast(Any, network.input_layers_dict)[name] = new_layer
+                    network.input_layers_dict[name] = new_layer
             # Remove the stale activation function from the scene
-            if hasattr(old_layer, "activation_function"):
-                if old_layer.activation_function is not None:
-                    network.remove(cast(Any, old_layer).activation_function)
+            activation = cast(
+                "Mobject | None", getattr(old_layer, "activation_function", None)
+            )
+            if activation is not None:
+                network.remove(activation)
             # Rebuild the layers and connections around the new layer
             network.remove(network.all_layers)
             (
@@ -465,18 +484,18 @@ class NeuralNetwork(Group):
 
         return Succession(
             FadeOut(old_layer),
-            UpdateFromFunc(self, cast(Any, swap_layer)),
-            Create(cast(Any, new_layer)),
+            UpdateFromFunc(self, swap_layer),
+            Create(cast(VMobject, new_layer)),
             lag_ratio=1.0,
         )
 
-    def make_forward_pass_animation(
+    def make_forward_pass_animation(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         run_time: float | None = None,
         passing_flash: bool = True,
-        layer_args: dict[object, Any] = {},
+        layer_args: dict[Mobject, dict[str, object]] = {},
         per_layer_animations: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Succession | dict[Mobject, Animation]:
         """Generates an animation for feed forward propagation.
 
@@ -513,9 +532,9 @@ class NeuralNetwork(Group):
             if isinstance(layer, ConnectiveLayer):
                 # NOTE: By default a connective layer will get the combined
                 # layer_args of the layers it is connecting and itself.
-                before_layer_args = {}
-                current_layer_args = {}
-                after_layer_args = {}
+                before_layer_args: dict[str, object] = {}
+                current_layer_args: dict[str, object] = {}
+                after_layer_args: dict[str, object] = {}
                 if layer.input_layer in layer_args:
                     before_layer_args = layer_args[layer.input_layer]
                 if layer in layer_args:
@@ -577,7 +596,7 @@ class NeuralNetwork(Group):
             return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Create the network with a single guarded pass.
 
         Parameters
@@ -598,14 +617,15 @@ class NeuralNetwork(Group):
 
         animations: list[Animation] = []
         # Create the overhead title
-        animations.append(Create(cast(Any, self.title)))
+        animations.append(Create(cast(VMobject, self.title)))
         # Create each layer one by one
-        for layer in self.all_layers:
-            layer_animation = Create(cast(Any, layer))
+        for mobject in self.all_layers:
+            layer = cast(NeuralNetworkLayer, mobject)
+            layer_animation = Create(cast(VMobject, layer))
             # Make titles (empty default titles are plain Groups and
             # cannot be played with Create, so skip them)
-            if len(cast(Any, layer.title).submobjects) > 0:
-                create_title = Create(cast(Any, layer.title))
+            if isinstance(layer.title, VMobject) and len(layer.title.submobjects) > 0:
+                create_title = Create(layer.title)
                 # Create layer animation group
                 animation_group = AnimationGroup(layer_animation, create_title)
             else:
@@ -639,7 +659,11 @@ class NeuralNetwork(Group):
                 layer.set_z_index(z_index_value)
         return self
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> "NeuralNetwork":
+    def scale(
+        self, scale_factor: float, **kwargs: Any
+    ) -> (
+        "NeuralNetwork"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Overridden scale.
 
         Scales every layer and re-places the layers and connective layers

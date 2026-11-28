@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.P
 """
 
 from __future__ import annotations
-from typing import Any, TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
 import json
 import time
@@ -195,7 +195,9 @@ class PubchemAPIManager:
         """
         requests = require("chemistry", "requests")
         identifier = self.inchi
-        if cast(Any, identifier).startswith("InChI="):
+        if identifier is None:
+            raise Exception("No InChI or InChIKey is available for this compound.")
+        if identifier.startswith("InChI="):
             # PubChem only accepts the raw InChI in the form body; a
             # urlencoded value is rejected with PUGREST.BadRequest.
             lookup = requests.post(

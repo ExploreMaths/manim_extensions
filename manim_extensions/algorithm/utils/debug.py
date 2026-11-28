@@ -39,11 +39,11 @@ class ParagraphLineIndices(VGroup):
                self.add(paragraph, labels)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         paragraph: Paragraph,
         label_height: float = 0.1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__()
         for i in range(len(paragraph)):

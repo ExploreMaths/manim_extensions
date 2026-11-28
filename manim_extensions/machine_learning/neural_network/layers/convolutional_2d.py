@@ -31,7 +31,7 @@ from manim import (
     override_animation,
 )
 
-from ... import config
+from ...config import config
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
@@ -84,7 +84,10 @@ class FeatureMap(VGroup):
         fill_color: ManimColor = ORANGE,
         fill_opacity: float = 0.2,
         cell_width: float = 0.2,
-        padding: tuple[Any, ...] = (0, 0),
+        padding: tuple[Any, ...] = (
+            0,
+            0,
+        ),  # explicit-any-ok: accepts either scalar or per-axis padding values
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
         padding_dashed: bool = False,
@@ -247,7 +250,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                self.wait(1)
     """
 
-    def __init__(
+    untransformed_width: float | tuple[float, ...]
+
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_feature_maps: int,
         feature_map_size: int | tuple[int, int] | None = None,
@@ -264,7 +269,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         activation_function: ActivationFunction | str | None = None,
         padding: int | tuple[int, int] = 0,
         padding_dashed: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.num_feature_maps = num_feature_maps
@@ -305,11 +310,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.fill_opacity = fill_opacity
         self.padding_dashed = padding_dashed
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the feature maps and apply the 3D rotation to the layer.
 
@@ -328,9 +333,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Rotate stuff properly
         # normal_vector = self.feature_maps[0].get_normal_vector()
         self.rotate(
-            cast(Any, config).three_d_config.rotation_angle,
+            config.three_d_config.rotation_angle,
             about_point=self.get_center(),
-            axis=cast(Any, config).three_d_config.rotation_axis,
+            axis=config.three_d_config.rotation_axis,
         )
 
         self.construct_activation_function()
@@ -409,7 +414,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, run_time: float = 5, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Convolution forward pass animation.
 
@@ -441,7 +446,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return animation_group
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> "Convolutional2DLayer":
+    def scale(
+        self, scale_factor: float, **kwargs: Any
+    ) -> (
+        "Convolutional2DLayer"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Scale the layer and adjust cell_width proportionally.
 
         Parameters
@@ -522,7 +531,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return self
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Fade in the feature maps.
 
         Parameters

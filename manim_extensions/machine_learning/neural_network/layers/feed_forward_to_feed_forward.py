@@ -29,7 +29,7 @@ from manim import (
 
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
-from ... import config
+from ...config import config
 from ....utils.deps import require
 from manim.typing import VectorND
 
@@ -86,30 +86,30 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     input_class = FeedForwardLayer
     output_class = FeedForwardLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: FeedForwardLayer,
         output_layer: FeedForwardLayer,
         passing_flash: bool = True,
         dot_radius: float = 0.05,
-        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
-        edge_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        edge_color: ManimColor = config.color_scheme.secondary_color,
         edge_width: float = 1.5,
         camera: Camera | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash = passing_flash
         self.edge_color = edge_color
         self.dot_radius = dot_radius
         self.animation_dot_color = animation_dot_color
         self.edge_width = edge_width
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the fully-connected edges between input and output layers.
 
@@ -168,10 +168,10 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict[object, Any] = {},
+        layer_args: dict[str, object] = {},
         run_time: float = 1,
         feed_forward_dropout: float = 0.0,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> AnimationGroup:
         """Animation for passing information from one :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer` to the next.
 
@@ -194,9 +194,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         path_animations: list[Animation] = []
         dots: list[Dot] = []
         for edge_index, edge in enumerate(self.edges):
-            if (
-                not "edge_indices_to_dropout" in layer_args
-                or not edge_index in layer_args["edge_indices_to_dropout"]
+            if not "edge_indices_to_dropout" in layer_args or not edge_index in cast(
+                Sequence[int], layer_args["edge_indices_to_dropout"]
             ):
                 dot = Dot(
                     color=self.animation_dot_color,
@@ -283,7 +282,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
-        widths_array = cast(Any, np.array(widths)).flatten()
+        widths_array = np.array(widths).flatten()
         # Check thickness size
         assert np.shape(widths_array)[0] == len(self.edges)
         # Make animation
@@ -299,7 +298,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Create every connection edge.
 
         Parameters

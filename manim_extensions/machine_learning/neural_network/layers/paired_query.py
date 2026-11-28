@@ -6,7 +6,7 @@
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any
 
 from manim import (
     Animation,
@@ -91,14 +91,14 @@ class PairedQueryLayer(NeuralNetworkLayer):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         positive: Any,
         negative: Any,
         stroke_width: float = 5,
         font_size: float = 18,
         spacing: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.positive = positive
@@ -112,11 +112,11 @@ class PairedQueryLayer(NeuralNetworkLayer):
         self.add(self.assets)
         self.add(self.title)
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -133,12 +133,12 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return None
 
     @classmethod
-    def from_paths(
+    def from_paths(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         cls,
         positive_path: str,
         negative_path: str,
         grayscale: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "PairedQueryLayer":
         """Creates a query using the paths.
 
@@ -158,8 +158,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
             The layer built from the supplied image paths.
         """
         # Load images from path
-        positive: Any
-        negative: Any
+        positive: ImageMobject | GrayscaleImageMobject
+        negative: ImageMobject | GrayscaleImageMobject
         if grayscale:
             positive = GrayscaleImageMobject.from_path(positive_path)
             negative = GrayscaleImageMobject.from_path(negative_path)
@@ -180,7 +180,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         """
         # Handle positive
         positive_group = LabeledColorImage(
-            cast(Any, self.positive),
+            self.positive,
             color=BLUE,
             label="Positive",
             font_size=self.font_size,
@@ -188,7 +188,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         )
         # Handle negative
         negative_group = LabeledColorImage(
-            cast(Any, self.negative),
+            self.negative,
             color=RED,
             label="Negative",
             font_size=self.font_size,
@@ -211,7 +211,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Forward pass for query.
 

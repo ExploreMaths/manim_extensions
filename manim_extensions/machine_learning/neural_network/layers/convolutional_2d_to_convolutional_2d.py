@@ -6,6 +6,7 @@
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
+from types import MethodType
 from typing import Any, cast
 
 import numpy as np
@@ -30,9 +31,10 @@ from manim import (
 )
 
 from .convolutional_2d import Convolutional2DLayer
+from .max_pooling_2d import MaxPooling2DLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
-from ... import config
+from ...config import config
 from manim.typing import Vector3D
 
 
@@ -57,8 +59,8 @@ def get_rotated_shift_vectors(
     down_shift = np.array([0, -input_layer.cell_width, 0])
     # Make rotation matrix
     rot_mat = rotation_matrix(
-        cast(Any, config).three_d_config.rotation_angle,
-        cast(Any, config).three_d_config.rotation_axis,
+        config.three_d_config.rotation_angle,
+        config.three_d_config.rotation_axis,
     )
     # Rotate the vectors
     right_shift = np.dot(right_shift, rot_mat.T)
@@ -178,9 +180,9 @@ class Filters(VGroup):
             )
             # normal_vector = rectangle.get_normal_vector()
             rectangle.rotate(
-                cast(Any, config).three_d_config.rotation_angle,
+                config.three_d_config.rotation_angle,
                 about_point=rectangle.get_center(),
-                axis=cast(Any, config).three_d_config.rotation_axis,
+                axis=config.three_d_config.rotation_axis,
             )
             # Move the rectangle to the corner of the feature map
             rectangle.next_to(
@@ -233,9 +235,9 @@ class Filters(VGroup):
             )
             # Rotate the rectangle
             rectangle.rotate(
-                cast(Any, config).three_d_config.rotation_angle,
+                config.three_d_config.rotation_angle,
                 about_point=rectangle.get_center(),
-                axis=cast(Any, config).three_d_config.rotation_axis,
+                axis=config.three_d_config.rotation_axis,
             )
             # Move the rectangle to the corner location
             rectangle.next_to(
@@ -352,7 +354,7 @@ class Filters(VGroup):
         return connective_lines
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """NOTE This create override animation
                 is a workaround to make sure that the filter
                 does not show up in the scene before the create animation.
@@ -386,7 +388,7 @@ class Filters(VGroup):
 
             return object
 
-        return ApplyFunction(cast(Any, add_content), self)
+        return ApplyFunction(cast(MethodType, add_content), self)
 
     def make_pulse_animation(self, shift_amount: Vector3D) -> ShowPassingFlash:
         """Make animation of the filter pulsing.
@@ -462,10 +464,10 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                self.add(content)
     """
 
-    input_class: Any = Convolutional2DLayer
-    output_class: Any = Convolutional2DLayer
+    input_class: type[Convolutional2DLayer | MaxPooling2DLayer] = Convolutional2DLayer
+    output_class: type[Convolutional2DLayer] = Convolutional2DLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: Convolutional2DLayer,
         output_layer: Convolutional2DLayer,
@@ -476,7 +478,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         cell_width: float = 0.2,
         show_grid_lines: bool = True,
         highlight_color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             input_layer,
@@ -501,11 +503,11 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         self.show_grid_lines = show_grid_lines
         self.highlight_color = highlight_color
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -698,11 +700,11 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict[object, Any] = {},
+        layer_args: dict[str, object] = {},
         all_filters_at_once: bool = False,
         highlight_active_feature_map: bool = True,
         run_time: float = 10.5,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> Succession:
         """Forward pass animation from conv2d to conv2d.
 
@@ -735,8 +737,10 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 highlight_active_feature_map=highlight_active_feature_map
             )
 
-    def scale(
-        self, scale_factor: float, **kwargs: Any
+    def scale(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scale_factor: float,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "Convolutional2DToConvolutional2D":
         """Scale the layer and adjust cell_width proportionally.
 
@@ -756,7 +760,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         return self
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Return an empty succession for the connective layer.
 
         Parameters

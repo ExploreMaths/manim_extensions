@@ -4,6 +4,7 @@
 
 """Custom animations for Manim."""
 
+from collections.abc import Callable
 from typing import Any, cast
 
 from .utils.deprecation import deprecated
@@ -81,7 +82,11 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any) -> None:
+    def __init__(
+        self, mobject: Text, interval: float = 0.1, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
         self.char_count = len(mobject.submobjects)
@@ -177,7 +182,9 @@ def ease_out_bounce(t: float) -> float:
         return 7.5625 * c * c + 0.984375
 
 
-_ease_out_bounce = cast(Any, ease_out_bounce).__wrapped__
+_ease_out_bounce = cast(
+    Callable[[float], float], getattr(ease_out_bounce, "__wrapped__")
+)
 
 
 @deprecated(
@@ -228,7 +235,7 @@ def ease_in_bounce(t: float) -> float:
     return float(1 - _ease_out_bounce(1 - t))
 
 
-_ease_in_bounce = cast(Any, ease_in_bounce).__wrapped__
+_ease_in_bounce = cast(Callable[[float], float], getattr(ease_in_bounce, "__wrapped__"))
 
 
 @deprecated(
@@ -376,8 +383,11 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(
-        self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        mobject: VMobject,
+        lag_ratio: float = 0.1,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects)))
@@ -422,8 +432,11 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(
-        self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        mobject: VMobject,
+        lag_ratio: float = 0.1,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects) - 1, -1, -1))
@@ -466,7 +479,11 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(
+        self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -509,7 +526,11 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(
+        self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -553,7 +574,11 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(
+        self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -603,13 +628,13 @@ class PassingRectangle(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject: Mobject,
         color: ManimColor = RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
@@ -687,12 +712,12 @@ class LaggedCreation(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject: Mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
@@ -785,13 +810,13 @@ class HighLightWithLines(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject: Mobject,
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
@@ -863,13 +888,13 @@ class UnHighLightWithLines(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject: Mobject,
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:

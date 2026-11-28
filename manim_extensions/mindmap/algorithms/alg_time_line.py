@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, cast
+from typing import Protocol, cast
 
 __all__ = [
     "TimeLineLayout",
@@ -15,6 +15,15 @@ __all__ = [
 from dataclasses import dataclass, field
 from .layout import Layout
 from .layout_config import LayoutDirection
+
+
+class _TimelineInput(Protocol):
+    """Raw timeline node carrying layout coordinates."""
+
+    x: float
+    y: float
+    side: object
+    level: int
 
 
 @dataclass
@@ -70,7 +79,7 @@ class TimelineNode:
     """
 
     #: Payload carried by this layout node.
-    node: object | None = None
+    node: _TimelineInput | None = None
     #: Measured width of the timeline node.
     width: float = 0.0
     #: Measured height of the timeline node.
@@ -93,7 +102,7 @@ class TimelineNode:
     _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node: object) -> "TimelineNode":
+    def from_node(cls, node: _TimelineInput) -> "TimelineNode":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references
@@ -116,15 +125,19 @@ class TimelineNode:
         tl.height = float(getattr(node, "height", 0))
         # Recursively create children
         children = getattr(node, "children", [])
-        tl.children = [cls.from_node(child) for child in children]
+        tl.children = [cls.from_node(cast(_TimelineInput, child)) for child in children]
         return tl
 
 
 def walk(
     node: TimelineNode,
     parent: TimelineNode | None,
-    before_callback: Callable[..., Any] | None,
-    after_callback: Callable[..., Any] | None,
+    before_callback: (
+        Callable[[TimelineNode, TimelineNode | None, bool, int, int], object] | None
+    ),
+    after_callback: (
+        Callable[[TimelineNode, TimelineNode | None, bool, int, int], object] | None
+    ),
     is_root: bool = False,
     layer_index: int = 0,
     index: int = 0,
@@ -230,7 +243,7 @@ class TimeLineLayout(Layout):
 
     def __init__(
         self,
-        root: object,
+        root: _TimelineInput,
         sides: Sequence[LayoutDirection] = (
             LayoutDirection.TopToBottom,
             LayoutDirection.BottomToTop,
@@ -562,7 +575,7 @@ class TimeLineLayout(Layout):
             ``"bottom"`` representing the bounding box of the subtree.
         """
 
-        def walk_tree(root: TimelineNode) -> dict[str, Any]:
+        def walk_tree(root: TimelineNode) -> dict[str, float]:
             """Recursively walk the subtree to find boundary values.
 
             Parameters
@@ -635,9 +648,9 @@ class TimeLineLayout(Layout):
             The root of the (sub)tree whose coordinates should be applied.
         """
         if node.node:
-            cast(Any, node.node).x = cast(Any, node).x + node.width / 2
-            cast(Any, node.node).y = -cast(Any, node).y - node.height / 2
-            cast(Any, node.node).side = node.side_dir
-            cast(Any, node.node).level = node._layer_index
+            node.node.x = node.x + node.width / 2
+            node.node.y = -node.y - node.height / 2
+            node.node.side = node.side_dir
+            node.node.level = node._layer_index
         for child in node.children:
             self._apply_coords(child)

@@ -108,7 +108,7 @@ class EconDiagram(VGroup):
                self.add(diagram)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         x_label: str = "X",
         y_label: str = "Y",
@@ -116,7 +116,7 @@ class EconDiagram(VGroup):
         y_range: Sequence[float] | None = None,
         x_length: float = 6,
         y_length: float = 4,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 

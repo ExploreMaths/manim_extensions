@@ -13,6 +13,7 @@ from typing import Any, Literal, cast
 
 from manim import ManimColor, Mobject, ORIGIN, VMobject, WHITE
 import numpy as np
+from numpy.typing import NDArray
 from .cubie import Cubie
 
 from ..utils.deps import require
@@ -161,9 +162,9 @@ class RubiksCube(VMobject):
     # If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up
     # Each coordinate starts at 0 and goes to (Dimensions - 1)
 
-    cubies: np.ndarray
+    cubies: NDArray[np.object_]
     #: Maps cubie coordinates to vertex indices in the generated mesh.
-    indices: dict[tuple[float, float, float], np.ndarray] = {}
+    indices: dict[tuple[float, float, float], NDArray[np.object_]] = {}
 
     # Colors are in the order Up, Right, Front, Down, Left, Back
     def __init__(
@@ -217,7 +218,7 @@ class RubiksCube(VMobject):
                     self.transform_cubie(y, self.y_offset, cubie)
                     self.transform_cubie(z, self.z_offset, cubie)
                     self.add(cubie)
-                    cast(Any, self.cubies)[x, y, z] = cubie
+                    self.cubies[x, y, z] = cubie
         self.move_to(ORIGIN)
 
     def set_state(self, positions: list[str]) -> None:
@@ -272,7 +273,14 @@ class RubiksCube(VMobject):
             list[str], sv.solve(state).replace("3", "'").replace("1", "").split()
         )
 
-    def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> None:
+    def transform_cubie(
+        self,
+        position: int,
+        offset: list[
+            list[Any]
+        ],  # explicit-any-ok: alternating transform callables and offset arrays
+        tile: Cubie,
+    ) -> None:
         """Apply translation offsets to a cubie based on its position.
 
         Parameters
@@ -300,7 +308,7 @@ class RubiksCube(VMobject):
 
     def get_face(
         self, face: Literal["F", "B", "U", "D", "L", "R"], flatten: bool = True
-    ) -> np.ndarray:
+    ) -> NDArray[np.object_]:
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters
@@ -315,22 +323,22 @@ class RubiksCube(VMobject):
         -------
             The selected face values, either as a 2D grid or a flattened array.
         """
-        face_data: np.ndarray
+        face_data: NDArray[np.object_]
         if face == "F":
-            face_data = cast(Any, self.cubies)[0, :, :]
+            face_data = self.cubies[0, :, :]
         elif face == "B":
-            face_data = cast(Any, self.cubies)[self.dimensions - 1, :, :]
+            face_data = self.cubies[self.dimensions - 1, :, :]
         elif face == "U":
-            face_data = cast(Any, self.cubies)[:, :, self.dimensions - 1]
+            face_data = self.cubies[:, :, self.dimensions - 1]
         elif face == "D":
-            face_data = cast(Any, self.cubies)[:, :, 0]
+            face_data = self.cubies[:, :, 0]
         elif face == "L":
-            face_data = cast(Any, self.cubies)[:, self.dimensions - 1, :]
+            face_data = self.cubies[:, self.dimensions - 1, :]
         else:
-            face_data = cast(Any, self.cubies)[:, 0, :]
+            face_data = self.cubies[:, 0, :]
 
         if flatten:
-            return cast(np.ndarray, face_data.flatten())
+            return cast(NDArray[np.object_], face_data.flatten())
         return face_data
 
     def set_indices(self) -> None:
@@ -338,7 +346,7 @@ class RubiksCube(VMobject):
         for c in self.cubies.flatten():
             self.indices[c.get_rounded_center()] = c.position
 
-    def adjust_indices(self, cubies: np.ndarray) -> None:
+    def adjust_indices(self, cubies: NDArray[np.object_]) -> None:
         """Rebuild the cube index mapping from a set of cubies.
 
         Parameters
@@ -348,4 +356,4 @@ class RubiksCube(VMobject):
         """
         for c in cubies.flatten():
             loc = self.indices[c.get_rounded_center()]
-            cast(Any, self.cubies)[loc[0], loc[1], loc[2]] = c
+            self.cubies[loc[0], loc[1], loc[2]] = c

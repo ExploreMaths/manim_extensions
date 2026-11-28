@@ -53,7 +53,7 @@ class BohrAtom(VGroup):
                self.add(atom.get_electrons())
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         e: int = 14,  # Electrons
         p: int = 14,  # Protons
@@ -63,7 +63,7 @@ class BohrAtom(VGroup):
         electron_color: ManimColor = BLUE,
         proton_color: ManimColor = RED,
         neutron_color: ManimColor = WHITE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.e = e

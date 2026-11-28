@@ -5,7 +5,8 @@
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any, Self, cast
+from collections.abc import Hashable, Mapping
 
 from manim.typing import Point3D, Vector3D
 from manim import (
@@ -34,7 +35,23 @@ from .round_corners import *
 from .path_mapper import *
 
 
-class PointerLabelFree(VDict):
+class _VDictAddMixin(VDict):
+    """A :class:`~manim.mobject.types.vectorized_mobject.VDict` accepting any Mobject value."""
+
+    def add(self, *mobjects: object) -> Self:
+        """Insert a named mapping or ordinary Mobjects, narrowing values for VDict."""
+        if len(mobjects) == 1 and isinstance(mobjects[0], Mapping):
+            mapping = cast(Mapping[str, Mobject], mobjects[0])
+            entries: dict[Hashable, VMobject] = {
+                key: cast(VMobject, value) for key, value in mapping.items()
+            }
+            VDict.add(self, entries)
+        else:
+            Mobject.add(self, *cast(tuple[Mobject, ...], mobjects))
+        return self
+
+
+class PointerLabelFree(_VDictAddMixin):
     """A labelled pointer that is not attached to a mobject.
 
     Parameters
@@ -64,13 +81,13 @@ class PointerLabelFree(VDict):
                self.add(pointer.scale(2))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         point: Point3D,
         text: str | Mobject,
         offset_vector: Vector3D = RIGHT + DOWN,
         pointer_offset: float = 0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         text_buff = 0.1
         if not "stroke_width" in kwargs:
@@ -84,7 +101,7 @@ class PointerLabelFree(VDict):
             textmob = text
         else:
             textmob = Text("A", **kwargs)
-        self.add(cast(Any, {"text": textmob}))
+        self.add({"text": textmob})
         self.twidth = (
             self["text"].get_critical_point(RIGHT)
             - self["text"].get_critical_point(LEFT)
@@ -105,10 +122,8 @@ class PointerLabelFree(VDict):
                 point + offset_vector + self.twidth * np.sign(offset_vector[0]) * RIGHT,
             ]
         )
-        self.add(cast(Any, {"line": dim_line}))
-        self.add(
-            cast(Any, {"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
-        )
+        self.add({"line": dim_line})
+        self.add({"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
         self["arrow"].arrowhead.rotate(PI, about_point=ORIGIN)
         self["arrow"].add_updater(self["arrow"].default_updater)
         self["arrow"].update()
@@ -186,14 +201,14 @@ class PointerToMob(PointerLabelFree):
                self.add(circle, pointer)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mob: Mobject,
         proportion: float,
         text: str | Mobject,
         dist: float = 1,
         pointer_offset: float = 0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         point = mob.point_from_proportion(proportion)
 
@@ -241,7 +256,7 @@ class PointerToMob(PointerLabelFree):
         super().update_point(point, offset)
 
 
-class LinearDimension(VDict):
+class LinearDimension(_VDictAddMixin):
     """A linear dimension with arrows and a measurement label.
 
     Parameters
@@ -281,7 +296,7 @@ class LinearDimension(VDict):
                self.add(line, dimension)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D,
         end: Point3D,
@@ -291,7 +306,7 @@ class LinearDimension(VDict):
         offset: float = 2,
         ext_line_offset: float = 0,
         tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.start = start
@@ -348,32 +363,26 @@ class LinearDimension(VDict):
             arrow2.update()
 
         self.add(
-            cast(
-                Any,
-                {
-                    "ext_line_1": Line(
-                        start=start + ofs_dir * ext_line_offset,
-                        end=startpoint + 0.25 * (normalize(startpoint - start)),
-                        **kwargs,
-                    ),
-                },
-            )
+            {
+                "ext_line_1": Line(
+                    start=start + ofs_dir * ext_line_offset,
+                    end=startpoint + 0.25 * (normalize(startpoint - start)),
+                    **kwargs,
+                ),
+            }
         )
         self.add(
-            cast(
-                Any,
-                {
-                    "ext_line_2": Line(
-                        start=end + ofs_dir * ext_line_offset,
-                        end=endpoint + 0.25 * (normalize(endpoint - end)),
-                        **kwargs,
-                    ),
-                },
-            )
+            {
+                "ext_line_2": Line(
+                    start=end + ofs_dir * ext_line_offset,
+                    end=endpoint + 0.25 * (normalize(endpoint - end)),
+                    **kwargs,
+                ),
+            }
         )
-        self.add(cast(Any, {"main_line": main_line}))
-        self.add(cast(Any, {"arrow1": arrow1}))
-        self.add(cast(Any, {"arrow2": arrow2}))
+        self.add({"main_line": main_line})
+        self.add({"arrow1": arrow1})
+        self.add({"arrow2": arrow2})
 
         textmob: Mobject
         if isinstance(text, str):
@@ -404,10 +413,10 @@ class LinearDimension(VDict):
         textmob.move_to(
             self["main_line"].get_center() + rotate_vector(UP, text_angle) * self.text_h
         )
-        self.add(cast(Any, {"text": textmob}))
+        self.add({"text": textmob})
 
 
-class AngleDimension3Point(VDict):
+class AngleDimension3Point(_VDictAddMixin):
     """An angular dimension defined by three points.
 
     Parameters
@@ -446,7 +455,7 @@ class AngleDimension3Point(VDict):
                self.add(dimension)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D,
         end: Point3D,
@@ -456,7 +465,7 @@ class AngleDimension3Point(VDict):
         outside_arrow: bool = False,
         ext_line_offset: float = 0,
         tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -490,8 +499,8 @@ class AngleDimension3Point(VDict):
             **kwargs,
         )
         # self.add(line1,line2)
-        self.add(cast(Any, {"ext_line_1": line1}))
-        self.add(cast(Any, {"ext_line_2": line2}))
+        self.add({"ext_line_1": line1})
+        self.add({"ext_line_2": line2})
         if not outside_arrow:
 
             if "stroke_width" in kwargs:
@@ -510,9 +519,9 @@ class AngleDimension3Point(VDict):
             arrow2.arrowhead.shift(RIGHT * self.arrow_offset)
             arrow1.generate_points()
             arrow2.generate_points()
-            self.add(cast(Any, {"base_arc": base_arc}))
-            self.add(cast(Any, {"arrow_1": arrow1}))
-            self.add(cast(Any, {"arrow_2": arrow2}))
+            self.add({"base_arc": base_arc})
+            self.add({"arrow_1": arrow1})
+            self.add({"arrow_2": arrow2})
         else:
             extension = tip_len * 3 * np.sign(angle_1)
             angle_ext = extension / radius
@@ -534,9 +543,9 @@ class AngleDimension3Point(VDict):
             )
             arrow2.arrowhead.shift(-extension * RIGHT)
             arrow2.default_updater(0)
-            self.add(cast(Any, {"base_arc": base_arc}))
-            self.add(cast(Any, {"arrow_1": arrow1}))
-            self.add(cast(Any, {"arrow_2": arrow2}))
+            self.add({"base_arc": base_arc})
+            self.add({"arrow_1": arrow1})
+            self.add({"arrow_2": arrow2})
 
         textmob: Mobject
         if isinstance(text, str):
@@ -561,7 +570,7 @@ class AngleDimension3Point(VDict):
         self.text_h = textmob.height
         textmob.rotate(angle_text)
         textmob.move_to(pos_text + rotate_vector(UP, angle_text) * self.text_h)
-        self.add(cast(Any, {"text": textmob}))
+        self.add({"text": textmob})
 
 
 class AngleDimensionMob(AngleDimension3Point):
@@ -593,12 +602,12 @@ class AngleDimensionMob(AngleDimension3Point):
                self.add(arc, dimension)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         Mob: Mobject,
         start_proportion: float,
         end_proportion: float,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         start = Mob.point_from_proportion(start_proportion)
         end = Mob.point_from_proportion(end_proportion)
@@ -657,13 +666,13 @@ class CADArrowHead(CurveWarp):
                self.add(curve, head)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target_curve: VMobject,
         anchor_point: float = 1,
         arrow_size: float = DEFAULT_ARROW_TIP_LENGTH,
         reversed_arrow: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
 
         # set default value

@@ -9,11 +9,40 @@ transition timing). Colours live in :class:`manim_extensions.radar.theme.RadarTh
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import cast
 
 from dataclasses import dataclass, field, replace
+from collections.abc import Callable, Iterable
+from typing import TypedDict
+
+from manim.utils.color import ParsableManimColor
 
 __all__ = ["RadarConfig", "STYLES", "style_names", "get_style"]
+
+
+class TextKwargs(TypedDict, total=False):
+    """Keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`."""
+
+    font: str
+    weight: str
+    font_size: float
+    color: ParsableManimColor
+    t2c: dict[str, str]
+    t2w: dict[str, str]
+    t2f: dict[str, str]
+    t2s: dict[str, str]
+    t2g: dict[str, Iterable[ParsableManimColor]] | None
+    slant: str
+    line_spacing: float
+    disable_ligatures: bool
+    stroke_width: float
+    stroke_color: ParsableManimColor
+    fill_opacity: float
+    fill_color: ParsableManimColor
+    gradient: Iterable[ParsableManimColor] | None
+    height: float
+    width: float
+    should_center: bool
 
 
 @dataclass
@@ -42,7 +71,7 @@ class RadarConfig:
     radius: float = 2.9
     #: Chart centre in scene units ``(x, y)``; a little below the middle leaves
     #: room for the nameplate / title above the chart.
-    position: tuple[Any, ...] = (0.0, -0.18)
+    position: tuple[float, float] = (0.0, -0.18)
     #: Number of concentric grid rings (the outermost ring is the full scale).
     levels: int = 5
     #: Angle of the first axis, in degrees (90 = straight up).
@@ -268,10 +297,10 @@ class RadarConfig:
     #: Random seed for decorations that live on the chart.
     seed: int = 7
     #: Extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject.
-    text_kwargs: dict[Any, Any] = field(default_factory=dict)
+    text_kwargs: TextKwargs = field(default_factory=lambda: cast(TextKwargs, {}))
 
     # ------------------------------------------------------------------
-    def evolved(self, **changes: Any) -> "RadarConfig":
+    def evolved(self, **changes: object) -> "RadarConfig":
         """Return a copy with selected fields replaced.
 
         Parameters
@@ -295,7 +324,7 @@ class RadarConfig:
             raise TypeError(
                 f"unknown RadarConfig field(s): {', '.join(sorted(unknown))}"
             )
-        return replace(self, **clean)
+        return cast(Callable[..., RadarConfig], replace)(self, **clean)
 
     def validated(self) -> "RadarConfig":
         """Check that the numeric fields are usable.

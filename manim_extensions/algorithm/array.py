@@ -59,14 +59,14 @@ class Array(VMobject):
                self.wait(1)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         data: list[NodeValue],
         total_width: float | None = None,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         text_scale: float = 1.0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         if total_width is None:
@@ -109,7 +109,7 @@ class Array(VMobject):
             The selected node, or a new array holding the selected slice.
         """
         if isinstance(key, slice):
-            return Array(cast(Any, self.array[key]))
+            return Array(cast(list[str | int | float | None], self.array[key]))
         return self.array[key]
 
     def __len__(self) -> int:

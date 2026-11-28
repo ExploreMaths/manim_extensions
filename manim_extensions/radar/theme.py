@@ -130,7 +130,11 @@ class RadarTheme:
         cols = list(self.palette)
         return ManimColor(cols[index % len(cols)])
 
-    def evolved(self, **changes: Any) -> "RadarTheme":
+    def evolved(
+        self, **changes: Any
+    ) -> (
+        "RadarTheme"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return a copy of this theme with selected fields replaced.
 
         Parameters

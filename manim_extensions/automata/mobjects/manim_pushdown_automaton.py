@@ -17,6 +17,7 @@ from .manim_non_deterministic_finite_state_automaton import (
     ManimNondeterministicFiniteAutomaton,
 )
 from .manim_state import ManimState, State
+from .automata_dependencies.transition import ReadSymbol
 from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
 from .manim_automaton_input import ManimAutomataInput
 
@@ -103,15 +104,15 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                self.wait()
     """
 
-    stack: list[Any]
+    stack: list[str]
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         json_template: dict[str, Any] | None = None,
         xml_file: str | None = None,
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if json_template is None and xml_file is None:
             json_template = pushdown_automaton_json
@@ -131,18 +132,21 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.
         """
         # counts the number of transitions between two states
-        transition_counter: dict[tuple[Any, Any], list[PushDownAutomatonRule]] = {}
+        transition_counter: dict[tuple[str, str], list[PushDownAutomatonRule]] = {}
         for transition in transitions:
             """put from and to states into tuple to be used as
             dictionary key."""
-            state_key = (transition["from"], transition["to"])
+            state_key = (
+                cast(str, transition["from"]),
+                cast(str, transition["to"]),
+            )
 
             transition_group = transition_counter.setdefault(state_key, [])
 
             rule = PushDownAutomatonRule(
-                cast(Any, transition.get("read")),
-                cast(Any, transition.get("pop", "")),
-                cast(Any, transition.get("push", "")),
+                cast(str, transition.get("read", "")),
+                cast(str, transition.get("pop", "")),
+                cast(str, transition.get("push", "")),
             )
 
             transition_group.append(rule)
@@ -152,8 +156,8 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         for state_key in transition_counter:
             rules = transition_counter[state_key]
 
-            transition_from = self.get_state_by_id(int(cast(Any, state_key[0])))
-            transition_to = self.get_state_by_id(int(cast(Any, state_key[1])))
+            transition_from = self.get_state_by_id(int(str(state_key[0])))
+            transition_to = self.get_state_by_id(int(str(state_key[1])))
             if transition_from is None or transition_to is None:
                 continue
 
@@ -216,7 +220,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         """
         if not self.stack:
             return None
-        return cast(str, self.stack.pop())
+        return self.stack.pop()
 
     # pushdown automata can accept if the stack is empty or if it falls on a final state
     # overridden
@@ -257,9 +261,11 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         ]
 
         # run the input through the machine, returning a history of what happened
-        history = cast(
-            dict[str, Any],
-            self.run_input_through_automaton(input_to_run, automaton_path_name),
+        history = (
+            cast(  # explicit-any-ok: run history alternates token steps and information
+                dict[int | str, Any],
+                self.run_input_through_automaton(input_to_run, automaton_path_name),
+            )
         )
 
         list_of_animations = list_of_animations + self.generate_history_animations(
@@ -272,7 +278,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
     # overridden
     def automaton_step(
-        self, token: str, state_pointer: State
+        self, token: ReadSymbol | str, state_pointer: State
     ) -> tuple[bool, list[State], list[ManimTransition]]:
         """Perform one step of the pushdown automaton on the given token.
 
@@ -297,17 +303,15 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         )  # store the transitions that transition from current to next states.
 
         # go through each transition of this state
+        token_text = token if isinstance(token, str) else token.tex_string
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
 
             # check if any transition's rules match the input token
             for rule in cast(
-                Any, transition
+                ManimPushDownAutomatonTransition, transition
             ).rules:  # Iterate through the transtion's read options
-                if (
-                    rule.read_symbol == cast(Any, token).tex_string
-                    or rule.read_symbol == r"\epsilon"
-                ):
+                if rule.read_symbol == token_text or rule.read_symbol == r"\epsilon":
                     next_states.append(transition.transition_to)
                     transitions.append(cast(ManimTransition, transition))
 

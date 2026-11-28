@@ -227,7 +227,11 @@ def involute_deriv_func(
         return diff_val(t)
 
 
-def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
+def involute_height_func(
+    k: float | VectorND, r: float, **kwargs: Any
+) -> (
+    float
+):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     """Returns the radial height of the involute compared to the base circle.
 
     Parameters
@@ -270,7 +274,11 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t: VectorND, r: float, **kwargs: Any) -> Point3D_Array:
+def involute_point_gen(
+    t: VectorND, r: float, **kwargs: Any
+) -> (
+    Point3D_Array
+):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     """Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with :class:`~manim.mobject.mobject.Mobject`.points.
     Input t is a list where the involute shall be evaluated, it can be unevenly spaced.
@@ -390,7 +398,7 @@ class Gear(VMobject):
                # first and last frames match and the animation loops seamlessly
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_of_teeth: int,
         module: float = 0.2,
@@ -401,7 +409,7 @@ class Gear(VMobject):
         profile_shift: int = 0,
         cutout_teeth_num: int = 0,
         nppc: int = 5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.z = num_of_teeth
         self.z_cut = cutout_teeth_num
@@ -1027,7 +1035,7 @@ class Gear(VMobject):
         *,
         about_point: Point3DLike | None = None,
         about_edge: Vector3DLike | None = None,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> "Gear":
         """Rotate the gear around its centre.
 
@@ -1105,14 +1113,14 @@ class Rack(VMobject):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_of_teeth: int,
         module: float = 0.2,
         alpha: int = 20,
         h_a: int = 1,
         h_f: float = 1.17,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.z = num_of_teeth
         self.m = module
@@ -1206,7 +1214,7 @@ class Rack(VMobject):
         *,
         about_point: Point3DLike | None = None,
         about_edge: Vector3DLike | None = None,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> "Rack":
         """Rotate the rack around its centre.
 

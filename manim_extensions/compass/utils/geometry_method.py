@@ -57,13 +57,13 @@ class ArcFromCenter(Arc):
                )
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         niddle_pos: Point3D,
         pen_pos: Point3D,
         angle: float,
         color: ParsableManimColor = PURE_YELLOW,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         arc_radius = get_distance(niddle_pos, pen_pos)
         vec_s = pen_pos - niddle_pos

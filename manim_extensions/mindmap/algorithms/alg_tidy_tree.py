@@ -9,12 +9,26 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
 
 from __future__ import annotations
-from typing import Any, cast
+from collections.abc import Sequence
+from typing import Protocol, cast
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
 from .layout_config import LayoutDirection
 from .layout import Layout
+
+
+class NodeLike(Protocol):
+    """Structural type shared by TreeNode and mindmap Node."""
+
+    x: float
+    y: float
+    width: float
+    height: float
+    level: int
+    is_flip: bool
+    parent: "NodeLike | None"
+    children: "Sequence[NodeLike]"
 
 
 @dataclass
@@ -64,6 +78,8 @@ class WrappedTree:
     #: Depth level of the node.
     level: int = 0  # node depth
     # Children
+    #: Parent wrapper node.
+    parent: "WrappedTree | None" = None
     #: Child nodes in layout order.
     children: "list[WrappedTree]" = field(default_factory=list)
     #: Index among sibling nodes.
@@ -103,10 +119,12 @@ class WrappedTree:
     thread_left: "WrappedTree | None" = None
     #: Thread pointer to the next node on the right contour.
     thread_right: "WrappedTree | None" = None
+    #: Connector path computed for rendering.
+    connector_points: tuple[tuple[float, float], ...] = ()
 
     @classmethod
     def from_node(
-        cls, node: object, is_horizontal: bool, level: int = 0
+        cls, node: NodeLike, is_horizontal: bool, level: int = 0
     ) -> "WrappedTree":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
@@ -145,6 +163,8 @@ class WrappedTree:
         # Recursively create children
         children = getattr(node, "children", [])
         wt.children = [cls.from_node(child, is_horizontal, level) for child in children]
+        for child in wt.children:
+            child.parent = wt
         wt.child_number = len(wt.children)
         return wt
 
@@ -193,7 +213,7 @@ class IYLNode:
     )
 
 
-def move_right(node: object, move: float, is_horizontal: bool) -> None:
+def move_right(node: NodeLike, move: float, is_horizontal: bool) -> None:
     """Move a node and all its descendants by ``move`` in the non-layered direction.
 
     Parameters
@@ -206,14 +226,14 @@ def move_right(node: object, move: float, is_horizontal: bool) -> None:
         If ``True``, shifts ``y``; otherwise shifts ``x``.
     """
     if is_horizontal:
-        cast(Any, node).y += move
+        node.y += move
     else:
-        cast(Any, node).x += move
-    for child in cast(Any, node).children:
+        node.x += move
+    for child in node.children:
         move_right(child, move, is_horizontal)
 
 
-def get_min(node: object, is_horizontal: bool) -> float:
+def get_min(node: NodeLike, is_horizontal: bool) -> float:
     """Return the minimum non-layered coordinate in a subtree.
 
     Parameters
@@ -227,13 +247,13 @@ def get_min(node: object, is_horizontal: bool) -> float:
     -------
         The minimum coordinate value.
     """
-    res = float(cast(Any, node).y if is_horizontal else cast(Any, node).x)
-    for child in cast(Any, node).children:
+    res = float(node.y if is_horizontal else node.x)
+    for child in node.children:
         res = min(get_min(child, is_horizontal), res)
     return res
 
 
-def normalize(node: Any, is_horizontal: bool) -> None:
+def normalize(node: NodeLike, is_horizontal: bool) -> None:
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -247,7 +267,7 @@ def normalize(node: Any, is_horizontal: bool) -> None:
     move_right(node, -min_val, is_horizontal)
 
 
-def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> None:
+def convert_back(converted: WrappedTree, root: NodeLike, is_horizontal: bool) -> None:
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
@@ -263,16 +283,16 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> N
         Whether the layout is horizontal.
     """
     if is_horizontal:
-        cast(Any, root).y = converted.x
+        root.y = converted.x
     else:
-        cast(Any, root).x = cast(Any, converted).x
+        root.x = converted.x
 
     for i, child in enumerate(converted.children):
-        if i < len(cast(Any, root).children):
-            convert_back(child, cast(Any, root).children[i], is_horizontal)
+        if i < len(root.children):
+            convert_back(child, root.children[i], is_horizontal)
 
 
-def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> None:
+def layer(node: NodeLike, direction: LayoutDirection, level_spacing: float) -> None:
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -287,8 +307,8 @@ def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> None:
     level_spacing
         Spacing between adjacent layers.
     """
-    if (parent := cast(Any, node).parent) is not None:
-        cast(Any, node).level = cast(Any, parent).level + 1
+    if (parent := node.parent) is not None:
+        node.level = parent.level + 1
         if direction == LayoutDirection.LeftToRight:
             node.x = parent.x + (parent.width + node.width) / 2 + level_spacing
         elif direction == LayoutDirection.RightToLeft:
@@ -296,13 +316,9 @@ def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> None:
         elif direction == LayoutDirection.BottomToTop:
             node.y = parent.y + (parent.height + node.height) / 2 + level_spacing
         else:
-            cast(Any, node).y = (
-                cast(Any, parent).y
-                - (cast(Any, parent).height + cast(Any, node).height) / 2
-                - level_spacing
-            )
+            node.y = parent.y - (parent.height + node.height) / 2 - level_spacing
 
-    for child in cast(Any, node).children:
+    for child in node.children:
         layer(child, direction, level_spacing)
 
 
@@ -358,7 +374,7 @@ class TidyTreeLayout(Layout):
 
     def __init__(
         self,
-        root: object,
+        root: NodeLike,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
@@ -384,7 +400,7 @@ class TidyTreeLayout(Layout):
         """
         return direction in (LayoutDirection.LeftToRight, LayoutDirection.RightToLeft)
 
-    def layout(self) -> object:
+    def layout(self) -> NodeLike:
         """Run the layout computation.
 
         Returns
@@ -628,10 +644,11 @@ class TidyTreeLayout(Layout):
             The accumulated modifier sum along the left contour.
         """
         li = t.children[0].extreme_left
-        cast(Any, li).thread_left = cl
+        assert li is not None
+        li.thread_left = cl
         diff = (modsumcl - cl.mod) - t.children[0].mod_sum_extreme_left
-        cast(Any, li).mod += diff
-        cast(Any, li).prelim -= diff
+        li.mod += diff
+        li.prelim -= diff
         t.children[0].extreme_left = t.children[i].extreme_left
         t.children[0].mod_sum_extreme_left = t.children[i].mod_sum_extreme_left
 
@@ -652,10 +669,11 @@ class TidyTreeLayout(Layout):
             The accumulated modifier sum along the right contour.
         """
         ri = t.children[i].extreme_right
-        cast(Any, ri).thread_right = sr
+        assert ri is not None
+        ri.thread_right = sr
         diff = (modsumsr - sr.mod) - t.children[i].mod_sum_extreme_right
-        cast(Any, ri).mod += diff
-        cast(Any, ri).prelim -= diff
+        ri.mod += diff
+        ri.prelim -= diff
         t.children[i].extreme_right = t.children[i - 1].extreme_right
         t.children[i].mod_sum_extreme_right = t.children[i - 1].mod_sum_extreme_right
 
@@ -712,7 +730,7 @@ class TidyTreeLayout(Layout):
     def compute_connectors(self) -> None:
         """Compute connector paths between each node and its parent in the layout."""
 
-        def compute_node(node: object) -> None:
+        def compute_node(node: WrappedTree | NodeLike) -> None:
             """Compute the connector path from a node to its parent.
 
             Parameters
@@ -720,13 +738,14 @@ class TidyTreeLayout(Layout):
             node
                 The child node.
             """
-            parent = cast(Any, node).parent
+            parent = node.parent
+            assert parent is not None
             match self.direction:
                 case LayoutDirection.TopToBottom:
                     xs, ys = parent.x, parent.y - parent.height / 2
                     xe, ye = (
-                        cast(Any, node).x,
-                        cast(Any, node).y + cast(Any, node).height / 2,
+                        node.x,
+                        node.y + node.height / 2,
                     )
                     points = (
                         (xs, ys),
@@ -737,8 +756,8 @@ class TidyTreeLayout(Layout):
                 case LayoutDirection.BottomToTop:
                     xs, ys = parent.x, parent.y + parent.height / 2
                     xe, ye = (
-                        cast(Any, node).x,
-                        cast(Any, node).y - cast(Any, node).height / 2,
+                        node.x,
+                        node.y - node.height / 2,
                     )
                     points = (
                         (xs, ys),
@@ -749,8 +768,8 @@ class TidyTreeLayout(Layout):
                 case LayoutDirection.LeftToRight:
                     xs, ys = parent.x + parent.width / 2, parent.y
                     xe, ye = (
-                        cast(Any, node).x - cast(Any, node).width / 2,
-                        cast(Any, node).y,
+                        node.x - node.width / 2,
+                        node.y,
                     )
                     points = (
                         (xs, ys),
@@ -761,8 +780,8 @@ class TidyTreeLayout(Layout):
                 case LayoutDirection.RightToLeft:
                     xs, ys = parent.x - parent.width / 2, parent.y
                     xe, ye = (
-                        cast(Any, node).x + cast(Any, node).width / 2,
-                        cast(Any, node).y,
+                        node.x + node.width / 2,
+                        node.y,
                     )
                     points = (
                         (xs, ys),
@@ -770,10 +789,10 @@ class TidyTreeLayout(Layout):
                         ((xs + xe) / 2, ye),
                         (xe, ye),
                     )
-            cast(Any, node).connector_points = points
+            setattr(node, "connector_points", points)
 
-            for child in cast(Any, node).children:
+            for child in node.children:
                 compute_node(child)
 
-        for child in cast(Any, self.root).children:
+        for child in self.root.children:
             compute_node(child)

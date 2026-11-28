@@ -282,12 +282,12 @@ class SampleDistributionImage(ImageMobject):
                self.add(image)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         samples: Point2D_Array,
         ylim: Sequence[float] | None,
         xlim: Sequence[float] | None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         matplotlib = require("ml", "matplotlib")
         plt = require("ml", "matplotlib.pyplot")
@@ -304,9 +304,9 @@ class SampleDistributionImage(ImageMobject):
             kind="kde",
             norm=matplotlib.colors.LogNorm(),
         )
-        ylim_values = cast(list[Any], ylim)
+        ylim_values = cast(list[float], ylim)
         plt.ylim(ylim_values[0], ylim_values[1])
-        xlim_values = cast(list[Any], xlim)
+        xlim_values = cast(list[float], xlim)
         plt.xlim(xlim_values[0], xlim_values[1])
         plt.axis("off")
         image = MatplotlibFigureImage(displot.fig)
@@ -442,7 +442,7 @@ class MCMCAxes(Group):
         self.add(self.axes)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> AnimationGroup:
+    def _create_override(self, **kwargs: object) -> AnimationGroup:
         """Create the axes with a guarded animation.
 
         Parameters
@@ -578,7 +578,9 @@ class MCMCAxes(Group):
         prop_fn: Callable[[VectorND], tuple[VectorND, float]] = gaussian_proposal,
         show_dots: bool = False,
         true_samples: Point2D_Array | None = None,
-        sampling_kwargs: dict[Any, Any] = {},
+        sampling_kwargs: dict[
+            str, Any
+        ] = {},  # explicit-any-ok: forwarded to matplotlib/seaborn plotting kwargs
     ) -> Succession:
         """Makes an animation for visualizing a 2D markov chain using
         metropolis hastings samplings.

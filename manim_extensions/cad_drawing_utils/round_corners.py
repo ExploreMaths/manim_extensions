@@ -6,10 +6,12 @@
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, cast
+from typing import TypedDict, cast
 
 from manim.typing import Vector3D
 import numpy as np
+from numbers import Real
+from numpy.typing import NDArray
 from manim import (
     Arc,
     Line,
@@ -24,6 +26,23 @@ from scipy.optimize import fsolve
 from scipy.optimize import root
 from .utils import angle_between_vectors_signed
 
+
+class _RoundCornerParams(TypedDict):
+    """Keyword arguments accepted by :class:`~manim.mobject.geometry.arc.Arc`."""
+
+    radius: float
+    arc_center: NDArray[np.float64]
+    start_angle: float
+    angle: float
+
+
+class _ChamferParams(TypedDict):
+    """Keyword arguments accepted by :class:`~manim.mobject.geometry.line.Line`."""
+
+    start: NDArray[np.float64]
+    end: NDArray[np.float64]
+
+
 __all__ = [
     "round_corner_param",
     "round_corners",
@@ -33,8 +52,10 @@ __all__ = [
 
 
 def round_corner_param(
-    radius: float, curve_points_1: np.ndarray, curve_points_2: np.ndarray
-) -> tuple[dict[str, object], np.ndarray]:
+    radius: float,
+    curve_points_1: NDArray[np.float64],
+    curve_points_2: NDArray[np.float64],
+) -> tuple[_RoundCornerParams, NDArray[np.float64]]:
     """Fit a tangent arc between two adjoining Bezier curves.
 
     Parameters
@@ -57,7 +78,7 @@ def round_corner_param(
 
     def find_crossing(
         p1: Vector3D, p2: Vector3D, n1: Vector3D, n2: Vector3D
-    ) -> tuple[np.ndarray, Vector3D]:
+    ) -> tuple[NDArray[np.float64], Vector3D]:
         """Intersect two offset lines and return their parameters.
 
         The two lines are :math:`p_1 + t n_1` and :math:`p_2 + s n_2`. The first two
@@ -81,7 +102,7 @@ def round_corner_param(
         t = fsolve(lambda t: p1[:2] + n1[:2] * t[0] - (p2[:2] + n2[:2] * t[1]), [0, 0])
         return t, p1 + n1 * t[0]
 
-    def rad_cost_func(t: np.ndarray) -> tuple[float, float]:
+    def rad_cost_func(t: NDArray[np.float64]) -> tuple[float, float]:
         """Return the two residuals solved when fitting the tangent arc.
 
         Parameters
@@ -123,11 +144,11 @@ def round_corner_param(
     sval = (np.cross(p1 - center, p2 - center))[2]
     angle = np.arctan2(sval, cval)
 
-    out_param = {
-        "radius": r,
+    out_param: _RoundCornerParams = {
+        "radius": float(r),
         "arc_center": center,
-        "start_angle": start_angle,
-        "angle": angle,
+        "start_angle": float(start_angle),
+        "angle": float(angle),
     }
 
     return out_param, k
@@ -175,7 +196,7 @@ def round_corners(mob: VMobject, radius: float = 0.2) -> VMobject:
             params, k = round_corner_param(radius, curve_1, curve_2)
             cut_curve_points_1 = partial_bezier_points(curve_1, 0, k[0])
             cut_curve_points_2 = partial_bezier_points(curve_2, k[1], 1)
-            loc_arc = Arc(**cast(Any, params), num_components=5)
+            loc_arc = Arc(**params, num_components=5)
             # mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)
             # mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)
             mob.points[ind1 * 4 : (ind1 + 1) * 4, :] = cut_curve_points_1
@@ -193,9 +214,9 @@ def round_corners(mob: VMobject, radius: float = 0.2) -> VMobject:
 
 def chamfer_corner_param(
     offset: float | Sequence[float],
-    curve_points_1: np.ndarray,
-    curve_points_2: np.ndarray,
-) -> tuple[dict[str, np.ndarray], list[Any]]:
+    curve_points_1: NDArray[np.float64],
+    curve_points_2: NDArray[np.float64],
+) -> tuple[_ChamferParams, NDArray[np.float64]]:
     """Compute the cut points for a chamfered corner.
 
     Parameters
@@ -213,17 +234,20 @@ def chamfer_corner_param(
         cut.
     """
     # this is ugly, I know, don't judge
-    if hasattr(offset, "iter"):
-        ofs = [cast(Any, offset)[0], cast(Any, offset)[1]]
+    ofs: list[float]
+    if isinstance(offset, Real):
+        value = float(offset)
+        ofs = [value, value]
     else:
-        ofs = [offset, offset]
+        values = list(cast(Sequence[float], offset))
+        ofs = [float(values[0]), float(values[1])]
     bez_func_1 = bezier(curve_points_1)
     bez_func_2 = bezier(curve_points_2)
 
     # copied from vectorized mobject length stuff
     def get_norms_and_refs(
-        curve: Callable[[float], np.ndarray],
-    ) -> tuple[np.ndarray, np.ndarray]:
+        curve: Callable[[float], NDArray[np.float64]],
+    ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
         """Build a cumulative-length table for one Bezier curve.
 
         Parameters
@@ -249,9 +273,9 @@ def chamfer_corner_param(
     a2 = np.interp(ofs[1], norms2, refs2)
     p1 = bez_func_1(a1)
     p2 = bez_func_2(a2)
-    param = {"start": p1, "end": p2}
+    param: _ChamferParams = {"start": p1, "end": p2}
 
-    return param, [a1, a2]
+    return param, np.asarray([a1, a2])
 
 
 def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMobject:
@@ -296,7 +320,7 @@ def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMo
             params, k = chamfer_corner_param(offset, curve_1, curve_2)
             cut_curve_points_1 = partial_bezier_points(curve_1, 0, k[0])
             cut_curve_points_2 = partial_bezier_points(curve_2, k[1], 1)
-            loc_line = Line(**cast(Any, params))
+            loc_line = Line(**params)
             # mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)
             # mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)
             mob.points[ind1 * 4 : (ind1 + 1) * 4, :] = cut_curve_points_1

@@ -47,12 +47,12 @@ class MovePencilAlongPath(MoveAlongPath):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject: Pencil,
         path: VMobject | None = None,
         suspend_mobject_updating: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert path is not None
         start = path.get_start()
@@ -90,8 +90,11 @@ class MovePencilTipTo(ApplyMethod):
                self.wait()
     """
 
-    def __init__(
-        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        pencil: Pencil,
+        point: Point3D | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
@@ -123,8 +126,11 @@ class DrawPath(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
-        self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        pencil: Pencil,
+        path: VMobject | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert path is not None
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
@@ -158,7 +164,10 @@ class PutPencilAway(MovePencilTipTo):
                self.wait()
     """
 
-    def __init__(
-        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        pencil: Pencil,
+        point: Point3D | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(pencil, point, **kwargs)

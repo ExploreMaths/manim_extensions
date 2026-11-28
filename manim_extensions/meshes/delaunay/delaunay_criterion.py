@@ -97,8 +97,11 @@ class CircumCircle(Circle):
                self.add(group)
     """
 
-    def __init__(
-        self, triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        triangle_mesh: TriangleManim2DMesh,
+        face_idx: int,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         face = triangle_mesh.mesh.faces[face_idx]
         vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]

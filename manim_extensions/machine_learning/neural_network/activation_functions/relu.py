@@ -4,7 +4,6 @@
 
 """ReLU activation function visualization."""
 
-
 from .activation_function import ActivationFunction
 
 

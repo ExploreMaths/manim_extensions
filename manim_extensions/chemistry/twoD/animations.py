@@ -6,9 +6,9 @@
 This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.
 """
 
-from typing import Any, cast
+from typing import cast
 
-from manim import Animation, BLACK, ManimColor, PI, VGroup
+from manim import Animation, BLACK, ManimColor, PI, VGroup, VMobject
 from manim.typing import Vector3D
 from .graph_molecule import GraphMolecule
 
@@ -70,13 +70,17 @@ class GMAnimationBuilder:
         self.atoms = (
             atoms
             if atoms is not None
-            else VGroup(*cast(Any, list(self.molecule.vertices.values())))
+            else VGroup(
+                *[cast(VMobject, vertex) for vertex in self.molecule.vertices.values()]
+            )
         )
         self.atoms_copy = self.atoms.copy()
         self.bonds = (
             bonds
             if bonds is not None
-            else VGroup(*cast(Any, list(self.molecule.edges.values())))
+            else VGroup(
+                *[cast(VMobject, edge) for edge in self.molecule.edges.values()]
+            )
         )
         self.bonds_copy = self.bonds.copy()
 
@@ -124,7 +128,7 @@ class GMAnimationBuilder:
             The animations rotating the atoms around the bond axis.
         """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
-        axis = cast(Vector3D, cast(Any, self.molecule.edges[bond]).sheen_direction)
+        axis = cast(Vector3D, self.molecule.edges[bond].sheen_direction)
         self.atoms_copy.rotate(axis=axis, angle=angle)
 
         return [
@@ -172,7 +176,10 @@ class GMAnimationBuilder:
                     cast(Animation, atom[0].animate.set_color(atoms_color))
                 )
                 animations.append(
-                    cast(Animation, atom[1].animate.set_color(cast(Any, atom[1].color)))
+                    cast(
+                        Animation,
+                        atom[1].animate.set_color(cast(ManimColor, atom[1].color)),
+                    )
                 )
 
         if bonds_color:

@@ -4,7 +4,7 @@
 
 """Individual cubie used by the Rubik's Cube mobject."""
 
-from typing import Any, Literal, cast
+from typing import Literal
 
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
 from manim.utils.color import BLACK
@@ -117,7 +117,7 @@ class Cubie(VGroup):
             # keeps all faces of one cubie moving together during rotation,
             # avoiding the depth-order flicker that comes from sorting the
             # 162 individual faces independently.
-            cast(Any, face).z_index_group = self
+            setattr(face, "z_index_group", self)
 
             self.faces[tuple(vect)] = face
             self.add(face)
@@ -150,7 +150,7 @@ class Cubie(VGroup):
         elif face == "D":
             return self.faces[tuple(IN)]
 
-    def init_colors(self, *args: Any, **kwargs: Any) -> "Cubie":
+    def init_colors(self, *args: object, **kwargs: object) -> "Cubie":
         """Apply fill, stroke, and background-stroke colours to the cubie.
 
         Parameters

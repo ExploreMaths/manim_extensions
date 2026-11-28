@@ -86,14 +86,14 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         point_radius: float = 0.02,
         mean: Point2D = np.array([0, 0]),
         covariance: MatrixMN = np.array([[1.0, 0], [0, 1.0]]),
         dist_theme: str = "gaussian",
         paired_query_mode: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.mean = mean
@@ -104,11 +104,11 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         self.dist_theme = dist_theme
         self.paired_query_mode = paired_query_mode
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the axes, point cloud, and latent distribution for the embedding.
 
@@ -242,8 +242,12 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         return point_dots
 
-    def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+    def make_forward_pass_animation(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        layer_args: dict[
+            str, Any
+        ] = {},  # explicit-any-ok: heterogeneous per-layer configuration payload
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> AnimationGroup:
         """Forward pass animation.
 
@@ -334,7 +338,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Reveal the point cloud point by point.
 
         Parameters

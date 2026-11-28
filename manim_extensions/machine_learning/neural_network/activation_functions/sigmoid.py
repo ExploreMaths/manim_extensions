@@ -4,7 +4,6 @@
 
 """Sigmoid activation function visualization."""
 
-
 import numpy as np
 
 from .activation_function import ActivationFunction

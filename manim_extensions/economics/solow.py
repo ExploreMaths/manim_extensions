@@ -96,7 +96,7 @@ class SolowDiagram(EconDiagram):
     _shares_group: VGroup | None = None
     _golden_group: VGroup | None = None
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         s: float = 0.3,
         alpha: float = 0.5,
@@ -106,7 +106,7 @@ class SolowDiagram(EconDiagram):
         show_equilibrium: bool = True,
         numbered_eq: bool = False,
         show_production: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         kwargs.setdefault("x_range", [0, 10, 1])
         kwargs.setdefault("y_range", [0, 4, 1])

@@ -5,13 +5,23 @@
 """A place for all decorators."""
 
 from collections.abc import Callable
-from typing import Any, ParamSpec, TypeVar, cast
+from typing import Protocol, ParamSpec, TypeVar, cast
 
 import functools
 import warnings
 
 P = ParamSpec("P")
 R = TypeVar("R")
+
+
+class _DanglingCheckable(Protocol):
+    """Object exposing the optional dangling-mesh checks."""
+
+    test_for_dangling: bool
+
+    def dangling_vert_check(self) -> bool: ...
+
+    def dangling_face_check(self) -> bool: ...
 
 
 def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
@@ -48,12 +58,9 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = args[0]
+            mesh = cast(_DanglingCheckable, args[0])
             return_value = func(*args, **kwargs)
-            if (
-                cast(Any, mesh).test_for_dangling
-                and cast(Any, mesh).dangling_vert_check()
-            ):
+            if mesh.test_for_dangling and mesh.dangling_vert_check():
                 warnings.warn(f"Dangling vertices in {func.__name__}")
             return return_value
 
@@ -96,12 +103,9 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = args[0]
+            mesh = cast(_DanglingCheckable, args[0])
             return_value = func(*args, **kwargs)
-            if (
-                cast(Any, mesh).test_for_dangling
-                and cast(Any, mesh).dangling_face_check()
-            ):
+            if mesh.test_for_dangling and mesh.dangling_face_check():
                 warnings.warn(f"Dangling faces in {func.__name__}")
             return return_value
 

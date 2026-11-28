@@ -7,7 +7,7 @@
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton` class for visualizing DFAs.
 """
 
-from typing import Any, cast
+from typing import Any
 
 from .manim_automaton import ManimAutomaton
 
@@ -65,14 +65,14 @@ class ManimDeterministicFiniteAutomaton(ManimAutomaton):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         json_template: dict[str, object] | None = None,
         xml_file: str | None = None,
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
         cli: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
@@ -87,8 +87,9 @@ class ManimDeterministicFiniteAutomaton(ManimAutomaton):
             )
 
         if cli:  # if cli exist display options to user
-            cast(Any, self.cli).display_nda_options()
+            assert self.cli is not None
+            self.cli.display_nda_options()
             if (
-                cast(Any, self.cli).nda_option == 0
+                self.cli.nda_option == 0
             ):  # check the settings of the cli (what the user wants to do)
                 self.nda_builder = True

@@ -7,7 +7,7 @@
 This module provides animations for Rubik's Cube manipulations.
 """
 
-from typing import Any, cast
+from typing import Any, Literal, cast
 
 from manim import Animation, Mobject, PI, VGroup
 from .cube import RubiksCube
@@ -56,8 +56,14 @@ class CubeMove(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, face: str, **kwargs: Any) -> None:
-        self.axis = get_axis_from_face(cast(Any, face[0]))
+    def __init__(
+        self, mobject: Mobject, face: str, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
+        self.axis = get_axis_from_face(
+            cast(Literal["F", "B", "U", "D", "L", "R"], face[0])
+        )
         self.face = face
         self.angle = PI / 2 if ("R" in face or "F" in face or "D" in face) else -PI / 2
         self.angle = self.angle if "2" not in face else self.angle * 2
@@ -71,10 +77,10 @@ class CubeMove(Animation):
         -------
             A copy of the cube with indices initialised if needed.
         """
-        starting_mobject = self.mobject.copy()
-        if cast(Any, starting_mobject).indices == {}:
-            cast(Any, starting_mobject).set_indices()
-        return cast(RubiksCube, starting_mobject)
+        starting_mobject = cast(RubiksCube, self.mobject.copy())
+        if starting_mobject.indices == {}:
+            starting_mobject.set_indices()
+        return starting_mobject
 
     def interpolate_mobject(self, alpha: float) -> None:
         """Interpolate the cube rotation at progress ``alpha``.
@@ -85,14 +91,20 @@ class CubeMove(Animation):
             Animation progress between ``0`` and ``1``.
         """
         self.mobject.become(self.starting_mobject)
+        mobject = cast(RubiksCube, self.mobject)
 
-        VGroup(*cast(Any, self.mobject).get_face(self.face[0])).rotate(
-            self.rate_func(alpha) * self.angle, self.axis
-        )
+        VGroup(
+            *cast(RubiksCube, self.mobject).get_face(
+                cast(Literal["F", "B", "U", "D", "L", "R"], self.face[0])
+            )
+        ).rotate(self.rate_func(alpha) * self.angle, self.axis)
 
     def finish(self) -> None:
         """Finalise the cube move and update face indices after animation completes."""
         super().finish()
-        cast(Any, self.mobject).adjust_indices(
-            cast(Any, self.mobject).get_face(self.face[0], False)
+        mobject = cast(RubiksCube, self.mobject)
+        mobject.adjust_indices(
+            mobject.get_face(
+                cast(Literal["F", "B", "U", "D", "L", "R"], self.face[0]), False
+            )
         )

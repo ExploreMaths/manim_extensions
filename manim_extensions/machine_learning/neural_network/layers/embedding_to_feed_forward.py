@@ -67,25 +67,25 @@ class EmbeddingToFeedForward(ConnectiveLayer):
     input_class = EmbeddingLayer
     output_class = FeedForwardLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: EmbeddingLayer,
         output_layer: FeedForwardLayer,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.03,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
         self.feed_forward_layer = output_layer
         self.embedding_layer = input_layer
         self.animation_dot_color = animation_dot_color
         self.dot_radius = dot_radius
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -102,7 +102,10 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, run_time: float = 1.5, **kwargs: Any
+        self,
+        layer_args: dict[str, object] = {},
+        run_time: float = 1.5,
+        **kwargs: object,
     ) -> Succession:
         """Makes dots diverge from the given location and move the decoder.
 
@@ -149,7 +152,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Return a zero-duration wait for an invisible layer.
 
         Parameters

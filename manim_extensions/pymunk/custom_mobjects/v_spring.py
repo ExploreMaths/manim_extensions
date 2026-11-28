@@ -58,7 +58,7 @@ class VSpring(Line):
                self.add(springs)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D = LEFT,
         end: Point3D = RIGHT,
@@ -67,7 +67,7 @@ class VSpring(Line):
         end_length: float = 0.2,
         stroke_width: float = 1,
         color: ManimColor = WHITE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.turns = turns
         self.amplitude = amplitude

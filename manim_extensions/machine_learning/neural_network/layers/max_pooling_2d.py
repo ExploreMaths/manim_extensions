@@ -24,7 +24,7 @@ from manim import (
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
-from ... import config
+from ...config import config
 
 
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
@@ -95,7 +95,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                self.wait(1)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         kernel_size: int = 2,
         stride: int = 1,
@@ -105,7 +105,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         color: ManimColor = BLUE,
         show_grid_lines: bool = False,
         stroke_width: float = 2.0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.kernel_size = kernel_size
@@ -118,11 +118,11 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.stroke_width = stroke_width
         self.padding = (0, 0)
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the output feature maps and apply 3D rotation to the layer.
 
@@ -136,15 +136,15 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Forwarded to the parent layer classes.
         """
         # Make the output feature maps
-        input_layer_any = cast(Any, input_layer)
+        input_layer_any = input_layer
         self.feature_maps = self._make_output_feature_maps(
             input_layer_any.num_feature_maps, input_layer_any.feature_map_size
         )
         self.add(self.feature_maps)
         self.rotate(
-            cast(Any, config).three_d_config.rotation_angle,
+            config.three_d_config.rotation_angle,
             about_point=self.get_center(),
-            axis=cast(Any, config).three_d_config.rotation_axis,
+            axis=config.three_d_config.rotation_axis,
         )
         self.feature_map_size = (
             input_layer_any.feature_map_size[0] / self.kernel_size,
@@ -153,7 +153,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def _make_output_feature_maps(
-        self, num_input_feature_maps: int, input_feature_map_size: tuple[int, int]
+        self, num_input_feature_maps: int, input_feature_map_size: tuple[float, float]
     ) -> VGroup:
         """Build the output feature map rectangles.
 
@@ -177,17 +177,17 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         feature_maps = []
         for filter_index in range(num_input_feature_maps):
             rectangle = GriddedRectangle(
-                color=cast(Any, self.color),
+                color=cast(ManimColor, self.color),
                 height=output_feature_map_size[1] * self.cell_width,
                 width=output_feature_map_size[0] * self.cell_width,
-                fill_color=cast(Any, self.color),
+                fill_color=cast(ManimColor, self.color),
                 fill_opacity=0.2,
-                stroke_color=cast(Any, self.color),
+                stroke_color=cast(ManimColor, self.color),
                 stroke_width=self.stroke_width,
                 grid_xstep=self.cell_width,
                 grid_ystep=self.cell_width,
                 grid_stroke_width=self.stroke_width / 2,
-                grid_stroke_color=cast(Any, self.color),
+                grid_stroke_color=cast(ManimColor, self.color),
                 show_grid_lines=self.show_grid_lines,
             )
             # Move the feature map
@@ -198,7 +198,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return VGroup(*feature_maps)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Makes forward pass of Max Pooling Layer.
 
@@ -216,7 +216,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return AnimationGroup()
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Create animation for the MaxPooling operation.
 
         Parameters

@@ -73,7 +73,7 @@ class Tikz(SVGMobject):
                self.add(square)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         code: str,
         packages: list[str] | None = None,
@@ -81,7 +81,7 @@ class Tikz(SVGMobject):
         tikzset: list[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         file_name = self.convert(code, packages, libraries, tikzset, preamble, use_pdf)
         super().__init__(

@@ -69,10 +69,10 @@ class OpenGLSphere(OpenGLSurface):
         sphere = OpenGLSphere(center=[0, 0, 0], radius=0.5)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         center: Point3D = ORIGIN,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             self.uv_func,

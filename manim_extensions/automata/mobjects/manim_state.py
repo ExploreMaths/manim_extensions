@@ -66,7 +66,7 @@ class ManimState(State, VGroup):
                self.add(initial, normal, final)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         name: str,
         x: float,
@@ -76,7 +76,7 @@ class ManimState(State, VGroup):
         final: bool | None = None,
         scaling: float = 10,
         id: int | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         State.__init__(self, name=name, initial=initial, final=final, id=id)
 

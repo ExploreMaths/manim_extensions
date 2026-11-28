@@ -63,14 +63,14 @@ class GaussianDistribution(VGroup):
                self.add(axes, gaussian)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         axes: Axes,
         mean: Point2D | None = None,
         cov: MatrixMN | None = None,
         dist_theme: str = "gaussian",
         color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes

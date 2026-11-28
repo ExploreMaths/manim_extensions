@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMole
 """
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any, Literal, cast
 
 import logging
 
@@ -15,6 +15,7 @@ import logging
 from manim import (
     DOWN,
     GREEN,
+    Line,
     MarkupText,
     MathTex,
     ORIGIN,
@@ -110,27 +111,37 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                self.add(mmolecule[-1])
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
-        atoms_dict: dict[int, dict[str, Any]],
-        bonds_dict: dict[int, list[dict[str, Any]]],
-        representation_type: str | None = None,
+        atoms_dict: dict[
+            int, dict[str, Any]
+        ],  # explicit-any-ok: parser atom records vary by file format
+        bonds_dict: dict[
+            int, list[dict[str, Any]]
+        ],  # explicit-any-ok: parser bond records vary by file format
+        representation_type: Literal["complete", "skeleton", "over_bond"] | None = None,
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         planar: bool = True,
         add_atoms_numbering: bool = False,
         add_bonds_numbering: bool = False,
         rotate_bonds: list[int] = [],
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         VGroup.__init__(self, **kwargs)
-        self.atoms_dict: dict[int, dict[str, Any]] = atoms_dict
-        self.bonds_dict: dict[int, list[dict[str, Any]]] = bonds_dict
-        self.representation_type = representation_type
+        self.atoms_dict: dict[int, dict[str, Any]] = (
+            atoms_dict  # explicit-any-ok: parser atom records vary by file format
+        )
+        self.bonds_dict: dict[int, list[dict[str, Any]]] = (
+            bonds_dict  # explicit-any-ok: parser bond records vary by file format
+        )
+        self.representation_type: (
+            Literal["complete", "skeleton", "over_bond"] | None
+        ) = representation_type
         self.explicit_carbons = explicit_carbons
         self.explicit_hydrogens = explicit_hydrogens
         self.planar = planar
-        self.atoms: Any
+        self.atoms: VDict
         self.atoms_by_index: dict[int, MAtomObject]
         self.atoms, self.atoms_by_index = self.get_atoms()
         self.bonds: VGroup = self.get_bonds()
@@ -158,7 +169,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                 element=atom["element"],
                 explicit_carbons=self.explicit_carbons,
                 explicit_hydrogens=self.explicit_hydrogens,
-                representation_type=cast(Any, self.representation_type),
+                representation_type=self.representation_type,
                 planar=self.planar,
                 bond_to=cast(dict[int, str], atom.get("bond_to") or {}),
                 index=index,
@@ -188,14 +199,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
                     if stereo:
                         if int(stereo) == 1 or int(stereo) == 4:
-                            self.atoms[from_atom.index] = (
-                                from_atom.copy_with_explicit_hydrogens()
-                            )
-                            self.atoms[to_atom.index] = (
-                                to_atom.copy_with_explicit_hydrogens()
-                            )
-                            from_atom = self.atoms[from_atom.index]
-                            to_atom = self.atoms[to_atom.index]
+                            from_atom = from_atom.copy_with_explicit_hydrogens()
+                            to_atom = to_atom.copy_with_explicit_hydrogens()
+                            self.atoms[from_atom.index] = from_atom
+                            self.atoms[to_atom.index] = to_atom
+                            self.atoms_by_index[from_atom.index] = from_atom
+                            self.atoms_by_index[to_atom.index] = to_atom
                             new_bond = PlainCramBond(
                                 from_atom=from_atom,
                                 to_atom=to_atom,
@@ -207,14 +216,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             bonds.add(new_bond)
 
                         elif int(stereo) == 6:
-                            self.atoms[from_atom.index] = (
-                                from_atom.copy_with_explicit_hydrogens()
-                            )
-                            self.atoms[to_atom.index] = (
-                                to_atom.copy_with_explicit_hydrogens()
-                            )
-                            from_atom = self.atoms[from_atom.index]
-                            to_atom = self.atoms[to_atom.index]
+                            from_atom = from_atom.copy_with_explicit_hydrogens()
+                            to_atom = to_atom.copy_with_explicit_hydrogens()
+                            self.atoms[from_atom.index] = from_atom
+                            self.atoms[to_atom.index] = to_atom
+                            self.atoms_by_index[from_atom.index] = from_atom
+                            self.atoms_by_index[to_atom.index] = to_atom
                             new_bond = DashedCramBond(
                                 from_atom=from_atom,
                                 to_atom=to_atom,
@@ -232,14 +239,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                     elif (from_atom.explicit_hydrogens) or (to_atom.explicit_hydrogens):
                         # make bonds to explicit hydrogens
                         # TODO: clean repetitive code
-                        self.atoms[from_atom.index] = (
-                            from_atom.copy_with_explicit_hydrogens()
-                        )
-                        self.atoms[to_atom.index] = (
-                            to_atom.copy_with_explicit_hydrogens()
-                        )
-                        from_atom = self.atoms[from_atom.index]
-                        to_atom = self.atoms[to_atom.index]
+                        from_atom = from_atom.copy_with_explicit_hydrogens()
+                        to_atom = to_atom.copy_with_explicit_hydrogens()
+                        self.atoms[from_atom.index] = from_atom
+                        self.atoms[to_atom.index] = to_atom
+                        self.atoms_by_index[from_atom.index] = from_atom
+                        self.atoms_by_index[to_atom.index] = to_atom
                         new_bond = SimpleBond(
                             from_atom=from_atom,
                             to_atom=to_atom,
@@ -314,7 +319,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             The object itself, for method chaining.
         """
         numbering = VGroup()
-        for atom in self.atoms:
+        for atom in self.atoms_by_index.values():
             if not self.explicit_hydrogens:
                 if atom.element != "H":
                     numbering.add(
@@ -345,12 +350,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         numbering = VGroup()
         for bond in self.bonds:
             if (
-                not cast(Any, bond.from_atom).explicit_hydrogens
-                and not cast(Any, bond.to_atom).explicit_hydrogens
+                not cast(BaseMBondObject, bond).from_atom.explicit_hydrogens
+                and not cast(BaseMBondObject, bond).to_atom.explicit_hydrogens
             ):
                 if (
-                    cast(Any, bond.from_atom).element != "H"
-                    and cast(Any, bond.to_atom).element != "H"
+                    cast(BaseMBondObject, bond).from_atom.element != "H"
+                    and cast(BaseMBondObject, bond).to_atom.element != "H"
                 ):
                     numbering.add(
                         MarkupText(str(bond.index))
@@ -379,9 +384,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             rotate_bonds = [rotate_bonds]
 
         for bond in rotate_bonds:
-            line = cast(Any, self.bonds[bond][0][0])
+            line = cast(Line, self._bond_at(bond)[0][0])
             direction = line.end - line.start
-            self.bonds[bond].rotate(PI, about_point=line.get_center(), axis=direction)
+            self._bond_at(bond).rotate(
+                PI, about_point=line.get_center(), axis=direction
+            )
 
         return self
 
@@ -389,7 +396,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         """Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count."""
         supported_atoms = ["O", "S", "N", "P"]
 
-        for atom in self.atoms:
+        for atom in self.atoms_by_index.values():
             if atom.element not in supported_atoms:
                 continue
 
@@ -397,12 +404,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             bonds_direction = 0
             if not atom.bonds_fulfilled():
                 minimum_bonds: dict[str, int] = {"O": 2, "S": 2, "N": 3, "P": 3}
-                for bond in cast(Any, self.bonds):
-                    if bond.atom_is_in_bond(atom) and 0 < bond.type <= 4:
-                        total_bonds += bond.type - 1
+                for bond in self.bonds:
+                    typed_bond = cast(BaseMBondObject, bond)
+                    if typed_bond.atom_is_in_bond(atom) and 0 < typed_bond.type <= 4:
+                        total_bonds += typed_bond.type - 1
                         bonds_direction += (
-                            cast(Any, bond.to_atom).coords[0]
-                            - cast(Any, bond.from_atom).coords[0]
+                            typed_bond.to_atom.coords[0]
+                            - typed_bond.from_atom.coords[0]
                         )
 
                 minimum = minimum_bonds.get(atom.element, 0)
@@ -430,7 +438,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             )
 
     @staticmethod
-    def from_mol_file(filename: str, *args: Any, **kwargs: Any) -> "MMoleculeObject":
+    def from_mol_file(
+        filename: str, *args: Any, **kwargs: Any
+    ) -> (
+        "MMoleculeObject"
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.
 
         Parameters
@@ -449,8 +461,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     @staticmethod
-    def from_mol_string(
-        mol_string: str, *args: Any, **kwargs: Any
+    def from_mol_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
+        mol_string: str,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
     ) -> "MMoleculeObject":
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a mol-format string.
 
@@ -473,8 +487,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     @staticmethod
-    def from_sdf_file(
-        filename: str, *args: Any, **kwargs: Any
+    def from_sdf_file(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
+        filename: str,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
     ) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an .sdf file.
 
@@ -498,8 +514,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return moleculeObjects
 
     @staticmethod
-    def from_sdf_string(
-        sdf_string: str, *args: Any, **kwargs: Any
+    def from_sdf_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
+        sdf_string: str,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
     ) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an sdf-format string.
 
@@ -593,6 +611,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return atoms_positions
 
+    def _bond_at(self, index: int) -> BaseMBondObject:
+        """Return the typed bond mobject registered at ``index``."""
+        return cast(BaseMBondObject, self.bonds[index])
+
     def find_bond_center_by_index(self, bond_index: int) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
@@ -621,7 +643,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
            print(molecule.find_bond_center_by_index(1))
         """
         try:
-            bond = self.bonds[bond_index]
+            bond = self._bond_at(bond_index)
             return bond.get_center()
 
         except KeyError as key_error:
@@ -657,19 +679,16 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         """
 
         try:
-            bond = self.bonds[bond_index]
+            bond = self._bond_at(bond_index)
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(
-                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
-            )
             raise key_error
 
         bond_vector = bond.get_vector()
         bond_center = bond.get_center()
 
-        return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
+        return bond_center + bond_vector * position_buff * 0.5
 
     def find_bonds_center_by_index(self, bonds_index_list: list[int]) -> list[Point3D]:
         """Returns the position of multiple bonds given their indices.
@@ -734,7 +753,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
+    ) -> tuple[
+        dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]
+    ]:  # explicit-any-ok: parser atom/bond records vary by file format
         """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
@@ -759,8 +780,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             for bond in atom.bonds:
                 # TODO: This patches an issue with from_atom and to_atom but does not solve it completely.
                 # Fix later the root cause
-                from_atom_ref = cast(Any, bond.from_atom)
-                to_atom_ref = cast(Any, bond.to_atom)
+                from_atom_ref = bond.from_atom
+                to_atom_ref = bond.to_atom
+                if from_atom_ref is None or to_atom_ref is None:
+                    continue
                 if from_atom_ref.molecule_index == index:
                     bond_to[to_atom_ref.molecule_index] = to_atom_ref.element.symbol
 
@@ -779,10 +802,14 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         for atom_index in atoms.keys():
             atom_bonds = []
             for bond in mc_molecule.bonds:
-                if atom_index == cast(Any, bond.to_atom).molecule_index:
+                from_atom = bond.from_atom
+                to_atom = bond.to_atom
+                if from_atom is None or to_atom is None:
+                    continue
+                if atom_index == to_atom.molecule_index:
                     atom_bonds.append(
                         {
-                            "to": cast(Any, bond.from_atom).molecule_index,
+                            "to": from_atom.molecule_index,
                             "type": bond.bond_type,
                             "stereo": bond.stereo,
                             "topology": bond.topology,
@@ -792,7 +819,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             if atom_bonds:
                 bonds[atom_index] = atom_bonds
 
-        return atoms, bonds
+        return cast(  # explicit-any-ok: parser atom/bond records vary by file format
+            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]],
+            (atoms, bonds),
+        )
 
 
 class NamedMolecule(VGroup):
@@ -836,16 +866,16 @@ class NamedMolecule(VGroup):
                self.add(named_molecule)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
         name: str,
-        molecule_data: MMoleculeObject | dict[int, dict[str, Any]],
+        molecule_data: MMoleculeObject | dict[int, dict[str, object]],
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if isinstance(molecule_data, MMoleculeObject):
             self.molecule = molecule_data
@@ -862,24 +892,25 @@ class NamedMolecule(VGroup):
         elif tex:
             name_text = MathTex(name, *args, **extra_kwargs)
         else:
-            name_text = cast(Any, MarkupText)(name, *args, font=font, **extra_kwargs)
+            extra_kwargs["font"] = font
+            name_text = MarkupText(name, *args, **extra_kwargs)
 
         name_text.next_to(self.molecule, direction, buff)
 
-        super().__init__(cast(Any, self.molecule), name_text, **kwargs)
+        super().__init__(self.molecule, name_text, **kwargs)
         self.atoms = self.molecule.atoms
         self.bonds = self.molecule.bonds
 
     @staticmethod
-    def from_mol_file(
+    def from_mol_file(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         name: str,
         filename: str,
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a .mol file and a name string.
 
@@ -912,25 +943,27 @@ class NamedMolecule(VGroup):
             for key, value in kwargs.items()
             if key not in {"direction", "buff", "tex", "font"}
         }
-        call_kwargs: dict[str, Any] = {
-            "direction": direction,
-            "buff": buff,
-            "tex": tex,
-            "font": font,
-        }
+        call_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous style kwargs unpacked into the molecule constructor
+                "direction": direction,
+                "buff": buff,
+                "tex": tex,
+                "font": font,
+            }
+        )
         call_kwargs.update(extra_kwargs)
         return NamedMolecule(name, molecule, *args, **call_kwargs)
 
     @staticmethod
-    def from_mol_string(
+    def from_mol_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         name: str,
         mol_str: str,
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a mol-format string and a name string.
 
@@ -959,25 +992,27 @@ class NamedMolecule(VGroup):
         """
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
-        call_kwargs: dict[str, Any] = {
-            "direction": direction,
-            "buff": buff,
-            "tex": tex,
-            "font": font,
-        }
-        call_kwargs.update(cast(Any, kwargs))
+        call_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous style kwargs unpacked into the molecule constructor
+                "direction": direction,
+                "buff": buff,
+                "tex": tex,
+                "font": font,
+            }
+        )
+        call_kwargs.update(kwargs)
         return NamedMolecule(name, molecule, *args, **call_kwargs)
 
     @staticmethod
-    def from_sdf_file(
+    def from_sdf_file(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         name: str,
         filename: str,
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an .sdf file with a shared base name.
 
@@ -1008,29 +1043,31 @@ class NamedMolecule(VGroup):
         named_molecules = []
         for index, molecule in enumerate(molecules):
             named_molecules.append(
-                cast(Any, NamedMolecule)(
+                NamedMolecule(
                     name + f"_{index}",
                     molecule,
-                    direction=direction,
-                    buff=buff,
-                    tex=tex,
-                    font=font,
                     *args,
-                    **kwargs,
+                    **{
+                        "direction": direction,
+                        "buff": buff,
+                        "tex": tex,
+                        "font": font,
+                        **kwargs,
+                    },
                 )
             )
         return named_molecules
 
     @staticmethod
-    def from_sdf_string(
+    def from_sdf_string(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         name: str,
         sdf_str: str,
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an sdf-format string with a shared base name.
 
@@ -1061,15 +1098,17 @@ class NamedMolecule(VGroup):
         named_molecules = []
         for index, molecule in enumerate(molecules):
             named_molecules.append(
-                cast(Any, NamedMolecule)(
+                NamedMolecule(
                     name + f"_{index}",
                     molecule,
-                    direction=direction,
-                    buff=buff,
-                    tex=tex,
-                    font=font,
                     *args,
-                    **kwargs,
+                    **{
+                        "direction": direction,
+                        "buff": buff,
+                        "tex": tex,
+                        "font": font,
+                        **kwargs,
+                    },
                 )
             )
         return named_molecules
@@ -1186,6 +1225,10 @@ class NamedMolecule(VGroup):
 
         return atoms_positions
 
+    def _bond_at(self, index: int) -> BaseMBondObject:
+        """Return the typed bond mobject registered at ``index``."""
+        return cast(BaseMBondObject, self.bonds[index])
+
     def find_bond_center_by_index(self, bond_index: int) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
@@ -1214,14 +1257,11 @@ class NamedMolecule(VGroup):
            print(molecule.find_bond_center_by_index(1))
         """
         try:
-            bond = self.bonds[bond_index]
+            bond = self._bond_at(bond_index)
             return bond.get_center()
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(
-                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
-            )
             raise key_error
 
         except Exception as exception:
@@ -1253,19 +1293,16 @@ class NamedMolecule(VGroup):
         """
 
         try:
-            bond = self.bonds[bond_index]
+            bond = self._bond_at(bond_index)
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(
-                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
-            )
             raise key_error
 
         bond_vector = bond.get_vector()
         bond_center = bond.get_center()
 
-        return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
+        return bond_center + bond_vector * position_buff * 0.5
 
     def find_bonds_center_by_index(self, bonds_index_list: list[int]) -> list[Point3D]:
         """Returns the position of multiple bonds given their indices.

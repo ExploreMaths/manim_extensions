@@ -314,7 +314,9 @@ class GaussianSurface:
     """
 
     #: Surface function; None selects the built-in shape.
-    func: Callable[..., float] | None = None  # z=f(x,y); None = built-in Gaussian
+    func: Callable[[float, float], float] | None = (
+        None  # z=f(x,y); None = built-in Gaussian
+    )
     #: LaTeX label for the surface function.
     func_tex: str | None = (
         None  # corner formula; None = custom function without a displayed formula
@@ -699,10 +701,10 @@ class GraphSurfaceScene(ThreeDScene):
     #: Whether this surface scene uses a flat parameterisation.
     uses_flat = True
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         config: SurfaceConfig | dict[str, Any] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         scene_keys = {
             "renderer",
@@ -711,12 +713,16 @@ class GraphSurfaceScene(ThreeDScene):
             "random_seed",
             "skip_animations",
         }
-        scene_kwargs: dict[str, Any] = {
-            k: v for k, v in kwargs.items() if k in scene_keys
-        }
-        style_kwargs: dict[str, Any] = {
-            k: v for k, v in kwargs.items() if k not in scene_keys
-        }
+        scene_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: filtered from untyped scene kwargs
+                k: v for k, v in kwargs.items() if k in scene_keys
+            }
+        )
+        style_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: filtered from untyped style kwargs
+                k: v for k, v in kwargs.items() if k not in scene_keys
+            }
+        )
         super().__init__(**scene_kwargs)  # type: ignore[no-untyped-call]
         if config is not None:
             if isinstance(config, dict):
@@ -733,7 +739,11 @@ class GraphSurfaceScene(ThreeDScene):
         elif self.style is None and self.config_cls is not None:
             self.style = self.config_cls()
 
-    def __init_subclass__(cls, **config_kwargs: Any) -> None:
+    def __init_subclass__(
+        cls, **config_kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Apply configuration keywords written in the class statement.
 
         ``class Demo(GaussianSurfaceScene, pace="fast")`` passes ``pace``

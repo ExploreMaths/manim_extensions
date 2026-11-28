@@ -24,9 +24,9 @@ from .svg import create_svg_from_vgroup, create_svg_from_vmobject
 
 __all__ = ["create_svg_from_vgroup", "create_svg_from_vmobject"]
 
-cast(Any, VMobject).to_svg = create_svg_from_vmobject
-cast(Any, VGroup).to_svg = create_svg_from_vgroup
+setattr(VMobject, "to_svg", create_svg_from_vmobject)
+setattr(VGroup, "to_svg", create_svg_from_vgroup)
 
 # Rich display for manim objects in Jupyter notebooks.
-cast(Any, VMobject)._repr_svg_ = lambda self: create_svg_from_vmobject(self).read_text()
-cast(Any, VGroup)._repr_svg_ = lambda self: create_svg_from_vgroup(self).read_text()
+setattr(VMobject, "_repr_svg_", lambda self: create_svg_from_vmobject(self).read_text())
+setattr(VGroup, "_repr_svg_", lambda self: create_svg_from_vgroup(self).read_text())

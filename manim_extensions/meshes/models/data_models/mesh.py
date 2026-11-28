@@ -15,6 +15,7 @@ from copy import deepcopy
 
 # third-party imports
 import numpy as np
+from numpy.typing import NDArray
 
 # local imports
 from scipy.spatial.transform import Rotation
@@ -1054,7 +1055,7 @@ class Mesh:
         """
         if not isinstance(translation, np.ndarray):
             raise InvalidTypeException(
-                f"Translation should be a np.ndarray, but was a {type(translation)} instead"
+                f"Translation should be a NDArray[np.float64], but was a {type(translation)} instead"
             )
         if len(translation.shape) != 1 or translation.shape[0] != self.dim:
             raise InvalidMeshDimensionsException(
@@ -1088,7 +1089,7 @@ class Mesh:
             )
         if not isinstance(translation, np.ndarray):
             raise InvalidTypeException(
-                f"Translation should be a np.ndarray, but was a {type(translation)} instead"
+                f"Translation should be a NDArray[np.float64], but was a {type(translation)} instead"
             )
         if len(translation.shape) != 1 or translation.shape[0] != self.dim:
             raise InvalidMeshDimensionsException(
@@ -1177,7 +1178,9 @@ class Mesh:
             self._vertices += about_point
 
     @staticmethod
-    def _rotation_plane_4d(axis: object) -> tuple[np.ndarray, np.ndarray]:
+    def _rotation_plane_4d(
+        axis: object,
+    ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
         """Return an orthonormal basis of the 4-D rotation plane.
 
         Parameters

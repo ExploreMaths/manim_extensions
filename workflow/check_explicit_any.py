@@ -1,78 +1,102 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Enforce the explicit-``Any`` baseline with ``mypy --disallow-any-explicit``.
+"""Require a documented reason for every explicit ``Any`` annotation.
 
-``mypy`` already type-checks the package; this wrapper adds the stricter
-``--disallow-any-explicit`` pass and compares its findings with a checked-in
-baseline.  Existing technical debt is recorded, but any new explicit ``Any``
-fails the check.  When entries are fixed, refresh the baseline with::
-
-    python workflow/check_explicit_any.py --update
-
-Keys use the file path plus the stripped source line rather than the line
-number, so unrelated edits that move code do not invalidate the baseline.
+Runs ``mypy --disallow-any-explicit`` and treats each finding as an error
+unless the source line carries ``# explicit-any-ok: <reason>``.  This keeps
+unavoidable dynamic boundaries auditable instead of hiding them in a
+baseline: the exception is visible at the exact annotation it applies to.
 """
 
 from __future__ import annotations
 
-import argparse
 import re
 import subprocess
 import sys
-from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASELINE = ROOT / "workflow" / "explicit_any_baseline.txt"
 ERROR_RE = re.compile(
     r'^(?P<path>.+?):(?P<line>\d+): error: Explicit "Any" is not allowed'
 )
+EXCUSE_RE = re.compile(r"#\s*explicit-any-ok:\s*\S+")
 
 
-def _key(root: Path, path: str, line: int) -> tuple[str, str]:
-    """Return a line-number-independent key for one mypy finding."""
+def _source_line(root: Path, path: str, line: int) -> str:
+    """Read the source line a mypy finding points at."""
     source_path = Path(path)
     if not source_path.is_absolute():
         source_path = root / source_path
-    relative = source_path.resolve().relative_to(root.resolve()).as_posix()
-    source = source_path.read_text(encoding="utf-8").splitlines()[line - 1].strip()
-    return relative, source
+    return source_path.read_text(encoding="utf-8").splitlines()[line - 1]
 
 
-def parse_output(root: Path, output: str) -> Counter[tuple[str, str]]:
-    """Count explicit-``Any`` findings in raw mypy output."""
-    findings: Counter[tuple[str, str]] = Counter()
+def _source_lines(root: Path, path: str) -> list[str]:
+    """Read all lines of a finding's source file."""
+    source_path = Path(path)
+    if not source_path.is_absolute():
+        source_path = root / source_path
+    return source_path.read_text(encoding="utf-8").splitlines()
+
+
+def _statement_block(lines: list[str], line: int) -> list[str]:
+    """Collect the logical statement starting at ``line``.
+
+    Multi-line signatures put ``**kwargs: Any`` on an inner line while mypy
+    reports the ``def`` line.  Scanning to the closing colon lets the documented
+    reason sit on the annotation it explains rather than on the ``def``.
+    """
+    block: list[str] = []
+    depth = 0
+    for index in range(line - 1, min(line + 40, len(lines))):
+        current = lines[index]
+        block.append(current)
+        depth += current.count("(") + current.count("[") + current.count("{")
+        depth -= current.count(")") + current.count("]") + current.count("}")
+        if depth <= 0 and current.rstrip().endswith(":"):
+            break
+    return block
+
+
+def _block_is_excused(block: list[str]) -> bool:
+    """Accept one documented reason for a multi-line statement.
+
+    Black may move a trailing comment from the ``def`` line to the closing
+    parenthesis, so the reason is attached to the logical statement rather
+    than to a fixed line.
+    """
+    any_lines = [entry for entry in block if re.search(r"\bAny\b", entry)]
+    return bool(any_lines) and any(EXCUSE_RE.search(entry) for entry in block)
+
+
+def parse_output(root: Path, output: str) -> tuple[list[str], list[str]]:
+    """Split explicit-``Any`` findings into violations and documented lines."""
+    violations: list[str] = []
+    excused: list[str] = []
+    seen: set[tuple[str, int]] = set()
+    cache: dict[str, list[str]] = {}
     for line in output.splitlines():
         match = ERROR_RE.match(line)
-        if match is not None:
-            findings[_key(root, match.group("path"), int(match.group("line")))] += 1
-    return findings
-
-
-def load_baseline(path: Path) -> Counter[tuple[str, str]]:
-    """Read the checked-in baseline as a multiset of file/source keys."""
-    findings: Counter[tuple[str, str]] = Counter()
-    if not path.exists():
-        return findings
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line or line.startswith("#"):
+        if match is None:
             continue
-        count, file_name, source = line.split("\t", 2)
-        findings[(file_name, source)] += int(count)
-    return findings
-
-
-def write_baseline(path: Path, findings: Counter[tuple[str, str]]) -> None:
-    """Write a stable TSV baseline sorted by path and source line."""
-    lines = [
-        "# " + "SPDX-FileCopyrightText: 2026 ExploreMaths",
-        "# " + "SPDX-License-Identifier: MIT",
-        "# count\tpath\tsource",
-    ]
-    for (file_name, source), count in sorted(findings.items()):
-        lines.append(f"{count}\t{file_name}\t{source}")
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        path = match.group("path")
+        number = int(match.group("line"))
+        if (path, number) in seen:
+            continue
+        seen.add((path, number))
+        lines = cache.setdefault(path, _source_lines(root, path))
+        block = _statement_block(lines, number)
+        location = f"{path}:{number}"
+        any_lines = [entry for entry in block if re.search(r"\bAny\b", entry)]
+        if not any_lines:
+            # mypy can report an inherited alias at the ``def`` line even though
+            # the statement itself contains no explicit Any.
+            excused.append(f"{location}: {lines[number - 1].strip()}")
+        elif EXCUSE_RE.search(lines[number - 1]) or _block_is_excused(block):
+            excused.append(f"{location}: {lines[number - 1].strip()}")
+        else:
+            violations.append(f"{location}: {lines[number - 1].strip()}")
+    return violations, excused
 
 
 def run_mypy(root: Path, package: Path) -> tuple[int, str]:
@@ -94,48 +118,33 @@ def run_mypy(root: Path, package: Path) -> tuple[int, str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Compare current findings with the baseline and report regressions."""
+    """Fail when any explicit ``Any`` lacks a documented reason."""
+    import argparse
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--package", type=Path)
-    parser.add_argument("--baseline", type=Path, default=BASELINE)
-    parser.add_argument("--update", action="store_true")
     args = parser.parse_args(argv)
 
     root = args.root.resolve()
     package = args.package or root / "manim_extensions"
     exit_code, output = run_mypy(root, package)
-    current = parse_output(root, output)
     if exit_code not in (0, 1):
         print(output, end="")
         return exit_code
 
-    if args.update:
-        write_baseline(args.baseline, current)
-        print(f"Updated {args.baseline} with {sum(current.values())} findings")
-        return 0
-
-    baseline = load_baseline(args.baseline)
-    new = current - baseline
-    fixed = baseline - current
-    if new:
-        print("New explicit Any annotations are not allowed:\n")
-        for (file_name, source), count in sorted(new.items()):
-            print(f"{file_name}: {source} ({count}x)")
-        print(
-            f"\n{sum(new.values())} new finding(s); "
-            f"{sum(baseline.values())} existing finding(s) remain in the baseline."
-        )
+    violations, excused = parse_output(root, output)
+    if violations:
+        print("Explicit Any without `# explicit-any-ok: <reason>`:\n")
+        for entry in violations:
+            print(entry)
+        print(f"\n{len(violations)} undocumented explicit Any finding(s).")
         return 1
 
     print(
-        f"PASS explicit Any baseline: {sum(current.values())} existing findings, "
-        f"{sum(fixed.values())} fixed."
+        f"PASS explicit Any policy: {len(excused)} documented exception(s), "
+        "no undocumented Any."
     )
-    if fixed:
-        print(
-            "Run `python workflow/check_explicit_any.py --update` to shrink the baseline."
-        )
     return 0
 
 

@@ -5,7 +5,7 @@
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from manim import (
     Animation,
@@ -16,6 +16,7 @@ from manim import (
     Dot,
     FadeIn,
     GREEN,
+    ManimColor,
     ORANGE,
     Uncreate,
     VGroup,
@@ -24,6 +25,7 @@ from manim import (
 from types import SimpleNamespace
 
 import numpy as np
+from numpy.typing import NDArray
 from manim.typing import MatrixMN, VectorND
 
 from .decision_tree_surface import DecisionTreeSurface
@@ -94,7 +96,7 @@ class DecisionTreeEmbedding(VGroup):
         points: MatrixMN,
         classes: VectorND,
         axes: Axes | None = None,
-        class_colors: list[Any] | None = None,
+        class_colors: list[ManimColor] | None = None,
         point_radius: float = 0.04,
     ) -> None:
         super().__init__()
@@ -125,7 +127,7 @@ class DecisionTreeEmbedding(VGroup):
         self.add(self.points_group)
         self.add(VGroup(*self.surface.surface_rectangles))
 
-    def get_points_defining_boundary(self) -> np.ndarray:
+    def get_points_defining_boundary(self) -> NDArray[np.float64]:
         """Return every point of the embedding, used when computing its bounds.
 
         The default implementation stacks the boundary points of each

@@ -116,7 +116,9 @@ class AABB:
         return left, right
 
 
-def tree_bounds(tree: Any, n_features: int | None = None) -> list[AABB]:
+def tree_bounds(
+    tree: Any, n_features: int | None = None
+) -> list[AABB]:  # explicit-any-ok: sklearn exposes an untyped Cython tree_ object
     """Compute final decision rule for each node in tree.
 
     Parameters

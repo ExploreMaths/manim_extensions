@@ -66,7 +66,7 @@ class RollingNumber(VGroup):
                number.render(6.5, ORIGIN)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         *,
         font: str | None = None,
@@ -79,7 +79,7 @@ class RollingNumber(VGroup):
         roll_height: float = 0.30,
         mode: str = "roll",
         weight: str = "BOLD",
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.font = font
@@ -191,11 +191,13 @@ class RollingNumber(VGroup):
 
         key = int(np.clip(key, 0, self._key_limit()))
         if key not in self._cache:
-            text_kwargs: dict[str, Any] = {
-                "weight": self.weight,
-                "font_size": self.size,
-                "color": self.color,
-            }
+            text_kwargs: dict[str, Any] = (
+                {  # explicit-any-ok: heterogeneous Manim style keyword arguments
+                    "weight": self.weight,
+                    "font_size": self.size,
+                    "color": self.color,
+                }
+            )
             if self.font is not None:
                 text_kwargs["font"] = self.font
             txt = Text(self.label_for(key), **text_kwargs)

@@ -70,7 +70,11 @@ class DrawArc(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
+    def __init__(
+        self, compass: Compass, arc: Arc, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(Create(arc), RotateCompass(compass, arc.angle), **kwargs)
 
 
@@ -104,8 +108,11 @@ class SplitCompass(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
-        self, compass: Compass, span: float | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        compass: Compass,
+        span: float | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert span is not None
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
@@ -157,8 +164,11 @@ class RotateCompass(Rotate):
                self.wait()
     """
 
-    def __init__(
-        self, compass: Compass, angle: float | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        compass: Compass,
+        angle: float | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert angle is not None
         super().__init__(
@@ -194,11 +204,11 @@ class MoveNiddleTipTo(ApplyMethod):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         compass: Compass,
         point: Point3D | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(compass.move_niddle_tip_to, point, **kwargs)
 
@@ -241,12 +251,12 @@ class PutCompass(ApplyMethod):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         compass: Compass,
         niddle_pos: Point3D | None = None,
         pen_pos: Point3D | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert niddle_pos is not None and pen_pos is not None
         arc_radius = get_distance(niddle_pos, pen_pos)
@@ -292,12 +302,12 @@ class PutCompassAway(PutCompass):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         compass: Compass,
         point: Point3D = RIGHT,
         span_buff: float = 0.1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         r = 0.5 * compass.leg_length
         vec = r * DOWN if compass.get_compass_rotate_angle_direction() else r * UP

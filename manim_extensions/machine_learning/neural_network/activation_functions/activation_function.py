@@ -5,7 +5,7 @@
 
 """Base class for activation function visualization."""
 
-from typing import Any, cast
+# from typing import cast
 
 from manim import (
     AnimationGroup,
@@ -26,7 +26,7 @@ from manim import (
 from abc import ABC, abstractmethod
 import random
 
-from ... import config
+from ...config import config
 
 
 class ActivationFunction(ABC, VGroup):
@@ -81,9 +81,9 @@ class ActivationFunction(ABC, VGroup):
         x_length: float = 0.5,
         y_length: float = 0.3,
         show_function_name: bool = True,
-        active_color: ManimColor = cast(Any, config).color_scheme.active_color,
-        plot_color: ManimColor = cast(Any, config).color_scheme.primary_color,
-        rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+        active_color: ManimColor = config.color_scheme.active_color,
+        plot_color: ManimColor = config.color_scheme.primary_color,
+        rectangle_color: ManimColor = config.color_scheme.secondary_color,
     ) -> None:
         super(VGroup, self).__init__()
         self.function_name = function_name

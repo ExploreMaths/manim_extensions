@@ -71,7 +71,11 @@ class Molecule:
     def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule) -> None:
         self.molecule_class = molecule_class
 
-    def molecule_from_file(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+    def molecule_from_file(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        GraphMolecule
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Delegate to the wrapped molecule class to construct a molecule from a file.
 
         Parameters
@@ -89,7 +93,11 @@ class Molecule:
             GraphMolecule, self.molecule_class.molecule_from_file(*args, **kwargs)
         )
 
-    def multiple_molecules_from_file(self, *args: Any, **kwargs: Any) -> VGroup:
+    def multiple_molecules_from_file(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        VGroup
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Delegate to the wrapped molecule class to construct multiple molecules from a file.
 
         Parameters
@@ -107,7 +115,11 @@ class Molecule:
             VGroup, self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
         )
 
-    def molecule_from_string(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+    def molecule_from_string(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        GraphMolecule
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Delegate to the wrapped molecule class to construct a molecule from a string.
 
         Parameters
@@ -125,7 +137,11 @@ class Molecule:
             GraphMolecule, self.molecule_class.molecule_from_string(*args, **kwargs)
         )
 
-    def multiple_molecules_from_string(self, *args: Any, **kwargs: Any) -> VGroup:
+    def multiple_molecules_from_string(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        VGroup
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Delegate to the wrapped molecule class to construct multiple molecules from a string.
 
         Parameters
@@ -143,7 +159,11 @@ class Molecule:
             VGroup, self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
         )
 
-    def molecule_from_pubchem(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+    def molecule_from_pubchem(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        GraphMolecule
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Delegate to the wrapped molecule class to fetch a molecule from PubChem.
 
         Parameters
@@ -161,8 +181,10 @@ class Molecule:
             GraphMolecule, self.molecule_class.molecule_from_pubchem(*args, **kwargs)
         )
 
-    def mc_molecule_to_atoms_and_bonds(
-        self, *args: Any, **kwargs: Any
+    def mc_molecule_to_atoms_and_bonds(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
+        self,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
     ) -> tuple[dict[Any, Any], dict[Any, Any]]:
         """Delegate to the wrapped molecule class to convert an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` to atoms and bonds.
 

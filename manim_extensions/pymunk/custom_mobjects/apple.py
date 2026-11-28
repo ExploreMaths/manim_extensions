@@ -38,7 +38,11 @@ class Apple(VMobject):
                self.add(apples)
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
         # Bezier curve point set
         points = np.array(

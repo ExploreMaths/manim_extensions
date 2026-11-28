@@ -7,7 +7,7 @@
 """Utilities for the doc_directive module."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any, Protocol, cast
 
 """
 A directive for including Manim videos in a Sphinx document.
@@ -30,6 +30,15 @@ import jinja2
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
+
+
+class _SetupState(Protocol):
+    """Attributes attached to the Sphinx extension entry point at runtime."""
+
+    app: Sphinx
+    config: object
+    confdir: str
+
 
 classnamedict = {}
 
@@ -253,9 +262,11 @@ class ManimDirective(Directive):
         document = state_machine.document
 
         source_file_name = Path(document.attributes["source"])
-        source_rel_name = source_file_name.relative_to(cast(Any, setup).confdir)
+        source_rel_name = source_file_name.relative_to(cast(_SetupState, setup).confdir)
         source_rel_dir = source_rel_name.parents[0]
-        dest_dir = Path(cast(Any, setup).app.builder.outdir, source_rel_dir).absolute()
+        dest_dir = Path(
+            cast(_SetupState, setup).app.builder.outdir, source_rel_dir
+        ).absolute()
         if not dest_dir.exists():
             dest_dir.mkdir(parents=True, exist_ok=True)
 
@@ -267,7 +278,7 @@ class ManimDirective(Directive):
         ]
         source_block = "\n".join(source_block)
 
-        config.media_dir = (Path(cast(Any, setup).confdir) / "media").absolute()
+        config.media_dir = (Path(cast(_SetupState, setup).confdir) / "media").absolute()
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         output_file = f"{clsname}-{classnamedict[clsname]}"
@@ -330,7 +341,9 @@ class ManimDirective(Directive):
             clsname=clsname,
             clsname_lowercase=clsname.lower(),
             hide_source=hide_source,
-            filesrc_rel=Path(filesrc).relative_to(cast(Any, setup).confdir).as_posix(),
+            filesrc_rel=Path(filesrc)
+            .relative_to(cast(_SetupState, setup).confdir)
+            .as_posix(),
             no_autoplay=no_autoplay,
             output_file=output_file,
             save_last_frame=save_last_frame,
@@ -371,7 +384,7 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> 
         )
 
 
-def _log_rendering_times(*args: Any) -> None:
+def _log_rendering_times(*args: object) -> None:
     """Print a summary of the collected rendering times.
 
     Parameters
@@ -404,7 +417,7 @@ def _log_rendering_times(*args: Any) -> None:
         print("")
 
 
-def _delete_rendering_times(*args: Any) -> None:
+def _delete_rendering_times(*args: object) -> None:
     """Remove the rendering-time CSV if it exists.
 
     Parameters
@@ -416,7 +429,11 @@ def _delete_rendering_times(*args: Any) -> None:
         rendering_times_file_path.unlink()
 
 
-def setup(app: Sphinx) -> dict[str, Any]:
+def setup(
+    app: Sphinx,
+) -> dict[
+    str, Any
+]:  # explicit-any-ok: Sphinx extension metadata values are heterogeneous
     """Register the manim directive and its nodes with the Sphinx application.
 
     Parameters
@@ -430,9 +447,9 @@ def setup(app: Sphinx) -> dict[str, Any]:
     """
     app.add_node(SkipManimNode, html=(visit, depart))
 
-    cast(Any, setup).app = app
-    cast(Any, setup).config = cast(Any, app).config
-    cast(Any, setup).confdir = cast(Any, app).confdir
+    cast(_SetupState, setup).app = app
+    cast(_SetupState, setup).config = app.config
+    cast(_SetupState, setup).confdir = app.confdir
 
     app.add_directive("manim", ManimDirective)
 

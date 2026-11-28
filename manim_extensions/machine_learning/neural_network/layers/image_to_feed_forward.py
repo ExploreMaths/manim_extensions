@@ -69,26 +69,26 @@ class ImageToFeedForward(ConnectiveLayer):
     input_class = ImageLayer
     output_class = FeedForwardLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: ImageLayer,
         output_layer: FeedForwardLayer,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.05,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
         self.animation_dot_color = animation_dot_color
         self.dot_radius = dot_radius
 
         self.feed_forward_layer = output_layer
         self.image_layer = input_layer
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -105,7 +105,7 @@ class ImageToFeedForward(ConnectiveLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
@@ -125,7 +125,7 @@ class ImageToFeedForward(ConnectiveLayer):
         dots = []
         image_mobject = self.image_layer.image_mobject
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer
-        image_location = cast(Any, image_mobject).get_center()
+        image_location = image_mobject.get_center()
         for node in self.feed_forward_layer.node_group:
             new_dot = Dot(
                 image_location, radius=self.dot_radius, color=self.animation_dot_color

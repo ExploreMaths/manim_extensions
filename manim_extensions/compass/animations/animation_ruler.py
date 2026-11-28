@@ -50,12 +50,12 @@ class PutRuler(ApplyMethod):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         ruler: Ruler,
         start: Point3D | None = None,
         end: Point3D | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(ruler.set_ruler, start, end, **kwargs)
 
@@ -89,12 +89,12 @@ class PutRulerAway(PutRuler):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         ruler: Ruler,
         point: Point3D | None = None,
         is_flat: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         assert point is not None
         if is_flat:

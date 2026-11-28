@@ -7,7 +7,7 @@
 This module provides utility functions for parsing chemical molecule data.
 """
 
-from typing import Any, Literal, cast
+from typing import Literal, cast
 
 import numpy as np
 
@@ -255,7 +255,7 @@ from ..element.element import Element
 
 def mol_parser_string(
     mol_string: list[str],
-) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
+) -> tuple[dict[int, dict[str, object]], dict[int, list[dict[str, object]]]]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
 
     Parameters
@@ -282,8 +282,8 @@ def mol_parser_string(
     number_of_atoms = int(mol_general_info_parts[0])
     number_of_bonds = int(mol_general_info_parts[1])
 
-    atoms: dict[int, dict[str, Any]] = {}
-    bonds: dict[int, list[dict[str, Any]]] = {}
+    atoms: dict[int, dict[str, object]] = {}
+    bonds: dict[int, list[dict[str, object]]] = {}
     for index, line in enumerate(mol_string[3 : 3 + number_of_atoms]):
         line_data = line.split()
         x_position = float(line_data[0])
@@ -329,44 +329,38 @@ def mol_parser_string(
         else:
             bond_data["reacting_center_status"] = int(reacting_center_status)
 
+        first_atom = atoms.get(first_atom_index)
+        second_atom = atoms.get(second_atom_index)
+        assert first_atom is not None
+        assert second_atom is not None
         if first_atom_index not in bonds:
             bonds[first_atom_index] = [bond_data]
-            if not cast(Any, atoms).get(first_atom_index) or not cast(
-                Any, cast(Any, atoms).get(first_atom_index)
-            ).get("bond_to"):
-                atoms[first_atom_index]["bond_to"] = {
-                    second_atom_index: cast(
-                        Any, cast(Any, atoms).get(second_atom_index)
-                    ).get("element")
-                }
-            else:
-                atoms[first_atom_index]["bond_to"][second_atom_index] = cast(
-                    Any, cast(Any, atoms).get(second_atom_index)
-                ).get("element")
+            first_bond_to = first_atom.get("bond_to")
+            if not isinstance(first_bond_to, dict):
+                first_bond_to = {}
+                first_atom["bond_to"] = first_bond_to
+            first_bond_to[second_atom_index] = second_atom.get("element")
 
         else:
             bonds[first_atom_index].append(bond_data)
-            atoms[first_atom_index]["bond_to"][second_atom_index] = cast(
-                Any, cast(Any, atoms).get(second_atom_index)
-            ).get("element")
+            first_bond_to = first_atom.get("bond_to")
+            if not isinstance(first_bond_to, dict):
+                first_bond_to = {}
+                first_atom["bond_to"] = first_bond_to
+            first_bond_to[second_atom_index] = second_atom.get("element")
 
-        if not cast(Any, cast(Any, atoms).get(second_atom_index)).get("bond_to"):
-            atoms[second_atom_index]["bond_to"] = {
-                first_atom_index: cast(Any, cast(Any, atoms).get(first_atom_index)).get(
-                    "element"
-                )
-            }
-        else:
-            atoms[second_atom_index]["bond_to"][first_atom_index] = cast(
-                Any, cast(Any, atoms).get(first_atom_index)
-            ).get("element")
+        second_bond_to = second_atom.get("bond_to")
+        if not isinstance(second_bond_to, dict):
+            second_bond_to = {}
+            second_atom["bond_to"] = second_bond_to
+        second_bond_to[first_atom_index] = first_atom.get("element")
 
     return atoms, bonds
 
 
 def mol_parser(
     file: str,
-) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
+) -> tuple[dict[int, dict[str, object]], dict[int, list[dict[str, object]]]]:
     """Read a .mol file from disk and return parsed ``(atoms, bonds)``.
 
     Parameters
@@ -385,7 +379,7 @@ def mol_parser(
 
 def sdf_parser_string(
     sdf_string: str,
-) -> list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]]:
+) -> list[tuple[dict[int, dict[str, object]], dict[int, list[dict[str, object]]]]]:
     """Parse an SDF-format string into a list of ``(atoms, bonds)`` tuples.
 
     SDF files can contain multiple molecules separated by ``$$$$`` delimiters.
@@ -411,7 +405,7 @@ def sdf_parser_string(
 
 def sdf_parser(
     file: str,
-) -> list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]]:
+) -> list[tuple[dict[int, dict[str, object]], dict[int, list[dict[str, object]]]]]:
     """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.
 
     Parameters
@@ -447,11 +441,11 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
     ValueError
         If ``language`` is neither ``"ENG"`` nor ``"ESP"``.
     """
-    element_dict: dict[str, Any]
+    element_dict: dict[str, object]
     if language == "ENG":
-        element_dict = ELEMENT_DICT
+        element_dict = cast(dict[str, object], ELEMENT_DICT)
     elif language == "ESP":
-        element_dict = ELEMENT_DICT_ESP
+        element_dict = cast(dict[str, object], ELEMENT_DICT_ESP)
     else:
         raise ValueError(f"unsupported language: {language}")
 
@@ -460,7 +454,7 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
 
 def mol_to_graph(
     file: str, language: Literal["ENG", "ESP"] = "ENG"
-) -> tuple[dict[int, dict[str, Any]], dict[tuple[int, int], dict[str, Any]]]:
+) -> tuple[dict[int, dict[str, object]], dict[tuple[int, int], dict[str, object]]]:
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
     Unlike :func:`~manim_extensions.chemistry.utils.utils.mol_parser`, this function stores atom positions under the
@@ -497,8 +491,8 @@ def mol_to_graph(
     number_of_atoms = int(mol_general_info[0])
     number_of_bonds = int(mol_general_info[1])
 
-    atoms: dict[int, dict[str, Any]] = {}
-    bonds: dict[tuple[int, int], dict[str, Any]] = {}
+    atoms: dict[int, dict[str, object]] = {}
+    bonds: dict[tuple[int, int], dict[str, object]] = {}
     for index, line in enumerate(mol_file[3 : 3 + number_of_atoms]):
         line_data = line.split()
         x_position = float(line_data[0])

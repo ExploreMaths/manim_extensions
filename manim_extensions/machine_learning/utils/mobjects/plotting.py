@@ -56,7 +56,11 @@ class MatplotlibFigureImage(ImageMobject):
                self.add(image)
     """
 
-    def __init__(self, fig: Figure, dpi: int = 200, **kwargs: Any) -> None:
+    def __init__(
+        self, fig: Figure, dpi: int = 200, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         plt = require("ml", "matplotlib.pyplot")
 
         fig.tight_layout(pad=0)

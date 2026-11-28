@@ -28,7 +28,7 @@ from .max_pooling_2d import MaxPooling2DLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .convolutional_2d import Convolutional2DLayer
 
-from ... import config
+from ...config import config
 
 
 class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
@@ -72,21 +72,21 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
     input_class = Convolutional2DLayer
     output_class = MaxPooling2DLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: Convolutional2DLayer,
         output_layer: MaxPooling2DLayer,
         active_color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
         self.active_color = active_color
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -103,7 +103,10 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, run_time: float = 1.5, **kwargs: Any
+        self,
+        layer_args: dict[str, object] = {},
+        run_time: float = 1.5,
+        **kwargs: object,
     ) -> Succession:
         """Forward pass animation from conv2d to max pooling.
 
@@ -195,9 +198,9 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
             # of the conv maps
             gridded_rectangle_group = VGroup(gridded_rectangle, *highlighted_cells)
             gridded_rectangle_group.rotate(
-                cast(Any, config).three_d_config.rotation_angle,
+                config.three_d_config.rotation_angle,
                 about_point=gridded_rectangle.get_center(),
-                axis=cast(Any, config).three_d_config.rotation_axis,
+                axis=config.three_d_config.rotation_axis,
             )
             gridded_rectangle_group.next_to(
                 feature_map.get_corners_dict()["top_left"],
@@ -235,9 +238,9 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
                 show_grid_lines=True,
             )
             output_gridded_rectangle.rotate(
-                cast(Any, config).three_d_config.rotation_angle,
+                config.three_d_config.rotation_angle,
                 about_point=output_gridded_rectangle.get_center(),
-                axis=cast(Any, config).three_d_config.rotation_axis,
+                axis=config.three_d_config.rotation_axis,
             )
             output_gridded_rectangle.move_to(
                 output_layer.feature_maps[feature_map_index].copy()

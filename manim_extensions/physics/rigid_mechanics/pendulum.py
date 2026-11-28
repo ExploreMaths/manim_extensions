@@ -15,7 +15,7 @@ from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup
 
 import numpy as np
 
-from .rigid_mechanics import SpaceScene
+from .rigid_mechanics import PhysicsMobject, SpaceScene
 
 from ...utils.deps import require
 from manim.typing import Point3D
@@ -74,7 +74,7 @@ class MultiPendulum(VGroup):
                self.wait(5)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         *bobs: Point3D,
         pivot_point: Point3D = UP * 2,
@@ -84,11 +84,11 @@ class MultiPendulum(VGroup):
             "color": ORANGE,
             "fill_opacity": 1,
         },
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.pivot_point = pivot_point
         self.bobs = VGroup(*[Circle(**bob_style).move_to(i) for i in bobs])
-        self.pins: list[Any] = [pivot_point]
+        self.pins: list[Mobject | Point3D] = [pivot_point]
         self.pins += bobs
         self.rods = VGroup()
         self.rods += Line(self.pivot_point, self.bobs[0].get_center(), **rod_style)
@@ -146,8 +146,10 @@ class MultiPendulum(VGroup):
             x, y, _ = pins[i]
         except (TypeError, ValueError):
             # pins[i] is a pymunk body, not a coordinate tuple
-            x, y = cast(Any, pins[i]).body.position
-        x1, y1 = cast(Any, pins[i + 1]).body.position
+            pin = cast(PhysicsMobject, pins[i])
+            x, y = pin.body.position
+        next_pin = cast(PhysicsMobject, pins[i + 1])
+        x1, y1 = next_pin.body.position
         mob.put_start_and_end_on(
             RIGHT * x + UP * y,
             RIGHT * x1 + UP * y1,
@@ -155,7 +157,7 @@ class MultiPendulum(VGroup):
 
     def start_swinging(self) -> None:
         """Creates pymunk joints between bobs and starts the physics simulation."""
-        spacescene = cast(SpaceScene, cast(Any, self.bobs[0]).spacescene)
+        spacescene = cast(SpaceScene, self.bobs[0].spacescene)
         pins: list[Mobject | Point3D] = [self.pivot_point]
         pins += list(self.bobs)
 
@@ -165,8 +167,8 @@ class MultiPendulum(VGroup):
 
     def end_swinging(self) -> None:
         """Stop swinging."""
-        spacescene = self.bobs[0].spacescene
-        cast(Any, spacescene).stop_rigidity(self.bobs)
+        spacescene = cast(SpaceScene, getattr(self.bobs[0], "spacescene"))
+        spacescene.stop_rigidity(self.bobs)
 
 
 class Pendulum(MultiPendulum):
@@ -212,7 +214,7 @@ class Pendulum(MultiPendulum):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         length: float = 3.5,
         initial_theta: float = 0.3,
@@ -223,7 +225,7 @@ class Pendulum(MultiPendulum):
             "color": ORANGE,
             "fill_opacity": 1,
         },
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.length = length
         self.pivot_point = pivot_point

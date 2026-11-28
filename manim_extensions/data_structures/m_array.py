@@ -47,7 +47,7 @@ from types import MethodType
 from .m_enum import MArrayDirection, MArrayElementComp
 from manim.typing import Point3D, Vector3D
 
-MobProps = dict[str, Any]
+MobProps = dict[str, Any]  # explicit-any-ok: Mobject construction kwargs are open-ended
 """Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
 
 
@@ -354,7 +354,7 @@ class MArrayElement(VGroup):
                 setattr(result, k, deepcopy(v, memo))
         return result
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         mob_square_args: MobProps = {},
@@ -367,7 +367,7 @@ class MArrayElement(VGroup):
         label_gap: float = 0.5,
         next_to_mob: "MArrayElement | None" = None,
         next_to_dir: Vector3D = RIGHT,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ):
 
         super().__init__(**kwargs)
@@ -1201,7 +1201,7 @@ class MArray(VGroup):
                 setattr(result, k, deepcopy(v, memo))
         return result
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         arr: list[object] = [],
@@ -1218,7 +1218,7 @@ class MArray(VGroup):
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ):
 
         super().__init__(**kwargs)
@@ -2002,7 +2002,7 @@ class MArrayPointer(VGroup):
                 setattr(result, k, deepcopy(v, memo))
         return result
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         arr: MArray,
@@ -2014,7 +2014,7 @@ class MArrayPointer(VGroup):
         pointer_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_arrow_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ):
 
         super().__init__(**kwargs)
@@ -2556,7 +2556,7 @@ class MArraySlidingWindow(VGroup):
                 setattr(result, k, deepcopy(v, memo))
         return result
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         arr: MArray,
@@ -2567,7 +2567,7 @@ class MArraySlidingWindow(VGroup):
         label_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_window_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ):
 
         super().__init__(**kwargs)

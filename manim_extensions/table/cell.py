@@ -58,7 +58,7 @@ class Cell(VGroup):
                self.add(cell)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         value: str,
         width: float = 1.5,
@@ -66,7 +66,7 @@ class Cell(VGroup):
         font_size: int = 20,
         is_header: bool = False,
         show_border: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 

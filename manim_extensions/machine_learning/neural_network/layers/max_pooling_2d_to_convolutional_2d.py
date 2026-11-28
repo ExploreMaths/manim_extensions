@@ -65,7 +65,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
     input_class = MaxPooling2DLayer
     output_class = Convolutional2DLayer
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: MaxPooling2DLayer,
         output_layer: Convolutional2DLayer,
@@ -73,22 +73,22 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        cast(Any, input_layer).num_feature_maps = cast(
-            Any, output_layer
-        ).num_feature_maps
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        input_layer.num_feature_maps = output_layer.num_feature_maps
+        super().__init__(
+            cast(Convolutional2DLayer, input_layer), output_layer, **kwargs
+        )
         self.passing_flash_color = passing_flash_color
         self.cell_width = cell_width
         self.stroke_width = stroke_width
         self.show_grid_lines = show_grid_lines
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Constructs the MaxPooling to Convolution3D layer.
 

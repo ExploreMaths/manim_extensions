@@ -78,7 +78,7 @@ class RadarData:
     transition: str | None = None
     note: str | None = None
     #: Arbitrary metadata carried with the snapshot.
-    meta: dict[Any, Any] = field(default_factory=dict)
+    meta: dict[str, object] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         """Validate the snapshot and freeze its sequences.
@@ -220,7 +220,11 @@ class RadarData:
 
         return ManimColor(self.color) if self.color else ManimColor(fallback)
 
-    def with_values(self, values: Sequence[float], **changes: Any) -> "RadarData":
+    def with_values(
+        self, values: Sequence[float], **changes: Any
+    ) -> (
+        "RadarData"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Copy this snapshot with new values and optional other changes.
 
         Parameters

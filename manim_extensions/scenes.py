@@ -85,7 +85,11 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                self.play(self.camera.frame.animate.scale(3), run_time=2)
     """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         super().__init__(*args, **kwargs)
         self._install_stroke_width_parameter()
         self._stroke_scale = self._camera_stroke_scale()
@@ -99,7 +103,11 @@ class ConstantStrokeWidthScene(MovingCameraScene):
             """Wrap a mobject constructor to extract ``fixed_stroke_width``."""
 
             @functools.wraps(original_init)
-            def patched_init(self: object, *args: Any, **kwargs: Any) -> None:
+            def patched_init(
+                self: object, *args: Any, **kwargs: Any
+            ) -> (
+                None
+            ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
                 """Accept ``fixed_stroke_width`` as a constructor keyword."""
                 sentinel = object()
                 fixed = kwargs.pop("fixed_stroke_width", sentinel)

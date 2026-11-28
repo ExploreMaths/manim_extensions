@@ -61,9 +61,11 @@ class NeuralNetworkLayer(ABC, Group):
                self.add(layer)
     """
 
-    def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, text: str | None = None, *args: object, **kwargs: object
+    ) -> None:
         super(Group, self).__init__()
-        self.title_text = kwargs["title"] if "title" in kwargs else " "
+        self.title_text = cast(str, kwargs["title"]) if "title" in kwargs else " "
         self.title: Text | Group
         if "title" in kwargs:
             self.title = Text(self.title_text, font_size=DEFAULT_FONT_SIZE // 3).scale(
@@ -74,12 +76,17 @@ class NeuralNetworkLayer(ABC, Group):
             self.title = Group()
         # self.add(self.title)
 
+    #: Number of feature maps produced by this layer.
+    num_feature_maps: int
+    #: Spatial size of each feature map.
+    feature_map_size: tuple[float, float]
+
     @abstractmethod
     def construct_layer(
         self,
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
-        **kwargs: Any,
+        **kwargs: object,
     ) -> None:
         """Constructs the layer at network construction time.
 
@@ -97,7 +104,11 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(  # explicit-any-ok: heterogeneous subclass overrides refine this API
+        self,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: concrete layers refine these signatures
+    ) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -165,12 +176,20 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                self.add(layer)
     """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(  # explicit-any-ok: heterogeneous subclass overrides refine this API
+        self,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: concrete layers refine these signatures
+    ) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -276,12 +295,17 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
                self.add(content)
     """
 
+    #: The layer the connection starts from.
+    input_layer: NeuralNetworkLayer
+    #: The layer the connection ends at.
+    output_layer: NeuralNetworkLayer
+
     @abstractmethod
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
@@ -291,7 +315,11 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         # assert isinstance(output_layer, self.output_class), f"{output_layer}, {self.output_class}"
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(  # explicit-any-ok: heterogeneous subclass overrides refine this API
+        self,
+        *args: Any,
+        **kwargs: Any,  # explicit-any-ok: concrete layers refine these signatures
+    ) -> Animation:
         """Makes the forward pass animation between the connected layers.
 
         Parameters
@@ -375,16 +403,19 @@ class BlankConnective(ConnectiveLayer):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 1.5, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self,
+        run_time: float = 1.5,
+        layer_args: dict[str, object] = {},
+        **kwargs: object,
     ) -> Animation:
         """Makes an empty forward pass animation for the blank connection.
 
@@ -408,7 +439,7 @@ class BlankConnective(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> None:
         """Construct nothing: a blank connective has no geometry of its own.
 

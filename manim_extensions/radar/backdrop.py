@@ -14,6 +14,7 @@ import random
 from manim.utils.color import ParsableManimColor
 
 import numpy as np
+from numpy.typing import NDArray
 from manim import Circle, ManimColor, Mobject, Scene, VGroup, WHITE, config
 
 from .theme import RadarTheme, get_theme
@@ -48,6 +49,16 @@ def set_scene_background(theme: str | RadarTheme | None = "midnight") -> str:
     th = get_theme(theme)
     config.background_color = th.background
     return th.background
+
+
+class _Star(VGroup):
+    """A star group carrying its own drift and twinkle parameters."""
+
+    vel: NDArray[np.float64]
+    op: float
+    freq: float
+    phase: float
+    accent: str | None
 
 
 class DeepSpace(VGroup):
@@ -111,7 +122,7 @@ class DeepSpace(VGroup):
                Group(*self.mobjects).scale(0.3).move_to(ORIGIN)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         theme: str | RadarTheme | None = "midnight",
         *,
@@ -126,7 +137,7 @@ class DeepSpace(VGroup):
         star_count: int = 64,
         star_region: tuple[Any, ...] = (-7.6, 7.6, -4.3, 4.3),
         seed: int = 7,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.theme = get_theme(theme)
@@ -215,13 +226,14 @@ class DeepSpace(VGroup):
                 g = VGroup(halo2, halo1, core).move_to(
                     np.array([rnd.uniform(x0, x1), rnd.uniform(y0, y1), 0])
                 )
-                cast(Any, g).vel = np.array(
+                star = cast(_Star, g)
+                star.vel = np.array(
                     [rnd.uniform(-0.22, 0.22), rnd.uniform(-0.13, 0.13), 0.0]
                 )
-                cast(Any, g).op = rnd.uniform(0.3, 1.0)
-                cast(Any, g).freq = rnd.uniform(0.5, 1.8)
-                cast(Any, g).phase = rnd.uniform(0.0, 6.28)
-                cast(Any, g).accent = (
+                star.op = rnd.uniform(0.3, 1.0)
+                star.freq = rnd.uniform(0.5, 1.8)
+                star.phase = rnd.uniform(0.0, 6.28)
+                star.accent = (
                     accents[i % len(accents)] if i % 4 == 0 and accents else None
                 )
                 self._stars.add(g)
@@ -319,13 +331,14 @@ class DeepSpace(VGroup):
         for blob in self._nebula:
             for c in blob:
                 c.set_color(tint)
-                c.set_opacity(cast(Any, c).base_op * f)
+                c.set_opacity(cast(float, getattr(c, "base_op")) * f)
 
         if not len(self._stars):
             return
         x0, x1, y0, y1 = self._star_bounds
-        for p in self._stars:
-            cast(Any, p).shift(cast(Any, p).vel * dt)
+        for mob in self._stars:
+            p = cast(_Star, mob)
+            p.shift(p.vel * dt)
             if p.get_x() > x1:
                 p.set_x(x0)
             if p.get_x() < x0:
@@ -334,16 +347,16 @@ class DeepSpace(VGroup):
                 p.set_y(y0)
             if p.get_y() < y0:
                 p.set_y(y1)
-            osc = 0.55 + 0.45 * math.sin(t * cast(Any, p).freq + p.phase)
-            if cast(Any, p).accent:
-                base = ManimColor(cast(Any, p).accent)
+            osc = 0.55 + 0.45 * math.sin(t * p.freq + p.phase)
+            if p.accent:
+                base = ManimColor(p.accent)
                 halo = mix(base, tint, 0.30)
             else:
                 base = mix(tint, WHITE, 0.55)
                 halo = tint
             p[2].set_color(base)
-            p[2].set_opacity(cast(Any, p).op * osc * 0.9 * f)
+            p[2].set_opacity(p.op * osc * 0.9 * f)
             p[1].set_color(halo)
-            p[1].set_opacity(0.10 * cast(Any, p).op * osc * f)
+            p[1].set_opacity(0.10 * p.op * osc * f)
             p[0].set_color(halo)
-            p[0].set_opacity(0.045 * cast(Any, p).op * osc * f)
+            p[0].set_opacity(0.045 * p.op * osc * f)

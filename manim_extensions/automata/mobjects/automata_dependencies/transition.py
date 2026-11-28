@@ -10,8 +10,16 @@ This module provides the :class:`~manim_extensions.automata.mobjects.automata_de
 from __future__ import annotations
 
 import itertools
+from collections.abc import Sequence
+from typing import Protocol
 
 from .state import State
+
+
+class ReadSymbol(Protocol):
+    """Protocol for a transition symbol that exposes its TeX source."""
+
+    tex_string: str
 
 
 class Transition:
@@ -71,6 +79,9 @@ class Transition:
     """
 
     id_iter = itertools.count()
+
+    #: Symbols read by this transition.
+    read_symbols: Sequence[ReadSymbol] = ()
 
     def __init__(self, transition_from: State, transition_to: State) -> None:
         self.id = next(self.id_iter)

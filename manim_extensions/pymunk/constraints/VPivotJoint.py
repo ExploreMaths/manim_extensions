@@ -84,7 +84,7 @@ class VPivotJoint(VConstraint):
                self.wait(6)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         a_mob: Mobject,
         b_mob: Mobject,
@@ -99,7 +99,7 @@ class VPivotJoint(VConstraint):
             "color": YELLOW,
             "stroke_width": 2,
         },
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 

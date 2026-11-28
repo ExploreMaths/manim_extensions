@@ -8,6 +8,7 @@ from __future__ import annotations
 from typing import Any, cast
 
 import numpy as np
+from manim.typing import Point3D
 from manim import (
     DOWN,
     LEFT,
@@ -52,12 +53,12 @@ class HatchLines(VGroup):
                self.add(target, hatch)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target_mobject: Mobject,
         angle: float = PI / 6,
         offset: float = 0.3,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.hatch_target: VMobject = cast(VMobject, target_mobject)
@@ -94,9 +95,7 @@ class HatchLines(VGroup):
                     self.add(line_loc2)
 
 
-def curve_intersection(
-    vmob1: VMobject, vmob2: VMobject
-) -> tuple[np.ndarray, np.ndarray]:
+def curve_intersection(vmob1: VMobject, vmob2: VMobject) -> tuple[Point3D, Point3D]:
     """Find intersection points of two vector mobjects.
 
     Parameters

@@ -6,8 +6,9 @@
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.
 """
 
-from typing import Any, Literal, cast
+from typing import Literal, cast
 
+from ..utils.parsers.base_parser import BondsDict
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
 from .mc_element import MCElement
@@ -72,18 +73,18 @@ class MCMolecule:
         atoms: list[MCAtom] | None = None,
         bonds: list[MCBond] | None = None,
         name: str | None = None,
-        elements: MCElement | None = None,
+        elements: MCElement | dict[str, MCElement] | None = None,
     ) -> None:
         self.atoms = atoms or []
         self.bonds = bonds or []
-        self.elements: MCElement | dict[Any, Any] = elements or {}
-        self.atoms_by_index: dict[Any, MCAtom] = {}
+        self.elements: MCElement | dict[str, MCElement] = elements or {}
+        self.atoms_by_index: dict[int, MCAtom] = {}
         self.name = name
 
     def add_atoms_from_atoms_dict(
         self,
-        atoms_dict: dict[Any, Any],
-        elements_data_dict: dict[Any, Any] | None,
+        atoms_dict: dict[int, dict[str, object]],
+        elements_data_dict: dict[str, MCElement] | None,
     ) -> None:
         """Uses the atoms dict returned by a parser to add the atoms to the molecule.
 
@@ -117,7 +118,7 @@ class MCMolecule:
             self.atoms.append(mc_atom)
             self.atoms_by_index[atom_index] = mc_atom
 
-    def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> None:
+    def add_bonds_from_bonds_dict(self, bonds_dict: BondsDict) -> None:
         """Uses the bonds dict returned by a parser to add the bonds to the molecule.
 
         Parameters
@@ -140,7 +141,9 @@ class MCMolecule:
         for bond_index, bond_data_dict in bonds_dict.items():
             self.bonds.append(
                 MCBond.construct_from_bond_dict(
-                    bond_index=bond_index, bond_data_dict=bond_data_dict, molecule=self
+                    bond_index=bond_index,
+                    bond_data_dict=bond_data_dict,
+                    molecule=self,
                 )
             )
 
@@ -157,18 +160,22 @@ class MCMolecule:
             raise Exception("Bonds list is not a bonds list.")
 
         for mc_bond in self.bonds:
-            cast(Any, mc_bond.from_atom).add_atoms(mc_bond.to_atom)
-            cast(Any, mc_bond.from_atom).add_bonds(mc_bond)
-            cast(Any, mc_bond.to_atom).add_atoms(mc_bond.from_atom)
-            cast(Any, mc_bond.to_atom).add_bonds(mc_bond)
+            from_atom = mc_bond.from_atom
+            to_atom = mc_bond.to_atom
+            assert from_atom is not None
+            assert to_atom is not None
+            from_atom.add_atoms(to_atom)
+            from_atom.add_bonds(mc_bond)
+            to_atom.add_atoms(from_atom)
+            to_atom.add_bonds(mc_bond)
 
     @staticmethod
     def construct_from_data_dict(
-        atoms_data_dict: dict[int, dict[str, Any]],
-        bonds_data_dict: dict[int, list[dict[str, Any]]],
+        atoms_data_dict: dict[int, dict[str, object]],
+        bonds_data_dict: BondsDict,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+        elements_data_dict: dict[str, MCElement] | None = None,
     ) -> "MCMolecule":
         r"""Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
         the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between
@@ -214,7 +221,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+        elements_data_dict: dict[str, MCElement] | None = None,
     ) -> "MCMolecule":
         """Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
 
@@ -235,11 +242,7 @@ class MCMolecule:
         -------
             The molecule constructed from the file.
         """
-        parsed_data = cast(
-            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
-            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
-            FileHandler(file_path=filepath).parsed_atoms_bonds_data(),
-        )
+        parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 
         if isinstance(parsed_data, list):
             parsed_data = parsed_data[0]
@@ -258,7 +261,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+        elements_data_dict: dict[str, MCElement] | None = None,
     ) -> list["MCMolecule"]:
         r"""Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
@@ -281,7 +284,7 @@ class MCMolecule:
         """
 
         list_of_data_dicts = cast(
-            list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
+            list[tuple[dict[int, dict[str, object]], BondsDict]],
             FileHandler(file_path=filepath).parsed_atoms_bonds_data(),
         )
         mc_molecules = []
@@ -304,7 +307,7 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+        elements_data_dict: dict[str, MCElement] | None = None,
     ) -> "MCMolecule":
         """Reads a string and returns a molecule.
 
@@ -343,11 +346,7 @@ class MCMolecule:
         -------
             The molecule parsed from the string.
         """
-        parsed_data = cast(
-            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
-            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
-            FileHandler.parse_from_string(string=string, format=format),
-        )
+        parsed_data = FileHandler.parse_from_string(string=string, format=format)
 
         if isinstance(parsed_data, list):
             parsed_data = parsed_data[0]
@@ -367,7 +366,7 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+        elements_data_dict: dict[str, MCElement] | None = None,
     ) -> list["MCMolecule"]:
         r"""Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
@@ -390,11 +389,7 @@ class MCMolecule:
         -------
             A list of the results.
         """
-        parsed_data = cast(
-            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
-            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
-            FileHandler.parse_from_string(string=string, format=format),
-        )
+        parsed_data = FileHandler.parse_from_string(string=string, format=format)
         if isinstance(parsed_data, tuple):
             parsed_data = [parsed_data]
         mc_molecules = []
@@ -461,10 +456,14 @@ class MCMolecule:
 
         bonds_to_be_removed = []
         for index, bond in enumerate(self.bonds):
-            if cast(Any, bond.from_atom).molecule_index in atoms_to_be_removed:
+            from_atom = bond.from_atom
+            to_atom = bond.to_atom
+            assert from_atom is not None
+            assert to_atom is not None
+            if from_atom.molecule_index in atoms_to_be_removed:
                 bonds_to_be_removed.append(index)
 
-            if cast(Any, bond.to_atom).molecule_index in atoms_to_be_removed:
+            if to_atom.molecule_index in atoms_to_be_removed:
                 bonds_to_be_removed.append(index)
 
         if not bonds_to_be_removed:
@@ -487,15 +486,14 @@ class MCMolecule:
             self.atoms_by_index[index] = atom
 
         for bond in self.bonds:
-            if (
-                cast(Any, bond.from_atom).molecule_index
-                in atoms_old_index_mapping.keys()
-            ):
-                cast(Any, bond.from_atom).molecule_index = atoms_old_index_mapping[
-                    cast(Any, bond.from_atom).molecule_index
+            from_atom = bond.from_atom
+            to_atom = bond.to_atom
+            assert from_atom is not None
+            assert to_atom is not None
+            if from_atom.molecule_index in atoms_old_index_mapping:
+                from_atom.molecule_index = atoms_old_index_mapping[
+                    from_atom.molecule_index
                 ]
 
-            if cast(Any, bond.to_atom).molecule_index in atoms_old_index_mapping.keys():
-                cast(Any, bond.to_atom).molecule_index = atoms_old_index_mapping[
-                    cast(Any, bond.to_atom).molecule_index
-                ]
+            if to_atom.molecule_index in atoms_old_index_mapping:
+                to_atom.molecule_index = atoms_old_index_mapping[to_atom.molecule_index]

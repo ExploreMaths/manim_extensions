@@ -5,8 +5,11 @@
 """Math operation layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any, cast
+from typing import Any
 
+import numpy as np
+
+from manim.typing import Point3D
 from manim import (
     AnimationGroup,
     ApplyMethod,
@@ -14,7 +17,9 @@ from manim import (
     Circle,
     ManimColor,
     Mobject,
+    ORIGIN,
     ORANGE,
+    ORIGIN,
     Succession,
     Text,
     Wait,
@@ -91,7 +96,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     #: Arithmetic operators accepted by this layer.
     valid_operations = ["+", "-", "*", "/"]
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         operation_type: str,
         node_radius: float = 0.5,
@@ -100,7 +105,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         active_color: ManimColor = ORANGE,
         activation_function: ActivationFunction | str | None = None,
         font_size: float = 20,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         # Ensure operation type is valid
@@ -113,11 +118,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         self.font_size = font_size
         self.activation_function = activation_function
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Creates the neural network layer.
 
@@ -145,7 +150,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     def construct_activation_function(self) -> None:
         """Build the activation-function plot for this math-operation layer."""
         # Add the activation function
-        if not self.activation_function is None:
+        if self.activation_function is not None:
             # Check if it is a string
             if isinstance(self.activation_function, str):
                 activation_function = get_activation_function_by_name(
@@ -159,7 +164,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> Succession | AnimationGroup:
         """Makes the forward pass animation.
 
@@ -186,10 +191,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             ),
         )
         # Animate the activation function
-        if not self.activation_function is None:
+        activation_function = self.activation_function
+        if activation_function is not None and not isinstance(activation_function, str):
             animation_group = AnimationGroup(
                 succession,
-                cast(Any, self.activation_function).make_evaluate_animation(),
+                activation_function.make_evaluate_animation(),
                 lag_ratio=0.0,
             )
             return animation_group
@@ -225,9 +231,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
     def move_to(
         self,
-        mobject_or_point: Any,
-        aligned_edge: Any = None,
-        coor_mask: Any = None,
+        mobject_or_point: Mobject | Point3D | tuple[float, float, float],
+        aligned_edge: Point3D | tuple[float, float, float] = ORIGIN,
+        coor_mask: Point3D | tuple[float, float, float] = np.array([1.0, 1.0, 1.0]),
     ) -> "MathOperationLayer":
         """Moves the center of the layer to the given mobject or point.
 
@@ -247,10 +253,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The object itself, allowing method chaining.
         """
         layer_center = self.surrounding_circle.get_center()
+        target_center: Point3D
         if isinstance(mobject_or_point, Mobject):
             target_center = mobject_or_point.get_center()
         else:
-            target_center = mobject_or_point
+            target_center = np.asarray(mobject_or_point, dtype=float)
 
         self.shift(target_center - layer_center)
         return self

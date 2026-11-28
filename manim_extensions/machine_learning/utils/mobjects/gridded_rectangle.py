@@ -4,7 +4,7 @@
 
 """Gridded rectangle visualization utility."""
 
-from typing import Any
+# from typing import Any
 
 from manim import (
     DOWN,
@@ -88,7 +88,7 @@ class GriddedRectangle(VGroup):
         fill_opacity: float = 0.2,
         show_grid_lines: bool = False,
         dotted_lines: bool = False,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> None:
         super().__init__()
         # Fields

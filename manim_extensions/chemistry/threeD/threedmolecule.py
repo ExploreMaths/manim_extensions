@@ -129,17 +129,17 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                self.wait()
     """
 
-    group_class: Any = OpenGLGroup
+    group_class: type[OpenGLGroup] = OpenGLGroup
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
         atoms_dict: dict[Any, Any],
         bonds_dict: dict[Any, Any],
         source_csv: str | None = None,
         add_bonds: bool = True,
         add_atoms: bool = True,
-        *mobjects: Any,
-        **kwargs: Any,
+        *mobjects: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if config.renderer != RendererType.OPENGL:
             raise Exception(
@@ -209,7 +209,9 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     @staticmethod
     def mc_molecule_to_atoms_and_bonds(
         mc_molecule: MCMolecule,
-    ) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
+    ) -> tuple[
+        dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]
+    ]:  # explicit-any-ok: parser atom/bond records vary by file format
         """Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
 
         The tuple has the following structure:
@@ -235,8 +237,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             for bond in atom.bonds:
                 # TODO: This patches an issue with from_atom and to_atom but does not solve it completely.
                 # Fix later the root cause
-                from_atom_ref = cast(Any, bond.from_atom)
-                to_atom_ref = cast(Any, bond.to_atom)
+                from_atom_ref = bond.from_atom
+                to_atom_ref = bond.to_atom
+                assert from_atom_ref is not None
+                assert to_atom_ref is not None
                 if from_atom_ref.molecule_index == index:
                     bond_to[to_atom_ref.molecule_index] = to_atom_ref.element.symbol
 
@@ -255,10 +259,14 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         for atom_index in atoms.keys():
             atom_bonds = []
             for bond in mc_molecule.bonds:
-                if atom_index == cast(Any, bond.to_atom).molecule_index:
+                to_atom = bond.to_atom
+                from_atom = bond.from_atom
+                assert to_atom is not None
+                assert from_atom is not None
+                if atom_index == to_atom.molecule_index:
                     atom_bonds.append(
                         {
-                            "to": cast(Any, bond.from_atom).molecule_index,
+                            "to": from_atom.molecule_index,
                             "type": bond.bond_type,
                             "stereo": bond.stereo,
                             "topology": bond.topology,

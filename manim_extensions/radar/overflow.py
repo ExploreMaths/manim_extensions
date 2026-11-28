@@ -17,7 +17,7 @@ from typing import Any
 from manim import Animation
 
 from .animations import RadarBurstIn
-from .chart import RadarChart, RadarInputList
+from .chart import RadarChart, RadarInput, RadarInputList
 from .config import RadarConfig, get_style
 from .data import RadarData
 from .theme import RadarTheme
@@ -109,13 +109,13 @@ class OverflowRadarChart(RadarChart):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         data: RadarData | None = None,
         *,
         axes: Sequence[str] | None = None,
         values: Sequence[float] | None = None,
-        datasets: Sequence[Any] | None = None,
+        datasets: Sequence[RadarInput] | None = None,
         name: str | None = None,
         color: str | None = None,
         max_value: float | None = None,
@@ -132,7 +132,7 @@ class OverflowRadarChart(RadarChart):
         sweep: bool | None = None,
         rim: bool | None = None,
         opacity: float | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         base = config if config is not None else get_style(style)
         base = base.evolved(overflow=True)
@@ -166,7 +166,11 @@ class OverflowRadarChart(RadarChart):
         )
 
     # ------------------------------------------------------------------
-    def morph_to(self, data: RadarInputList, **kwargs: Any) -> Animation:
+    def morph_to(
+        self, data: RadarInputList, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Morph with the burst transition unless told otherwise.
 
         Parameters
@@ -185,7 +189,11 @@ class OverflowRadarChart(RadarChart):
         kwargs.setdefault("transition", "burst")
         return super().morph_to(data, **kwargs)
 
-    def burst_in(self, run_time: float = 1.1, **kwargs: Any) -> Animation:
+    def burst_in(
+        self, run_time: float = 1.1, **kwargs: Any
+    ) -> (
+        Animation
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Play the overflow entrance.
 
         Parameters

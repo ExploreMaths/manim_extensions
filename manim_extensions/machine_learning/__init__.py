@@ -113,4 +113,4 @@ class ManimMLConfig:
 
 # These are accessible from the manim_ml namespace
 #: Shared ManimML configuration singleton exposed from the package namespace.
-config = ManimMLConfig()  # type: ignore[assignment]  # intentionally shadows manim's star-imported config
+from .config import config as config  # type: ignore[assignment]

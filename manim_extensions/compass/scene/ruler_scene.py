@@ -53,12 +53,12 @@ class SingleRulerScene(MovingCameraScene):
         self.pen_pos = self.pencil.get_center()
         self.ruler.save_state()
 
-    def draw_line_with_pencil(
+    def draw_line_with_pencil(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D,
         end: Point3D,
         added_anims: list[Any] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Line:
         """Draw a :class:`~manim.mobject.geometry.line.Line` from ``start`` to ``end``.
 
@@ -97,8 +97,11 @@ class SingleRulerScene(MovingCameraScene):
         self.play(*anims, run_time=0.5 * run_time, **kwargs)
         return line
 
-    def put_ruler_back(
-        self, added_anims: list[Any] | None = None, run_time: float = 0.5, **kwargs: Any
+    def put_ruler_back(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        added_anims: list[Any] | None = None,
+        run_time: float = 0.5,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Restore the ruler to its saved state and move the pencil back.
 

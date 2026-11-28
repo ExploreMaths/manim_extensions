@@ -6,7 +6,7 @@
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser` class for parsing MOL format chemical files.
 """
 
-from typing import Any, cast
+from typing import cast
 
 import numpy as np
 
@@ -100,7 +100,7 @@ class MolParser(BaseParser):
         )
 
     @staticmethod
-    def data_parser(data: Any) -> ParsedData:
+    def data_parser(data: list[str] | list[list[str]]) -> ParsedData:
         # Get general data
         """Parse the lines of a MOL file into atoms and bonds dicts.
 
@@ -113,18 +113,21 @@ class MolParser(BaseParser):
         -------
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
-        mol_name = data[0].strip()  # This info is not always available  # noqa F841
-        mol_source = data[1].strip()  # This info is not always available  # noqa F841
-        mol_comments = data[2].rstrip()  # This info is not always available # noqa F841
-        mol_general_line = data[3]  # This info is not always available
-        data.remove(mol_general_line)  # This info is not always available
+        lines = cast(list[str], data)
+        mol_name = lines[0].strip()  # This info is not always available  # noqa F841
+        mol_source = lines[1].strip()  # This info is not always available  # noqa F841
+        mol_comments = lines[
+            2
+        ].rstrip()  # This info is not always available # noqa F841
+        mol_general_line = lines[3]  # This info is not always available
+        lines.remove(mol_general_line)  # This info is not always available
         mol_general_info = mol_general_line.rstrip().split()
         number_of_atoms = int(mol_general_info[0])
         number_of_bonds = int(mol_general_info[1])
 
-        atoms: dict[int, dict[str, Any]] = {}
-        bonds: dict[int, list[dict[str, Any]]] = {}
-        for index, line in enumerate(data[3 : 3 + number_of_atoms]):
+        atoms: dict[int, dict[str, object]] = {}
+        bonds: dict[int, list[dict[str, object]]] = {}
+        for index, line in enumerate(lines[3 : 3 + number_of_atoms]):
             line_data = line.split()
             x_position = float(line_data[0])
             y_position = float(line_data[1])
@@ -135,7 +138,7 @@ class MolParser(BaseParser):
                 "element": element,
             }
         bond_index = 1
-        for line in data[3 + number_of_atoms : 3 + number_of_atoms + number_of_bonds]:
+        for line in lines[3 + number_of_atoms : 3 + number_of_atoms + number_of_bonds]:
             line_data = line.split()
             first_atom_index = int(float(line_data[0]))
             second_atom_index = int(float(line_data[1]))
@@ -174,31 +177,31 @@ class MolParser(BaseParser):
 
             if first_atom_index not in bonds:
                 bonds[first_atom_index] = [bond_data]
-                if not atoms[first_atom_index].get("bond_to"):
-                    atoms[first_atom_index]["bond_to"] = {
-                        second_atom_index: atoms[second_atom_index].get("element")
-                    }
-                else:
-                    atoms[first_atom_index]["bond_to"][second_atom_index] = atoms[
-                        second_atom_index
-                    ].get("element")
+                target_bonds = atoms[first_atom_index].get("bond_to")
+                if not isinstance(target_bonds, dict):
+                    target_bonds = {}
+                    atoms[first_atom_index]["bond_to"] = target_bonds
+                target_bonds[second_atom_index] = atoms[second_atom_index].get(
+                    "element"
+                )
 
             else:
                 bonds[first_atom_index].append(bond_data)
-                atoms[first_atom_index]["bond_to"][second_atom_index] = atoms[
-                    second_atom_index
-                ].get("element")
+                target_bonds = atoms[first_atom_index].get("bond_to")
+                if not isinstance(target_bonds, dict):
+                    target_bonds = {}
+                    atoms[first_atom_index]["bond_to"] = target_bonds
+                target_bonds[second_atom_index] = atoms[second_atom_index].get(
+                    "element"
+                )
 
-            if not atoms[second_atom_index].get("bond_to"):
-                atoms[second_atom_index]["bond_to"] = {
-                    first_atom_index: atoms[first_atom_index].get("element")
-                }
-            else:
-                atoms[second_atom_index]["bond_to"][first_atom_index] = atoms[
-                    first_atom_index
-                ].get("element")
+            target_bonds = atoms[second_atom_index].get("bond_to")
+            if not isinstance(target_bonds, dict):
+                target_bonds = {}
+                atoms[second_atom_index]["bond_to"] = target_bonds
+            target_bonds[first_atom_index] = atoms[first_atom_index].get("element")
 
-        new_bonds: dict[int, dict[str, Any]] = {}
+        new_bonds: BondsDict = {}
 
         for bonds_data in bonds.values():
             for bond in bonds_data:

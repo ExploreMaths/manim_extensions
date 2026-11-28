@@ -10,13 +10,16 @@ This module provides the feed forward layer class for neural network visualizati
 from __future__ import annotations
 
 import numpy as np
+from collections.abc import Sequence
 from typing import Any, cast
 
+from manim.typing import Point3D
 from manim import (
     Animation,
     AnimationGroup,
     ApplyMethod,
     Circle,
+    ORIGIN,
     Create,
     ManimColor,
     Mobject,
@@ -31,7 +34,7 @@ from manim import (
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
-from ... import config
+from ...config import config
 from manim.typing import Point3D
 
 
@@ -101,23 +104,21 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         num_nodes: int,
         layer_buffer: float = SMALL_BUFF / 2,
         node_radius: float = 0.08,
-        node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
-        node_outline_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
-        rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+        node_color: ManimColor = config.color_scheme.primary_color,
+        node_outline_color: ManimColor = config.color_scheme.secondary_color,
+        rectangle_color: ManimColor = config.color_scheme.secondary_color,
         node_spacing: float = 0.3,
-        rectangle_fill_color: ManimColor = cast(
-            Any, config
-        ).color_scheme.background_color,
+        rectangle_fill_color: ManimColor = config.color_scheme.background_color,
         node_stroke_width: float = 2.0,
         rectangle_stroke_width: float = 2.0,
-        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+        animation_dot_color: ManimColor = config.color_scheme.active_color,
         activation_function: ActivationFunction | str | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.num_nodes = num_nodes
@@ -135,11 +136,11 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         self.node_group = VGroup()
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Creates the neural network layer.
 
@@ -184,7 +185,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     def construct_activation_function(self) -> None:
         """Build the activation-function plot for this feed-forward layer."""
         # Add the activation function
-        if not self.activation_function is None:
+        if self.activation_function is not None:
             # Check if it is a string
             if isinstance(self.activation_function, str):
                 activation_function = get_activation_function_by_name(
@@ -198,7 +199,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_dropout_forward_pass_animation(
-        self, layer_args: dict[object, Any], **kwargs: Any
+        self, layer_args: dict[str, object], **kwargs: object
     ) -> Succession:
         """Makes a forward pass animation with dropout.
 
@@ -216,7 +217,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         """
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args
-        dropout_node_indices = layer_args["dropout_node_indices"]
+        dropout_node_indices = cast(Sequence[int], layer_args["dropout_node_indices"])
         # Only highlight nodes that were note dropped out
         nodes_to_highlight = []
         for index, node in enumerate(self.node_group):
@@ -226,13 +227,13 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
-                cast(Any, nodes_to_highlight_group).set_color,
+                nodes_to_highlight_group.set_color,
                 self.animation_dot_color,
                 run_time=0.25,
             ),
             Wait(1.0),
             ApplyMethod(
-                cast(Any, nodes_to_highlight_group).set_color,
+                nodes_to_highlight_group.set_color,
                 self.node_color,
                 run_time=0.25,
             ),
@@ -240,8 +241,10 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         return succession
 
-    def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+    def make_forward_pass_animation(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        layer_args: dict[str, object] = {},
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> Succession | AnimationGroup:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 
@@ -272,10 +275,13 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                 Wait(1.0),
                 ApplyMethod(self.node_group.set_color, self.node_color, run_time=0.25),
             )
-            if not self.activation_function is None:
+            activation_function = self.activation_function
+            if activation_function is not None and not isinstance(
+                activation_function, str
+            ):
                 animation_group = AnimationGroup(
                     succession,
-                    cast(Any, self.activation_function).make_evaluate_animation(),
+                    activation_function.make_evaluate_animation(),
                     lag_ratio=0.0,
                 )
                 return animation_group
@@ -283,7 +289,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                 return succession
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Create the surrounding rectangle and all nodes.
 
         Parameters
@@ -343,9 +349,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     def move_to(
         self,
-        mobject_or_point: Any,
-        aligned_edge: Any = None,
-        coor_mask: Any = None,
+        mobject_or_point: Mobject | Point3D | tuple[float, float, float],
+        aligned_edge: Point3D | tuple[float, float, float] = ORIGIN,
+        coor_mask: Point3D | tuple[float, float, float] = np.array([1.0, 1.0, 1.0]),
     ) -> "FeedForwardLayer":
         """Moves the center of the layer to the given mobject or point.
 
@@ -365,10 +371,11 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The object itself, allowing method chaining.
         """
         layer_center = self.surrounding_rectangle.get_center()
+        target_center: Point3D
         if isinstance(mobject_or_point, Mobject):
             target_center = mobject_or_point.get_center()
         else:
-            target_center = mobject_or_point
+            target_center = np.asarray(mobject_or_point, dtype=float)
 
         self.shift(target_center - layer_center)
         return self

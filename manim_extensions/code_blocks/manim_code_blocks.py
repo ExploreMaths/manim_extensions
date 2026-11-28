@@ -5,8 +5,8 @@
 """Utilities for the manim_code_blocks module."""
 
 from __future__ import annotations
-from collections.abc import Callable
-from typing import Any, cast
+from collections.abc import Callable, Sequence
+from typing import Any, Protocol, cast
 
 # patched: bundled GitHub language colours locally, removed the import-time
 # patched: network request, and made tokenize-all-code a lazy optional extra
@@ -39,6 +39,8 @@ from manim import (
     UP,
     Uncreate,
     VGroup,
+    Text,
+    VMobject,
 )
 import numpy as np
 
@@ -87,7 +89,7 @@ class Theme:
         theme = Theme(colors={"#ff0000": ["keyword"]}, group_matchers=["#00ff00"])
     """
 
-    colors: dict[str, list[str | Callable[..., Any]]]
+    colors: dict[str, list[str | Callable[[TokenLike], bool]]]
     """
     The colors of this theme represented as a dictionary. The keys of the dictionary are hexidecimal colors (such as `"#FFFFFF"`), and the values are lists of token types that should be colored with that color (such as `["keyword", "operation"]`).
     """
@@ -96,13 +98,13 @@ class Theme:
 
     def __init__(
         self,
-        colors: dict[str, list[str | Callable[..., Any]]],
+        colors: dict[str, list[str | Callable[[TokenLike], bool]]],
         group_matchers: list[str],
     ) -> None:
         self.colors = colors
         self.group_matchers = group_matchers
 
-    def color_for(self, token: object) -> str:
+    def color_for(self, token: TokenLike) -> str:
         """Return the theme colour assigned to a token.
 
         Parameters
@@ -115,7 +117,7 @@ class Theme:
             The matching hex colour, or white when no rule matches.
         """
         for key, value in self.colors.items():
-            if cast(Any, token).type in value:
+            if token.type in value:
                 return key
         return "#FFFFFF"
 
@@ -157,6 +159,19 @@ language_colors = {
     "SQL": {"color": "#e38c00"},
     "TypeScript": {"color": "#3178c6"},
 }
+
+
+class TokenLike(Protocol):
+    """A tokenizer token with a type name."""
+
+    type: str
+    value: str
+
+
+class TokenizerLike(Protocol):
+    """A tokenizer that splits one line into tokens."""
+
+    def tokenize(self, line: str) -> Sequence[TokenLike]: ...
 
 
 class ProgrammingLanguage(abstract):
@@ -220,7 +235,7 @@ class ProgrammingLanguage(abstract):
             print(f"Warning: no color found for {name}")
 
     @property
-    def language(self) -> object:
+    def language(self) -> TokenizerLike | None:
         """Return the tokenizer for this language.
 
         Returns
@@ -231,7 +246,7 @@ class ProgrammingLanguage(abstract):
         language = getattr(tokenize_all, self._tokenize_name, None)
         if language is None:
             print(f"Warning: no tokenization found for {self.name}")
-        return language
+        return cast("TokenizerLike | None", language)
 
 
 class CodeBlock(VGroup):
@@ -284,21 +299,23 @@ class CodeBlock(VGroup):
     The :class:`~manim.mobject.geometry.shape_matchers.BackgroundRectangle` for the `title` object that lists the language name above the code block. Equivalent to indexing at `[2]`.
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         text: str,
         language: ProgrammingLanguage | None = None,
         theme: Theme = OneDark,
         font: str = "consolas",
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
 
         if language:
             lines = text.split("\n")
+            tokenizer = language.language
+            assert tokenizer is not None
             group_count = 0
             finished: list[str] = []
             for line in lines:
-                tokens = cast(Any, language.language).tokenize(line)
+                tokens = tokenizer.tokenize(line)
                 for token in tokens:
                     if token.type.startswith("left"):
                         finished.append(
@@ -382,7 +399,11 @@ class CodeBlock(VGroup):
         self.code = markup
         self.code_background = background_rect
 
-    def create(self, **kwargs: Any) -> tuple[Animation, ...]:
+    def create(
+        self, **kwargs: Any
+    ) -> tuple[
+        Animation, ...
+    ]:  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return a tuple of animations for creating the code block.
 
         Use the returned animations with :meth:`~manim.scene.scene.Scene.play`:
@@ -405,20 +426,26 @@ class CodeBlock(VGroup):
             A tuple of animations that create the block, including the title
             animations when a title is present.
         """
-        if getattr(self, "title", None) and getattr(self, "title_background", None):
+        title = self.title
+        title_background = self.title_background
+        if title is not None and title_background is not None:
             return (
                 FadeIn(self.code_background, **kwargs),
-                AddTextLetterByLetter(cast(Any, self.code), **kwargs),
-                FadeIn(cast(Any, self.title_background), **kwargs),
-                AddTextLetterByLetter(cast(Any, self.title), **kwargs),
+                AddTextLetterByLetter(cast(Text, self.code), **kwargs),
+                FadeIn(title_background, **kwargs),
+                AddTextLetterByLetter(cast(Text, title), **kwargs),
             )
 
         return (
             FadeIn(self.code_background, **kwargs),
-            AddTextLetterByLetter(cast(Any, self.code), **kwargs),
+            AddTextLetterByLetter(cast(Text, self.code), **kwargs),
         )
 
-    def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
+    def uncreate(
+        self, **kwargs: Any
+    ) -> tuple[
+        Animation, ...
+    ]:  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Return a tuple of animations for uncreating the code block. Use such as:
                 ```
                 python = CodeBlock('print("Hello World!")', language = Python)
@@ -436,17 +463,19 @@ class CodeBlock(VGroup):
             A tuple of animations that remove the block, including the title
             animations when a title is present.
         """
-        if getattr(self, "title", None) and getattr(self, "title_background", None):
+        title = self.title
+        title_background = self.title_background
+        if title is not None and title_background is not None:
             return (
                 FadeOut(self.code_background, **kwargs),
-                Uncreate(self.code, **kwargs),
-                FadeOut(cast(Any, self.title_background), **kwargs),
-                Uncreate(cast(Any, self.title), **kwargs),
+                Uncreate(cast(VMobject, self.code), **kwargs),
+                FadeOut(title_background, **kwargs),
+                Uncreate(cast(VMobject, self.title), **kwargs),
             )
 
         return (
             FadeOut(self.code_background, **kwargs),
-            Uncreate(self.code, **kwargs),
+            Uncreate(cast(VMobject, self.code), **kwargs),
         )
 
 

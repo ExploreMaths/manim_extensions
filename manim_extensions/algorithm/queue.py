@@ -66,7 +66,7 @@ class Queue(VMobject):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         capacity: int,
         init_data: list[Node] | None = None,
@@ -74,7 +74,7 @@ class Queue(VMobject):
         font_size: int = 48,
         box_type: NodeBoxType = Square,
         bound_color: ManimColor = RED,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.capacity = capacity
@@ -136,7 +136,7 @@ class Queue(VMobject):
                    self.wait()
         """
 
-        def __init__(self, queue: Queue, item: Node, **kwargs: Any) -> None:
+        def __init__(self, queue: Queue, item: Node, **kwargs: object) -> None:
             path = [
                 item.get_center(),
                 queue.get_right() + queue.item_width / 2 * RIGHT,
@@ -187,7 +187,7 @@ class Queue(VMobject):
         """
 
         def __init__(
-            self, queue: Queue, target_pos: Point3D | None = None, **kwargs: Any
+            self, queue: Queue, target_pos: Point3D | None = None, **kwargs: object
         ) -> None:
             if not queue.data:
                 return

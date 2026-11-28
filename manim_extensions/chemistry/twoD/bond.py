@@ -82,7 +82,7 @@ class BaseMBondObject(VGroup):
         """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         from_atom: MAtomObject,
         to_atom: MAtomObject,
@@ -90,7 +90,7 @@ class BaseMBondObject(VGroup):
         subtype: Literal["complete", "skeleton", "over_bond"] | None = None,
         color: ManimColor | str = WHITE,
         index: int = 0,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         VGroup.__init__(self, **kwargs)
         self.from_atom = from_atom
@@ -529,14 +529,14 @@ class DoubleBond(BaseMBondObject):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         from_atom: MAtomObject,
         to_atom: MAtomObject,
         side: int = 0,
         distance: float = 0.15,
         double_bond_scale: float = 0.7,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.side = side
         self.distance = distance
@@ -800,14 +800,14 @@ class TripleBond(BaseMBondObject):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         from_atom: MAtomObject,
         to_atom: MAtomObject,
         side: int = 0,
         distance: float = 0.3,
         triple_bond_scale: float = 0.8,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.distance = distance
         self.triple_bond_scale = triple_bond_scale

@@ -73,15 +73,15 @@ class TripletLayer(NeuralNetworkLayer):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
-        anchor: Any,
-        positive: Any,
-        negative: Any,
+        anchor: ImageMobject | GrayscaleImageMobject,
+        positive: ImageMobject | GrayscaleImageMobject,
+        negative: ImageMobject | GrayscaleImageMobject,
         stroke_width: float = 5,
         font_size: float = 22,
         buff: float = 0.2,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.anchor = anchor
@@ -92,11 +92,11 @@ class TripletLayer(NeuralNetworkLayer):
         self.stroke_width = stroke_width
         self.font_size = font_size
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Build the triplet assets and add them to the layer.
 
@@ -146,9 +146,9 @@ class TripletLayer(NeuralNetworkLayer):
             The layer built from the supplied image paths.
         """
         # Load images from path
-        anchor: Any
-        positive: Any
-        negative: Any
+        anchor: ImageMobject | GrayscaleImageMobject
+        positive: ImageMobject | GrayscaleImageMobject
+        negative: ImageMobject | GrayscaleImageMobject
         if grayscale:
             anchor = GrayscaleImageMobject.from_path(anchor_path)
             positive = GrayscaleImageMobject.from_path(positive_path)
@@ -171,7 +171,7 @@ class TripletLayer(NeuralNetworkLayer):
         """
         # Handle anchor
         anchor_group = LabeledColorImage(
-            cast(Any, self.anchor),
+            cast(ImageMobject, self.anchor),
             color=WHITE,
             label="Anchor",
             stroke_width=self.stroke_width,
@@ -180,7 +180,7 @@ class TripletLayer(NeuralNetworkLayer):
         )
         # Handle positive
         positive_group = LabeledColorImage(
-            cast(Any, self.positive),
+            cast(ImageMobject, self.positive),
             color=GREEN,
             label="Positive",
             stroke_width=self.stroke_width,
@@ -189,7 +189,7 @@ class TripletLayer(NeuralNetworkLayer):
         )
         # Handle negative
         negative_group = LabeledColorImage(
-            cast(Any, self.negative),
+            cast(ImageMobject, self.negative),
             color=RED,
             label="Negative",
             stroke_width=self.stroke_width,
@@ -213,7 +213,7 @@ class TripletLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Forward pass for triplet.
 

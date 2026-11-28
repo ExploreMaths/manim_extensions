@@ -6,6 +6,7 @@
 """Image to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
+from types import MethodType
 from typing import Any, cast
 
 from manim import (
@@ -25,7 +26,7 @@ from .convolutional_2d import Convolutional2DLayer
 from .image import ImageLayer
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 
-from ... import config
+from ...config import config
 from ...utils.mobjects.image import GrayscaleImageMobject
 
 
@@ -81,18 +82,21 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     input_class = ImageLayer
     output_class = Convolutional2DLayer
 
-    def __init__(
-        self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        input_layer: ImageLayer,
+        output_layer: Convolutional2DLayer,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+        super().__init__(input_layer, output_layer, **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -109,7 +113,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return None
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, run_time: float = 5, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> Succession:
         """Maps image to convolutional layer.
 
@@ -205,8 +209,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Make rotation of image
         rotation = ApplyMethod(
             image_mobject.rotate,
-            cast(Any, config).three_d_config.rotation_angle,
-            cast(Any, config).three_d_config.rotation_axis,
+            config.three_d_config.rotation_angle,
+            config.three_d_config.rotation_axis,
             # A trailing dict is forwarded to the method as keyword
             # arguments (see ApplyMethod.create_target).
             {"about_point": image_mobject.get_center()},
@@ -225,14 +229,17 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                 The image mobject scaled to the target feature-map size.
             """
             max_width_height = max(image_mobject.width, image_mobject.height)
-            scale_factor = (
-                cast(Any, target_feature_map).untransformed_width / max_width_height
-            )
+            target_width = cast(
+                Convolutional2DLayer, target_feature_map
+            ).untransformed_width
+            if isinstance(target_width, tuple):
+                target_width = max(target_width)
+            scale_factor = target_width / max_width_height
             image_mobject.scale(scale_factor)
 
             return image_mobject
 
-        scale_image = ApplyFunction(cast(Any, scale_image_func), image_mobject)
+        scale_image = ApplyFunction(cast(MethodType, scale_image_func), image_mobject)
         # Move the image
         move_image = ApplyMethod(image_mobject.move_to, target_feature_map)
         # Compose the animations
@@ -254,8 +261,10 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             self.input_layer.image_mobject, self.output_layer.feature_maps[0]
         )
 
-    def scale(
-        self, scale_factor: float, **kwargs: Any
+    def scale(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scale_factor: float,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "ImageToConvolutional2DLayer":
         """Scale the layer by forwarding to the parent class.
 
@@ -274,7 +283,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return self
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Return a zero-duration wait for an invisible layer.
 
         Parameters

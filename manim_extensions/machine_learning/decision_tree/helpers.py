@@ -51,6 +51,10 @@ class SklearnTree(Protocol):
     children_left: VectorND
     children_right: VectorND
     impurity: VectorND
+    feature: VectorND
+    threshold: VectorND
+    value: VectorND
+    max_depth: int
 
 
 def compute_node_depths(tree: SklearnTree) -> list[int]:

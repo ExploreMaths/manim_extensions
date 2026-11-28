@@ -89,7 +89,7 @@ class MAtomObject(VGroup):
         """
         return f"MAtomObject of element {self.element}"
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         coords: Point3D = np.array([0, 0, 0]),
         element: str = "H",
@@ -101,7 +101,7 @@ class MAtomObject(VGroup):
         charge: int = 0,
         index: int = 0,
         planar: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         VGroup.__init__(self, **kwargs)
         self.coords = coords

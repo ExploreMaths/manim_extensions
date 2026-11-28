@@ -12,7 +12,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: LabelDot
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import LabelDot
@@ -32,7 +31,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: MathTexLine MathTexBrace MathTexDoublearrow
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import MathTexLine, MathTexBrace, MathTexDoublearrow
@@ -51,7 +49,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ExtendedLine PerpendicularLine PerpendicularSign
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ExtendedLine, PerpendicularLine, PerpendicularSign
@@ -69,7 +66,6 @@ straight to the demo you need.
    :ref_classes: LabelDot
    :ref_functions: vmobject_int
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import vmobject_int, LabelDot
@@ -89,7 +85,6 @@ straight to the demo you need.
 .. manim:: TextAnimations
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import TypeWriter, WriteRandom, FadeOutRandom
@@ -113,7 +108,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ColorText
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ColorText
@@ -129,7 +123,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: FileTree
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import FileTree
@@ -154,7 +147,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: TreeDiagram
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import TreeDiagram
@@ -175,7 +167,6 @@ straight to the demo you need.
 .. manim:: HighlightAnimations
    :ref_classes: PassingRectangle HighLightWithLines
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import PassingRectangle, HighLightWithLines
@@ -195,7 +186,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ShadowAround ObjectBorder
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ShadowAround, ObjectBorder
@@ -212,7 +202,6 @@ straight to the demo you need.
 .. manim:: TrailOverview
    :ref_classes: Trail
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import Trail
@@ -232,7 +221,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ChineseMathTex
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ChineseMathTex
@@ -248,7 +236,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ThreeDVector
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ThreeDVector
@@ -274,7 +261,6 @@ straight to the demo you need.
 .. manim:: MoreAnimations
    :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import ReversedWrite, FadeInRandom, GrowRandom, LaggedCreation
@@ -298,7 +284,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: manim_extensions.algorithm.node.Node Array Queue
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.algorithm import Node, Array, Queue
@@ -321,7 +306,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: VoltageSource Resistor Ground Circuit
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.circuit import VoltageSource, Resistor, Ground
@@ -346,7 +330,6 @@ straight to the demo you need.
    :ref_classes: ExtendedLine CompassScene DrawPath
    :ref_functions: vmobject_int
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import vmobject_int, ExtendedLine
@@ -392,7 +375,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: MArray MVariable
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.data_structures import MArray, MVariable
@@ -407,7 +389,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear Rack
    :section:
-   :no_title:
 
    from manim import *
    import numpy as np
@@ -433,7 +414,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: Mesh Manim2DMesh
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions import LabelDot
@@ -456,7 +436,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: MindMap
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.mindmap import MindMap
@@ -497,7 +476,6 @@ straight to the demo you need.
 .. manim:: SequenceDiagram
    :ref_classes: SeqActor SeqObject SeqAction
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.sequence_diagram import SeqActor, SeqObject, SeqAction
@@ -527,7 +505,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: Tikz
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.tikz import Tikz
@@ -549,7 +526,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: Lens Ray
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.physics import Lens, Ray
@@ -569,7 +545,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: StandingWave
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.physics import StandingWave
@@ -583,7 +558,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: Charge ElectricField
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.physics import Charge, ElectricField
@@ -601,7 +575,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: Pendulum
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.physics import Pendulum
@@ -616,7 +589,6 @@ straight to the demo you need.
    :save_last_frame:
    :ref_classes: ManimDeterministicFiniteAutomaton
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.automata import ManimDeterministicFiniteAutomaton
@@ -650,7 +622,6 @@ The next example shows dimensions, hatching, and path tools from the vendored
    :save_last_frame:
    :ref_classes: LinearDimension HatchLines
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.cad_drawing_utils import LinearDimension, HatchLines
@@ -685,7 +656,6 @@ effects.
    :save_last_frame:
    :ref_classes: RadarChart RadarData
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.radar import RadarChart, RadarData
@@ -712,7 +682,6 @@ ellipsoid, torus, and hyperboloid scenes.
    :save_last_frame:
    :ref_classes: GaussianSurface
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.three_d import GaussianSurface
@@ -753,7 +722,6 @@ package, with a language label and theme-aware colours.
    :save_last_frame:
    :ref_classes: CodeBlock
    :section:
-   :no_title:
 
    from manim import *
    from manim_extensions.code_blocks import CodeBlock, Python, Cpp

@@ -85,7 +85,7 @@ class SDFParser(MolParser):
 
     @staticmethod
     def data_parser(
-        molecules_data: list[list[str]],
+        molecules_data: list[str] | list[list[str]],
     ) -> list[tuple[AtomsDict, BondsDict]]:
         """Parse the molecules of an SDF file into a list of atoms and bonds dicts.
 
@@ -99,5 +99,6 @@ class SDFParser(MolParser):
             List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
         return [
-            cast(MoleculeData, MolParser.data_parser(data)) for data in molecules_data
+            cast(MoleculeData, MolParser.data_parser(cast(list[str], data)))
+            for data in molecules_data
         ]

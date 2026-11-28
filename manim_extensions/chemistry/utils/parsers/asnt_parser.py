@@ -7,11 +7,9 @@
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser` class for parsing ASNT format chemical files.
 """
 
-from typing import Any
-
 import numpy as np
 
-from .base_parser import BaseParser, FilePath, ParsedData
+from .base_parser import BaseParser, BondsDict, FilePath, ParsedData
 
 #: Mapping from bond type name to bond order.
 BOND_TYPE_MAPPING = {
@@ -144,7 +142,7 @@ class ASNTParser(BaseParser):
         return line
 
     @staticmethod
-    def data_parser(data: Any) -> ParsedData:
+    def data_parser(data: list[str]) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:
@@ -188,7 +186,7 @@ class ASNTParser(BaseParser):
             atoms_elements.append(line.replace(",", "").replace('"', "").capitalize())
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
-        atoms_data: dict[int, dict[str, Any]] = {
+        atoms_data: dict[int, dict[str, object]] = {
             int(float(atom_index.strip())): {"element": atom_element}
             for atom_index, atom_element in zip(atoms_indices, atoms_elements)
         }
@@ -220,7 +218,7 @@ class ASNTParser(BaseParser):
         while not line.startswith('"conformers"'):
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
-        bonds_data: dict[int, dict[str, Any]] = {}
+        bonds_data: BondsDict = {}
         for bond_index, bond_params in enumerate(
             zip(from_atom_index, to_atom_index, bond_type_list)
         ):

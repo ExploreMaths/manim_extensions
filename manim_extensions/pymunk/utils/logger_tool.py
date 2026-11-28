@@ -6,7 +6,8 @@
 """Logger utility for Pymunk physics simulations."""
 
 from __future__ import annotations
-from typing import Any
+
+# from typing import Any
 
 __all__ = ["manim_pymunk_logger"]
 import logging
@@ -53,7 +54,7 @@ class SingletonLogger:
     _instance_lock = threading.Lock()
     _instance = None
 
-    def __new__(cls, *args: Any, **kwargs: Any) -> "SingletonLogger":
+    def __new__(cls, *args: object, **kwargs: object) -> "SingletonLogger":
         """Return the process-wide singleton logger instance.
 
         Parameters

@@ -11,7 +11,14 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any, TYPE_CHECKING, cast
 
-from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
+from manim import (
+    Circle,
+    ImageMobject,
+    Line,
+    Mobject,
+    config,
+    subdivide_bezier,
+)
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 
@@ -22,6 +29,15 @@ from ..utils.logger_tool import manim_pymunk_logger
 if TYPE_CHECKING:
     import pymunk
     from pymunk import Body
+
+
+class PymunkMobject(Mobject):
+    """A Manim mobject extended with pymunk body and shape attributes."""
+
+    body: pymunk.Body
+    shapes: list[pymunk.Shape]
+    angle: float
+    stroke_width: float
 
 
 class VSpace(Mobject, metaclass=ConvertToOpenGL):
@@ -93,14 +109,14 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                self.wait(4)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         gravity: tuple[float, float] = (0, -9.81),
         sub_step: int = 8,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
         self.space.gravity = gravity
         self.space.sleep_time_threshold = 1
@@ -146,10 +162,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Manim Mobject to be synchronized. It must have a `.body`
             attribute linked to a Pymunk body.
         """
-        x, y = cast(Any, mob).body.position
-        mob.move_to((x, y, 0))
-        mob.rotate(cast(Any, mob).body.angle - cast(Any, mob).angle)
-        cast(Any, mob).angle = cast(Any, mob).body.angle
+        pymunk_mob = cast(PymunkMobject, mob)
+        x, y = pymunk_mob.body.position
+        pymunk_mob.move_to((x, y, 0))
+        pymunk_mob.rotate(pymunk_mob.body.angle - pymunk_mob.angle)
+        pymunk_mob.angle = pymunk_mob.body.angle
 
     # =============================== space  ==================================
     def remove_body_shapes_constraints(
@@ -169,7 +186,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """
         self.space.remove(*items)
 
-    def _add_body2space(self, mob: Mobject) -> None:
+    def _add_body2space(self, mob: PymunkMobject) -> None:
         """Registers the physical body and shapes of a :class:`~manim.mobject.mobject.Mobject` into the simulation space.
 
         If the body is static, only the shapes are added to the space. For dynamic
@@ -183,17 +200,17 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The :class:`~manim.mobject.mobject.Mobject` containing `.body` and `.shapes` attributes to be integrated
             into the physical world.
         """
-        if cast(Any, mob).body is self.space.static_body:
-            self.space.add(*cast(Any, mob).shapes)
+        if mob.body is self.space.static_body:
+            self.space.add(*mob.shapes)
         else:
-            self.space.add(cast(Any, mob).body)
-            self.space.add(*cast(Any, mob).shapes)
+            self.space.add(mob.body)
+            self.space.add(*mob.shapes)
         mob.add_updater(self.__simulate_updater)
-        cast(Any, mob).body.activate()
+        mob.body.activate()
 
     def __set_body(
         self,
-        mob: Mobject,
+        mob: PymunkMobject,
         body_type: int,
         # body-related
         center_of_gravity: tuple[float, float],
@@ -220,27 +237,27 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The initial angular velocity (in radians per second).
         """
 
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
 
         if not hasattr(mob, "body"):
             mob.set(body=None)
         if not hasattr(mob, "angle"):
             mob.set(angle=0)
         if body_type == pymunk.Body.DYNAMIC:
-            cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.DYNAMIC)
+            mob.body = pymunk.Body(body_type=pymunk.Body.DYNAMIC)
         elif body_type == pymunk.Body.KINEMATIC:
-            cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)
+            mob.body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)
         else:
-            cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.STATIC)
+            mob.body = pymunk.Body(body_type=pymunk.Body.STATIC)
 
-        cast(Any, mob).body.position = mob.get_x(), mob.get_y()
-        cast(Any, mob).body.center_of_gravity = center_of_gravity
-        cast(Any, mob).body.velocity = velocity
-        cast(Any, mob).body.angular_velocity = angular_velocity
+        mob.body.position = mob.get_x(), mob.get_y()
+        mob.body.center_of_gravity = center_of_gravity
+        mob.body.velocity = velocity
+        mob.body.angular_velocity = angular_velocity
 
     def set_body_and_shapes(
         self,
-        mob: Mobject,
+        mob: PymunkMobject,
         body_type: int,
         is_solid: bool,
         # shapes-related
@@ -305,7 +322,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self._add_body2space(mob)
 
     @staticmethod
-    def _set_collision_type(mob: Mobject, collision_type: int) -> None:
+    def _set_collision_type(mob: PymunkMobject, collision_type: int) -> None:
         """Sets the collision type ID for all physical shapes associated with a :class:`~manim.mobject.mobject.Mobject`.
 
         Collision types are user-defined integers used to categorize shapes. By
@@ -320,25 +337,25 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             An integer ID representing the collision category.
             (e.g., 1 for players, 2 for enemies).
         """
-        for shape in cast(Any, mob).shapes:
+        for shape in mob.shapes:
             shape.collision_type = collision_type
 
     def _wildcard_collision_handler(
         self,
         collision_type_a: int,
         begin: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], bool] | None
         ) = None,
         pre_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], bool] | None
         ) = None,
         post_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], None] | None
         ) = None,
         separate: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], None] | None
         ) = None,
-        data: dict[object, object] | None = None,
+        data: dict[str, object] | None = None,
     ) -> object | None:
         """Registers a wildcard collision handler for a specific collision type.
 
@@ -401,18 +418,18 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         collision_type_a: int,
         collision_type_b: int,
         begin: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], bool] | None
         ) = None,
         pre_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], bool] | None
         ) = None,
         post_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], None] | None
         ) = None,
         separate: (
-            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, object]], None] | None
         ) = None,
-        data: dict[object, object] | None = None,
+        data: dict[str, object] | None = None,
     ) -> object | None:
         """Registers a collision handler between two specific collision types.
 
@@ -479,7 +496,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     # =============================== body ==================================
     @staticmethod
     def apply_force_at_local_point(
-        mob: Mobject,
+        mob: PymunkMobject,
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ) -> None:
@@ -501,11 +518,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             the force is applied, in local coordinates.
         """
 
-        cast(Any, mob).body.apply_force_at_local_point(force=force[:2], point=point[:2])
+        mob.body.apply_force_at_local_point(force=force[:2], point=point[:2])
 
     @staticmethod
     def apply_force_at_world_point(
-        mob: Mobject,
+        mob: PymunkMobject,
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ) -> None:
@@ -527,11 +544,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The absolute position in the world (scene) coordinates where the
             force is applied. :math:`(0, 0, 0)`.
         """
-        cast(Any, mob).body.apply_force_at_world_point(force=force[:2], point=point[:2])
+        mob.body.apply_force_at_world_point(force=force[:2], point=point[:2])
 
     @staticmethod
     def apply_impulse_at_local_point(
-        mob: Mobject,
+        mob: PymunkMobject,
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ) -> None:
@@ -552,13 +569,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The offset from the body's center of gravity :math:`(x, y, z)` where the
             impulse is applied, in local coordinates.
         """
-        cast(Any, mob).body.apply_impulse_at_local_point(
-            impulse=impulse[:2], point=point[:2]
-        )
+        mob.body.apply_impulse_at_local_point(impulse=impulse[:2], point=point[:2])
 
     @staticmethod
     def apply_impulse_at_world_point(
-        mob: Mobject,
+        mob: PymunkMobject,
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ) -> None:
@@ -580,13 +595,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The absolute position in world (scene) coordinates where the
             impulse is applied. :math:`(0, 0, 0)`.
         """
-        cast(Any, mob).body.apply_impulse_at_world_point(
-            impulse=impulse[:2], point=point[:2]
-        )
+        mob.body.apply_impulse_at_world_point(impulse=impulse[:2], point=point[:2])
 
     @staticmethod
     def local_to_world(
-        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+        mob: PymunkMobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
         """Convert a point from the Mobject's local body coordinates to
         world coordinates.
@@ -602,12 +615,12 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
             The corresponding world-space point (x, y, 0).
         """
-        world_pos = cast(Any, mob).body.local_to_world(point[:2])
+        world_pos = mob.body.local_to_world(point[:2])
         return (*world_pos, 0)
 
     @staticmethod
     def world_to_local(
-        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+        mob: PymunkMobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
         """Convert a point from world coordinates to the Mobject's local
         body coordinates.
@@ -623,12 +636,12 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
             The corresponding local-space point (x, y, 0).
         """
-        local_pos = cast(Any, mob).body.world_to_local(point[:2])
+        local_pos = mob.body.world_to_local(point[:2])
         return (*local_pos, 0)
 
     @staticmethod
     def set_position_func(
-        mob: Mobject, callback: Callable[[pymunk.Body, float], None] | None = None
+        mob: PymunkMobject, callback: Callable[[pymunk.Body, float], None] | None = None
     ) -> None:
         """Assigns a custom position update callback to a :class:`~manim.mobject.mobject.Mobject`'s physical body.
 
@@ -650,11 +663,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             If None, the default Pymunk position update logic is restored.
         """
         if callback:
-            cast(Any, mob).body.position_func = callback
+            mob.body.position_func = callback
 
     @staticmethod
     def set_velocity_func(
-        mob: Mobject,
+        mob: PymunkMobject,
         callback: (
             Callable[[Body, tuple[float, float], float, float], None] | None
         ) = None,
@@ -679,11 +692,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             If None, the default Pymunk velocity update logic is restored.
         """
         if callback:
-            cast(Any, mob).body.velocity_func = callback
+            mob.body.velocity_func = callback
 
     @staticmethod
     def velocity_at_local_point(
-        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+        mob: PymunkMobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
         """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in local body coordinates.
@@ -699,12 +712,12 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
             The velocity vector (vx, vy, 0) at the given point.
         """
-        velocity = cast(Any, mob).body.velocity_at_local_point(point[:2])
+        velocity = mob.body.velocity_at_local_point(point[:2])
         return (*velocity, 0)
 
     @staticmethod
     def velocity_at_world_point(
-        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+        mob: PymunkMobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
         """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in world coordinates.
@@ -720,13 +733,13 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
             The velocity vector (vx, vy, 0) at the given point.
         """
-        velocity = cast(Any, mob).body.velocity_at_world_point(point[:2])
+        velocity = mob.body.velocity_at_world_point(point[:2])
         return (*velocity, 0)
 
     # =============================== shape  ==================================
     def __set_shape(
         self,
-        mob: Mobject,
+        mob: PymunkMobject,
         is_solid: bool = True,  # shapes mapping
         # shapes-related
         elasticity: float = 0.8,
@@ -773,14 +786,14 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         else:
             self.__calculate_hollow_shape(mob)
 
-        for shape in cast(Any, mob).shapes:
+        for shape in mob.shapes:
             shape.elasticity = elasticity
             shape.friction = friction
             shape.density = density
             shape.sensor = sensor
             shape.surface_velocity = surface_velocity
 
-    def __calculate_solid_shape(self, mob: Mobject) -> None:
+    def __calculate_solid_shape(self, mob: PymunkMobject) -> None:
         """Generates Pymunk collision shapes for a solid Mobject.
 
         This method maps Manim primitives (Circle, Line, Polygon, etc.) to their
@@ -799,18 +812,16 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             objects are decomposed into multiple convex sub-shapes attached to
             the same body.
         """
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
         from pymunk import autogeometry
 
-        stroke_width = (cast(Any, mob).stroke_width / 100) * (
+        stroke_width = (mob.stroke_width / 100) * (
             config.frame_height / config.frame_width
         )
 
         if isinstance(mob, Circle):
-            cast(Any, mob).shapes = [
-                pymunk.Circle(
-                    body=cast(Any, mob).body, radius=mob.radius + stroke_width / 2
-                )
+            mob.shapes = [
+                pymunk.Circle(body=mob.body, radius=mob.radius + stroke_width / 2)
             ]
         elif isinstance(mob, Line):
             center_x, center_y = mob.get_center()[:2]
@@ -819,9 +830,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
             local_a = (start[0] - center_x, start[1] - center_y)
             local_b = (end[0] - center_x, end[1] - center_y)
-            cast(Any, mob).shapes = [
-                pymunk.Segment(cast(Any, mob).body, local_a, local_b, stroke_width / 2)
-            ]
+            mob.shapes = [pymunk.Segment(mob.body, local_a, local_b, stroke_width / 2)]
 
         #  Polygram, Star, RegularPolygon, VMobject,etc.
         else:
@@ -836,23 +845,21 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
             if is_convex:
                 # is convex
-                cast(Any, mob).shapes.append(
-                    pymunk.Poly(
-                        cast(Any, mob).body, local_points, radius=stroke_width / 2
-                    )
+                mob.shapes.append(
+                    pymunk.Poly(mob.body, local_points, radius=stroke_width / 2)
                 )
             else:
                 convex_hulls = self.__concave2convex_refined(
                     mob, n_divisions=8, tolerance=0.01
                 )
                 for hull_verts in convex_hulls:
-                    cast(Any, mob).shapes.append(
-                        pymunk.Poly(
-                            cast(Any, mob).body, hull_verts, radius=stroke_width / 2
-                        )
+                    mob.shapes.append(
+                        pymunk.Poly(mob.body, hull_verts, radius=stroke_width / 2)
                     )
 
-    def __calculate_hollow_shape(self, mob: Mobject, n_divisions: int = 4) -> None:
+    def __calculate_hollow_shape(
+        self, mob: PymunkMobject, n_divisions: int = 4
+    ) -> None:
         """Generates Pymunk collision shapes for a hollow Mobject (outline only).
 
         Instead of a solid polygon, this method constructs a collision boundary using
@@ -868,9 +875,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The subdivision level for Bezier curves. Higher values result in
             smoother boundaries but may impact simulation performance.
         """
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
 
-        stroke_width = (cast(Any, mob).stroke_width / 100) * (
+        stroke_width = (mob.stroke_width / 100) * (
             config.frame_height / config.frame_width
         )
         refined_points = self.__get_refined_points(mob, n_divisions)
@@ -891,12 +898,12 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 continue
 
             seg = pymunk.Segment(
-                cast(Any, mob).body,
+                mob.body,
                 (p1[0], p1[1]),
                 (p2[0], p2[1]),
                 radius=stroke_width / 2,
             )
-            cast(Any, mob).shapes.append(seg)
+            mob.shapes.append(seg)
 
     def __calculate_img_shape(self, mob: ImageMobject) -> None:
         """Generates Pymunk collision shapes from ImageMobject pixel data.
@@ -916,7 +923,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             For better performance and physical stability, complex image outlines are
             often simplified into low-vertex count convex polygons.
         """
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
+        pymunk_mob = cast(PymunkMobject, mob)
 
         pixel_array = mob.pixel_array
         polygons_verts = get_normalized_convex_polygons(
@@ -929,20 +937,20 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         if polygons_verts:
             # create polygons
             for poly_verts in polygons_verts:
-                cast(Any, mob).shapes.append(
-                    pymunk.Poly(cast(Any, mob).body, poly_verts, radius=0.1)
+                pymunk_mob.shapes.append(
+                    pymunk.Poly(pymunk_mob.body, poly_verts, radius=0.1)
                 )
         else:
             # Simple box
-            cast(Any, mob).shapes = [
+            pymunk_mob.shapes = [
                 pymunk.Poly.create_box(
-                    cast(Any, mob).body, size=(mob.width, mob.height), radius=0.1
+                    pymunk_mob.body, size=(mob.width, mob.height), radius=0.1
                 )
             ]
 
     @staticmethod
     def __get_refined_points(
-        mob: Mobject, n_divisions: int
+        mob: PymunkMobject, n_divisions: int
     ) -> list[tuple[float, float]]:
         """Extracts subdivided sample points from a Mobject for precise collision shape generation.
 
@@ -988,7 +996,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         return unique_points
 
     def __concave2convex_refined(
-        self, mob: Mobject, n_divisions: int, tolerance: float
+        self, mob: PymunkMobject, n_divisions: int, tolerance: float
     ) -> list[list[tuple[float, float]]]:
         """Decomposes a concave polygon into multiple convex polygons for physics processing.
 
@@ -1011,7 +1019,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             A list where each element is a list of vertices defining a
             specific convex sub-polygon.
         """
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
         from pymunk import autogeometry
 
         # 1. Sample for high-quality point set
@@ -1033,7 +1041,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def _add_shape_filter(
-        mob: Mobject,
+        mob: PymunkMobject,
         group: int = 0,
         categories: int = 4294967295,
         mask: int = 4294967295,
@@ -1056,15 +1064,15 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mask
             A bitmask representing which categories this shape will collide with.
         """
-        pymunk = cast(Any, require("physics", "pymunk"))
+        pymunk = require("physics", "pymunk")
 
         shape_filter = pymunk.ShapeFilter(group, categories, mask)
-        for shape in cast(Any, mob).shapes:
+        for shape in mob.shapes:
             shape.filter = shape_filter
 
     @staticmethod
     def get_point_query_info(
-        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+        mob: PymunkMobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> list[tuple[float, list[float], list[float], object]]:
         """Performs a spatial query to find the relationship between a point and a :class:`~manim.mobject.mobject.Mobject`'s shapes.
 
@@ -1102,7 +1110,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """
 
         query_info_list: list[tuple[float, list[float], list[float], object]] = []
-        for shape in cast(Any, mob).shapes:
+        for shape in mob.shapes:
             point_query_info = shape.point_query(point[:2])
             query_info_list.append(
                 (
@@ -1116,7 +1124,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def get_line_query(
-        mob: Mobject,
+        mob: PymunkMobject,
         start: tuple[float, float, float],
         end: tuple[float, float, float],
         stroke_width: float,
@@ -1157,10 +1165,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                  - The specific :class:`~pymunk.Shape` that was hit.
         """
         query_info_list: list[tuple[float, list[float], list[float], object]] = []
-        for shape in cast(Any, mob).shapes:
+        for shape in mob.shapes:
             line_query_info = shape.segment_query(
                 start=start[:2], end=end[:2], radius=stroke_width
             )
+            assert line_query_info is not None
             query_info_list.append(
                 (
                     line_query_info.alpha,

@@ -7,12 +7,13 @@
 This module provides file parsing utilities for chemistry file formats.
 """
 
-from typing import Any, Literal, cast
+from collections.abc import Callable
+from typing import Literal, cast
 
 import os
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
-from .parsers.base_parser import ParsedData
+from .parsers.base_parser import BaseParser, ParsedData
 
 #: Mapping from file extension to the parser class that handles it.
 SUPPORTED_FORMATS = {
@@ -115,8 +116,10 @@ class FileHandler:
                 f"File {file_path!r} of format {file_extension} is not supported. Supported extensions are {SUPPORTED_FORMATS.keys()}"
             )
 
-        parser_class = cast(Any, SUPPORTED_FORMATS[file_extension])
-        self.parser = parser_class(filename=file_path)
+        parser_factory = cast(
+            Callable[..., BaseParser], SUPPORTED_FORMATS[file_extension]
+        )  # explicit-any-ok: parser constructors accept format-specific arguments
+        self.parser = parser_factory(filename=file_path)
 
     @staticmethod
     def get_file_extension(file_path: str | bytes | os.PathLike[str]) -> str:
@@ -140,7 +143,7 @@ class FileHandler:
         -------
             ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
         """
-        return cast(ParsedData, self.parser.molecule_data)
+        return self.parser.molecule_data
 
     @staticmethod
     def parse_from_string(

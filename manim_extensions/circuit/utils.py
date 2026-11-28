@@ -73,7 +73,7 @@ class Source(VMobject):
                )
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mobject_group: Mobject,
         letter: str,
@@ -81,7 +81,7 @@ class Source(VMobject):
         direction: Vector3DLike = LEFT,
         label: bool = True,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -146,7 +146,11 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Source":
+    def rotate(
+        self, angle: float, *args: Any, **kwargs: Any
+    ) -> (
+        "Source"
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         """Rotate the source symbol around its center.
 
         Parameters
@@ -219,7 +223,11 @@ class Circuit(VMobject):
                self.wait()
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
 
         # Get a VGroup() of components
@@ -285,7 +293,7 @@ class Circuit(VMobject):
             Components to add to the circuit.
         """
         for component in args:
-            self.component_list.add(cast(Any, component))
+            self.component_list.add(cast(VMobject, component))
 
     def add_wire(
         self,
@@ -327,7 +335,7 @@ class Circuit(VMobject):
         # Not first wire.
         # Loop through all nodes and wires through each node
         else:
-            intersections: list[Any] = []
+            intersections: list[Node] = []
             # Iterate through all nodes.
             for existing in self.node_list:
                 # search if a coordinate of the wire belong in the node.
@@ -336,7 +344,7 @@ class Circuit(VMobject):
                 # It is important because we can then add Dots() from this list.
                 search = list(map(existing.check_coord, wire))
                 if not all([type(s) == bool and s == False for s in search]):
-                    intersections.append(existing)
+                    intersections.append(cast(Node, existing))
 
                     # Go through the search
                     # If there is a coordinate, tell the node to add a junction there.
@@ -348,7 +356,7 @@ class Circuit(VMobject):
             # Make a new node.
             if len(intersections) == 0:
                 new_node = Node()
-                new_node.add_wire(cast(Any, wire))
+                new_node.add_wire(wire)
                 new_node.set_color(WHITE)
                 self.node_list.add(new_node)
 
@@ -393,7 +401,11 @@ class Node(VMobject):
                self.add(node)
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
 
         # NOTE In a future update, I want to try to
@@ -520,8 +532,8 @@ class Node(VMobject):
         wire
             Optional wire path to add before or during the merge.
         """
-        if wire is not False:
-            self.add_wire(cast(Any, wire))
+        if wire is not False and wire is not True:
+            self.add_wire(wire)
 
         # Get all the junction dots.
         for dot in node.junction_dots:

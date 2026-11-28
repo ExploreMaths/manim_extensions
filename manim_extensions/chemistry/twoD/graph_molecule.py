@@ -21,12 +21,13 @@ from manim import (
     PI,
     Text,
     VGroup,
+    VMobject,
     color_gradient,
 )
 import numpy as np
 import networkx as nx
 
-from ..manim_chemistry_molecule import MCMolecule
+from ..manim_chemistry_molecule import MCAtom, MCBond, MCMolecule
 from ..molecule import AbstractMolecule
 from manim.typing import Point3D, Vector3D
 
@@ -58,7 +59,11 @@ class SimpleLine(Line):
                self.add(line)
     """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         super().__init__(*args, **kwargs)
         self.sheen_direction = self._get_unit_vector()
 
@@ -104,13 +109,13 @@ class DoubleLine(ArcBetweenPoints):
                self.add(line)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         start: Point3D | tuple[float, float, float] = (-1.0, 0.0, 0.0),
         end: Point3D | tuple[float, float, float] = (1.0, 0.0, 0.0),
         angle: float = PI / 4,
         radius: float | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         kwargs.pop("start", None)
         kwargs.pop("end", None)
@@ -147,7 +152,7 @@ class DoubleLine(ArcBetweenPoints):
         return self._get_unit_vector()
 
     def set_points_by_ends(
-        self, start: Point3D, end: Point3D, *args: Any, **kwargs: Any
+        self, start: Point3D, end: Point3D, *args: object, **kwargs: object
     ) -> None:
         """Reposition both arcs of the double bond to span from start to end.
 
@@ -194,13 +199,13 @@ class TripleLine(DoubleLine):
                self.add(line)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
         start: Point3D | tuple[float, float, float] = (-1.0, 0.0, 0.0),
         end: Point3D | tuple[float, float, float] = (1.0, 0.0, 0.0),
         angle: float = PI / 4,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(
             *args, **{**kwargs, "start": start, "end": end, "angle": angle}
@@ -313,29 +318,31 @@ class GraphMolecule(Graph, AbstractMolecule):
         3: TripleLine,
     }
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary; *args forwarded to a dynamic callable
         self,
-        vertices_dict: dict[Any, Any],
-        edges_dict: dict[Any, Any],
+        vertices_dict: dict[int, MCAtom],
+        edges_dict: dict[tuple[int, int], MCBond],
         label: bool = False,
         numeric_label: bool = False,
         label_color: ManimColor = BLACK,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.edges_dict = edges_dict
         labels: bool | dict[int, Text] = False
         if label or numeric_label:
             labels = self.make_labels(vertices_dict, numeric_label, label_color)
 
-        graph_kwargs: dict[str, Any] = {
-            "vertices": list(vertices_dict.keys()),
-            "edges": list(edges_dict.keys()),
-            "vertex_config": self.make_vertex_config(vertices_dict),
-            "edge_config": self.make_edge_config(edges_dict),
-            "layout": self.make_layout(vertices_dict),
-            "labels": labels,
-        }
+        graph_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous style kwargs unpacked into GenericGraph
+                "vertices": list(vertices_dict.keys()),
+                "edges": list(edges_dict.keys()),
+                "vertex_config": self.make_vertex_config(vertices_dict),
+                "edge_config": self.make_edge_config(edges_dict),
+                "layout": self.make_layout(vertices_dict),
+                "labels": labels,
+            }
+        )
         graph_kwargs.update(kwargs)
         super().__init__(*args, **graph_kwargs)
 
@@ -381,7 +388,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
             The bond class for a given edge tuple based on its bond type.
         """
-        bond_type = self.edges_dict[edge].bond_type
+        bond_type = self.edges_dict[cast(tuple[int, int], edge)].bond_type
         return self.select_bond_type(bond_type)
 
     def select_bond_type(self, bond_type: int) -> type[Line] | type[ArcBetweenPoints]:
@@ -410,7 +417,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return bond
 
-    def make_layout(self, vertices_dict: dict[Any, Any]) -> dict[int, Point3D]:
+    def make_layout(self, vertices_dict: dict[int, MCAtom]) -> dict[int, Point3D]:
         """Build a layout dict mapping each atom index to its 3D coordinates.
 
         Parameters
@@ -425,8 +432,8 @@ class GraphMolecule(Graph, AbstractMolecule):
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
 
     def make_vertex_config(
-        self, vertices_dict: dict[int, Any]
-    ) -> dict[int, dict[str, Any]]:
+        self, vertices_dict: dict[int, MCAtom]
+    ) -> dict[int, dict[str, object]]:
         """Build a vertex config dict with element colors and dot radius.
 
         Parameters
@@ -438,7 +445,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
             A dictionary of the results.
         """
-        v_dict = {}
+        v_dict: dict[int, dict[str, object]] = {}
         for vertex_index, mc_atom in vertices_dict.items():
             v_dict[vertex_index] = {
                 "color": mc_atom.element.color,
@@ -448,8 +455,8 @@ class GraphMolecule(Graph, AbstractMolecule):
         return v_dict
 
     def make_edge_config(
-        self, edges: dict[tuple[int, int], Any]
-    ) -> dict[tuple[int, int], dict[str, Any]]:
+        self, edges: dict[tuple[int, int], MCBond]
+    ) -> dict[tuple[int, int], dict[str, object]]:
         """Build an edge config dict with gradient colors derived from bonded atom colors.
 
         Parameters
@@ -461,13 +468,21 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
             A dictionary of the results.
         """
-        edge_config = {}
+        edge_config: dict[tuple[int, int], dict[str, object]] = {}
         for edge_key, edge in edges.items():
+            from_atom = edge.from_atom
+            to_atom = edge.to_atom
+            assert from_atom is not None
+            assert to_atom is not None
+            from_color = from_atom.element.color
+            to_color = to_atom.element.color
+            assert from_color is not None
+            assert to_color is not None
             edge_config[edge_key] = {
                 "stroke_color": color_gradient(
                     [
-                        edge.from_atom.element.color,
-                        edge.to_atom.element.color,
+                        from_color,
+                        to_color,
                     ],
                     length_of_output=2,
                 )
@@ -477,7 +492,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
     def make_labels(
         self,
-        vertices_dict: dict[Any, Any],
+        vertices_dict: dict[int, MCAtom],
         numeric_label: bool,
         label_color: ManimColor,
     ) -> dict[int, Text]:
@@ -502,7 +517,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                 for index in vertices_dict.keys()
             }
         return {
-            index: Text(vertex.element.symbol, color=BLACK).scale(0.5)
+            index: Text(str(vertex.element.symbol), color=BLACK).scale(0.5)
             for index, vertex in vertices_dict.items()
         }
 
@@ -608,7 +623,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         return VGroup(
-            *cast(Any, [self.vertices[atom_index] for atom_index in atoms_indices])
+            *[cast(VMobject, self.vertices[atom_index]) for atom_index in atoms_indices]
         )
 
     def get_connected_atoms_v_group(
@@ -673,7 +688,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
-        return VGroup(*cast(Any, [self.edges[bond_atoms] for bond_atoms in bonds]))
+        return VGroup(*[cast(VMobject, self.edges[bond_atoms]) for bond_atoms in bonds])
 
     def get_connected_atoms_and_bonds_group_from_index(
         self, connected_atoms: list[int], excluded_atom: int = 0
@@ -864,7 +879,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             _logger.warning(f"Valid indices are: {self.bonds.keys()}")
             raise key_error
 
-        bond_vector = cast(Any, bond).get_vector()
+        bond_vector = bond.get_vector()
         bond_center = bond.get_center()
 
         return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
@@ -937,7 +952,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[dict[int, Any], dict[tuple[int, int], Any]]:
+    ) -> tuple[dict[int, MCAtom], dict[tuple[int, int], MCBond]]:
         """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
@@ -959,12 +974,14 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         vertices = mc_molecule.atoms_by_index
 
-        edges = {
-            (
-                cast(Any, bond.from_atom).molecule_index,
-                cast(Any, bond.to_atom).molecule_index,
-            ): bond
-            for bond in mc_molecule.bonds
-        }
+        edges = {}
+        for bond in mc_molecule.bonds:
+            if bond.from_atom is None or bond.to_atom is None:
+                continue
+            from_index = bond.from_atom.molecule_index
+            to_index = bond.to_atom.molecule_index
+            if from_index is None or to_index is None:
+                continue
+            edges[(from_index, to_index)] = bond
 
         return vertices, edges

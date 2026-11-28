@@ -55,12 +55,12 @@ class ManimAutomataInput(VGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_string: str,
         animation_style: dict[str, object],
         font_size: int = 100,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -94,7 +94,11 @@ class ManimAutomataInput(VGroup):
         -------
             The animation highlighting the token.
         """
-        token_highlight = cast(dict[str, Any], animation_style["token_highlight"])
+        token_highlight = (
+            cast(  # explicit-any-ok: user-provided highlight animation style
+                dict[str, Any], animation_style["token_highlight"]
+            )
+        )  # explicit-any-ok: user-provided highlight animation style
         animation_function = token_highlight["animation_function"]
         color = token_highlight["color"]
 
@@ -137,8 +141,12 @@ class Token(MathTex):
 
     id_iter = itertools.count()
 
-    def __init__(
-        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        token_symbol: str,
+        spacing: int,
+        font_size: int = 100,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 

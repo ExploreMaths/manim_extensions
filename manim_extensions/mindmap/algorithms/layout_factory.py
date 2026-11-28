@@ -10,12 +10,14 @@ This module provides factory for creating layout algorithms.
 __all__ = [
     "LayoutFactory",
 ]
+from typing import cast
+
 from .layout import Layout
 from .layout_config import LayoutType, LayoutConfig
-from .alg_tidy_tree import TidyTreeLayout
-from .alg_standard import StandardLayout
-from .alg_time_line import TimeLineLayout
-from .alg_catalog import CatalogLayout
+from .alg_tidy_tree import NodeLike, TidyTreeLayout
+from .alg_standard import StandardLayout, TreeNode
+from .alg_time_line import TimeLineLayout, _TimelineInput
+from .alg_catalog import CatalogLayout, _CatalogInput
 
 
 class LayoutFactory:
@@ -81,14 +83,14 @@ class LayoutFactory:
         """
         match layout_type:
             case LayoutType.MindMap:
-                kwargs = layout_config.mindmap
-                return TidyTreeLayout(root, **kwargs)
+                mindmap_kwargs = layout_config.mindmap
+                return TidyTreeLayout(cast(NodeLike, root), **mindmap_kwargs)
             case LayoutType.Standard:
-                kwargs = layout_config.mindmap
-                return StandardLayout(root, **kwargs)
+                standard_kwargs = layout_config.mindmap
+                return StandardLayout(cast(TreeNode, root), **standard_kwargs)
             case LayoutType.Catalog:
-                kwargs = layout_config.catalog
-                return CatalogLayout(root, **kwargs)
+                catalog_kwargs = layout_config.catalog
+                return CatalogLayout(cast(_CatalogInput, root), **catalog_kwargs)
             case LayoutType.TimeLine:
-                kwargs = layout_config.timeline
-                return TimeLineLayout(root, **kwargs)
+                timeline_kwargs = layout_config.timeline
+                return TimeLineLayout(cast(_TimelineInput, root), **timeline_kwargs)

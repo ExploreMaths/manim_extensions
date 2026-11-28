@@ -5,9 +5,11 @@
 """Transformations for manipulating a neural network object."""
 
 from __future__ import annotations
-from typing import Any, TYPE_CHECKING, cast
+from collections.abc import Callable
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
+from manim.typing import Vector3D
 from manim import (
     Animation,
     AnimationGroup,
@@ -16,6 +18,7 @@ from manim import (
     Group,
     Mobject,
     UpdateFromFunc,
+    VMobject,
 )
 from ..layers.util import get_connective_layer
 from ..layers.parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -194,7 +197,7 @@ class RemoveLayer(AnimationGroup):
         """
         # Animate the movements
         move_before_layers: Animation = AnimationGroup()
-        shift_right_amount: Any = None
+        shift_right_amount: Vector3D | None = None
         if not self.before_layer is None:
             # Compute shift amount
             layer_dist = np.abs(
@@ -212,7 +215,7 @@ class RemoveLayer(AnimationGroup):
                 Animation, layers_before.animate.shift(shift_right_amount)
             )
         move_after_layers: Animation = AnimationGroup()
-        shift_left_amount: Any = None
+        shift_left_amount: Vector3D | None = None
         if not self.after_layer is None:
             layer_dist = np.abs(self.after_layer.get_left() - self.layer.get_center())[
                 0
@@ -261,7 +264,8 @@ class RemoveLayer(AnimationGroup):
                     print(neural_network)
 
         update_func_anim = UpdateFromFunc(
-            self.neural_network, cast(Any, create_new_connective)
+            self.neural_network,
+            cast(Callable[[Mobject], None], create_new_connective),
         )
 
         return update_func_anim
@@ -436,7 +440,7 @@ class InsertLayer(AnimationGroup):
         -------
             A :class:`~manim.animation.creation.Create` instance representing the result.
         """
-        return Create(cast(Any, self.layer))
+        return Create(cast(VMobject, self.layer))
 
     def make_create_connective_layers_animation(
         self, before_connective: Mobject | None, after_connective: Mobject | None
@@ -464,8 +468,11 @@ class InsertLayer(AnimationGroup):
             after_connective = get_connective_layer(self.layers_after[0], self.layer)
         # Insert the layers
         # Make the animation
-        animation_group = AnimationGroup(
-            Create(cast(Any, before_connective)), Create(cast(Any, after_connective))
-        )
+        animations: list[Animation] = []
+        if before_connective is not None:
+            animations.append(Create(cast(VMobject, before_connective)))
+        if after_connective is not None:
+            animations.append(Create(cast(VMobject, after_connective)))
+        animation_group = AnimationGroup(*animations)
 
         return animation_group

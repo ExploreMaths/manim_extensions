@@ -116,12 +116,12 @@ class ChineseMathTex(MathTex):
                self.add(formula)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         *texts: str,
         font: str = DEFAULT_CJK_FONT,
         tex_to_color_map: dict[str, ParsableManimColor] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if tex_to_color_map is None:
             tex_to_color_map = {}
@@ -229,13 +229,13 @@ class LabelDot(VGroup):
                VGroup(a, b, link).scale(1.9).move_to(ORIGIN)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         dot_label: str,
         dot_pos: Point3D,
         label_pos: Vector3D = DOWN,
         buff: float = 0.1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         dot = Dot().move_to(dot_pos)
@@ -300,12 +300,12 @@ class MathTexLine(VGroup):
                self.add(line)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__()
         line = Line(**kwargs)
@@ -348,13 +348,13 @@ class MathTexBrace(VGroup):
                self.add(expr, brace)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         target: Mobject,
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__()
         brace = Brace(target, direction=direction, **kwargs)
@@ -396,12 +396,12 @@ class MathTexDoublearrow(VGroup):
                self.add(lhs, link, rhs)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__()
         doublearrow = DoubleArrow(**kwargs)
@@ -452,11 +452,11 @@ class PerpendicularLine(Line):
                self.add(Dot(perp.foot, color=YELLOW))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         point: Point3DLike | Mobject,
         line: Line,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if isinstance(point, Mobject):
             self.point = point.get_center()
@@ -626,13 +626,13 @@ class PerpendicularSign(VGroup):
                self.add(base, perp, sign, Dot(sign.intersection, color=RED))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         line1: Line,
         line2: Line,
         length: float = 0.25,
         corner_direction: Vector3DLike | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -779,6 +779,9 @@ class PerpendicularSign(VGroup):
         return best[0], best[1]
 
 
+FileTreeData = dict[str, "FileTreeData | None"]
+
+
 class FileTree(Code):
     """An ASCII file tree generated from a nested dictionary.
 
@@ -832,12 +835,12 @@ class FileTree(Code):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
-        tree_dict: dict[str, dict[str, Any] | None],
+        tree_dict: FileTreeData,
         font_size: float = DEFAULT_FONT_SIZE,
         color: ParsableManimColor = WHITE,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if not isinstance(tree_dict, dict):
             raise TypeError(f"tree_dict must be a dict, got {type(tree_dict).__name__}")
@@ -891,12 +894,19 @@ class FileTree(Code):
         if not self.submobjects[0]:
             return Wait(0)
 
-        content = cast(Any, self.submobjects[0])[line][begin_index:]
-        return AnimationGroup(cast(Any, VGroup(content)).animate.set_color(color))
+        content = self.submobjects[0][line][begin_index:]
+        return AnimationGroup(
+            cast(
+                Animation,
+                VGroup(*[cast(VMobject, part) for part in content]).animate.set_color(
+                    color
+                ),
+            )
+        )
 
     @staticmethod
     def _build_tree(
-        data: dict[Any, Any], prefix: str = "", is_root: bool = True
+        data: FileTreeData, prefix: str = "", is_root: bool = True
     ) -> list[str]:
         """Recursively build ASCII tree lines from a nested dictionary.
 
@@ -924,12 +934,12 @@ class FileTree(Code):
             display_name = name + ("/" if is_dir else "")
             if is_root:
                 lines.append(display_name)
-                if is_dir:
+                if isinstance(value, dict):
                     lines.extend(FileTree._build_tree(value, "", False))
             else:
                 connector = "└── " if is_last else "├── "
                 lines.append(prefix + connector + display_name)
-                if is_dir:
+                if isinstance(value, dict):
                     extension = "    " if is_last else "│   "
                     lines.extend(FileTree._build_tree(value, prefix + extension, False))
         return lines
@@ -972,11 +982,11 @@ class CropImageMobject(ImageMobject):
                self.add(content)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         filename_or_array: str | PixelArray | Image.Image,
         corner_radius: int | float = 0.1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         img: Image.Image
         if isinstance(filename_or_array, str):
@@ -1060,8 +1070,12 @@ class VideoMobject(ImageMobject):
                self.wait()
     """
 
-    def __init__(
-        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        filename: str,
+        loop: bool = False,
+        rate: float = 1.0,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         cv2 = require("video", "cv2")
 
@@ -1135,7 +1149,7 @@ class VideoMobject(ImageMobject):
             self._frame_idx += 1
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
-    def __deepcopy__(self, memo: dict[Any, Any]) -> "VideoMobject":
+    def __deepcopy__(self, memo: dict[int, Mobject]) -> "VideoMobject":
         """Deep-copy the mobject, reopening the video capture for the clone.
 
         Parameters
@@ -1318,14 +1332,14 @@ class ColorText(Text):
                self.add(VGroup(rgb, named).arrange(DOWN, buff=0.6))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         color: ManimColor | Iterable[float],
         name: str | None = None,
         background_color: ManimColor = WHITE,
         font: str = "Consolas",
         font_size: float = 28,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if name is not None:
             super().__init__(
@@ -1417,14 +1431,14 @@ class Trail(VGroup):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mob: Mobject,
         max_width: float = 5,
         nums: int = 500,
         trail_color: ManimColor = BLUE_B,
         rate_func: Callable[[float], float] | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.max_width = max_width
@@ -1495,7 +1509,7 @@ class Trail(VGroup):
         -------
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
-        self.trail.add_updater(cast(Callable[[Mobject], Any], self.update_path))
+        self.trail.add_updater(cast(Callable[[Mobject], None], self.update_path))
         return self
 
     def stop_trace(self) -> "Trail":
@@ -1505,7 +1519,7 @@ class Trail(VGroup):
         -------
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
-        self.trail.remove_updater(cast(Callable[[Mobject], Any], self.update_path))
+        self.trail.remove_updater(cast(Callable[[Mobject], None], self.update_path))
         return self
 
 
@@ -1561,7 +1575,7 @@ class ShadowAround(VGroup):
                )
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mob_or_points: Mobject,
         shadow_color: ManimColor = DARK_GRAY,
@@ -1571,7 +1585,7 @@ class ShadowAround(VGroup):
         scale_factor: float = 1.0,
         shadow_out: bool = True,
         show_basic_shape: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.shadow_color = shadow_color
@@ -1655,7 +1669,7 @@ class ObjectBorder(VGroup):
                self.play(t.animate.shift(LEFT * 2).scale(1 / 1.5))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         obj: Mobject,
         buff: float = 0.08,
@@ -1663,7 +1677,7 @@ class ObjectBorder(VGroup):
         track: bool = True,
         border_color: ManimColor = WHITE,
         corner_radius: float = 0.06,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.obj = obj
@@ -1752,7 +1766,7 @@ class ThreeDVector(VGroup):
                self.add(axes, u, v)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         vector: Vector3DLike = RIGHT,
         position: Point3D = ORIGIN,
@@ -1760,7 +1774,7 @@ class ThreeDVector(VGroup):
         color: ManimColor = BLUE,
         tip_fraction: float = 0.25,
         fill_opacity: float = 0.9,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.radius = radius
@@ -1803,7 +1817,7 @@ class ThreeDVector(VGroup):
 
 #: A tree structure: nested dictionaries for internal nodes, or an
 #: iterable of leaf values.
-TreeStructure = dict[Any, Any] | list[Any] | tuple[Any, ...] | set[Any]
+TreeStructure = dict[str, "TreeStructure"] | list[str] | tuple[str, ...] | set[str]
 
 
 class TreeDiagram(VGroup):
@@ -1848,14 +1862,14 @@ class TreeDiagram(VGroup):
                self.add(diagram)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         tree: TreeStructure,
         branch_color: ManimColor = GREY,
         branch_opacity: float = 1,
         item_v_buff: float = 0.3,
         item_scale: float = 0.7,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.branch_color = branch_color
@@ -1865,7 +1879,7 @@ class TreeDiagram(VGroup):
         self.tree: TreeStructure = tree
         self.add(self._generate(tree)[1])
 
-    def _lowest(self, leaves: Iterable[Any]) -> VGroup:
+    def _lowest(self, leaves: Iterable[str]) -> VGroup:
         """Create a vertical group of text mobjects for the leaf nodes.
 
         Parameters
@@ -1909,7 +1923,7 @@ class TreeDiagram(VGroup):
             )
             vg.add(node)
         vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
-        to_be_braced = VGroup(*cast(Any, [i[0] for i in vg]))
+        to_be_braced = VGroup(*[cast(VMobject, item[0]) for item in vg])
         brace = (
             Brace(to_be_braced, LEFT)
             .set_stroke(color=self.branch_color, width=2)

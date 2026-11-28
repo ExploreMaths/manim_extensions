@@ -205,14 +205,14 @@ class Node(VMobject):
                self.add(group)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         value: NodeValue = None,
         width: float = NodeConfig.WIDTH,
         text_scale: float = 1.0,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
 
         super().__init__(**kwargs)
@@ -448,18 +448,18 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(
+        def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
             self,
             *nodes: Node,
             color: ManimColor = NodeConfig.SELECT_COLOR,
             opacity: float = NodeConfig.SELECT_OPACITY,
-            **kwargs: Any,
+            **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         ) -> None:
 
             super().__init__(
                 AnimationGroup(
                     *[
-                        cast(Any, node).animate.set_fill(color, opacity)
+                        cast(Animation, node.animate.set_fill(color, opacity))
                         for node in nodes
                     ]
                 ),
@@ -497,13 +497,15 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(self, *nodes: list[Node], **kwargs: Any) -> None:
+        def __init__(
+            self, *nodes: Node, **kwargs: Any
+        ) -> (
+            None
+        ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
             super().__init__(
                 AnimationGroup(
                     *[
-                        cast(Any, node).animate.set_fill(
-                            cast(Any, node).get_fill_color(), 0
-                        )
+                        cast(Animation, node.animate.set_fill(node.get_fill_color(), 0))
                         for node in nodes
                     ]
                 ),
@@ -538,10 +540,12 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(self, node: Node, value: NodeValue, **kwargs: Any) -> None:
-            super().__init__(
-                cast(Animation, cast(Any, node).animate.set_value(value)), **kwargs
-            )
+        def __init__(
+            self, node: Node, value: NodeValue, **kwargs: Any
+        ) -> (
+            None
+        ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
+            super().__init__(cast(Animation, node.animate.set_value(value)), **kwargs)
 
     class MoveAndOverWrite(Succession):
         """Move a node into place and overwrite the destination value.
@@ -579,13 +583,13 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(
+        def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
             self,
             node: Node,
             target: Node,
             select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
-            **kwargs: Any,
+            **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         ) -> None:
             steps: list[Animation] = []
             if select_color is not None:
@@ -639,13 +643,13 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(
+        def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
             self,
             node: Node,
             target: Node,
             select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
-            **kwargs: Any,
+            **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         ) -> None:
             copied_node = node.copy().move_to(node)
             steps = [
@@ -694,13 +698,13 @@ class Node(VMobject):
                    self.wait()
         """
 
-        def __init__(
+        def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
             self,
             node1: Node,
             node2: Node,
             select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
-            **kwargs: Any,
+            **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         ) -> None:
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)

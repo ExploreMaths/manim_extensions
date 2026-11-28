@@ -4,7 +4,7 @@
 
 """Image layer visualization for neural networks."""
 
-from typing import Any, cast
+from typing import Any
 
 from manim import (
     Animation,
@@ -84,23 +84,23 @@ class ImageLayer(NeuralNetworkLayer):
                self.wait(1)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         numpy_image: PixelArray,
         height: float = 1.5,
         show_image_on_create: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.image_height = height
         self.numpy_image = numpy_image
         self.show_image_on_create = show_image_on_create
 
-    def construct_layer(
+    def construct_layer(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Construct layer method.
 
@@ -116,8 +116,8 @@ class ImageLayer(NeuralNetworkLayer):
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
             self.num_channels = 1
-            self.image_mobject: Any = GrayscaleImageMobject(
-                self.numpy_image, height=self.image_height
+            self.image_mobject: ImageMobject | GrayscaleImageMobject = (
+                GrayscaleImageMobject(self.numpy_image, height=self.image_height)
             )
         elif len(np.shape(self.numpy_image)) == 3:
             # Assumed RGB
@@ -129,8 +129,11 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(
-        cls, image_path: str, grayscale: bool = True, **kwargs: Any
+    def from_path(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        cls,
+        image_path: str,
+        grayscale: bool = True,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "ImageLayer":
         """Creates a query using the paths.
 
@@ -156,7 +159,7 @@ class ImageLayer(NeuralNetworkLayer):
         return image_layer
 
     @override_animation(Create)
-    def _create_override(self, **kwargs: Any) -> Animation:
+    def _create_override(self, **kwargs: object) -> Animation:
         """Fade in the image when configured, otherwise wait.
 
         Parameters
@@ -179,7 +182,7 @@ class ImageLayer(NeuralNetworkLayer):
             return Wait(run_time=0)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[object, Any] = {}, **kwargs: Any
+        self, layer_args: dict[str, object] = {}, **kwargs: object
     ) -> AnimationGroup:
         """Return an empty animation group; the image layer has no forward pass effect.
 
@@ -204,9 +207,9 @@ class ImageLayer(NeuralNetworkLayer):
         -------
             The rightmost point of the surrounding shape.
         """
-        return cast(Point3D, self.image_mobject.get_right())
+        return self.image_mobject.get_right()
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> "ImageLayer":
+    def scale(self, scale_factor: float, **kwargs: object) -> "ImageLayer":
         """Scales the image mobject.
 
         Parameters

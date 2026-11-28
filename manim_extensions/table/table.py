@@ -171,7 +171,7 @@ class Table(VGroup):
                self.add(table)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         data: list[list[str]] | None = None,
         header: list[str] | None = None,
@@ -182,7 +182,7 @@ class Table(VGroup):
         show_border: bool = True,
         auto_fit: bool = True,
         padding: float = 0.3,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 

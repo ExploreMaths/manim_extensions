@@ -106,7 +106,11 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def data_parser(data: Any) -> ParsedData:
+    def data_parser(
+        data: Any,
+    ) -> (
+        ParsedData
+    ):  # explicit-any-ok: subclasses accept distinct textual container shapes
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:

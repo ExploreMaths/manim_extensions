@@ -7,8 +7,9 @@ This module contains experimental classes that may be implemented in the future.
 """
 
 import numpy as np
+from numpy.typing import NDArray
 from collections.abc import Callable
-from typing import Any, cast
+from typing import Any, Concatenate, ParamSpec, cast
 
 from functools import wraps
 
@@ -71,8 +72,11 @@ class Hole(VMobject):
                self.add(Hole().scale(7))
     """
 
-    def __init__(
-        self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        radius: float = 0.25,
+        color: ManimColor = WHITE,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
@@ -103,8 +107,11 @@ class Electron(VMobject):
                self.add(Electron().scale(7))
     """
 
-    def __init__(
-        self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        radius: float = 0.2,
+        color: ManimColor = BLUE_E,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
@@ -151,7 +158,7 @@ class Element(VGroup):
                self.add(Element(element="Si", n_electrons=4, n_holes=4))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         element: str = "H",
         radius: float = 1,
@@ -162,7 +169,7 @@ class Element(VGroup):
         add_electrons: bool = True,
         add_holes: bool = True,
         subelectron_holes: bool = True,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.element_label = element
@@ -181,9 +188,9 @@ class Element(VGroup):
         self.add(self.atom.shift((0, 0, 0)))
         self.arrange_particles()
         self.subelectron_holes_group = self.make_subelectron_holes()
-        if self.subelectron_holes:
-            self.particles.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
-            self.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
+        if self.subelectron_holes and self.subelectron_holes_group is not None:
+            self.particles.add(self.subelectron_holes_group.shift((0, 0, 0)))
+            self.add(self.subelectron_holes_group.shift((0, 0, 0)))
 
     def central_atom(self) -> LabeledDot:
         """Create a labeled dot representing the central atom scaled to the element radius.
@@ -315,23 +322,21 @@ class ElementFrame(VGroup):
                self.add(ElementFrame(element_symbol="H", element_name="Hydrogen"))
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         element_symbol: str = "H",
         element_name: str = "Hidrógeno",
         frame_colors: list[Any] = [BLUE, BLUE_B],
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
         self.frame = Rectangle(
             height=2, width=1.5, fill_opacity=1
         ).set_color_by_gradient(*frame_colors)
-        self.symbol = cast(
-            Any, Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
-        )
+        self.symbol = Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
         name_label = Text(element_name, color=BLACK).shift(0.75 * DOWN)
-        name_rescaling_factor = 0.75 * cast(Any, self.frame).width / name_label.width
+        name_rescaling_factor = 0.75 * self.frame.width / name_label.width
         name_label.scale(name_rescaling_factor)
         self.name_label = name_label
         self.add(self.frame, self.symbol, self.name_label)
@@ -362,7 +367,11 @@ class NPNTransistor(VGroup):
                self.add(NPNTransistor())
     """
 
-    def __init__(self, regions_opacity: float = 0.8, **kwargs: Any) -> None:
+    def __init__(
+        self, regions_opacity: float = 0.8, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
         self.left_n_region = Rectangle(
@@ -395,8 +404,8 @@ class NPNTransistor(VGroup):
         self,
         particle_type: type[VMobject],
         n_copies: int = 5,
-        vertical_boundary: list[Any] = [0.8 * UP, 0.8 * DOWN],
-        horizontal_boundary: list[Any] = [LEFT, RIGHT],
+        vertical_boundary: list[NDArray[np.float64]] = [0.8 * UP, 0.8 * DOWN],
+        horizontal_boundary: list[NDArray[np.float64]] = [LEFT, RIGHT],
     ) -> VGroup:
         """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of scaled particle mobjects arranged in a rectangular grid.
 
@@ -454,12 +463,12 @@ class BatterySchema(VGroup):
     """
 
     # TODO: This is not working as intended, rebuild this.
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         mob: Mobject = Square(),
         schema_type: str = "horizontal",
         inverted_terminals: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -648,8 +657,11 @@ class MOSFETTransistor(VGroup):
                self.add(MOSFETTransistor())
     """
 
-    def __init__(
-        self, show_holes: bool = False, show_battery: bool = False, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        show_holes: bool = False,
+        show_battery: bool = False,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
 
@@ -805,7 +817,11 @@ class BatterySide(VMobject):
                self.add(content)
     """
 
-    def __init__(self, terminal: Mobject, anchor: Mobject, **kwargs: Any) -> None:
+    def __init__(
+        self, terminal: Mobject, anchor: Mobject, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
@@ -830,7 +846,9 @@ class BatterySide(VMobject):
 # Useful functions
 
 
-def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> None:
+def arrange_in_1d_boundary(
+    mobs: VGroup, boundary: list[NDArray[np.float64]] = [LEFT, RIGHT]
+) -> None:
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
     Parameters
@@ -878,12 +896,15 @@ class DuplicatedAlongLine(VGroup):
                self.add(group)
     """
 
-    def __init__(self, mobs: Mobject, boundary: list[Any] = [LEFT, RIGHT]) -> None:
+    def __init__(
+        self, mobs: Mobject, boundary: list[NDArray[np.float64]] = [LEFT, RIGHT]
+    ) -> None:
         super().__init__()
         if isinstance(mobs, VGroup):
             self.add(*mobs.copy().submobjects, *mobs.copy().submobjects)
         else:
-            self.add(cast(Any, mobs.copy()), cast(Any, mobs.copy()))
+            copy = mobs.copy()
+            self.add(cast(VMobject, copy), cast(VMobject, copy))
         arrange_in_1d_boundary(self, boundary)
 
 
@@ -942,7 +963,7 @@ class ScatteredCopies(VGroup):
             )
 
 
-def get_element_by_data(element: dict[Any, Any]) -> Element:
+def get_element_by_data(element: dict[str, object]) -> Element:
     """Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` mobject from a dictionary of element properties.
 
     Parameters
@@ -956,10 +977,10 @@ def get_element_by_data(element: dict[Any, Any]) -> Element:
         A :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` instance representing the result.
     """
     return Element(
-        element=element["symbol"],
-        color=element["color"],
-        n_electrons=element["electrons"],
-        n_holes=element["holes"],
+        element=cast(str, element["symbol"]),
+        color=cast(ManimColor | str, element["color"]),
+        n_electrons=cast(int, element["electrons"]),
+        n_holes=cast(int, element["holes"]),
     )
 
 
@@ -1014,10 +1035,10 @@ def randomly_distributed_in_2d(
 
 
 def arrange_copies_in_rectangle(
-    mobs: Mobject,
+    mobs: VMobject,
     n_copies: int = 2,
-    vertical_boundary: list[Any] = [UP, DOWN],
-    horizontal_boundary: list[Any] = [LEFT, RIGHT],
+    vertical_boundary: list[NDArray[np.float64]] = [UP, DOWN],
+    horizontal_boundary: list[NDArray[np.float64]] = [LEFT, RIGHT],
 ) -> VGroup:
     """Create n_copies of mobs and arrange them in a rectangular grid pattern.
 
@@ -1052,11 +1073,11 @@ def arrange_copies_in_rectangle(
                grid = arrange_copies_in_rectangle(tile, n_copies=2)
                self.add(grid)
     """
-    arrange_in_1d_boundary(cast(Any, mobs), vertical_boundary)
-    copies_group = VGroup(cast(Any, mobs))
+    copies_group = VGroup(mobs)
     for i in range(n_copies):
-        copies_group.add(cast(Any, mobs.copy()))
+        copies_group.add(mobs.copy())
 
+    arrange_in_1d_boundary(copies_group, vertical_boundary)
     arrange_in_1d_boundary(copies_group, horizontal_boundary)
 
     return copies_group
@@ -1100,10 +1121,15 @@ def make_subpaths(group: VMobject) -> VMobject:
     return group
 
 
+P = ParamSpec("P")
+
+
 @deprecated(
     "``zero`` is deprecated; use :func:`manim.utils.rate_functions.zero` instead.",
 )
-def zero(function: Callable[..., Any]) -> Callable[..., float]:
+def zero(
+    function: Callable[Concatenate[float, P], float],
+) -> Callable[Concatenate[float, P], float]:
     """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
 
     Parameters
@@ -1117,19 +1143,20 @@ def zero(function: Callable[..., Any]) -> Callable[..., float]:
     """
 
     @wraps(function)
-    def wrapper(t: float, *args: Any, **kwargs: Any) -> float:
+    def wrapper(t: float, *args: P.args, **kwargs: P.kwargs) -> float:
         """Clamp the curve parameter to the unit interval."""
         if 0 <= t <= 1:
             return float(function(t, *args, **kwargs))
         else:
             return 0
 
-    return wrapper
+    return cast(Callable[Concatenate[float, P], float], wrapper)
 
 
-_zero: Callable[[Callable[..., float]], Callable[..., float]] = cast(
-    Callable[[Callable[..., float]], Callable[..., float]], cast(Any, zero).__wrapped__
-)
+_zero = cast(
+    Callable[[Callable[..., float]], Callable[..., float]],
+    getattr(zero, "__wrapped__"),
+)  # explicit-any-ok: deprecated wrapper preserves its original decorator contract
 
 
 @_zero
@@ -1200,10 +1227,10 @@ class ConcatenatedMobjects(VGroup):
                self.add(chain)
     """
 
-    def __init__(self, mobject: Mobject, concats: int, buff: float = 0) -> None:
-        super().__init__(cast(Any, mobject.copy()))
+    def __init__(self, mobject: VMobject, concats: int, buff: float = 0) -> None:
+        super().__init__(mobject.copy())
         sides = {0: RIGHT, 1: LEFT}
         for i in range(concats):
             side = sides[i % 2]
             concat_mobject = mobject.copy().next_to(self, side, buff=buff)
-            self.add(cast(Any, concat_mobject))
+            self.add(concat_mobject)

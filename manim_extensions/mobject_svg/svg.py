@@ -15,7 +15,7 @@ subpaths, gradients and stroke/fill ordering keep working.
 """
 
 from __future__ import annotations
-from typing import cast, Any
+from typing import cast
 
 import itertools as it
 import tempfile
@@ -25,6 +25,7 @@ from pathlib import Path
 
 import cairo
 import numpy as np
+from numpy.typing import NDArray
 from manim import VGroup, VMobject
 from manim.utils.family import extract_mobject_family_members
 
@@ -39,7 +40,7 @@ def _get_cairo_context(
     file_name: str | Path,
     width: int | None = None,
     height: int | None = None,
-) -> Iterator[cairo.Context[Any]]:
+) -> Iterator[cairo.Context[cairo.SVGSurface]]:
     """Yield a Cairo SVG context scaled to the current manim frame.
 
     Parameters
@@ -89,7 +90,7 @@ def _get_cairo_context(
     surface.finish()
 
 
-def _transform_points_pre_display(points: np.ndarray) -> np.ndarray:
+def _transform_points_pre_display(points: NDArray[np.float64]) -> NDArray[np.float64]:
     """Return display-ready points, replacing non-finite values with zeros.
 
     Parameters
@@ -107,7 +108,9 @@ def _transform_points_pre_display(points: np.ndarray) -> np.ndarray:
     return points
 
 
-def _get_stroke_rgbas(vmobject: VMobject, background: bool = False) -> np.ndarray:
+def _get_stroke_rgbas(
+    vmobject: VMobject, background: bool = False
+) -> NDArray[np.float64]:
     """Return the stroke rgbas used by ``vmobject``.
 
     Parameters
@@ -125,8 +128,8 @@ def _get_stroke_rgbas(vmobject: VMobject, background: bool = False) -> np.ndarra
 
 
 def _set_cairo_context_color(
-    ctx: cairo.Context[Any],
-    rgbas: np.ndarray,
+    ctx: cairo.Context[cairo.SVGSurface],
+    rgbas: NDArray[np.float64],
     vmobject: VMobject,
 ) -> None:
     """Set the cairo source to a solid colour or a stroke gradient.
@@ -146,7 +149,7 @@ def _set_cairo_context_color(
         ctx.set_source_rgba(*rgbas[0])
     else:
         points = vmobject.get_gradient_start_and_end_points()
-        transformed = _transform_points_pre_display(cast(Any, points))
+        transformed = _transform_points_pre_display(np.array(points))
         pat = cairo.LinearGradient(*it.chain(*(point[:2] for point in transformed)))
         step = 1.0 / (len(rgbas) - 1)
         offsets = np.arange(0, 1 + step, step)
@@ -156,7 +159,7 @@ def _set_cairo_context_color(
 
 
 def _apply_stroke(
-    ctx: cairo.Context[Any], vmobject: VMobject, background: bool = False
+    ctx: cairo.Context[cairo.SVGSurface], vmobject: VMobject, background: bool = False
 ) -> None:
     """Stroke the current cairo path with the mobject's stroke colour.
 
@@ -190,7 +193,7 @@ def _apply_stroke(
     ctx.stroke_preserve()
 
 
-def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> None:
+def _apply_fill(ctx: cairo.Context[cairo.SVGSurface], vmobject: VMobject) -> None:
     """Fill the current cairo path with the vmobject's fill colours.
 
     Parameters
@@ -221,7 +224,7 @@ def _temporary_svg_path() -> Path:
 
 
 def _create_svg_from_vmobject_internal(
-    vmobject: VMobject, ctx: cairo.Context[Any]
+    vmobject: VMobject, ctx: cairo.Context[cairo.SVGSurface]
 ) -> None:
     """Draw one mobject into the current cairo context.
 
@@ -285,10 +288,12 @@ def create_svg_from_vmobject(
     if crop:
         width, height = vmobject.width + padding, vmobject.height + padding
     with _get_cairo_context(
-        file_name, width=cast(Any, width), height=cast(Any, height)
+        file_name,
+        width=int(width) if width is not None else None,
+        height=int(height) if height is not None else None,
     ) as ctx:
         for _vmobject in extract_mobject_family_members([vmobject], True, True):
-            _create_svg_from_vmobject_internal(cast(Any, _vmobject), ctx)
+            _create_svg_from_vmobject_internal(cast(VMobject, _vmobject), ctx)
     return file_name
 
 
@@ -323,11 +328,13 @@ def create_svg_from_vgroup(
     if crop:
         width, height = vgroup.width + padding, vgroup.height + padding
     with _get_cairo_context(
-        file_name, width=cast(Any, width), height=cast(Any, height)
+        file_name,
+        width=int(width) if width is not None else None,
+        height=int(height) if height is not None else None,
     ) as ctx:
         # a vgroup is a list of VMobjects which may contain other VGroups
         # flatten the vgroup to get a list of VMobjects
         members = extract_mobject_family_members(vgroup, True, True)
         for vmobject in members:
-            _create_svg_from_vmobject_internal(cast(Any, vmobject), ctx)
+            _create_svg_from_vmobject_internal(cast(VMobject, vmobject), ctx)
     return file_name

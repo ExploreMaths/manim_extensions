@@ -119,6 +119,15 @@ class PhysicsAttributes(Protocol):
     spacescene: SpaceScene
 
 
+class PhysicsMobject(Mobject):
+    """Mobject view with the physics attributes attached at runtime."""
+
+    body: pymunk.Body
+    shape: pymunk.Shape
+    angle: float
+    spacescene: SpaceScene
+
+
 class Space(Mobject, metaclass=ConvertToOpenGL):
     """Physics space that manages a pymunk simulation.
 
@@ -158,8 +167,10 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                self.wait(4)
     """
 
-    def __init__(
-        self, gravity: tuple[float, float] = (0, -9.81), **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        gravity: tuple[float, float] = (0, -9.81),
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
@@ -227,8 +238,10 @@ class SpaceScene(Scene):
     #: Default gravity vector applied by the physics space.
     GRAVITY: tuple[float, float] = 0, -9.81
 
-    def __init__(
-        self, renderer: CairoRenderer | OpenGLRenderer | None = None, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        renderer: CairoRenderer | OpenGLRenderer | None = None,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.space = Space(gravity=self.GRAVITY)
         super().__init__(renderer=renderer, **kwargs)
@@ -275,26 +288,28 @@ class SpaceScene(Scene):
         """
         pymunk = require("physics", "pymunk")
         for mob in mobs:
+            rigid = cast(PhysicsMobject, mob)
             if not hasattr(mob, "body"):
                 self.add(mob)
-                cast(Any, mob).body = pymunk.Body()
-                cast(Any, mob).body.position = mob.get_x(), mob.get_y()
-                get_angle(cast(VMobject, mob))
+                rigid.body = pymunk.Body()
+                rigid.body.position = rigid.get_x(), rigid.get_y()
+                get_angle(cast(VMobject, rigid))
                 if not hasattr(mob, "angle"):
-                    cast(Any, mob).angle = 0
-                cast(Any, mob).body.angle = mob.angle
-                get_shape(cast(VMobject, mob))
-                cast(Any, mob.shape).density = density
-                cast(Any, mob.shape).elasticity = elasticity
-                cast(Any, mob.shape).friction = friction
-                cast(Any, mob).spacescene = self
+                    rigid.angle = 0
+                rigid.body.angle = rigid.angle
+                get_shape(cast(VMobject, rigid))
+                assert rigid.shape is not None
+                rigid.shape.density = density
+                rigid.shape.elasticity = elasticity
+                rigid.shape.friction = friction
+                rigid.spacescene = self
 
                 self.add_body(mob)
                 mob.add_updater(_simulate)
 
             else:
-                if cast(Any, mob.body).is_sleeping:
-                    cast(Any, mob.body).activate()
+                if rigid.body.is_sleeping:
+                    rigid.body.activate()
 
     def make_static_body(
         self, *mobs: Mobject, elasticity: float = 1, friction: float = 0.8
@@ -315,10 +330,12 @@ class SpaceScene(Scene):
             if isinstance(mob, (VGroup, Group)):
                 self.make_static_body(*mob)
                 return
-            cast(Any, mob).body = self.space.space.static_body
-            get_shape(cast(VMobject, mob))
-            cast(Any, mob.shape).elasticity = elasticity
-            cast(Any, mob.shape).friction = friction
+            rigid = cast(PhysicsMobject, mob)
+            rigid.body = self.space.space.static_body
+            get_shape(cast(VMobject, rigid))
+            assert rigid.shape is not None
+            rigid.shape.elasticity = elasticity
+            rigid.shape.friction = friction
             self.add_body(mob)
 
     def stop_rigidity(self, *mobs: Mobject) -> None:
@@ -333,7 +350,7 @@ class SpaceScene(Scene):
             if isinstance(mob, (VGroup, Group)):
                 self.stop_rigidity(*mob)
             if hasattr(mob, "body"):
-                cast(Any, mob.body).sleep()
+                cast(PhysicsMobject, mob).body.sleep()
 
 
 def _step(space: Mobject, dt: float = 1 / 60) -> None:
@@ -346,7 +363,7 @@ def _step(space: Mobject, dt: float = 1 / 60) -> None:
     dt
         Time step size in seconds.
     """
-    cast(Any, space).space.step(dt)
+    cast(Space, space).space.step(dt)
 
 
 def _simulate(b: Mobject) -> None:
@@ -357,10 +374,11 @@ def _simulate(b: Mobject) -> None:
     b
         The physics body whose state is synchronised to its mobject.
     """
-    x, y = cast(Any, b.body).position
+    rigid = cast(PhysicsMobject, b)
+    x, y = rigid.body.position
     b.move_to(x * RIGHT + y * UP)
-    b.rotate(cast(Any, b.body).angle - cast(Any, b).angle)
-    cast(Any, b).angle = cast(Any, b.body).angle
+    b.rotate(rigid.body.angle - rigid.angle)
+    rigid.angle = rigid.body.angle
 
 
 def get_shape(mob: VMobject) -> None:
@@ -372,11 +390,12 @@ def get_shape(mob: VMobject) -> None:
         The mobject to manipulate.
     """
     pymunk = require("physics", "pymunk")
+    rigid = cast(PhysicsMobject, mob)
     if isinstance(mob, Circle):
-        cast(Any, mob).shape = pymunk.Circle(body=mob.body, radius=mob.radius)
+        rigid.shape = pymunk.Circle(body=rigid.body, radius=mob.radius)
     elif isinstance(mob, Line):
-        cast(Any, mob).shape = pymunk.Segment(
-            mob.body,
+        rigid.shape = pymunk.Segment(
+            rigid.body,
             (mob.get_start()[0], mob.get_start()[1]),
             (mob.get_end()[0], mob.get_end()[1]),
             mob.stroke_width - 3.95,
@@ -384,12 +403,12 @@ def get_shape(mob: VMobject) -> None:
     elif issubclass(type(mob), Rectangle):
         width = np.linalg.norm(mob.get_vertices()[1] - mob.get_vertices()[0])
         height = np.linalg.norm(mob.get_vertices()[2] - mob.get_vertices()[1])
-        cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (width, height))
+        rigid.shape = pymunk.Poly.create_box(rigid.body, (width, height))
     elif issubclass(type(mob), Polygram):
         vertices = [(a, b) for a, b, _ in mob.get_vertices() - mob.get_center()]
-        cast(Any, mob).shape = pymunk.Poly(mob.body, vertices)
+        rigid.shape = pymunk.Poly(rigid.body, vertices)
     else:
-        cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
+        rigid.shape = pymunk.Poly.create_box(rigid.body, (mob.width, mob.height))
 
 
 def get_angle(mob: VMobject) -> None:
@@ -401,9 +420,10 @@ def get_angle(mob: VMobject) -> None:
     mob
         The mobject to manipulate.
     """
+    rigid = cast(PhysicsMobject, mob)
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]
         vec2 = type(mob)().get_vertices()[0] - type(mob)().get_vertices()[1]
-        cast(Any, mob).angle = angle_between_vectors(vec1, vec2)
+        rigid.angle = angle_between_vectors(vec1, vec2)
     elif isinstance(mob, Line):
-        cast(Any, mob).angle = mob.get_angle()
+        rigid.angle = mob.get_angle()

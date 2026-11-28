@@ -88,7 +88,12 @@ class ManimTransition(Transition, VGroup):
                self.wait()
     """
 
-    def __init__(
+    #: Graphical source state of this transition.
+    transition_from: ManimState
+    #: Graphical target state of this transition.
+    transition_to: ManimState
+
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         transition_from: ManimState,
         transition_to: ManimState,
@@ -97,11 +102,17 @@ class ManimTransition(Transition, VGroup):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         Transition.__init__(self, transition_from, transition_to)
-        self.circle: Any = None
-        self.arrow: Any = None
+        self.transition_from = transition_from
+        self.transition_to = transition_to
+        self.circle: Any = (
+            None  # explicit-any-ok: filled with a Circle or a CurvedArrow-like mobject
+        )
+        self.arrow: Any = (
+            None  # explicit-any-ok: filled with Arrow or CurvedArrow depending on topology
+        )
         # manim settings for animations and colors
         self.animation_style = animation_style
         # store tex mobjects of read_symbols for transitions
@@ -127,12 +138,14 @@ class ManimTransition(Transition, VGroup):
             is not None
         ):  # check if there already exists an arrow pointing the opposite way
             # pre-exising arrow transition converted to curved arrow
-            opposite_transition = (
+            opposite_transition = cast(
+                ManimTransition,
                 self.transition_to.get_transition_by_transition_to_state_id(
                     self.transition_from.id
-                )
+                ),
             )
-            cast(Any, opposite_transition).convert_straight_arrow_to_curved_arrow()
+            assert opposite_transition is not None
+            opposite_transition.convert_straight_arrow_to_curved_arrow()
 
             # create this(self) arrow
             self.construct_curved_arrow()
@@ -157,9 +170,11 @@ class ManimTransition(Transition, VGroup):
         -------
             The animation of the transition arrow.
         """
-        transition_style = cast(
-            dict[str, Any], self.animation_style["animate_transition"]
-        )
+        transition_style = (
+            cast(  # explicit-any-ok: user-provided animation callables and colours
+                dict[str, Any], self.animation_style["animate_transition"]
+            )
+        )  # explicit-any-ok: animation callables and colours vary by user style
         animation_function = transition_style["animation_function"]
 
         color = transition_style["accept_color"]
@@ -176,7 +191,7 @@ class ManimTransition(Transition, VGroup):
         -------
             The two vertex points ``(p1, p2)``.
         """
-        circle = cast(Any, self.transition_from).circle
+        circle = self.transition_from.circle
 
         p1 = circle.point_at_angle(PI / 4 + PI / 2)
         p2 = circle.point_at_angle(PI / 4)
@@ -219,11 +234,11 @@ class ManimTransition(Transition, VGroup):
             The normal direction used to offset the arrow label.
         """
 
-        x1 = cast(Any, self.transition_from).get_x()
-        y1 = cast(Any, self.transition_from).get_y()
+        x1 = self.transition_from.get_x()
+        y1 = self.transition_from.get_y()
 
-        x2 = cast(Any, self.transition_to).get_x()
-        y2 = cast(Any, self.transition_to).get_y()
+        x2 = self.transition_to.get_x()
+        y2 = self.transition_to.get_y()
 
         difference_of_x = x2 - x1
         difference_of_y = y2 - y1
@@ -253,11 +268,11 @@ class ManimTransition(Transition, VGroup):
             x1 = self.transition_from[0]
             y1 = self.transition_from[1]
         else:
-            x1 = cast(Any, self.transition_from).get_x()
-            y1 = cast(Any, self.transition_from).get_y()
+            x1 = self.transition_from.get_x()
+            y1 = self.transition_from.get_y()
 
-        x2 = cast(Any, self.transition_to).get_x()
-        y2 = cast(Any, self.transition_to).get_y()
+        x2 = self.transition_to.get_x()
+        y2 = self.transition_to.get_y()
 
         # midpoint
         c1 = (x1 + x2) / 2
@@ -438,7 +453,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         transition_from: ManimState,
         transition_to: ManimState,
@@ -447,9 +462,11 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         Transition.__init__(self, transition_from, transition_to)
+        self.transition_from = transition_from
+        self.transition_to = transition_to
         self.circle = None
         # manim settings for animations and colors
         self.animation_style = animation_style
@@ -477,12 +494,14 @@ class ManimPushDownAutomatonTransition(ManimTransition):
             is not None
         ):  # check if there already exists an arrow pointing the opposite way
             # pre-exising arrow transition converted to curved arrow
-            opposite_transition = (
+            opposite_transition = cast(
+                ManimTransition,
                 self.transition_to.get_transition_by_transition_to_state_id(
                     self.transition_from.id
-                )
+                ),
             )
-            cast(Any, opposite_transition).convert_straight_arrow_to_curved_arrow()
+            assert opposite_transition is not None
+            opposite_transition.convert_straight_arrow_to_curved_arrow()
 
             # create this(self) arrow
             self.construct_curved_arrow()

@@ -6,7 +6,7 @@
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom` class for rendering atoms in 3D.
 """
 
-from typing import Any, cast
+from typing import Any
 
 # unlinked-class-ok: Element
 
@@ -64,10 +64,13 @@ class ThreeDAtom(OpenGLSphere):
         atom = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))
     """
 
-    def __init__(
-        self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        element: Element,
+        coords: Point3D = np.array([0, 0, 0]),
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
-        cast(Any, self).center = coords
+        setattr(self, "center", coords)
         self.coords = coords
         self.element = element
 

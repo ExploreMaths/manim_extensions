@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from typing import Any, cast
+from typing import Any
 
 # -*- coding: utf-8 -*-
 
@@ -40,6 +40,7 @@ projected onto world up, so they stay readable at any rotation angle.
 import math
 
 import numpy as np
+from numpy.typing import NDArray
 from manim import (
     Mobject,
     Animation,
@@ -243,7 +244,7 @@ class PolyRadarChart(VGroup):
                self.add(chart)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         axes_names: Sequence[str],
         values: Sequence[float],
@@ -256,7 +257,7 @@ class PolyRadarChart(VGroup):
         cam_pos: Point3D | tuple[float, float, float] = (0.0, 0.0, 20.0),
         center: Point3D | tuple[float, float, float] = (0.0, -0.15, 0.0),
         sphere_color: ParsableManimColor = DYE_C,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         super().__init__(**kwargs)
         self.axes_names = list(axes_names)
@@ -388,7 +389,7 @@ class PolyRadarChart(VGroup):
             tris.append(tuple(fs))
         return tris
 
-    def _world(self, i: int, extra: float = 0.0) -> np.ndarray:
+    def _world(self, i: int, extra: float = 0.0) -> NDArray[np.float64]:
         """Compute the rotated world position of an axis marker.
 
         Parameters
@@ -473,7 +474,7 @@ class PolyRadarChart(VGroup):
 
             th = math.radians(self.theta)
             M = rotation_matrix(-th, Z_AXIS)[:3, :3] @ Rbill
-            for k, lab in enumerate(cast(Any, m)):
+            for k, lab in enumerate(m):
                 anchor = self.pivot + rotation_matrix(th, Z_AXIS)[:3, :3] @ (
                     np.array(FACE_NORMAL_DIRS[k])
                     * (self.inr * float(self._frac[k]) + 0.55)
@@ -502,10 +503,10 @@ class PolyRadarChart(VGroup):
             return self
         for s in sorted(self.skin_parts):
             part = self.skin_parts[s]
-            cast(Any, part["edges"]).set_stroke(
-                opacity=(0.7 if s == max(self.skin_parts) else 0.42)
-            )
-            anims: list[Animation] = [Create(cast(Any, part["edges"]))]
+            edges = part["edges"]
+            assert edges is not None
+            edges.set_stroke(opacity=(0.7 if s == max(self.skin_parts) else 0.42))
+            anims: list[Animation] = [Create(edges)]
             if part["faces"] is not None:
                 anims.append(FadeIn(part["faces"]))
             if part["dots"] is not None:
@@ -560,7 +561,11 @@ class PolyRadarChart(VGroup):
                        self.wait()
             """
 
-            def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
+            def __init__(
+                self, poly: PolyRadarChart, delta: float, **kw: Any
+            ) -> (
+                None
+            ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
                 self.poly = poly
                 self.delta = delta
                 super().__init__(poly, **kw)
@@ -638,8 +643,11 @@ class PolyMorph(Animation):
                self.wait()
     """
 
-    def __init__(
-        self, poly: PolyRadarChart, target_values: Sequence[float], **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        poly: PolyRadarChart,
+        target_values: Sequence[float],
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.poly = poly
         self.target = np.array(target_values, dtype=float) / poly.max_value

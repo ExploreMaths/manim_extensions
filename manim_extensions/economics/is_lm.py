@@ -72,7 +72,7 @@ class ISLMDiagram(EconDiagram):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         a: float = 9.5,
         b: float = 1.5,
@@ -81,7 +81,7 @@ class ISLMDiagram(EconDiagram):
         h: float = 1,
         show_equilibrium: bool = True,
         numbered_eq: bool = False,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         kwargs.setdefault("y_range", [-2, 8, 1])
         super().__init__(x_label="Y", y_label="r", **kwargs)

@@ -12,19 +12,58 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 
 from __future__ import annotations
 from collections.abc import Callable, Sequence
-from typing import Any, TYPE_CHECKING, cast
+from typing import Any, Protocol, TypedDict, TYPE_CHECKING, cast
 
 import math
 
 from manim.typing import Point3D
+
+
+class _MorphSlot(TypedDict):
+    """Per-series start and end values, styling and opacity for a morph."""
+
+    start_values: list[float]
+    end_values: list[float]
+    dip_values: list[float]
+    start_color: ManimColor
+    end_color: ManimColor
+    start_rim: float
+    end_rim: float
+    start_op: float
+    end_op: float
+
+
+class _CameraPush(TypedDict):
+    """State of the automatic micro-push for a burst morph."""
+
+    frame: Mobject
+    direction: Point3D
+    frac_alpha: float
+    center: Point3D
+    width: float
+    height: float
+    duration: float
+    fired: bool
+    t0: float
+    restored: bool
+
+
+class _Restylable(Protocol):
+    """Mobject exposing the ring restyle callback."""
+
+    def restyle(self, radius: float, width: float, opacity: float) -> None: ...
+
+
 from manim.utils.color import ParsableManimColor
 
 import numpy as np
+from numpy.typing import NDArray
 from manim import (
     DOWN,
     UP,
     Animation,
     ManimColor,
+    Mobject,
     Polygon,
     Rectangle,
     Scene,
@@ -63,7 +102,9 @@ TRANSITIONS = {
 # ---------------------------------------------------------------------------
 # small helpers
 # ---------------------------------------------------------------------------
-def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.ndarray:
+def _ring_points(
+    center: NDArray[np.float64], radius: float, segments: int = 64
+) -> NDArray[np.float64]:
     """Build a closed polygonal approximation of a circle.
 
     Parameters
@@ -118,8 +159,11 @@ class Ring(Polygon):
                ring.restyle(2.0, 1.0, 0.5)
     """
 
-    def __init__(
-        self, center: Point3D, color: ParsableManimColor, **kwargs: Any
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        center: Point3D,
+        color: ParsableManimColor,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         center = np.asarray(center, dtype=float)
         super().__init__(*(np.tile(center, (3, 1))), stroke_color=color, **kwargs)
@@ -213,7 +257,7 @@ class Shockwave(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         center: Point3D | None = None,
         *,
@@ -225,7 +269,7 @@ class Shockwave(Animation):
         expand: bool = True,
         run_time: float = 0.42,
         rate_func: Callable[[float], float] = smooth,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if center is None:
             center = np.zeros(3)
@@ -252,7 +296,7 @@ class Shockwave(Animation):
             Raw animation progress in the range 0 to 1.
         """
         k = self.rate_func(alpha)
-        cast(Any, self.mobject).restyle(
+        cast(_Restylable, self.mobject).restyle(
             self._r0 + (self._r1 - self._r0) * k,
             self._w0 + (self._w1 - self._w0) * k,
             0.9 * (1.0 - k),
@@ -339,7 +383,7 @@ class RadarMorph(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         chart: RadarChart,
         target: Sequence[RadarData],
@@ -361,7 +405,7 @@ class RadarMorph(Animation):
         fade_name: bool = True,
         name_shift: float = 0.30,
         stagger: float | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         if transition is not None and transition not in TRANSITIONS:
             raise ValueError(
@@ -394,7 +438,7 @@ class RadarMorph(Animation):
         self.name_shift = name_shift
         self.stagger = cfg.stagger if stagger is None else float(stagger)
         self._ring: Ring | None = None
-        self._cam: dict[str, Any] | None = None
+        self._cam: _CameraPush | None = None
         self._legend_path: str | None = None
         super().__init__(
             chart,
@@ -421,7 +465,7 @@ class RadarMorph(Animation):
             else self.start_opacity
         )
 
-        self.slots: list[dict[str, Any]] = []
+        self.slots: list[_MorphSlot] = []
         for i in range(self.k):
             s = chart._series[i] if i < len(chart._series) else None
             t = self.targets[i] if i < len(self.targets) else None
@@ -493,7 +537,7 @@ class RadarMorph(Animation):
 
         self._cam = self._prepare_camera()
 
-    def _prepare_camera(self) -> dict[str, Any] | None:
+    def _prepare_camera(self) -> _CameraPush | None:
         """Compute the automatic micro-push target for a burst morph.
 
         Returns
@@ -764,7 +808,7 @@ class RadarReveal(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         chart: RadarChart,
         *,
@@ -772,7 +816,7 @@ class RadarReveal(Animation):
         rate_func: Callable[[float], float] = smooth,
         from_values: Sequence[float] | None = None,
         with_shockwave: bool | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.chart = chart
         self.from_values = (
@@ -884,14 +928,14 @@ class RadarBurstIn(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         chart: RadarChart,
         *,
         run_time: float = 1.1,
         rate_func: Callable[[float], float] = smooth,
         with_shockwave: bool | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.chart = chart
         self.overshoot = chart.config.burst_overshoot
@@ -998,14 +1042,14 @@ class RadarFade(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         chart: RadarChart,
         to: float = 0.0,
         *,
         run_time: float = 0.8,
         rate_func: Callable[[float], float] = smooth,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.chart = chart
         self.to = float(np.clip(to, 0.0, 1.0))
@@ -1073,7 +1117,7 @@ class GlitchFlash(Animation):
                self.wait()
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         chart: RadarChart,
         *,
@@ -1081,7 +1125,7 @@ class GlitchFlash(Animation):
         rate_func: Callable[[float], float] = smooth,
         bars: bool = True,
         flickers: int = 3,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         self.chart = chart
         self.bars = bars

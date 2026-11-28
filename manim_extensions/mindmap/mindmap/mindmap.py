@@ -8,7 +8,7 @@ This module provides main mindmap classes for visualizations.
 """
 
 from collections.abc import Sequence
-from typing import Any
+from typing import cast
 
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 
@@ -16,8 +16,12 @@ from manim.constants import DOWN, RIGHT, UP
 from manim.typing import Vector3D
 from manim.utils.color import GREEN, PURE_YELLOW, RED, WHITE
 
-from .base import NodeMobject, AbstractMap, generate_tree
+from .base import MindMapSpec, NodeMobject, AbstractMap, generate_tree
 from ..nodes import NodeStyle, bfs_walker
+from ..algorithms.alg_tidy_tree import NodeLike
+from ..algorithms.alg_time_line import _TimelineInput
+from ..algorithms.alg_catalog import _CatalogInput
+from ..algorithms.alg_standard import TreeNode
 from ..algorithms import (
     TidyTreeLayout,
     TimeLineLayout,
@@ -83,7 +87,7 @@ class MindMap(AbstractMap):
 
     def __init__(
         self,
-        map: dict[Any, Any] = {},
+        map: MindMapSpec | None = None,
         buff: float = 0.2,
         direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
@@ -111,7 +115,9 @@ class MindMap(AbstractMap):
         self.direction = direction
         super().__init__(
             layout_method=TidyTreeLayout(
-                root=generate_tree(Map=map, node_style=node_style, buff=buff),
+                root=cast(
+                    NodeLike, generate_tree(Map=map, node_style=node_style, buff=buff)
+                ),
                 **LayoutConfig(
                     direction=direction,
                     node_spacing=node_spacing,
@@ -186,7 +192,7 @@ class TimeLine(AbstractMap):
 
     def __init__(
         self,
-        map: dict[Any, Any] = {},
+        map: MindMapSpec | None = None,
         buff: float = 0.2,
         sides: Sequence[Vector3D] = (UP, DOWN),
         level_spacing: float = 1.0,
@@ -213,7 +219,10 @@ class TimeLine(AbstractMap):
         self.node_style = node_style
         super().__init__(
             layout_method=TimeLineLayout(
-                root=generate_tree(Map=map, node_style=node_style, buff=buff),
+                root=cast(
+                    _TimelineInput,
+                    generate_tree(Map=map, node_style=node_style, buff=buff),
+                ),
                 **LayoutConfig(
                     node_spacing=node_spacing, level_spacing=level_spacing, sides=sides
                 ).timeline,
@@ -288,7 +297,7 @@ class StandardMap(AbstractMap):
 
     def __init__(
         self,
-        map: dict[Any, Any] = {},
+        map: MindMapSpec | None = None,
         buff: float = 0.2,
         direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
@@ -315,7 +324,9 @@ class StandardMap(AbstractMap):
         self.node_style = node_style
         super().__init__(
             layout_method=StandardLayout(
-                root=generate_tree(Map=map, node_style=node_style, buff=buff),
+                root=cast(
+                    TreeNode, generate_tree(Map=map, node_style=node_style, buff=buff)
+                ),
                 **LayoutConfig(
                     direction=direction,
                     node_spacing=node_spacing,
@@ -394,7 +405,7 @@ class CatalogMap(AbstractMap):
 
     def __init__(
         self,
-        map: dict[Any, Any] = {},
+        map: MindMapSpec | None = None,
         buff: float = 0.2,
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
@@ -420,7 +431,10 @@ class CatalogMap(AbstractMap):
         self.node_style = node_style
         super().__init__(
             layout_method=CatalogLayout(
-                root=generate_tree(Map=map, node_style=node_style, buff=buff),
+                root=cast(
+                    _CatalogInput,
+                    generate_tree(Map=map, node_style=node_style, buff=buff),
+                ),
                 **LayoutConfig(
                     node_spacing=node_spacing,
                     level_spacing=level_spacing,

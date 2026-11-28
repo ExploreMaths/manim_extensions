@@ -39,6 +39,7 @@ from manim import (
     ValueTracker,
 )
 import numpy as np
+from numpy.typing import NDArray
 
 # local imports
 from ...exceptions import (
@@ -147,7 +148,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     verts_size: float
     pre_function_handle_to_anchor_scale_factor: float
 
-    def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, mesh: Mesh, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         self.mesh: Mesh = mesh
         self.vertices: Group = Group()
         self.edges: VGroup = VGroup()
@@ -449,7 +454,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         vert_2 = self.mesh.get_3d_vertices()[edge[1]]
         e.set_points_as_corners([vert_1, vert_2])
 
-    def _as_mesh_dim(self, point: object) -> np.ndarray:
+    def _as_mesh_dim(self, point: object) -> NDArray[np.float64]:
         """Expand a point to the mesh dimensionality, padding extra axes with zero.
 
         Parameters
@@ -466,7 +471,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             array = np.pad(array, (0, self.mesh.dim - array.shape[0]))
         return array[: self.mesh.dim]
 
-    def _mesh_center(self) -> np.ndarray:
+    def _mesh_center(self) -> NDArray[np.float64]:
         """Return the bounding-box centre expanded to the mesh dimensionality.
 
         Returns
@@ -505,7 +510,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         super().shift(total_shift)
         return self
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> "ManimMesh":
+    def scale(
+        self, scale_factor: float, **kwargs: Any
+    ) -> (
+        "ManimMesh"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Scale the mesh (data and Manim objects) about its bounding-box centre.
 
         Parameters
@@ -524,7 +533,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         super().scale(scale_factor, **kwargs)
         return self
 
-    def stretch(self, factor: float, dim: int, **kwargs: Any) -> "ManimMesh":
+    def stretch(
+        self, factor: float, dim: int, **kwargs: Any
+    ) -> (
+        "ManimMesh"
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Stretch the mesh along a single dimension.
 
         Parameters
@@ -552,14 +565,14 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         super().stretch(factor, dim, **kwargs)
         return self
 
-    def rotate(
+    def rotate(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         angle: float,
         axis: Vector3DLike = OUT,
         *,
         about_point: Point3DLike | None = None,
         about_edge: Vector3DLike | None = None,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> "ManimMesh":
         """Rotate the mesh (data and Manim objects) about ``about_point``.
 
@@ -668,8 +681,12 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         super().rotate(TAU / 2, axis, about_point=pivot)
         return self
 
-    def shift_vertex(
-        self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs: Any
+    def shift_vertex(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scene: Scene,
+        vertex_idx: int,
+        shift: Vector3D,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Animate a single vertex and update all adjacent faces/edges.
 
@@ -696,7 +713,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.add(tracker)
         scene.play(
-            cast(Any, tracker.animate)(**kwargs).set_value(1),
+            tracker.animate.set_value(1),
             run_time=(
                 kwargs["shift_vertex_runtime"]
                 if "shift_vertex_runtime" in kwargs
@@ -705,7 +722,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs: Any) -> None:
+    def shift_vertices(
+        self, scene: Scene, shift: Vector3D, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
         """Animate all vertices simultaneously with per-vertex offsets.
 
         Parameters
@@ -731,9 +752,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             )
         scene.add(tracker)
         scene.play(
-            cast(Any, tracker.animate)(
-                **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"])
-            ).set_value(1),
+            tracker.animate.set_value(1),
             run_time=(
                 kwargs["shift_vertices_runtime"]
                 if "shift_vertices_runtime" in kwargs
@@ -742,8 +761,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def move_vertices_to(
-        self, scene: Scene, new_positions: Point3D_Array, **kwargs: Any
+    def move_vertices_to(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scene: Scene,
+        new_positions: Point3D_Array,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Animate all vertices to ``new_positions`` and update the underlying mesh.
 
@@ -768,8 +790,12 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         shift: Point3D_Array = new_positions - self.mesh.vertices
         self.shift_vertices(scene, shift=shift, **kwargs)
 
-    def move_vertex_to(
-        self, scene: Scene, vertex_idx: int, pos: Point3D, **kwargs: Any
+    def move_vertex_to(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
+        self,
+        scene: Scene,
+        vertex_idx: int,
+        pos: Point3D,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Animate a single vertex to a new absolute position.
 
@@ -796,13 +822,13 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         # use shift method to slowly move point to desired place
         self.shift_vertex(scene, vertex_idx, shift, **kwargs)
 
-    def move_to_grid(
+    def move_to_grid(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         scene: Scene,
         grid_sizes: tuple[float, ...],
         threshold: tuple[float, ...],
         nof_steps: int = 1,
-        **kwargs: Any,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         """Animate vertices snapping to a regular grid.
 
@@ -893,7 +919,11 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     """
 
     # pylint:disable=abstract-method
-    def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, mesh: Mesh, *args: Any, **kwargs: Any
+    ) -> (
+        None
+    ):  # explicit-any-ok: forwarded unchanged to a dynamically dispatched callable
         # validate if we have a useful 2D mesh
         if mesh.dim == 3:
             if np.sum(np.abs(mesh.vertices[:, 2] != 0)):
@@ -905,9 +935,11 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                 f"Mesh is not in the correct format. Expected Dim 2 or 3 with z zero, was {mesh.dim}"
             )
         # init ManimMesh
-        call_kwargs: dict[str, Any] = {
-            key: get_param_or_default(key, kwargs, BM2DM) for key in BM2DM
-        }
+        call_kwargs: dict[str, Any] = (
+            {  # explicit-any-ok: heterogeneous shader/mesh construction options
+                key: get_param_or_default(key, kwargs, BM2DM) for key in BM2DM
+            }
+        )
         call_kwargs.update(remove_keys_from_dict(kwargs, list(BM2DM.keys())))
         super().__init__(mesh, *args, **call_kwargs)
 
@@ -926,7 +958,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
             self.vertices.add(Dot(v, radius=self.verts_size, color=self.verts_color))
         return self.vertices
 
-    def get_dots(self, indices: list[Any]) -> list[Dot]:
+    def get_dots(self, indices: list[int]) -> list[Dot]:
         """Return Manim :class:`~manim.mobject.geometry.arc.Dot` objects that track the specified vertices.
 
         Each dot is automatically updated via an updater so that it stays at

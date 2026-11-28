@@ -13,7 +13,8 @@ scales the chart instead — same idea, zero setup.
 """
 
 from __future__ import annotations
-from typing import Any
+
+# from typing import Any
 
 import numpy as np
 from manim import Mobject, MovingCameraScene
@@ -67,7 +68,7 @@ class CameraRig:
         target: Mobject | Point3D | None = None,
         factor: float = 1.35,
         run_time: float = 1.0,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> _AnimationBuilder:
         """Zoom the camera towards a target.
 
@@ -98,7 +99,7 @@ class CameraRig:
         factor: float | None = None,
         target: Mobject | Point3D | None = None,
         run_time: float = 1.0,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> _AnimationBuilder:
         """Zoom back out towards the default frame or a target.
 
@@ -133,7 +134,11 @@ class CameraRig:
         return self._timed(anim, run_time)
 
     def focus_point(
-        self, point: Point3D, factor: float = 1.5, run_time: float = 0.9, **kwargs: Any
+        self,
+        point: Point3D,
+        factor: float = 1.5,
+        run_time: float = 0.9,
+        **kwargs: object,
     ) -> _AnimationBuilder:
         """Pan to a point and zoom in during one move.
 

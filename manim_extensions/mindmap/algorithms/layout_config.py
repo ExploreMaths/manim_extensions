@@ -8,7 +8,7 @@ This module provides configuration classes for layout algorithms.
 """
 
 from collections.abc import Sequence
-from typing import Any, cast
+from typing import TypedDict, cast
 
 from manim import DOWN, LEFT, RIGHT, UP
 
@@ -104,6 +104,31 @@ class LayoutType(Enum):
     Standard = "standard"
     #: Catalogue layout for grouped entries.
     Catalog = "catalog"
+
+
+class _CatalogLayout(TypedDict):
+    node_spacing: float
+    level_spacing: float
+
+
+class _MindMapLayout(_CatalogLayout):
+    direction: LayoutDirection
+
+
+class _MindMapInput(TypedDict):
+    direction: Vector3D
+    node_spacing: float
+    level_spacing: float
+
+
+class _TimelineLayout(_CatalogLayout):
+    sides: tuple[LayoutDirection, ...]
+
+
+class _TimelineInput(TypedDict):
+    node_spacing: float
+    level_spacing: float
+    sides: tuple[Vector3D, ...]
 
 
 class LayoutConfig:
@@ -214,7 +239,7 @@ class LayoutConfig:
         return string
 
     @property
-    def catalog(self) -> dict[str, Any]:
+    def catalog(self) -> _CatalogLayout:
         """Return the catalog layout settings.
 
         Returns
@@ -229,7 +254,7 @@ class LayoutConfig:
     @catalog.setter
     def catalog(
         self,
-        catalog: dict[str, Any] = {
+        catalog: _CatalogLayout = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
         },
@@ -245,7 +270,7 @@ class LayoutConfig:
         self.level_spacing = catalog.get("level_spacing", 0.5)
 
     @property
-    def mindmap(self) -> dict[str, Any]:
+    def mindmap(self) -> _MindMapLayout:
         """Return the mind map layout settings.
 
         Returns
@@ -262,7 +287,7 @@ class LayoutConfig:
     @mindmap.setter
     def mindmap(
         self,
-        mindmap: dict[str, Any] = {
+        mindmap: _MindMapInput = {
             "direction": RIGHT,
             "node_spacing": 0.5,
             "level_spacing": 0.5,
@@ -291,7 +316,7 @@ class LayoutConfig:
         self.level_spacing = mindmap.get("level_spacing", 0.5)
 
     @property
-    def timeline(self) -> dict[str, Any]:
+    def timeline(self) -> _TimelineLayout:
         """Return the timeline layout settings.
 
         Returns
@@ -307,7 +332,7 @@ class LayoutConfig:
     @timeline.setter
     def timeline(
         self,
-        timeline: dict[str, Any] = {
+        timeline: _TimelineInput = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
             "sides": (UP, DOWN),

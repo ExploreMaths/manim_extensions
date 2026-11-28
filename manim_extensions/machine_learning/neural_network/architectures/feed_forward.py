@@ -4,9 +4,9 @@
 
 """Feed-forward neural network architecture visualization."""
 
-from typing import Any, cast
+from typing import Any
 
-from ... import config
+from ...config import config
 from ..neural_network import NeuralNetwork
 from ..layers.feed_forward import FeedForwardLayer
 
@@ -42,12 +42,12 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
                self.add(network)
     """
 
-    def __init__(
+    def __init__(  # explicit-any-ok: **kwargs forwarded through Manim's untyped boundary
         self,
         layer_node_count: list[int],
         node_radius: float = 0.08,
-        node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
-        **kwargs: Any,
+        node_color: ManimColor = config.color_scheme.primary_color,
+        **kwargs: Any,  # explicit-any-ok: forwarded unchanged through Manim's untyped **kwargs boundary
     ) -> None:
         # construct layer
         layers = []
