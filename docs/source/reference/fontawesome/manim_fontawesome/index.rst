@@ -34,20 +34,26 @@ Constants
 .. autoall:: manim_extensions.fontawesome.manim_fontawesome
    :types: data
 
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~Brand
+   ~BrandEnum
+   ~Regular
+   ~RegularEnum
+   ~Solid
+   ~SolidEnum
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    Brand
+   BrandEnum
    Regular
+   RegularEnum
    Solid
-
-Classes
----------
-
-.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.BrandEnum
-   :show-inheritance:
-.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.RegularEnum
-   :show-inheritance:
-.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.SolidEnum
-   :show-inheritance:
+   SolidEnum

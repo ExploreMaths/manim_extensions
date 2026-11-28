@@ -14,9 +14,6 @@ Classes
 
    ~MatplotlibFigureImage
 
-.. autoall:: manim_extensions.machine_learning.utils.mobjects.plotting
-   :types: class
-
 .. toctree::
    :hidden:
    :maxdepth: 1

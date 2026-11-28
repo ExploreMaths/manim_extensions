@@ -702,23 +702,41 @@ def check_automodule_options(lines: list[str]) -> list[tuple[int, str]]:
 
 
 def check_reference_page_layout(lines: list[str]) -> list[tuple[int, str]]:
-    """Reject duplicate class rendering and package-wide alias expansion.
+    """Reject multiple classes on one page and inline classes on module pages.
 
-    A module page lists classes in ``autosummary`` and delegates the body to
-    one single-class page, so an additional inline ``autoclass`` block would
-    render the same signature twice.  Type aliases belong to their defining
-    module page; a recursive package-level ``autoall`` block re-emits aliases
-    from every submodule on the landing page.
+    Every class owns exactly one single-class page.  A module or package page
+    lists its classes in ``autosummary`` and delegates their bodies to those
+    pages, so an inline ``autoclass`` block there duplicates the class and
+    violates the one-page rule.  Type aliases belong to their defining module
+    page; a recursive package-level ``autoall`` block re-emits aliases from
+    every submodule on the landing page.
     """
     issues: list[tuple[int, str]] = []
     summary_lines = [i for i, line in enumerate(lines) if ".. autosummary::" in line]
     class_lines = [i for i, line in enumerate(lines) if ".. autoclass::" in line]
-    if summary_lines and class_lines:
+    module_lines = [i for i, line in enumerate(lines) if ".. automodule::" in line]
+    if class_lines and module_lines:
+        issues.append(
+            (
+                class_lines[0] + 1,
+                "reference layout: module page contains inline autoclass; "
+                "list the class in autosummary and create a single-class page",
+            )
+        )
+    elif summary_lines and class_lines:
         issues.append(
             (
                 class_lines[0] + 1,
                 "reference layout: page mixes autosummary with inline autoclass; "
                 "add the class to autosummary and create a single-class page",
+            )
+        )
+    if len(class_lines) > 1:
+        issues.append(
+            (
+                class_lines[1] + 1,
+                "reference layout: page documents multiple classes; "
+                "give every class its own page",
             )
         )
     for index, line in enumerate(lines):
@@ -733,6 +751,16 @@ def check_reference_page_layout(lines: list[str]) -> list[tuple[int, str]]:
             if stripped:
                 options.append(stripped)
             cursor += 1
+        if any(
+            option.startswith(":types:") and "class" in option for option in options
+        ):
+            issues.append(
+                (
+                    index + 1,
+                    "reference layout: autoall class block renders classes inline; "
+                    "list them in autosummary and give every class its own page",
+                )
+            )
         if any(option.startswith(":recursive:") for option in options) and any(
             option.startswith(":types:") and "typealias" in option for option in options
         ):

@@ -27,18 +27,15 @@ Added (21)
   package landing page. Package landing pages no longer use a recursive
   ``:types: typealias`` block, so aliases such as ``RadarInput`` appear once
   on the page that owns them. ``meshes.types`` gains its own module page.
-* Every class now enters through ``autosummary`` and a generated single-class
-  page; module pages no longer mix ``autosummary`` with an inline
-  ``autoclass`` block. The inline classes split out are
-  :class:`~manim_extensions.radar.chart.Series`,
-  :class:`~manim_extensions.data_structures.m_array.UpdateIndices`,
-  :class:`~manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode`,
-  :class:`~manim_extensions.mindmap.algorithms.alg_standard.TreeNode`,
-  :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode`,
-  :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree`,
-  :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode`,
-  :class:`~manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation`
-  and :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes`.
+* Every class now owns exactly one reference page. Module pages list classes
+  in ``autosummary`` and link to a single-class page through a hidden
+  ``toctree``; inline ``autoclass`` blocks and ``autoall :types: class``
+  blocks are gone, and ``validate-rst`` now rejects both, along with any page
+  that documents more than one class. The FontAwesome
+  :class:`~manim_extensions.fontawesome.manim_fontawesome.BrandEnum`,
+  :class:`~manim_extensions.fontawesome.manim_fontawesome.RegularEnum` and
+  :class:`~manim_extensions.fontawesome.manim_fontawesome.SolidEnum` classes
+  and :class:`~manim_extensions.qr_codes.qr.QRCode` gained their own pages.
 * Re-exported package constants keep a documented ``#:`` binding at the
   package root, so the landing page shows a readable description instead of
   an empty ``<dd>`` or the built-in ``dict()`` docstring.

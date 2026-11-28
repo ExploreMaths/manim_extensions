@@ -6,5 +6,16 @@ qr
 
 .. automodule:: manim_extensions.qr_codes.qr
 
-.. autoall:: manim_extensions.qr_codes.qr
-   :types: class
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~QRCode
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   qr.QRCode

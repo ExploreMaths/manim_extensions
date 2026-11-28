@@ -82,3 +82,51 @@ def test_inline_autoclass_next_to_autosummary_fails() -> None:
     ]
     issues = rst.check_reference_page_layout(lines)
     assert issues and issues[0][0] == 5
+
+
+def test_module_page_inline_autoclass_fails() -> None:
+    """A module page must delegate its class to a single-class page."""
+    lines = [
+        ".. automodule:: manim_extensions.radar.chart",
+        "",
+        ".. autoclass:: manim_extensions.radar.chart.Series",
+    ]
+    issues = rst.check_reference_page_layout(lines)
+    assert issues and issues[0][0] == 3
+    assert "module page contains inline autoclass" in issues[0][1]
+
+
+def test_multiple_classes_on_one_page_fails() -> None:
+    """A page documents exactly one class."""
+    lines = [
+        ".. autoclass:: manim_extensions.radar.chart.Series",
+        "   :show-inheritance:",
+        "",
+        ".. autoclass:: manim_extensions.radar.chart.RadarChart",
+    ]
+    issues = rst.check_reference_page_layout(lines)
+    assert issues and issues[0][0] == 4
+    assert "multiple classes" in issues[0][1]
+
+
+def test_autoall_class_block_fails() -> None:
+    """An autoall class block renders classes inline on a module page."""
+    lines = [
+        ".. autoall:: manim_extensions.code_blocks",
+        "   :types: class",
+    ]
+    issues = rst.check_reference_page_layout(lines)
+    assert issues and issues[0][0] == 1
+    assert "autoall class block" in issues[0][1]
+
+
+def test_single_class_page_passes() -> None:
+    """One autoclass block on its own page is the required layout."""
+    lines = [
+        "Series",
+        "======",
+        "",
+        ".. autoclass:: manim_extensions.radar.chart.Series",
+        "   :show-inheritance:",
+    ]
+    assert rst.check_reference_page_layout(lines) == []

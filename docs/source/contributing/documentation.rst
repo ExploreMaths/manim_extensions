@@ -326,7 +326,7 @@ A public type alias is not a constant.  Document it on the page of the module th
 
 Do not add a recursive type-alias block to a package landing page.  Aliases belong to their defining module page, next to that module's classes, functions and constants; imported re-exports are skipped so the page keeps one canonical target.  A ``#:`` comment immediately above the assignment becomes its description, matching module-level constants.
 
-Every class belongs in the module page's ``Classes`` ``autosummary`` table and gets a single-class page under ``<module>.<ClassName>.rst``.  Do not add a second inline ``.. autoclass::`` block to a page that already has an ``autosummary`` table; that renders the full signature twice.  ``validate_rst.py`` rejects a page that mixes both layouts.
+Every class gets **exactly one page of its own**: one ``.. autoclass::`` block in a single ``<module>.<ClassName>.rst`` file, listed from the module page's ``Classes`` ``autosummary`` table and hidden ``toctree``.  A module or package page must never contain an inline ``.. autoclass::`` block or an ``.. autoall::`` block with ``:types: class``; either one would document the class on the module page as well.  A page must never document more than one class.  ``validate_rst.py`` rejects module pages with inline class blocks and any page containing multiple classes.
 
 After adding new public names, refresh the coverage snapshot:
 
