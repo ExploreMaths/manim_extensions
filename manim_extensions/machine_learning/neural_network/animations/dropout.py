@@ -386,6 +386,15 @@ def make_forward_pass_with_dropout_animation(
     )
 
 
+def _prune_empty_animations(animation: Animation) -> bool:
+    """Drop empty nested animation groups in place and report if any remain."""
+    children = getattr(animation, "animations", None)
+    if children is None:
+        return True
+    children[:] = [child for child in children if _prune_empty_animations(child)]
+    return bool(children)
+
+
 def make_neural_network_dropout_animation(
     neural_network: NeuralNetwork,
     dropout_rate: float = 0.5,
@@ -462,7 +471,11 @@ def make_neural_network_dropout_animation(
     post_dropout_animation = PostDropoutAnimation(
         neural_network, layers_to_nodes_to_drop_out, x_marks
     )
-    # Combine the animations into one
-    return Succession(
-        pre_dropout_animation, forward_pass_animation, post_dropout_animation
-    )
+    # Combine the animations into one. A layer where every node is dropped
+    # can leave an empty AnimationGroup nested inside the forward pass; prune
+    # those empty groups so Scene.play never receives one.
+    sequence = [pre_dropout_animation, forward_pass_animation, post_dropout_animation]
+    sequence = [
+        animation for animation in sequence if _prune_empty_animations(animation)
+    ]
+    return Succession(*sequence)
