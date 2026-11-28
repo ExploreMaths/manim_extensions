@@ -8,7 +8,7 @@ This module provides linked IS-LM and AD-AS diagrams for policy analysis.
 
 from typing import Any
 
-from manim import AnimationGroup, RIGHT, VGroup
+from manim import Animation, AnimationGroup, RIGHT, VGroup
 from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
@@ -16,7 +16,7 @@ from .is_lm import ISLMDiagram
 class LinkedISLMADAS(VGroup):
     """Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.
 
-    .. doc-example-covers: adverse_supply_shock, positive_supply_shock
+    .. doc-example-covers: adverse_supply_shock, fiscal_contraction, fiscal_expansion, monetary_contraction, monetary_expansion, positive_supply_shock
 
 
     A policy change (monetary or fiscal) shifts curves in both diagrams
@@ -103,7 +103,7 @@ class LinkedISLMADAS(VGroup):
 
     def monetary_expansion(
         self, ms: float, m: float | None = None, v: float | None = None
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Monetary expansion: LM shifts right, AD shifts right.
 
         Parameters
@@ -131,7 +131,7 @@ class LinkedISLMADAS(VGroup):
 
     def monetary_contraction(
         self, ms: float, m: float | None = None, v: float | None = None
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Monetary contraction: LM shifts left, AD shifts left.
 
         Parameters
@@ -161,7 +161,7 @@ class LinkedISLMADAS(VGroup):
 
     def fiscal_expansion(
         self, a: float, m: float | None = None, v: float | None = None
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Fiscal expansion: IS shifts right, AD shifts right.
 
         Parameters
@@ -189,7 +189,7 @@ class LinkedISLMADAS(VGroup):
 
     def fiscal_contraction(
         self, a: float, m: float | None = None, v: float | None = None
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Fiscal contraction: IS shifts left, AD shifts left.
 
         Parameters
@@ -219,7 +219,7 @@ class LinkedISLMADAS(VGroup):
 
     def adverse_supply_shock(
         self, sras_price: float, long_run: bool = True
-    ) -> list[AnimationGroup]:
+    ) -> list[Animation]:
         """Adverse supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters
@@ -239,7 +239,7 @@ class LinkedISLMADAS(VGroup):
 
     def positive_supply_shock(
         self, sras_price: float, long_run: bool = True
-    ) -> list[AnimationGroup]:
+    ) -> list[Animation]:
         """Positive supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters

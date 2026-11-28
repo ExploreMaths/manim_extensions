@@ -136,7 +136,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         # Go through each node in the two layers and make a connecting line
         input_layer = cast(FeedForwardLayer, self.input_layer)
         output_layer = cast(FeedForwardLayer, self.output_layer)
-        edge_lines: list[Any] = []
+        edge_lines: list[Line] = []
         for node_i in input_layer.node_group:
             for node_j in output_layer.node_group:
                 line = Line(
@@ -157,7 +157,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         -------
             The grouped fade-out animation for all edges.
         """
-        animations: list[Any] = []
+        animations: list[Animation] = []
 
         for edge in self.edges:
             animations.append(FadeOut(edge))
@@ -168,7 +168,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict[Any, Any] = {},
+        layer_args: dict[object, Any] = {},
         run_time: float = 1,
         feed_forward_dropout: float = 0.0,
         **kwargs: Any,
@@ -191,7 +191,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         -------
             A list of the results.
         """
-        path_animations: list[Any] = []
+        path_animations: list[Animation] = []
         dots: list[Dot] = []
         for edge_index, edge in enumerate(self.edges):
             if (
@@ -287,7 +287,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         # Check thickness size
         assert np.shape(widths_array)[0] == len(self.edges)
         # Make animation
-        animations: list[Any] = []
+        animations: list[Animation] = []
 
         for index, edge in enumerate(self.edges):
             width = widths_array[index]

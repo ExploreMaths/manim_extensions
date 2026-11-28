@@ -11,7 +11,7 @@ visual demonstrations, and algorithm walkthroughs.
 
 from typing import Any, Literal, cast
 
-from manim import Mobject, ORIGIN, VMobject, WHITE
+from manim import ManimColor, Mobject, ORIGIN, VMobject, WHITE
 import numpy as np
 from .cubie import Cubie
 
@@ -169,7 +169,7 @@ class RubiksCube(VMobject):
     def __init__(
         self,
         dim: int = 3,
-        colors: list[Any] = [
+        colors: list[ManimColor | str] = [
             WHITE,
             "#B90000",
             "#009B48",
@@ -220,7 +220,7 @@ class RubiksCube(VMobject):
                     cast(Any, self.cubies)[x, y, z] = cubie
         self.move_to(ORIGIN)
 
-    def set_state(self, positions: list[Any]) -> None:
+    def set_state(self, positions: list[str]) -> None:
         """Apply a colour state to each cube face.
 
         Parameters

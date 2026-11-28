@@ -159,7 +159,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> Succession | AnimationGroup:
         """Makes the forward pass animation.
 

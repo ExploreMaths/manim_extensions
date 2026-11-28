@@ -5,6 +5,7 @@
 
 """Automata data structures."""
 
+from collections.abc import Sequence
 from typing import Any, cast
 
 from .xml_parser import parse_xml_file
@@ -207,7 +208,7 @@ class FiniteStateAutomaton:
 
     def automaton_step(
         self, token: str, state_pointer: State
-    ) -> tuple[bool, list[State], list[Any]]:
+    ) -> tuple[bool, list[State], Sequence[Transition | int]]:
         """Advance the automaton by one token from the current state.
 
         Parameters
@@ -327,7 +328,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
 
     def automaton_step(
         self, token: str, state_pointer: State, deterministic: bool = True
-    ) -> tuple[bool, list[State], list[Any]]:
+    ) -> tuple[bool, list[State], list[int]]:
         """Perform one step of the automaton on the given token.
 
         Parameters

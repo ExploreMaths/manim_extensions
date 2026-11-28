@@ -230,7 +230,7 @@ def plot_areas(rectangles: MatrixMN) -> None:
 
 def merge_overlapping_polygons(
     all_polygons: list[Polygon], colors: list[ManimColor] = [BLUE, GREEN, ORANGE]
-) -> list[Any]:
+) -> list[Polygon]:
     """Merge adjacent polygons of the same color into larger contiguous polygons.
 
     Parameters
@@ -580,7 +580,7 @@ class DecisionTreeSurface(VGroup):
         self.class_colors = class_colors
         self.surface_rectangles = self.generate_surface_rectangles()
 
-    def generate_surface_rectangles(self) -> list[Any]:
+    def generate_surface_rectangles(self) -> list[Polygon]:
         """Compute decision areas from the tree and return them as Manim polygon mobjects.
 
         Returns

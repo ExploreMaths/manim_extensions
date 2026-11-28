@@ -8,7 +8,7 @@ from typing import Any, Literal, cast
 
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
 from manim.utils.color import BLACK
-from manim import Square, VGroup, z_to_vector
+from manim import ManimColor, Square, VGroup, z_to_vector
 from .cube_utils import get_faces_of_cubie
 
 import numpy as np
@@ -56,7 +56,9 @@ class Cubie(VGroup):
                self.wait()
     """
 
-    def __init__(self, x: int, y: int, z: int, dim: int, colors: list[Any]) -> None:
+    def __init__(
+        self, x: int, y: int, z: int, dim: int, colors: list[ManimColor | str]
+    ) -> None:
         self.dimensions = dim
         self.colors = colors
         self.position = np.array([x, y, z])

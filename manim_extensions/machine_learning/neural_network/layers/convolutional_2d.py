@@ -409,7 +409,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, run_time: float = 5, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Convolution forward pass animation.
 

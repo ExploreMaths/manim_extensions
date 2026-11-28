@@ -384,7 +384,7 @@ class BlankConnective(ConnectiveLayer):
         super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 1.5, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, run_time: float = 1.5, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> Animation:
         """Makes an empty forward pass animation for the blank connection.
 

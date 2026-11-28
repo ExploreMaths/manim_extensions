@@ -12,6 +12,7 @@ from typing import Any, cast
 # unlinked-class-ok: Ground
 
 from manim import (
+    Animation,
     AnimationGroup,
     Axes,
     BLUE,
@@ -412,8 +413,8 @@ class MCMCAxes(Group):
         reject_line_color: ManimColor = RED,
         line_color: ManimColor = BLUE,
         line_stroke_width: int = 2,
-        x_range: list[Any] = [-3, 3],
-        y_range: list[Any] = [-3, 3],
+        x_range: list[float] = [-3, 3],
+        y_range: list[float] = [-3, 3],
         x_length: int = 5,
         y_length: int = 5,
     ) -> None:
@@ -613,7 +614,7 @@ class MCMCAxes(Group):
         # print(f"MCMC samples: {mcmc_samples}")
         # print(f"Candidate samples: {candidate_samples}")
         # Make the animation for visualizing the chain
-        transition_animations: list[Any] = []
+        transition_animations: list[Animation] = []
         # Place the initial point
         current_point = mcmc_samples[0]
         current_point = Dot(

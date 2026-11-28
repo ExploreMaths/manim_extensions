@@ -74,7 +74,7 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     pass
 
 
-def visit(self, node: list[Any], name: str = "") -> None:
+def visit(self, node: list[nodes.Node], name: str = "") -> None:
     """Visit a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode`, adding a placeholder title if missing, then render as admonition.
 
     Parameters
@@ -182,7 +182,7 @@ class ManimDirective(Directive):
     }
     final_argument_whitespace = True
 
-    def run(self) -> list[Any]:
+    def run(self) -> list[nodes.Node]:
         """Execute the directive: either render the manim example or output a placeholder.
 
         Returns
@@ -416,7 +416,7 @@ def _delete_rendering_times(*args: Any) -> None:
         rendering_times_file_path.unlink()
 
 
-def setup(app: Sphinx) -> dict[Any, Any]:
+def setup(app: Sphinx) -> dict[str, Any]:
     """Register the manim directive and its nodes with the Sphinx application.
 
     Parameters

@@ -9,17 +9,22 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 from collections.abc import Callable
 from typing import Any, cast
 
-from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
+from manim import Animation, AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram
 
 # Default long-run adjustment duration (seconds)
 _LR_RUN_TIME = 2
 
 
+def _animation_list(result: AnimationGroup | list[AnimationGroup]) -> list[Animation]:
+    """Normalize a single animation or a group list into a flat animation list."""
+    return list(result) if isinstance(result, list) else [result]
+
+
 class ADASDiagram(EconDiagram):
     r"""Aggregate Demand — Aggregate Supply diagram.
 
-    .. doc-example-covers: long_run_adjust, shift_ad, shift_lras, shift_sras
+    .. doc-example-covers: adverse_supply_shock, long_run_adjust, negative_demand_shock, positive_demand_shock, positive_supply_shock, shift_ad, shift_lras, shift_sras
 
 
     AD is derived from the quantity theory of money: :math:`MV = PY`, so
@@ -361,7 +366,7 @@ class ADASDiagram(EconDiagram):
     # ---- Demand shocks ----
 
     def _append_long_run(
-        self, anims: list[Any], lr_run_time: float, show_arrows: bool
+        self, anims: list[Animation], lr_run_time: float, show_arrows: bool
     ) -> None:
         """Append the long-run adjustment to an animation list.
 
@@ -377,9 +382,11 @@ class ADASDiagram(EconDiagram):
         clear = self.clear_arrows()
         if clear is not None:
             anims.append(clear)
-        anims.append(
-            self.long_run_adjust(run_time=lr_run_time, show_arrows=show_arrows)
-        )
+        adjustment = self.long_run_adjust(run_time=lr_run_time, show_arrows=show_arrows)
+        if isinstance(adjustment, list):
+            anims.extend(adjustment)
+        else:
+            anims.append(adjustment)
 
     def positive_demand_shock(
         self,
@@ -388,7 +395,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Positive demand shock (e.g. increase in M or V).
 
         Parameters
@@ -415,7 +422,7 @@ class ADASDiagram(EconDiagram):
         -------
             A list of animations to play in sequence.
         """
-        anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
+        anims = _animation_list(self.shift_ad(m=m, v=v, show_arrows=show_arrows))
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims
@@ -427,7 +434,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Negative demand shock (e.g. decrease in M or V).
 
         Parameters
@@ -454,7 +461,7 @@ class ADASDiagram(EconDiagram):
         -------
             A list of animations to play in sequence.
         """
-        anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
+        anims = _animation_list(self.shift_ad(m=m, v=v, show_arrows=show_arrows))
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims
@@ -467,7 +474,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Adverse supply shock (e.g. oil price spike, cost push).
 
         Parameters
@@ -490,7 +497,9 @@ class ADASDiagram(EconDiagram):
         -------
             A list of animations to play in sequence.
         """
-        anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
+        anims = _animation_list(
+            self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)
+        )
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims
@@ -501,7 +510,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Animate an expansionary supply shock by shifting SRAS to a lower price level.
 
         Parameters
@@ -524,7 +533,9 @@ class ADASDiagram(EconDiagram):
         -------
             A list of animations to play in sequence.
         """
-        anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
+        anims = _animation_list(
+            self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)
+        )
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims

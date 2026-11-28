@@ -16,7 +16,7 @@ from .graph_molecule import GraphMolecule
 class GMAnimationBuilder:
     r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`.
 
-    .. doc-example-covers: rotate_atoms_about_bond
+    .. doc-example-covers: change_color, rotate_atoms_about_bond
 
     Parameters
     ----------
@@ -137,7 +137,7 @@ class GMAnimationBuilder:
         atoms_color: ManimColor = BLACK,
         bonds_color: ManimColor | None = None,
         label_color: ManimColor | None = None,
-    ) -> list[Any]:
+    ) -> list[Animation]:
         """Return color-change animations for atoms, bonds and optionally atom labels.
 
         Parameters
@@ -159,16 +159,24 @@ class GMAnimationBuilder:
 
         if label_color:
             for atom in self.atoms:
-                animations.append(atom[0].animate.set_color(atoms_color))
-                animations.append(atom[1].animate.set_color(label_color))
+                animations.append(
+                    cast(Animation, atom[0].animate.set_color(atoms_color))
+                )
+                animations.append(
+                    cast(Animation, atom[1].animate.set_color(label_color))
+                )
 
         else:
             for atom in self.atoms:
-                animations.append(atom[0].animate.set_color(atoms_color))
-                animations.append(atom[1].animate.set_color(cast(Any, atom[1].color)))
+                animations.append(
+                    cast(Animation, atom[0].animate.set_color(atoms_color))
+                )
+                animations.append(
+                    cast(Animation, atom[1].animate.set_color(cast(Any, atom[1].color)))
+                )
 
         if bonds_color:
             for bond in self.bonds:
-                animations.append(bond.animate.set_color(bonds_color))
+                animations.append(cast(Animation, bond.animate.set_color(bonds_color)))
 
         return animations

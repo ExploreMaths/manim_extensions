@@ -562,7 +562,7 @@ class TimeLineLayout(Layout):
             ``"bottom"`` representing the bounding box of the subtree.
         """
 
-        def walk_tree(root: TimelineNode) -> dict[Any, Any]:
+        def walk_tree(root: TimelineNode) -> dict[str, Any]:
             """Recursively walk the subtree to find boundary values.
 
             Parameters

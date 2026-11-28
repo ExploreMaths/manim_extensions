@@ -87,7 +87,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, run_time: float = 1.5, **kwargs: Any
     ) -> AnimationGroup:
         """Forward pass animation from conv2d to conv2d.
 

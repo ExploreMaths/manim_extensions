@@ -198,7 +198,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_dropout_forward_pass_animation(
-        self, layer_args: dict[Any, Any], **kwargs: Any
+        self, layer_args: dict[object, Any], **kwargs: Any
     ) -> Succession:
         """Makes a forward pass animation with dropout.
 
@@ -241,7 +241,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return succession
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> Succession | AnimationGroup:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 

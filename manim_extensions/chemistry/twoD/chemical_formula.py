@@ -79,7 +79,7 @@ class ChemicalFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def parse_formula(self, formula: str) -> dict[Any, Any]:
+    def parse_formula(self, formula: str) -> dict[str, int]:
         """Parse a formula string into a dict mapping element symbols to their counts.
 
         Parameters

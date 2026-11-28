@@ -94,7 +94,7 @@ class State:
         # list of transitions links this state to others
         self.transitions: list[Transition] = []
 
-    def add_transition_to_state(self, transition: Transition) -> list[Any]:
+    def add_transition_to_state(self, transition: Transition) -> list[Transition]:
         """Add a transition to the state's transition list.
 
         Parameters

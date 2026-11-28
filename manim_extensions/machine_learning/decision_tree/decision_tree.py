@@ -13,6 +13,7 @@ from typing import Any, Literal, cast
 
 
 from manim import (
+    ManimColor,
     Animation,
     AnimationGroup,
     BLUE,
@@ -108,8 +109,8 @@ class LeafNode(Group):
         self,
         class_index: int,
         display_type: str = "image",
-        class_image_paths: list[Any] = [],
-        class_colors: list[Any] = [],
+        class_image_paths: list[str] = [],
+        class_colors: list[ManimColor] = [],
         class_names: list[str] | None = None,
     ) -> None:
         super().__init__()
@@ -204,7 +205,7 @@ class SplitNode(VGroup):
 class DecisionTreeDiagram(Group):
     """Decision Tree Diagram Class for Manim.
 
-    .. doc-example-covers: create_decision_tree, make_expand_tree_animation
+    .. doc-example-covers: create_bfs_expansion_decision_tree, create_decision_tree, make_expand_tree_animation
 
     Parameters
     ----------
@@ -267,7 +268,7 @@ class DecisionTreeDiagram(Group):
         feature_names: list[str] | None = None,
         class_names: list[str] | None = None,
         class_images_paths: list[str] | None = None,
-        class_colors: list[Any] = [RED, GREEN, BLUE],
+        class_colors: list[ManimColor] = [RED, GREEN, BLUE],
     ) -> None:
         super().__init__()
         self.tree = sklearn_tree
@@ -454,7 +455,7 @@ class DecisionTreeDiagram(Group):
 
     def _make_expansion_animations(
         self, node_expand_order: list[int]
-    ) -> tuple[list[Any], dict[Any, Any]]:
+    ) -> tuple[list[Animation], dict[int, Animation]]:
         """Build the animations that expand the tree in the given node order.
 
         Every split node starts as a placeholder leaf node showing its
@@ -471,8 +472,8 @@ class DecisionTreeDiagram(Group):
             ``(animations, split_node_animations)`` — the list of animations
             and a mapping from each split node index to its split animation.
         """
-        animations: list[Any] = []
-        split_node_animations: dict[Any, Any] = {}
+        animations: list[Animation] = []
+        split_node_animations: dict[int, Animation] = {}
         placeholder_class_nodes = {}
         # Show the root node as its dominant class first.
         root_class_index = int(np.argmax(cast(Any, self.tree).value[0]))
@@ -547,7 +548,9 @@ class DecisionTreeDiagram(Group):
 
         return Succession(*animations, lag_ratio=1.0)
 
-    def create_bfs_expansion_decision_tree(self, tree: Mobject) -> tuple[Any, ...]:
+    def create_bfs_expansion_decision_tree(
+        self, tree: Mobject
+    ) -> tuple[Succession, dict[int, Animation]]:
         """Expands the tree using BFS.
 
         Parameters

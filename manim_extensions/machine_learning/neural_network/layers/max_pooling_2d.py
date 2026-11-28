@@ -198,7 +198,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return VGroup(*feature_maps)
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Makes forward pass of Max Pooling Layer.
 

@@ -209,7 +209,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     @staticmethod
     def mc_molecule_to_atoms_and_bonds(
         mc_molecule: MCMolecule,
-    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
+    ) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
         """Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
 
         The tuple has the following structure:

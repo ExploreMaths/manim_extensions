@@ -77,7 +77,7 @@ class NodeMobject:
 
 
 def generate_tree(
-    Map: dict[Any, Any] | None = None,
+    Map: dict[str, Any] | None = None,
     node_style: NodeStyle = NodeStyle(),
     buff: float = 0.2,
 ) -> Node:
@@ -107,7 +107,7 @@ def generate_tree(
     """
 
     def _generate_tree(
-        ID: tuple[Any, ...] = (0,), current_map: dict[Any, Any] | None = None
+        ID: tuple[Any, ...] = (0,), current_map: dict[str, Any] | None = None
     ) -> Node:
         """Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.
 
@@ -380,7 +380,7 @@ class AbstractMap(Group):
                 return node
         return None
 
-    def _get_connector_style(self, level: int) -> dict[Any, Any]:
+    def _get_connector_style(self, level: int) -> dict[str, Any]:
         """Return the line style for the given level.
 
         Parameters

@@ -164,11 +164,11 @@ class MCMolecule:
 
     @staticmethod
     def construct_from_data_dict(
-        atoms_data_dict: dict[Any, Any],
-        bonds_data_dict: dict[Any, Any],
+        atoms_data_dict: dict[int, dict[str, Any]],
+        bonds_data_dict: dict[int, list[dict[str, Any]]],
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[Any, Any] | None = None,
+        elements_data_dict: dict[str, dict[str, Any]] | None = None,
     ) -> "MCMolecule":
         r"""Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
         the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between
@@ -214,7 +214,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[Any, Any] | None = None,
+        elements_data_dict: dict[str, dict[str, Any]] | None = None,
     ) -> "MCMolecule":
         """Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
 
@@ -235,7 +235,11 @@ class MCMolecule:
         -------
             The molecule constructed from the file.
         """
-        parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
+        parsed_data = cast(
+            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
+            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
+            FileHandler(file_path=filepath).parsed_atoms_bonds_data(),
+        )
 
         if isinstance(parsed_data, list):
             parsed_data = parsed_data[0]
@@ -254,8 +258,8 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[Any, Any] | None = None,
-    ) -> list[Any]:
+        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+    ) -> list["MCMolecule"]:
         r"""Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
@@ -277,7 +281,8 @@ class MCMolecule:
         """
 
         list_of_data_dicts = cast(
-            list[Any], FileHandler(file_path=filepath).parsed_atoms_bonds_data()
+            list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
+            FileHandler(file_path=filepath).parsed_atoms_bonds_data(),
         )
         mc_molecules = []
         for atoms_dict, bonds_dict in list_of_data_dicts:
@@ -299,7 +304,7 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[Any, Any] | None = None,
+        elements_data_dict: dict[str, dict[str, Any]] | None = None,
     ) -> "MCMolecule":
         """Reads a string and returns a molecule.
 
@@ -339,7 +344,9 @@ class MCMolecule:
             The molecule parsed from the string.
         """
         parsed_data = cast(
-            list[Any], FileHandler.parse_from_string(string=string, format=format)
+            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
+            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
+            FileHandler.parse_from_string(string=string, format=format),
         )
 
         if isinstance(parsed_data, list):
@@ -360,8 +367,8 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict[Any, Any] | None = None,
-    ) -> list[Any]:
+        elements_data_dict: dict[str, dict[str, Any]] | None = None,
+    ) -> list["MCMolecule"]:
         r"""Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
@@ -384,8 +391,12 @@ class MCMolecule:
             A list of the results.
         """
         parsed_data = cast(
-            list[Any], FileHandler.parse_from_string(string=string, format=format)
+            tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]
+            | list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]],
+            FileHandler.parse_from_string(string=string, format=format),
         )
+        if isinstance(parsed_data, tuple):
+            parsed_data = [parsed_data]
         mc_molecules = []
         for atoms_dict, bonds_dict in parsed_data:
             mc_molecules.append(
@@ -433,7 +444,7 @@ class MCMolecule:
         self.remove_hydrogens(atoms_to_be_removed)
         return None
 
-    def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> None:
+    def remove_hydrogens(self, atoms_to_be_removed: list[int]) -> None:
         """Remove specified atoms and their associated bonds, then reindex.
 
         Parameters

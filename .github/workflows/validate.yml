@@ -33,6 +33,8 @@ jobs:
         run: pip install "mypy>=1.11" ".[all,docs]"
       - name: Type-check the whole package
         run: python -m mypy
+      - name: Check the explicit Any baseline
+        run: python workflow/check_explicit_any.py
 
   validate-naming:
     runs-on: ubuntu-latest

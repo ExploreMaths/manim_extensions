@@ -154,7 +154,7 @@ class NodeStyle:
             self.text_style = [{"color": PURE_YELLOW, "font_size": 36}]
             self.text_num = 1
 
-    def get_node_style(self, level: int) -> dict[Any, Any]:
+    def get_node_style(self, level: int) -> dict[str, Any]:
         """Return the box style configured for a hierarchy level.
 
         Parameters
@@ -171,7 +171,7 @@ class NodeStyle:
             return self.node_style[level]
         return self.node_style[-1]
 
-    def get_line_style(self, level: int) -> dict[Any, Any]:
+    def get_line_style(self, level: int) -> dict[str, Any]:
         """Return the line style for the requested hierarchy level.
 
         Parameters
@@ -188,7 +188,7 @@ class NodeStyle:
             return self.line_style[level]
         return self.line_style[-1]
 
-    def get_text_style(self, level: int) -> dict[Any, Any]:
+    def get_text_style(self, level: int) -> dict[str, Any]:
         """Return the text style for the requested hierarchy level.
 
         Parameters

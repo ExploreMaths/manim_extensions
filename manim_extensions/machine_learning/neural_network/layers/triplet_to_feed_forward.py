@@ -112,7 +112,7 @@ class TripletToFeedForward(ConnectiveLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 

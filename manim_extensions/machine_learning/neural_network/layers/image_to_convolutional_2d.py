@@ -109,7 +109,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return None
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, run_time: float = 5, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> Succession:
         """Maps image to convolutional layer.
 

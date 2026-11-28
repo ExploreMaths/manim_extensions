@@ -4,7 +4,6 @@
 
 """Sigmoid activation function visualization."""
 
-from typing import Any
 
 import numpy as np
 
@@ -45,8 +44,8 @@ class SigmoidFunction(ActivationFunction):
     def __init__(
         self,
         function_name: str = "Sigmoid",
-        x_range: list[Any] = [-5, 5],
-        y_range: list[Any] = [0, 1],
+        x_range: list[float] = [-5, 5],
+        y_range: list[float] = [0, 1],
     ) -> None:
         super().__init__(function_name, x_range, y_range)
 

@@ -167,7 +167,7 @@ def get_type_of_cubie(dim: int, position: tuple[int, int, int]) -> str:
         return "center"
 
 
-def get_faces_of_cubie(dim: int, position: tuple[int, int, int]) -> list[Any]:
+def get_faces_of_cubie(dim: int, position: tuple[int, int, int]) -> list[Vector3D]:
     """Return the outward-facing directions for a cubie at a given position.
 
     Parameters

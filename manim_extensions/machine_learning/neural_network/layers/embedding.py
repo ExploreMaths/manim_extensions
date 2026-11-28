@@ -243,7 +243,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return point_dots
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Forward pass animation.
 

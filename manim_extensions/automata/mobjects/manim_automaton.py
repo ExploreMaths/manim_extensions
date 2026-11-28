@@ -5,6 +5,7 @@
 """Contains classes for Manim automaton."""
 
 from __future__ import annotations
+from manim import Animation
 from typing import Any, cast
 
 from manim import (
@@ -53,6 +54,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     The automaton combines a formal automaton model with a Manim visual graph,
     allowing states and transitions to be highlighted as an input string is read.
+
+    .. doc-example-covers: animate_step_history, animate_subscripts, generate_accept_animations, generate_history_animations, generate_reject_animations, highlight_initial_state, play_string, step
 
     .. important::
 
@@ -602,7 +605,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 return path_list
         return None
 
-    def play_string(self, input: str | ManimAutomataInput) -> list[Any]:
+    def play_string(self, input: str | ManimAutomataInput) -> list[list[Animation]]:
         """Run ``input`` through the automaton and return the animations.
 
         Parameters
@@ -627,8 +630,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         input_to_run = self.manim_automata_input
 
         # display manim_automaton_input to the screen
-        list_of_animations: list[Any] = [
-            self.manim_animations.animate_display_input(self.manim_automata_input)
+        list_of_animations: list[list[Animation]] = [
+            [self.manim_animations.animate_display_input(self.manim_automata_input)]
         ]
 
         # run the input through the machine, returning a history of what happened
@@ -640,12 +643,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         # normalize: every entry must be a list of animations so that callers
         # can uniformly do ``self.play(*entry)`` for each entry
-        return [
-            entry if isinstance(entry, list) else [entry]
-            for entry in list_of_animations
-        ]
+        return list_of_animations
 
-    def generate_history_animations(self, history: dict[str, Any]) -> list[object]:
+    def generate_history_animations(
+        self, history: dict[str, Any]
+    ) -> list[list[Animation]]:
         """Given a history of events of each iteration of the input ran through the manim automaton,
         generate all of the manim animations to visualise the process of the input going through the
         automaton.
@@ -660,7 +662,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             The animations visualising the input going through the automaton.
         """
 
-        list_of_animations: list[object] = []
+        list_of_animations: list[list[Animation]] = []
 
         # generate the pre-run animations
         state_pointer = cast(ManimState, self.get_initial_state())
@@ -705,7 +707,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         # generate outcome animations
         return list_of_animations
 
-    def animate_step_history(self, step_history: dict[str, Any]) -> list[object]:
+    def animate_step_history(
+        self, step_history: dict[str, Any]
+    ) -> list[list[Animation]]:
         """Generate Manim animations for a single step's history entry.
 
         Parameters
@@ -717,7 +721,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         -------
             The animations for this step.
         """
-        list_of_animations: list[object] = []
+        list_of_animations: list[list[Animation]] = []
 
         state_pointer = step_history["state_pointer"]
         next_neighbour_states = step_history["next_neighbour_states"]
@@ -735,7 +739,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         return list_of_animations
 
-    def highlight_initial_state(self, initial_state: ManimState) -> list[object]:
+    def highlight_initial_state(self, initial_state: ManimState) -> list[Animation]:
         """Return animations to highlight the initial state and set its subscript to 1.
 
         Parameters
@@ -758,14 +762,14 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             ),
         ]
 
-    def generate_accept_animations(self) -> list[object]:
+    def generate_accept_animations(self) -> list[Animation]:
         """Return animations that transform the input text into green "ACCEPTED".
 
         Returns
         -------
             The accept animations.
         """
-        list_of_accept_animations: list[object] = []
+        list_of_accept_animations: list[Animation] = []
 
         text = Tex("ACCEPTED", color=GREEN, font_size=100)
         text.set_x(self.manim_automata_input.get_x())
@@ -776,14 +780,14 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         return list_of_accept_animations
 
-    def generate_reject_animations(self) -> list[object]:
+    def generate_reject_animations(self) -> list[Animation]:
         """Return animations that transform the input text into red "REJECTED".
 
         Returns
         -------
             The reject animations.
         """
-        list_of_reject_animations: list[object] = []
+        list_of_reject_animations: list[Animation] = []
 
         text = Tex("REJECTED", color=RED, font_size=100)
         text.set_x(self.manim_automata_input.get_x())
@@ -801,7 +805,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         state_pointer: State,
         next_neighbour_states: list[State],
         step_result: bool,
-    ) -> list[list[object]]:
+    ) -> list[list[Animation]]:
         """Generate animation sequences for a single automaton step (transitions and state highlights).
 
         Parameters
@@ -822,11 +826,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             The animation sequences for this step.
         """
         # creates a list of animations for the step
-        list_of_step_animations: list[list[object]] = []
+        list_of_step_animations: list[list[Animation]] = []
 
         if step_result is False:  # if branch dies turn state red
-            state_died_animation: list[object] = []
-            state_revert_back_to_default_animation: list[object] = []
+            state_died_animation: list[Animation] = []
+            state_revert_back_to_default_animation: list[Animation] = []
 
             # state_died_animation.append(FadeToColor(state_pointer, color=RED))
             state_died_animation.append(
@@ -845,13 +849,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             list_of_step_animations.append(state_revert_back_to_default_animation)
 
         else:
-            activate_transition_animation: list[object] = [
+            activate_transition_animation: list[Animation] = [
                 self.manim_animations.animate_highlight_transition(x)
                 for x in manim_transitions
             ]
 
             # if successful point to the next state
-            state_animations: list[object] = []
+            state_animations: list[Animation] = []
 
             if step_result is True:
 
@@ -867,7 +871,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                         for x in next_neighbour_states
                     ]
 
-            deactivate_transition_animation: list[object] = [
+            deactivate_transition_animation: list[Animation] = [
                 self.manim_animations.animate_transition_to_default_color(x)
                 for x in manim_transitions
             ]
@@ -883,7 +887,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     def animate_subscripts(
         self, iteration_history: list[dict[str, Any]]
-    ) -> list[object]:
+    ) -> list[Animation]:
         """Animate state subscripts to show the count of active branches ending in each state.
 
         Parameters
@@ -895,7 +899,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         -------
             The subscript transform animations.
         """
-        animations: list[object] = []
+        animations: list[Animation] = []
         # record the number of branches that end on each states
         state_counter: dict[Any, int] = {}
 

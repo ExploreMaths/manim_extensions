@@ -351,3 +351,9 @@ Docstring Formatting
 * A ``Returns`` section documents a value. Functions that only perform side effects are annotated ``-> None`` and do not carry a ``Returns`` section.
 
 ``scripts/check_return_annotations.py`` enforces return annotations: a function with a value-returning ``return`` must declare one, and a bare ``-> Any`` is always rejected. Use the concrete type, or ``-> None`` for a side-effect-only function.
+
+Explicit ``Any`` is also checked by ``workflow/check_explicit_any.py``, which runs ``mypy --disallow-any-explicit``. Existing findings are recorded in ``workflow/explicit_any_baseline.txt``; any new explicit ``Any`` in an annotation or ``cast`` fails the type job. Fix the annotation and shrink the baseline with:
+
+.. code-block:: bash
+
+    python workflow/check_explicit_any.py --update

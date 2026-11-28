@@ -4,7 +4,6 @@
 
 """ReLU activation function visualization."""
 
-from typing import Any
 
 from .activation_function import ActivationFunction
 
@@ -42,8 +41,8 @@ class ReLUFunction(ActivationFunction):
     def __init__(
         self,
         function_name: str = "ReLU",
-        x_range: list[Any] = [-1, 1],
-        y_range: list[Any] = [-1, 1],
+        x_range: list[float] = [-1, 1],
+        y_range: list[float] = [-1, 1],
     ) -> None:
         super().__init__(function_name, x_range, y_range)
 

@@ -214,7 +214,7 @@ class LayoutConfig:
         return string
 
     @property
-    def catalog(self) -> dict[Any, Any]:
+    def catalog(self) -> dict[str, Any]:
         """Return the catalog layout settings.
 
         Returns
@@ -229,7 +229,7 @@ class LayoutConfig:
     @catalog.setter
     def catalog(
         self,
-        catalog: dict[Any, Any] = {
+        catalog: dict[str, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
         },
@@ -245,7 +245,7 @@ class LayoutConfig:
         self.level_spacing = catalog.get("level_spacing", 0.5)
 
     @property
-    def mindmap(self) -> dict[Any, Any]:
+    def mindmap(self) -> dict[str, Any]:
         """Return the mind map layout settings.
 
         Returns
@@ -262,7 +262,7 @@ class LayoutConfig:
     @mindmap.setter
     def mindmap(
         self,
-        mindmap: dict[Any, Any] = {
+        mindmap: dict[str, Any] = {
             "direction": RIGHT,
             "node_spacing": 0.5,
             "level_spacing": 0.5,
@@ -291,7 +291,7 @@ class LayoutConfig:
         self.level_spacing = mindmap.get("level_spacing", 0.5)
 
     @property
-    def timeline(self) -> dict[Any, Any]:
+    def timeline(self) -> dict[str, Any]:
         """Return the timeline layout settings.
 
         Returns
@@ -307,7 +307,7 @@ class LayoutConfig:
     @timeline.setter
     def timeline(
         self,
-        timeline: dict[Any, Any] = {
+        timeline: dict[str, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
             "sides": (UP, DOWN),

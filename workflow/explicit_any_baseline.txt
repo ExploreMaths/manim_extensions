@@ -1,0 +1,1062 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+# count	path	source
+1	manim_extensions/algorithm/array.py	def __getitem__(self, key: int | slice) -> "Node | Array":
+1	manim_extensions/algorithm/array.py	def __init__(
+1	manim_extensions/algorithm/array.py	return Array(cast(Any, self.array[key]))
+1	manim_extensions/algorithm/node.py	cast(Animation, cast(Any, node).animate.set_value(value)), **kwargs
+1	manim_extensions/algorithm/node.py	cast(Any, node).animate.set_fill(
+1	manim_extensions/algorithm/node.py	cast(Any, node).animate.set_fill(color, opacity)
+1	manim_extensions/algorithm/node.py	cast(Any, node).get_fill_color(), 0
+5	manim_extensions/algorithm/node.py	def __init__(
+1	manim_extensions/algorithm/node.py	def __init__(self, *nodes: list[Node], **kwargs: Any) -> None:
+1	manim_extensions/algorithm/node.py	def __init__(self, node: Node, value: NodeValue, **kwargs: Any) -> None:
+2	manim_extensions/algorithm/queue.py	def __init__(
+1	manim_extensions/algorithm/queue.py	def __init__(self, queue: Queue, item: Node, **kwargs: Any) -> None:
+1	manim_extensions/algorithm/utils/debug.py	def __init__(
+1	manim_extensions/animations.py	_ease_in_bounce = cast(Any, ease_in_bounce).__wrapped__
+1	manim_extensions/animations.py	_ease_out_bounce = cast(Any, ease_out_bounce).__wrapped__
+6	manim_extensions/animations.py	def __init__(
+3	manim_extensions/animations.py	def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+1	manim_extensions/animations.py	def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any) -> None:
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	cast(Any, read_symbol).tex_string == cast(Any, token).tex_string
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	cast(Any, transition).read_symbols = [read] if read else []
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	def __init__(self, json_template: dict[Any, Any] | None = None) -> None:
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	def construct_from_json(self, json_dictionary: dict[Any, Any]) -> None:
+2	manim_extensions/automata/mobjects/automata_dependencies/automata.py	for read_symbol in cast(
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	from_id = int(cast(Any, trans_data["from"]))
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	if cast(Any, read_symbol).tex_string == cast(Any, token).tex_string:
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	state_id = int(cast(Any, state_data.get("@id", 0)))
+1	manim_extensions/automata/mobjects/automata_dependencies/automata.py	to_id = int(cast(Any, trans_data["to"]))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(state, color=cast(Any, BLUE))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(state, color=cast(Any, PURE_YELLOW))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(state, color=cast(Any, RED))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(token, color=cast(Any, PURE_YELLOW))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(transition, color=cast(Any, PURE_YELLOW))
+1	manim_extensions/automata/mobjects/manim_animations.py	return FadeToColor(transition, color=cast(Any, WHITE))
+2	manim_extensions/automata/mobjects/manim_automaton.py	cast(Any, state).subscript, new_subscript_object
+1	manim_extensions/automata/mobjects/manim_automaton.py	cast(Any, state_obj).scale(size_factor)
+1	manim_extensions/automata/mobjects/manim_automaton.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_automaton.py	def animate_step_history(self, step_history: dict[str, Any]) -> list[list[Animation]]:
+1	manim_extensions/automata/mobjects/manim_automaton.py	def animate_subscripts(
+1	manim_extensions/automata/mobjects/manim_automaton.py	def construct_state(self, state: dict[str, Any], scaling: float = 10) -> None:
+1	manim_extensions/automata/mobjects/manim_automaton.py	def construct_states(self, states: list[dict[str, Any]]) -> None:
+1	manim_extensions/automata/mobjects/manim_automaton.py	def construct_transitions(self, transitions: list[dict[str, Any]]) -> None:
+1	manim_extensions/automata/mobjects/manim_automaton.py	def generate_history_animations(self, history: dict[str, Any]) -> list[list[Animation]]:
+1	manim_extensions/automata/mobjects/manim_automaton.py	def run_input_through_automaton(
+1	manim_extensions/automata/mobjects/manim_automaton.py	def run_sequence(
+1	manim_extensions/automata/mobjects/manim_automaton.py	global_history: dict[Any, Any] = {}
+1	manim_extensions/automata/mobjects/manim_automaton.py	history = cast(dict[str, Any], self.run_input_through_automaton(input_to_run))
+1	manim_extensions/automata/mobjects/manim_automaton.py	iteration_history: list[dict[str, Any]] = []
+2	manim_extensions/automata/mobjects/manim_automaton.py	new_subscript_object.set_x(cast(Any, state).subscript.get_x())
+2	manim_extensions/automata/mobjects/manim_automaton.py	new_subscript_object.set_y(cast(Any, state).subscript.get_y())
+1	manim_extensions/automata/mobjects/manim_automaton.py	return cast(
+1	manim_extensions/automata/mobjects/manim_automaton.py	self.add(*cast(Any, self.states))
+1	manim_extensions/automata/mobjects/manim_automaton.py	self.add(*cast(Any, self.transitions))
+1	manim_extensions/automata/mobjects/manim_automaton.py	self.recorded_path: list[Any] = []
+1	manim_extensions/automata/mobjects/manim_automaton.py	state_counter: dict[Any, int] = {}
+1	manim_extensions/automata/mobjects/manim_automaton.py	user_choice = cast(Any, self.cli).display_dictionary_options(
+2	manim_extensions/automata/mobjects/manim_automaton_input.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_automaton_input.py	token_highlight = cast(dict[str, Any], animation_style["token_highlight"])
+1	manim_extensions/automata/mobjects/manim_cli.py	def display_dictionary_options(self, options: dict[Any, Any]) -> int:
+1	manim_extensions/automata/mobjects/manim_deterministic_finite_state_automaton.py	cast(Any, self.cli).display_nda_options()
+1	manim_extensions/automata/mobjects/manim_deterministic_finite_state_automaton.py	cast(Any, self.cli).nda_option == 0
+1	manim_extensions/automata/mobjects/manim_deterministic_finite_state_automaton.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_non_deterministic_finite_state_automaton.py	cast(Any, self.cli).display_nda_options()
+1	manim_extensions/automata/mobjects/manim_non_deterministic_finite_state_automaton.py	cast(Any, self.cli).nda_option == 0
+1	manim_extensions/automata/mobjects/manim_non_deterministic_finite_state_automaton.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	cast(Any, transition.get("pop", "")),
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	cast(Any, transition.get("push", "")),
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	cast(Any, transition.get("read")),
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	for rule in cast(
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	history = cast(
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	rule.read_symbol == cast(Any, token).tex_string
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	stack: list[Any]
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	transition_counter: dict[tuple[Any, Any], list[PushDownAutomatonRule]] = {}
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	transition_from = self.get_state_by_id(int(cast(Any, state_key[0])))
+1	manim_extensions/automata/mobjects/manim_pushdown_automaton.py	transition_to = self.get_state_by_id(int(cast(Any, state_key[1])))
+1	manim_extensions/automata/mobjects/manim_state.py	def __init__(
+2	manim_extensions/automata/mobjects/manim_transition.py	cast(Any, opposite_transition).convert_straight_arrow_to_curved_arrow()
+1	manim_extensions/automata/mobjects/manim_transition.py	circle = cast(Any, self.transition_from).circle
+2	manim_extensions/automata/mobjects/manim_transition.py	def __init__(
+1	manim_extensions/automata/mobjects/manim_transition.py	self.arrow: Any = None
+1	manim_extensions/automata/mobjects/manim_transition.py	self.circle: Any = None
+1	manim_extensions/automata/mobjects/manim_transition.py	transition_style = cast(
+2	manim_extensions/automata/mobjects/manim_transition.py	x1 = cast(Any, self.transition_from).get_x()
+2	manim_extensions/automata/mobjects/manim_transition.py	x2 = cast(Any, self.transition_to).get_x()
+2	manim_extensions/automata/mobjects/manim_transition.py	y1 = cast(Any, self.transition_from).get_y()
+2	manim_extensions/automata/mobjects/manim_transition.py	y2 = cast(Any, self.transition_to).get_y()
+2	manim_extensions/cad_drawing_utils/dimensions.py	cast(
+1	manim_extensions/cad_drawing_utils/dimensions.py	cast(Any, {"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
+6	manim_extensions/cad_drawing_utils/dimensions.py	def __init__(
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"arrow1": arrow1}))
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"arrow2": arrow2}))
+2	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"arrow_1": arrow1}))
+2	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"arrow_2": arrow2}))
+2	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"base_arc": base_arc}))
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"ext_line_1": line1}))
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"ext_line_2": line2}))
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"line": dim_line}))
+1	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"main_line": main_line}))
+3	manim_extensions/cad_drawing_utils/dimensions.py	self.add(cast(Any, {"text": textmob}))
+1	manim_extensions/cad_drawing_utils/hatch.py	def __init__(
+1	manim_extensions/cad_drawing_utils/hatch.py	def curve_intersection(
+5	manim_extensions/cad_drawing_utils/path_mapper.py	def __init__(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def calc_len_bezier_quad(self, points: np.ndarray) -> float:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def cubic_to_quads(self, cubic_points: np.ndarray) -> np.ndarray:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def generate_bezier_points(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def generate_normal_vectors(self) -> list[list[np.ndarray]]:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def generate_offset_func_points(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def generate_offset_paths(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def get_curvature_vector(self, s: float) -> np.ndarray:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def get_normal_unit_vector(self, s: float) -> np.ndarray:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def get_tangent_unit_vector(self, s: float) -> np.ndarray:
+1	manim_extensions/cad_drawing_utils/path_mapper.py	def point_from_proportion(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	p: Any
+1	manim_extensions/cad_drawing_utils/path_mapper.py	return cast(np.ndarray, self.path.get_nth_curve_function(index)(remainder))
+1	manim_extensions/cad_drawing_utils/path_mapper.py	self.add(cast(Any, {"dashes": dshgrp}))
+4	manim_extensions/cad_drawing_utils/path_mapper.py	self.points = cast(
+1	manim_extensions/cad_drawing_utils/path_mapper.py	self.points = cast(Any, np.empty((0, 3)))
+1	manim_extensions/cad_drawing_utils/path_mapper.py	self.points = cast(Any, x_curve_points + y_curve_points)
+1	manim_extensions/cad_drawing_utils/path_mapper.py	x_curve_points = self.PM.point_from_proportion(cast(Any, x_points / L))
+1	manim_extensions/cad_drawing_utils/round_corners.py	def chamfer_corner_param(
+1	manim_extensions/cad_drawing_utils/round_corners.py	def find_crossing(
+1	manim_extensions/cad_drawing_utils/round_corners.py	def get_norms_and_refs(
+1	manim_extensions/cad_drawing_utils/round_corners.py	def rad_cost_func(t: np.ndarray) -> tuple[float, float]:
+1	manim_extensions/cad_drawing_utils/round_corners.py	def round_corner_param(
+1	manim_extensions/cad_drawing_utils/round_corners.py	loc_arc = Arc(**cast(Any, params), num_components=5)
+1	manim_extensions/cad_drawing_utils/round_corners.py	loc_line = Line(**cast(Any, params))
+1	manim_extensions/cad_drawing_utils/round_corners.py	ofs = [cast(Any, offset)[0], cast(Any, offset)[1]]
+1	manim_extensions/cad_drawing_utils/utils.py	def __init__(self, target_mobject: VMobject, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/bohr_atom/bohr_atom.py	def __init__(
+1	manim_extensions/chemistry/future_classes/future_classes.py	Callable[[Callable[..., float]], Callable[..., float]], cast(Any, zero).__wrapped__
+1	manim_extensions/chemistry/future_classes/future_classes.py	_zero: Callable[[Callable[..., float]], Callable[..., float]] = cast(
+1	manim_extensions/chemistry/future_classes/future_classes.py	arrange_in_1d_boundary(cast(Any, mobs), vertical_boundary)
+1	manim_extensions/chemistry/future_classes/future_classes.py	copies_group = VGroup(cast(Any, mobs))
+1	manim_extensions/chemistry/future_classes/future_classes.py	copies_group.add(cast(Any, mobs.copy()))
+6	manim_extensions/chemistry/future_classes/future_classes.py	def __init__(
+1	manim_extensions/chemistry/future_classes/future_classes.py	def __init__(self, mobs: Mobject, boundary: list[Any] = [LEFT, RIGHT]) -> None:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def __init__(self, regions_opacity: float = 0.8, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def __init__(self, terminal: Mobject, anchor: Mobject, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def arrange_copies_in_rectangle(
+1	manim_extensions/chemistry/future_classes/future_classes.py	def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> None:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def get_element_by_data(element: dict[Any, Any]) -> Element:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def make_particles(
+1	manim_extensions/chemistry/future_classes/future_classes.py	def wrapper(t: float, *args: Any, **kwargs: Any) -> float:
+1	manim_extensions/chemistry/future_classes/future_classes.py	def zero(function: Callable[..., Any]) -> Callable[..., float]:
+1	manim_extensions/chemistry/future_classes/future_classes.py	name_rescaling_factor = 0.75 * cast(Any, self.frame).width / name_label.width
+1	manim_extensions/chemistry/future_classes/future_classes.py	self.add(cast(Any, concat_mobject))
+1	manim_extensions/chemistry/future_classes/future_classes.py	self.add(cast(Any, mobs.copy()), cast(Any, mobs.copy()))
+1	manim_extensions/chemistry/future_classes/future_classes.py	self.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
+1	manim_extensions/chemistry/future_classes/future_classes.py	self.particles.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
+1	manim_extensions/chemistry/future_classes/future_classes.py	self.symbol = cast(
+1	manim_extensions/chemistry/future_classes/future_classes.py	super().__init__(cast(Any, mobject.copy()))
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_atom.py	def construct_from_atom_dict(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_bond.py	def construct_from_bond_dict(
+2	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, bond.from_atom).molecule_index
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, bond.from_atom).molecule_index = atoms_old_index_mapping[
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, bond.to_atom).molecule_index
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, bond.to_atom).molecule_index = atoms_old_index_mapping[
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, mc_bond.from_atom).add_atoms(mc_bond.to_atom)
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, mc_bond.from_atom).add_bonds(mc_bond)
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, mc_bond.to_atom).add_atoms(mc_bond.from_atom)
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	cast(Any, mc_bond.to_atom).add_bonds(mc_bond)
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def add_atoms_from_atoms_dict(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> None:
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def construct_from_data_dict(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def construct_from_file(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def construct_from_string(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def construct_multiples_from_file(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	def construct_multiples_from_string(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	if cast(Any, bond.from_atom).molecule_index in atoms_to_be_removed:
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	if cast(Any, bond.to_atom).molecule_index in atoms_old_index_mapping.keys():
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	if cast(Any, bond.to_atom).molecule_index in atoms_to_be_removed:
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	list_of_data_dicts = cast(
+3	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	parsed_data = cast(
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	self.atoms_by_index: dict[Any, MCAtom] = {}
+1	manim_extensions/chemistry/manim_chemistry_molecule/mc_molecule.py	self.elements: MCElement | dict[Any, Any] = elements or {}
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	cast(Any, self).add(name)
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def mc_molecule_to_atoms_and_bonds(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def molecule_from_file(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def molecule_from_pubchem(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def molecule_from_string(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def multiple_molecules_from_file(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	def multiple_molecules_from_string(
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	group_class: Any = VGroup
+2	manim_extensions/chemistry/molecule/abstract_molecule.py	mmolecules.add(cast(Any, cls(atoms, bonds, *args, **kwargs)))
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	molecule_kwargs: dict[str, Any] = {
+1	manim_extensions/chemistry/molecule/abstract_molecule.py	name.scale(scale).next_to(cast(Any, self), direction=direction, buff=buff)
+1	manim_extensions/chemistry/molecule/molecule.py	def mc_molecule_to_atoms_and_bonds(
+1	manim_extensions/chemistry/molecule/molecule.py	def molecule_from_file(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+1	manim_extensions/chemistry/molecule/molecule.py	def molecule_from_pubchem(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+1	manim_extensions/chemistry/molecule/molecule.py	def molecule_from_string(self, *args: Any, **kwargs: Any) -> GraphMolecule:
+1	manim_extensions/chemistry/molecule/molecule.py	def multiple_molecules_from_file(self, *args: Any, **kwargs: Any) -> VGroup:
+1	manim_extensions/chemistry/molecule/molecule.py	def multiple_molecules_from_string(self, *args: Any, **kwargs: Any) -> VGroup:
+2	manim_extensions/chemistry/orbitals/orbitals.py	def __init__(
+2	manim_extensions/chemistry/orbitals/orbitals.py	def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
+1	manim_extensions/chemistry/orbitals/orbitals.py	def add_background_rectangle_to_family_members_with_points(
+1	manim_extensions/chemistry/orbitals/orbitals.py	return cast(np.ndarray, spe.sph_harm(m, l, azimuthal, polar))
+1	manim_extensions/chemistry/orbitals/orbitals.py	return cast(np.ndarray, spe.sph_harm_y(l, m, polar, azimuthal))
+1	manim_extensions/chemistry/periodic_table/table_objects.py	.set_fill(cast(Any, color_gradient(self.fill_colors, self.gradient)))
+1	manim_extensions/chemistry/periodic_table/table_objects.py	def __init__(
+1	manim_extensions/chemistry/periodic_table/table_objects.py	def __init__(self, data_file: str, *vmobjects: Any, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/periodic_table/table_objects.py	def from_csv_file_data(
+1	manim_extensions/chemistry/threeD/threedatom.py	cast(Any, self).center = coords
+1	manim_extensions/chemistry/threeD/threedatom.py	def __init__(
+1	manim_extensions/chemistry/threeD/threedbond.py	color = cast(Any, self).fill_color
+1	manim_extensions/chemistry/threeD/threedbond.py	color = cast(Any, self.color)
+3	manim_extensions/chemistry/threeD/threedbond.py	def __init__(
+1	manim_extensions/chemistry/threeD/threedbond.py	def parallel_to(
+1	manim_extensions/chemistry/threeD/threedbond.py	def perpendicular_to(
+1	manim_extensions/chemistry/threeD/threedbond.py	def set_start_and_end_attrs(
+1	manim_extensions/chemistry/threeD/threedbond.py	f"Unknown or unsupported bond type at bond with from atom {self.from_atom} with index {cast(Any, self.from_atom).index}and to atom {self.to_atom} with index {cast(Any, self.from_atom).index}"
+1	manim_extensions/chemistry/threeD/threedbond.py	opacity = cast(Any, self).fill_opacity
+1	manim_extensions/chemistry/threeD/threedmolecule.py	"to": cast(Any, bond.from_atom).molecule_index,
+1	manim_extensions/chemistry/threeD/threedmolecule.py	def __init__(
+1	manim_extensions/chemistry/threeD/threedmolecule.py	def mc_molecule_to_atoms_and_bonds(
+1	manim_extensions/chemistry/threeD/threedmolecule.py	from_atom_ref = cast(Any, bond.from_atom)
+1	manim_extensions/chemistry/threeD/threedmolecule.py	group_class: Any = OpenGLGroup
+1	manim_extensions/chemistry/threeD/threedmolecule.py	if atom_index == cast(Any, bond.to_atom).molecule_index:
+1	manim_extensions/chemistry/threeD/threedmolecule.py	to_atom_ref = cast(Any, bond.to_atom)
+1	manim_extensions/chemistry/threeD/utils.py	def __init__(
+1	manim_extensions/chemistry/twoD/animations.py	animations.append(cast(Animation, atom[1].animate.set_color(cast(Any, atom[1].color))))
+1	manim_extensions/chemistry/twoD/animations.py	axis = cast(Vector3D, cast(Any, self.molecule.edges[bond]).sheen_direction)
+1	manim_extensions/chemistry/twoD/animations.py	else VGroup(*cast(Any, list(self.molecule.edges.values())))
+1	manim_extensions/chemistry/twoD/animations.py	else VGroup(*cast(Any, list(self.molecule.vertices.values())))
+1	manim_extensions/chemistry/twoD/atom.py	def __init__(
+3	manim_extensions/chemistry/twoD/bond.py	def __init__(
+1	manim_extensions/chemistry/twoD/chemical_formula.py	cast(Any, self).name = name_mob
+3	manim_extensions/chemistry/twoD/chemical_formula.py	def __init__(
+1	manim_extensions/chemistry/twoD/chemical_formula.py	def __init__(self, formula_dict: dict[Any, Any], *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/twoD/chemical_formula.py	formula_kwargs: dict[str, Any] = {
+1	manim_extensions/chemistry/twoD/graph_molecule.py	*cast(Any, [self.vertices[atom_index] for atom_index in atoms_indices])
+1	manim_extensions/chemistry/twoD/graph_molecule.py	bond_vector = cast(Any, bond).get_vector()
+1	manim_extensions/chemistry/twoD/graph_molecule.py	cast(Any, bond.from_atom).molecule_index,
+1	manim_extensions/chemistry/twoD/graph_molecule.py	cast(Any, bond.to_atom).molecule_index,
+3	manim_extensions/chemistry/twoD/graph_molecule.py	def __init__(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def __init__(self, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def make_edge_config(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def make_labels(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def make_layout(self, vertices_dict: dict[Any, Any]) -> dict[int, Point3D]:
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def make_vertex_config(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def mc_molecule_to_atoms_and_bonds(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	def set_points_by_ends(
+1	manim_extensions/chemistry/twoD/graph_molecule.py	graph_kwargs: dict[str, Any] = {
+1	manim_extensions/chemistry/twoD/graph_molecule.py	return VGroup(*cast(Any, [self.edges[bond_atoms] for bond_atoms in bonds]))
+1	manim_extensions/chemistry/twoD/molecule.py	"to": cast(Any, bond.from_atom).molecule_index,
+1	manim_extensions/chemistry/twoD/molecule.py	- cast(Any, bond.from_atom).coords[0]
+1	manim_extensions/chemistry/twoD/molecule.py	and cast(Any, bond.to_atom).element != "H"
+1	manim_extensions/chemistry/twoD/molecule.py	and not cast(Any, bond.to_atom).explicit_hydrogens
+1	manim_extensions/chemistry/twoD/molecule.py	call_kwargs.update(cast(Any, kwargs))
+2	manim_extensions/chemistry/twoD/molecule.py	call_kwargs: dict[str, Any] = {
+2	manim_extensions/chemistry/twoD/molecule.py	cast(Any, NamedMolecule)(
+1	manim_extensions/chemistry/twoD/molecule.py	cast(Any, bond.from_atom).element != "H"
+1	manim_extensions/chemistry/twoD/molecule.py	cast(Any, bond.to_atom).coords[0]
+2	manim_extensions/chemistry/twoD/molecule.py	def __init__(
+1	manim_extensions/chemistry/twoD/molecule.py	def from_mol_file(
+1	manim_extensions/chemistry/twoD/molecule.py	def from_mol_file(filename: str, *args: Any, **kwargs: Any) -> "MMoleculeObject":
+2	manim_extensions/chemistry/twoD/molecule.py	def from_mol_string(
+2	manim_extensions/chemistry/twoD/molecule.py	def from_sdf_file(
+2	manim_extensions/chemistry/twoD/molecule.py	def from_sdf_string(
+1	manim_extensions/chemistry/twoD/molecule.py	def mc_molecule_to_atoms_and_bonds(
+3	manim_extensions/chemistry/twoD/molecule.py	f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
+1	manim_extensions/chemistry/twoD/molecule.py	for bond in cast(Any, self.bonds):
+1	manim_extensions/chemistry/twoD/molecule.py	from_atom_ref = cast(Any, bond.from_atom)
+1	manim_extensions/chemistry/twoD/molecule.py	if atom_index == cast(Any, bond.to_atom).molecule_index:
+1	manim_extensions/chemistry/twoD/molecule.py	line = cast(Any, self.bonds[bond][0][0])
+1	manim_extensions/chemistry/twoD/molecule.py	name_text = cast(Any, MarkupText)(name, *args, font=font, **extra_kwargs)
+1	manim_extensions/chemistry/twoD/molecule.py	not cast(Any, bond.from_atom).explicit_hydrogens
+1	manim_extensions/chemistry/twoD/molecule.py	representation_type=cast(Any, self.representation_type),
+1	manim_extensions/chemistry/twoD/molecule.py	self.atoms: Any
+1	manim_extensions/chemistry/twoD/molecule.py	self.atoms_dict: dict[int, dict[str, Any]] = atoms_dict
+1	manim_extensions/chemistry/twoD/molecule.py	self.bonds_dict: dict[int, list[dict[str, Any]]] = bonds_dict
+1	manim_extensions/chemistry/twoD/molecule.py	super().__init__(cast(Any, self.molecule), name_text, **kwargs)
+1	manim_extensions/chemistry/twoD/molecule.py	to_atom_ref = cast(Any, bond.to_atom)
+1	manim_extensions/chemistry/utils/file_handler.py	parser_class = cast(Any, SUPPORTED_FORMATS[file_extension])
+1	manim_extensions/chemistry/utils/parsers/asnt_parser.py	atoms_data: dict[int, dict[str, Any]] = {
+1	manim_extensions/chemistry/utils/parsers/asnt_parser.py	bonds_data: dict[int, dict[str, Any]] = {}
+1	manim_extensions/chemistry/utils/parsers/asnt_parser.py	def data_parser(data: Any) -> ParsedData:
+1	manim_extensions/chemistry/utils/parsers/base_parser.py	def data_parser(data: Any) -> ParsedData:
+1	manim_extensions/chemistry/utils/parsers/json_parser.py	conformers_raw: list[dict[str, Any]] = cast(
+1	manim_extensions/chemistry/utils/parsers/json_parser.py	coords_raw: list[dict[str, Any]] = cast(
+1	manim_extensions/chemistry/utils/parsers/json_parser.py	def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+1	manim_extensions/chemistry/utils/parsers/json_parser.py	def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+1	manim_extensions/chemistry/utils/parsers/json_parser.py	def parse_single_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+1	manim_extensions/chemistry/utils/parsers/mol_parser.py	atoms: dict[int, dict[str, Any]] = {}
+1	manim_extensions/chemistry/utils/parsers/mol_parser.py	bonds: dict[int, list[dict[str, Any]]] = {}
+1	manim_extensions/chemistry/utils/parsers/mol_parser.py	def data_parser(data: Any) -> ParsedData:
+1	manim_extensions/chemistry/utils/parsers/mol_parser.py	new_bonds: dict[int, dict[str, Any]] = {}
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	aid1_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	aid2_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	atoms_aid: dict[str, Any] = cast(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	atoms_coords_raw = cast(dict[str, Any], conformers_section.get("PC-Conformer"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	atoms_element: dict[str, Any] = cast(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	atoms_elements_raw = cast(list[Any], atoms_element.get("PC-Element"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	atoms_indices_raw = cast(list[Any], atoms_aid.get("PC-Atoms_aid_E"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	bonds_type_raw_data = cast(list[Any], order_section.get("PC-BondType"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	compound_atoms: dict[str, Any] = cast(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	compound_bonds: dict[str, Any] = cast(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	compound_coords: dict[str, Any] = cast(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	conformer_x: dict[str, object] = cast(Any, atoms_coords_raw).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	conformer_y: dict[str, object] = cast(Any, atoms_coords_raw).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	conformer_z: dict[str, object] | None = cast(Any, atoms_coords_raw).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	conformers_section: dict[str, object] = cast(Any, coords_data_dict).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	def parse_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	for coord in cast(list[Any], conformer_x.get("PC-Conformer_x_E"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	for coord in cast(list[Any], conformer_y.get("PC-Conformer_y_E"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	for coord in cast(list[Any], conformer_z.get("PC-Conformer_z_E"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	from_atoms_raw_data = cast(list[Any], aid1_section.get("PC-Bonds_aid1_E"))
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	molecule_data = cast(Any, cast(Any, parsed_xml).get("PC-Compounds")).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	order_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+1	manim_extensions/chemistry/utils/parsers/xml_parser.py	to_atoms_raw_data = cast(list[Any], aid2_section.get("PC-Bonds_aid2_E"))
+1	manim_extensions/chemistry/utils/pubchem_api.py	if cast(Any, identifier).startswith("InChI="):
+2	manim_extensions/chemistry/utils/utils.py	Any, cast(Any, atoms).get(first_atom_index)
+3	manim_extensions/chemistry/utils/utils.py	Any, cast(Any, atoms).get(second_atom_index)
+2	manim_extensions/chemistry/utils/utils.py	atoms: dict[int, dict[str, Any]] = {}
+2	manim_extensions/chemistry/utils/utils.py	atoms[first_atom_index]["bond_to"][second_atom_index] = cast(
+1	manim_extensions/chemistry/utils/utils.py	atoms[second_atom_index]["bond_to"][first_atom_index] = cast(
+1	manim_extensions/chemistry/utils/utils.py	bonds: dict[int, list[dict[str, Any]]] = {}
+1	manim_extensions/chemistry/utils/utils.py	bonds: dict[tuple[int, int], dict[str, Any]] = {}
+1	manim_extensions/chemistry/utils/utils.py	def mol_parser(
+1	manim_extensions/chemistry/utils/utils.py	def mol_parser_string(
+1	manim_extensions/chemistry/utils/utils.py	def mol_to_graph(
+1	manim_extensions/chemistry/utils/utils.py	def sdf_parser(
+1	manim_extensions/chemistry/utils/utils.py	def sdf_parser_string(
+1	manim_extensions/chemistry/utils/utils.py	element_dict: dict[str, Any]
+1	manim_extensions/chemistry/utils/utils.py	first_atom_index: cast(Any, cast(Any, atoms).get(first_atom_index)).get(
+1	manim_extensions/chemistry/utils/utils.py	if not cast(Any, atoms).get(first_atom_index) or not cast(
+1	manim_extensions/chemistry/utils/utils.py	if not cast(Any, cast(Any, atoms).get(second_atom_index)).get("bond_to"):
+1	manim_extensions/chemistry/utils/utils.py	second_atom_index: cast(
+7	manim_extensions/circuit/mobjects.py	def __init__(
+1	manim_extensions/circuit/mobjects.py	def get_terminals(self, *args: Any) -> Point3D:
+1	manim_extensions/circuit/mobjects.py	def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Capacitor":
+1	manim_extensions/circuit/mobjects.py	def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Inductor":
+1	manim_extensions/circuit/mobjects.py	def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Resistor":
+1	manim_extensions/circuit/utils.py	def __init__(
+2	manim_extensions/circuit/utils.py	def __init__(self, **kwargs: Any) -> None:
+1	manim_extensions/circuit/utils.py	def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Source":
+1	manim_extensions/circuit/utils.py	intersections: list[Any] = []
+1	manim_extensions/circuit/utils.py	new_node.add_wire(cast(Any, wire))
+1	manim_extensions/circuit/utils.py	self.add_wire(cast(Any, wire))
+1	manim_extensions/circuit/utils.py	self.component_list.add(cast(Any, component))
+2	manim_extensions/code_blocks/manim_code_blocks.py	AddTextLetterByLetter(cast(Any, self.code), **kwargs),
+1	manim_extensions/code_blocks/manim_code_blocks.py	AddTextLetterByLetter(cast(Any, self.title), **kwargs),
+1	manim_extensions/code_blocks/manim_code_blocks.py	FadeIn(cast(Any, self.title_background), **kwargs),
+1	manim_extensions/code_blocks/manim_code_blocks.py	FadeOut(cast(Any, self.title_background), **kwargs),
+1	manim_extensions/code_blocks/manim_code_blocks.py	Uncreate(cast(Any, self.title), **kwargs),
+1	manim_extensions/code_blocks/manim_code_blocks.py	colors: dict[str, list[str | Callable[..., Any]]]
+2	manim_extensions/code_blocks/manim_code_blocks.py	def __init__(
+1	manim_extensions/code_blocks/manim_code_blocks.py	def create(self, **kwargs: Any) -> tuple[Animation, ...]:
+1	manim_extensions/code_blocks/manim_code_blocks.py	def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
+1	manim_extensions/code_blocks/manim_code_blocks.py	if cast(Any, token).type in value:
+1	manim_extensions/code_blocks/manim_code_blocks.py	tokens = cast(Any, language.language).tokenize(line)
+5	manim_extensions/compass/animations/animation_compass.py	def __init__(
+1	manim_extensions/compass/animations/animation_compass.py	def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
+4	manim_extensions/compass/animations/animation_pencil.py	def __init__(
+2	manim_extensions/compass/animations/animation_ruler.py	def __init__(
+1	manim_extensions/compass/compass/compass.py	def __init__(
+1	manim_extensions/compass/compass/ruler.py	def __init__(
+1	manim_extensions/compass/scene/compass_scene.py	def draw_arc(
+1	manim_extensions/compass/scene/compass_scene.py	def draw_line(
+1	manim_extensions/compass/scene/compass_scene.py	def rotate_compass_about_niddle_tip(
+1	manim_extensions/compass/scene/compass_scene.py	line = Line(cast(Any, start), cast(Any, end), color=color, **kwargs)
+1	manim_extensions/compass/scene/ruler_scene.py	def draw_line_with_pencil(
+1	manim_extensions/compass/scene/ruler_scene.py	def put_ruler_back(
+1	manim_extensions/compass/utils/geometry_method.py	def __init__(
+1	manim_extensions/data_structures/m_array.py	MobProps = dict[str, Any]
+4	manim_extensions/data_structures/m_array.py	def __init__(
+1	manim_extensions/data_structures/m_variable.py	def __init__(
+1	manim_extensions/data_structures/m_variable.py	def update_index(
+1	manim_extensions/data_structures/m_variable.py	def update_label(
+1	manim_extensions/data_structures/m_variable.py	def update_value(
+1	manim_extensions/economics/ad_as.py	def __init__(
+1	manim_extensions/economics/base.py	def __init__(
+1	manim_extensions/economics/is_lm.py	def __init__(
+1	manim_extensions/economics/linked.py	ad_as_kw: dict[str, Any] = dict(
+1	manim_extensions/economics/linked.py	def __init__(
+1	manim_extensions/economics/linked.py	is_lm_kw: dict[str, Any] = dict(
+1	manim_extensions/economics/solow.py	def __init__(
+1	manim_extensions/economics/supply_demand.py	def __init__(
+2	manim_extensions/gearbox/gear_mobjects/gear_mobject.py	def __init__(
+1	manim_extensions/gearbox/gear_mobjects/gear_mobject.py	def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
+1	manim_extensions/gearbox/gear_mobjects/gear_mobject.py	def involute_point_gen(t: VectorND, r: float, **kwargs: Any) -> Point3D_Array:
+2	manim_extensions/gearbox/gear_mobjects/gear_mobject.py	def rotate(
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	max_depth = cast(Any, self.tree).max_depth
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	node = ImageMobject(cast(Any, pil_image))
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	node_feature = cast(Any, self.tree).feature[node_index]
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	node_threshold = cast(Any, self.tree).threshold[node_index]
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	np.argmax(cast(Any, self.tree).value[child_index])
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	root_class_index = int(np.argmax(cast(Any, self.tree).value[0]))
+1	manim_extensions/machine_learning/decision_tree/decision_tree.py	tree_class_index = np.argmax(cast(Any, self.tree).value[node_index])
+1	manim_extensions/machine_learning/decision_tree/decision_tree_embedding.py	def __init__(
+1	manim_extensions/machine_learning/decision_tree/decision_tree_embedding.py	def get_points_defining_boundary(self) -> np.ndarray:
+1	manim_extensions/machine_learning/decision_tree/decision_tree_surface.py	def tree_bounds(tree: Any, n_features: int | None = None) -> list[AABB]:
+1	manim_extensions/machine_learning/diffusion/mcmc.py	def __init__(
+1	manim_extensions/machine_learning/diffusion/mcmc.py	def _create_override(self, **kwargs: Any) -> AnimationGroup:
+1	manim_extensions/machine_learning/diffusion/mcmc.py	def metropolis_hastings_sampler(
+1	manim_extensions/machine_learning/diffusion/mcmc.py	def visualize_metropolis_hastings_chain_sampling(
+1	manim_extensions/machine_learning/diffusion/mcmc.py	xlim_values = cast(list[Any], xlim)
+1	manim_extensions/machine_learning/diffusion/mcmc.py	ylim_values = cast(list[Any], ylim)
+1	manim_extensions/machine_learning/neural_network/activation_functions/activation_function.py	active_color: ManimColor = cast(Any, config).color_scheme.active_color,
+1	manim_extensions/machine_learning/neural_network/activation_functions/activation_function.py	plot_color: ManimColor = cast(Any, config).color_scheme.primary_color,
+1	manim_extensions/machine_learning/neural_network/activation_functions/activation_function.py	rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+1	manim_extensions/machine_learning/neural_network/animations/dropout.py	layer_args: dict[object, Any] = {}
+1	manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.py	Create(cast(Any, before_connective)), Create(cast(Any, after_connective))
+1	manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.py	return Create(cast(Any, self.layer))
+1	manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.py	self.neural_network, cast(Any, create_new_connective)
+1	manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.py	shift_left_amount: Any = None
+1	manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.py	shift_right_amount: Any = None
+1	manim_extensions/machine_learning/neural_network/architectures/feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/architectures/feed_forward.py	node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
+2	manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.py	Create(cast(Any, wrapper_neural_network)),
+1	manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.py	images: list[Any] = []
+1	manim_extensions/machine_learning/neural_network/architectures/variational_autoencoder.py	return Create(cast(Any, self.neural_network))
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	axis=cast(Any, config).three_d_config.rotation_axis,
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	cast(Any, config).three_d_config.rotation_angle,
+2	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d.py	def scale(self, scale_factor: float, **kwargs: Any) -> "Convolutional2DLayer":
+2	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	axis=cast(Any, config).three_d_config.rotation_axis,
+3	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	cast(Any, config).three_d_config.rotation_angle,
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	cast(Any, config).three_d_config.rotation_axis,
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	def __init__(
+2	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	def scale(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	input_class: Any = Convolutional2DLayer
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	output_class: Any = Convolutional2DLayer
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.py	return ApplyFunction(cast(Any, add_content), self)
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	feed_forward_nodes = cast(Any, self.output_layer).node_group
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	final_feature_map = cast(Any, self.input_layer).feature_maps[-1]
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	input_class: Any = Convolutional2DLayer
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	line.set_z_index(cast(Any, self.output_layer.node_group).z_index)
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	output_class: Any = FeedForwardLayer
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+2	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	axis=cast(Any, config).three_d_config.rotation_axis,
+2	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	cast(Any, config).three_d_config.rotation_angle,
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/embedding.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/embedding.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/embedding.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/embedding.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/embedding_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/embedding_to_feed_forward.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/embedding_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/embedding_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/embedding_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+2	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	cast(Any, nodes_to_highlight_group).set_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	cast(Any, self.activation_function).make_evaluate_animation(),
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def make_dropout_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	def move_to(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	node_outline_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward.py	rectangle_fill_color: ManimColor = cast(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_embedding.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_embedding.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_embedding.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_embedding.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_embedding.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	edge_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_feed_forward.py	widths_array = cast(Any, np.array(widths)).flatten()
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.py	image_location = cast(Any, image_mobject).get_center()
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_math_operation.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_vector.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_vector.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_vector.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/feed_forward_to_vector.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def from_path(
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/image.py	def scale(self, scale_factor: float, **kwargs: Any) -> "ImageLayer":
+1	manim_extensions/machine_learning/neural_network/layers/image.py	self.image_mobject: Any = GrayscaleImageMobject(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	cast(Any, config).three_d_config.rotation_angle,
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	cast(Any, config).three_d_config.rotation_axis,
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	cast(Any, target_feature_map).untransformed_width / max_width_height
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	def scale(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	scale_image = ApplyFunction(cast(Any, scale_image_func), image_mobject)
+1	manim_extensions/machine_learning/neural_network/layers/image_to_convolutional_2d.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/image_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/image_to_feed_forward.py	image_location = cast(Any, image_mobject).get_center()
+1	manim_extensions/machine_learning/neural_network/layers/image_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/math_operation_layer.py	cast(Any, self.activation_function).make_evaluate_animation(),
+1	manim_extensions/machine_learning/neural_network/layers/math_operation_layer.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/math_operation_layer.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/math_operation_layer.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/math_operation_layer.py	def move_to(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	axis=cast(Any, config).three_d_config.rotation_axis,
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	cast(Any, config).three_d_config.rotation_angle,
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	color=cast(Any, self.color),
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	fill_color=cast(Any, self.color),
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	grid_stroke_color=cast(Any, self.color),
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	input_layer_any = cast(Any, input_layer)
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d.py	stroke_color=cast(Any, self.color),
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.py	cast(Any, input_layer).num_feature_maps = cast(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/max_pooling_2d_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	cast(Any, self.negative),
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	cast(Any, self.positive),
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	def from_paths(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	negative: Any
+1	manim_extensions/machine_learning/neural_network/layers/paired_query.py	positive: Any
+1	manim_extensions/machine_learning/neural_network/layers/paired_query_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/paired_query_to_feed_forward.py	image_location = cast(Any, image_mobject).get_center()
+1	manim_extensions/machine_learning/neural_network/layers/paired_query_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+2	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def __init__(self, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
+2	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def make_forward_pass_animation(
+3	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/layers/parent_layers.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	anchor: Any
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	cast(Any, self.anchor),
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	cast(Any, self.negative),
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	cast(Any, self.positive),
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	negative: Any
+1	manim_extensions/machine_learning/neural_network/layers/triplet.py	positive: Any
+1	manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.py	image_location = cast(Any, image_mobject).get_center()
+1	manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.py	super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
+1	manim_extensions/machine_learning/neural_network/layers/util.py	cast(Any, input_layer), cast(Any, output_layer)
+1	manim_extensions/machine_learning/neural_network/layers/util.py	connective_layer_class: Any = None
+1	manim_extensions/machine_learning/neural_network/layers/vector.py	def __init__(
+1	manim_extensions/machine_learning/neural_network/layers/vector.py	def construct_layer(
+1	manim_extensions/machine_learning/neural_network/layers/vector.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/neural_network.py	+ cast(Any, connective_layer.output_layer).get_center()
+2	manim_extensions/machine_learning/neural_network/neural_network.py	+ cast(Any, current_layer).width / 2
+1	manim_extensions/machine_learning/neural_network/neural_network.py	+ cast(Any, current_layer.activation_function).height / 2
+1	manim_extensions/machine_learning/neural_network/neural_network.py	Create(cast(Any, new_layer)),
+1	manim_extensions/machine_learning/neural_network/neural_network.py	UpdateFromFunc(self, cast(Any, swap_layer)),
+1	manim_extensions/machine_learning/neural_network/neural_network.py	animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+1	manim_extensions/machine_learning/neural_network/neural_network.py	animations.append(Create(cast(Any, self.title)))
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, connective_layer.input_layer).get_center()
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer), cast(Any, next_layer)
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer).construct_layer(
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer).move_to(cast(Any, previous_layer).get_center())
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer).shift(shift_vector)
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer.activation_function).match_y(
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer.activation_function).move_to(
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, current_layer.activation_function).shift(up_movement)
+1	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, network.input_layers_dict)[name] = new_layer
+2	manim_extensions/machine_learning/neural_network/neural_network.py	cast(Any, previous_layer).width / 2
+1	manim_extensions/machine_learning/neural_network/neural_network.py	create_title = Create(cast(Any, layer.title))
+1	manim_extensions/machine_learning/neural_network/neural_network.py	def _create_override(self, **kwargs: Any) -> Animation:
+1	manim_extensions/machine_learning/neural_network/neural_network.py	def make_forward_pass_animation(
+1	manim_extensions/machine_learning/neural_network/neural_network.py	def scale(self, scale_factor: float, **kwargs: Any) -> "NeuralNetwork":
+1	manim_extensions/machine_learning/neural_network/neural_network.py	for name, layer in cast(Any, network.input_layers_dict).items():
+1	manim_extensions/machine_learning/neural_network/neural_network.py	if len(cast(Any, layer.title).submobjects) > 0:
+1	manim_extensions/machine_learning/neural_network/neural_network.py	input_mobject = cast(Any, self.input_layers_dict)[start_mobject_or_name]
+1	manim_extensions/machine_learning/neural_network/neural_network.py	layer_animation = Create(cast(Any, layer))
+1	manim_extensions/machine_learning/neural_network/neural_network.py	network.remove(cast(Any, old_layer).activation_function)
+1	manim_extensions/machine_learning/neural_network/neural_network.py	output_mobject = cast(Any, self.input_layers_dict)[end_mobject_or_name]
+1	manim_extensions/machine_learning/neural_network/neural_network.py	self.add(cast(Any, current_layer).activation_function)
+1	manim_extensions/machine_learning/neural_network/neural_network.py	self.input_layers = ListGroup(*cast(Any, self.input_layers_dict).values())
+1	manim_extensions/machine_learning/scene.py	def __init__(self, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/machine_learning/scene.py	def play(self, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/machine_learning/utils/mobjects/gridded_rectangle.py	def __init__(
+1	manim_extensions/machine_learning/utils/mobjects/image.py	def scale(  # intentionally returns None instead of the group
+1	manim_extensions/machine_learning/utils/mobjects/list_group.py	def __getitem__(  # type: ignore[override]  # list indexing may return a single item or a slice
+1	manim_extensions/machine_learning/utils/mobjects/plotting.py	def __init__(self, fig: Figure, dpi: int = 200, **kwargs: Any) -> None:
+1	manim_extensions/machine_learning/utils/mobjects/probability.py	def __init__(
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	cast(Any, setup).app = app
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	cast(Any, setup).confdir = cast(Any, app).confdir
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	cast(Any, setup).config = cast(Any, app).config
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	config.media_dir = (Path(cast(Any, setup).confdir) / "media").absolute()
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	def _delete_rendering_times(*args: Any) -> None:
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	def _log_rendering_times(*args: Any) -> None:
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	def setup(app: Sphinx) -> dict[str, Any]:
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	dest_dir = Path(cast(Any, setup).app.builder.outdir, source_rel_dir).absolute()
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	filesrc_rel=Path(filesrc).relative_to(cast(Any, setup).confdir).as_posix(),
+1	manim_extensions/machine_learning/utils/testing/doc_directive.py	source_rel_name = source_file_name.relative_to(cast(Any, setup).confdir)
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	cast(Any, wrapper).__signature__ = new_sig
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	cast(Any, wrapper).pytestmark = new_marks
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	def _make_test_comparing_frames(
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	def decorator_maker(
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	def frames_comparison(
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	def wrapper(
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	frames_tester: Any = _ControlDataWriter(file_path, size_frame=size_frame)
+1	manim_extensions/machine_learning/utils/testing/frames_comparison.py	return cast(Callable[..., None], decorator_maker)
+1	manim_extensions/meshes/decorators.py	and cast(Any, mesh).dangling_face_check()
+1	manim_extensions/meshes/decorators.py	and cast(Any, mesh).dangling_vert_check()
+2	manim_extensions/meshes/decorators.py	cast(Any, mesh).test_for_dangling
+1	manim_extensions/meshes/delaunay/delaunay_criterion.py	def __init__(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def _divide_and_conquer_recursive(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def _find_base_lr(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def _left_candidate(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def _right_candidate(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def merge_sets(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def on_right(tangent: Any, point: Any) -> bool:
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def split_points(
+1	manim_extensions/meshes/delaunay/divide_and_conquer.py	def triangulate_leq_3(self, vert_indices: list[Any]) -> None:
+1	manim_extensions/meshes/models/data_models/mesh.py	def _rotation_plane_4d(axis: object) -> tuple[np.ndarray, np.ndarray]:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	call_kwargs: dict[str, Any] = {
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	cast(Any, tracker.animate)(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	cast(Any, tracker.animate)(**kwargs).set_value(1),
+2	manim_extensions/meshes/models/manim_models/basic_mesh.py	def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def _as_mesh_dim(self, point: object) -> np.ndarray:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def _mesh_center(self) -> np.ndarray:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def get_dots(self, indices: list[Any]) -> list[Dot]:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def move_to_grid(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def move_vertex_to(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def move_vertices_to(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def rotate(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def scale(self, scale_factor: float, **kwargs: Any) -> "ManimMesh":
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def shift_vertex(
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs: Any) -> None:
+1	manim_extensions/meshes/models/manim_models/basic_mesh.py	def stretch(self, factor: float, dim: int, **kwargs: Any) -> "ManimMesh":
+1	manim_extensions/meshes/models/manim_models/opengl_mesh.py	call_kwargs: dict[str, Any] = {
+1	manim_extensions/meshes/models/manim_models/opengl_mesh.py	def __init__(
+1	manim_extensions/meshes/models/manim_models/opengl_mesh.py	def fill_in_shader_color_info(self, shader_data: np.ndarray) -> np.ndarray:
+1	manim_extensions/meshes/models/manim_models/opengl_mesh.py	def get_shader_data(self) -> np.ndarray:
+1	manim_extensions/meshes/models/manim_models/triangle_mesh.py	anims.append(cast(Any, face_mob).animate(**kwargs).become(new_face))
+1	manim_extensions/meshes/models/manim_models/triangle_mesh.py	anims.append(cast(Any, old_edge.animate)(**kwargs).become(new_edge))
+1	manim_extensions/meshes/models/manim_models/triangle_mesh.py	cast(Any, new_face).set_points_as_corners(
+1	manim_extensions/meshes/models/manim_models/triangle_mesh.py	def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/meshes/models/manim_models/triangle_mesh.py	def edge_flip(
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	cast(Any, node).node.level = node.layer_index
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	cast(Any, node).node.x = node.left + node.width / 2
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	cast(Any, node).node.y = -node.top - node.height / 2
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	cast(Any, org_node).node = node
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	def _update_children_pro(
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	def _walk(
+1	manim_extensions/mindmap/algorithms/alg_catalog.py	return cast(Any, self.root).node
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, d_node).is_flip = cast(Any, s_node).is_flip
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, d_node).level = cast(Any, s_node).level
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, d_node).x = cast(Any, s_node).x
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, d_node).y = cast(Any, s_node).y
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, s_node).children, cast(Any, d_node).children
+1	manim_extensions/mindmap/algorithms/alg_standard.py	cast(Any, self.root).height, cast(Any, self.root).width
+1	manim_extensions/mindmap/algorithms/alg_standard.py	for child in cast(Any, node).children:
+1	manim_extensions/mindmap/algorithms/alg_standard.py	for child in cast(Any, self.right).children:
+1	manim_extensions/mindmap/algorithms/alg_standard.py	for child in cast(Any, self.root).children
+1	manim_extensions/mindmap/algorithms/alg_standard.py	if (number := len(cast(Any, self.root).children)) > 0:
+1	manim_extensions/mindmap/algorithms/alg_standard.py	if len(cast(Any, s_node).children) != len(cast(Any, d_node).children):
+1	manim_extensions/mindmap/algorithms/alg_standard.py	root = TreeNode(cast(Any, node).height, cast(Any, node).width)
+1	manim_extensions/mindmap/algorithms/alg_standard.py	self.left = TreeNode(cast(Any, self.root).height, cast(Any, self.root).width)
+1	manim_extensions/mindmap/algorithms/alg_standard.py	x = cast(Any, self.left).x - cast(Any, self.right).x
+1	manim_extensions/mindmap/algorithms/alg_standard.py	y = cast(Any, self.left).y - cast(Any, self.right).y
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	- (cast(Any, parent).height + cast(Any, node).height) / 2
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, li).mod += diff
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, li).prelim -= diff
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, li).thread_left = cl
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).connector_points = points
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).level = cast(Any, parent).level + 1
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).x + cast(Any, node).width / 2,
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).x += move
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).x - cast(Any, node).width / 2,
+2	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).x,
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).y + cast(Any, node).height / 2,
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).y += move
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).y - cast(Any, node).height / 2,
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).y = (
+2	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, node).y,
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, parent).y
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, ri).mod += diff
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, ri).prelim -= diff
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, ri).thread_right = sr
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, root).x = cast(Any, converted).x
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	cast(Any, root).y = converted.x
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	convert_back(child, cast(Any, root).children[i], is_horizontal)
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> None:
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	def normalize(node: Any, is_horizontal: bool) -> None:
+4	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	for child in cast(Any, node).children:
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	for child in cast(Any, self.root).children:
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	if (parent := cast(Any, node).parent) is not None:
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	if i < len(cast(Any, root).children):
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	parent = cast(Any, node).parent
+1	manim_extensions/mindmap/algorithms/alg_tidy_tree.py	res = float(cast(Any, node).y if is_horizontal else cast(Any, node).x)
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	cast(Any, node.node).level = node._layer_index
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	cast(Any, node.node).side = node.side_dir
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	cast(Any, node.node).x = cast(Any, node).x + node.width / 2
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	cast(Any, node.node).y = -cast(Any, node).y - node.height / 2
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	def walk(
+1	manim_extensions/mindmap/algorithms/alg_time_line.py	def walk_tree(root: TimelineNode) -> dict[str, Any]:
+1	manim_extensions/mindmap/algorithms/layout_config.py	def catalog(
+1	manim_extensions/mindmap/algorithms/layout_config.py	def catalog(self) -> dict[str, Any]:
+1	manim_extensions/mindmap/algorithms/layout_config.py	def mindmap(
+1	manim_extensions/mindmap/algorithms/layout_config.py	def mindmap(self) -> dict[str, Any]:
+1	manim_extensions/mindmap/algorithms/layout_config.py	def timeline(
+1	manim_extensions/mindmap/algorithms/layout_config.py	def timeline(self) -> dict[str, Any]:
+1	manim_extensions/mindmap/animations/animations.py	AnimateClass(cast(Any, node.vmobject).move_to(pos)),
+1	manim_extensions/mindmap/animations/animations.py	cast(Any, node.vmobject).animate.become(node.alter_vmobject.move_to(pos)),
+1	manim_extensions/mindmap/animations/animations.py	cast(Any, node.vmobject).animate.move_to(pos),
+1	manim_extensions/mindmap/animations/animations.py	cast(Any, node.vmobject).animate.scale(node.scale_factor).move_to(pos),
+1	manim_extensions/mindmap/animations/animations.py	current_x, current_y, _ = cast(Any, root.vmobject).get_center()
+6	manim_extensions/mindmap/animations/animations.py	def __init__(
+1	manim_extensions/mindmap/animations/animations.py	def animate_of_alter(
+1	manim_extensions/mindmap/animations/animations.py	def animate_of_create(
+1	manim_extensions/mindmap/animations/animations.py	def animate_of_display(
+1	manim_extensions/mindmap/animations/animations.py	def animate_of_node(
+1	manim_extensions/mindmap/animations/animations.py	def animate_of_scale(
+1	manim_extensions/mindmap/mindmap/base.py	cast(Any, current_node).ID = ID
+1	manim_extensions/mindmap/mindmap/base.py	cast(Any, current_node).text = cast(Any, current_map).get("text", None)
+1	manim_extensions/mindmap/mindmap/base.py	cast(Any, node.vmobject).move_to(pos)
+1	manim_extensions/mindmap/mindmap/base.py	def _generate_tree(
+1	manim_extensions/mindmap/mindmap/base.py	def _get_connector_style(self, level: int) -> dict[str, Any]:
+1	manim_extensions/mindmap/mindmap/base.py	def _get_origin_node(self, ID: Any) -> Node | None:
+1	manim_extensions/mindmap/mindmap/base.py	def custom_walker(
+1	manim_extensions/mindmap/mindmap/base.py	def generate_tree(
+1	manim_extensions/mindmap/mindmap/base.py	def get_children(self, ID: Any) -> Group:
+1	manim_extensions/mindmap/mindmap/base.py	def get_connector(self, ID: Any) -> Line | None:
+1	manim_extensions/mindmap/mindmap/base.py	def get_descendants(self, ID: Any) -> Group:
+1	manim_extensions/mindmap/mindmap/base.py	def get_node(self, ID: Any) -> Group | None:
+1	manim_extensions/mindmap/mindmap/base.py	def get_node_component(self, ID: Any) -> NodeMobject | None:
+1	manim_extensions/mindmap/mindmap/base.py	def get_submindmap(self, ID: Any) -> Group:
+1	manim_extensions/mindmap/mindmap/base.py	def get_text(self, ID: Any) -> str | None:
+1	manim_extensions/mindmap/mindmap/base.py	self.node_data_dict: dict[Any, NodeMobject] = {}
+4	manim_extensions/mindmap/mindmap/mindmap.py	def __init__(
+1	manim_extensions/mindmap/nodes/node.py	-direction if cast(Any, self).is_flip else direction, **kwargs
+2	manim_extensions/mindmap/nodes/node.py	def __init__(
+1	manim_extensions/mindmap/nodes/node.py	def _get_catalog_connector(self, **kwargs: Any) -> Line:
+1	manim_extensions/mindmap/nodes/node.py	def _get_mindmap_connector(self, direction: Vector3D, **kwargs: Any) -> Line:
+1	manim_extensions/mindmap/nodes/node.py	def _get_timeline_connector(self, **kwargs: Any) -> Line:
+1	manim_extensions/mindmap/nodes/node.py	def change_connector(
+1	manim_extensions/mindmap/nodes/node.py	def get_connector(
+1	manim_extensions/mindmap/nodes/node.py	def get_line_style(self, level: int) -> dict[str, Any]:
+1	manim_extensions/mindmap/nodes/node.py	def get_node_style(self, level: int) -> dict[str, Any]:
+1	manim_extensions/mindmap/nodes/node.py	def get_text_style(self, level: int) -> dict[str, Any]:
+1	manim_extensions/mindmap/nodes/node.py	def set_connector(
+1	manim_extensions/mindmap/nodes/node.py	self.ID: tuple[Any, ...] = ()
+1	manim_extensions/mindmap/nodes/node.py	self.connector_style: dict[str, Any] | None = None
+1	manim_extensions/mindmap/nodes/node.py	self.height: float = cast(Any, self.vmobject).height + 2 * buff
+1	manim_extensions/mindmap/nodes/node.py	self.width: float = cast(Any, self.vmobject).width + 2 * buff
+1	manim_extensions/mobject_svg/__init__.py	cast(Any, VGroup)._repr_svg_ = lambda self: create_svg_from_vgroup(self).read_text()
+1	manim_extensions/mobject_svg/__init__.py	cast(Any, VGroup).to_svg = create_svg_from_vgroup
+1	manim_extensions/mobject_svg/__init__.py	cast(Any, VMobject)._repr_svg_ = lambda self: create_svg_from_vmobject(self).read_text()
+1	manim_extensions/mobject_svg/__init__.py	cast(Any, VMobject).to_svg = create_svg_from_vmobject
+1	manim_extensions/mobject_svg/svg.py	_create_svg_from_vmobject_internal(cast(Any, _vmobject), ctx)
+1	manim_extensions/mobject_svg/svg.py	_create_svg_from_vmobject_internal(cast(Any, vmobject), ctx)
+1	manim_extensions/mobject_svg/svg.py	def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> None:
+1	manim_extensions/mobject_svg/svg.py	def _apply_stroke(
+1	manim_extensions/mobject_svg/svg.py	def _create_svg_from_vmobject_internal(
+1	manim_extensions/mobject_svg/svg.py	def _get_cairo_context(
+1	manim_extensions/mobject_svg/svg.py	def _get_stroke_rgbas(vmobject: VMobject, background: bool = False) -> np.ndarray:
+1	manim_extensions/mobject_svg/svg.py	def _set_cairo_context_color(
+1	manim_extensions/mobject_svg/svg.py	def _transform_points_pre_display(points: np.ndarray) -> np.ndarray:
+2	manim_extensions/mobject_svg/svg.py	file_name, width=cast(Any, width), height=cast(Any, height)
+1	manim_extensions/mobject_svg/svg.py	transformed = _transform_points_pre_display(cast(Any, points))
+1	manim_extensions/mobjects.py	TreeStructure = dict[Any, Any] | list[Any] | tuple[Any, ...] | set[Any]
+1	manim_extensions/mobjects.py	content = cast(Any, self.submobjects[0])[line][begin_index:]
+1	manim_extensions/mobjects.py	def __deepcopy__(self, memo: dict[Any, Any]) -> "VideoMobject":
+16	manim_extensions/mobjects.py	def __init__(
+1	manim_extensions/mobjects.py	def _build_tree(
+1	manim_extensions/mobjects.py	def _lowest(self, leaves: Iterable[Any]) -> VGroup:
+1	manim_extensions/mobjects.py	return AnimationGroup(cast(Any, VGroup(content)).animate.set_color(color))
+1	manim_extensions/mobjects.py	self.trail.add_updater(cast(Callable[[Mobject], Any], self.update_path))
+1	manim_extensions/mobjects.py	self.trail.remove_updater(cast(Callable[[Mobject], Any], self.update_path))
+1	manim_extensions/mobjects.py	to_be_braced = VGroup(*cast(Any, [i[0] for i in vg]))
+1	manim_extensions/nerdfont/icons.py	def __init__(self, icon: int | str, **kwargs: Any) -> None:
+1	manim_extensions/physics/electromagnetism/electrostatics.py	def __init__(
+1	manim_extensions/physics/electromagnetism/electrostatics.py	def __init__(self, *charges: Charge, **kwargs: Any) -> None:
+1	manim_extensions/physics/electromagnetism/magnetostatics.py	def __init__(
+1	manim_extensions/physics/electromagnetism/magnetostatics.py	def __init__(self, *wires: Wire, **kwargs: Any) -> None:
+1	manim_extensions/physics/electromagnetism/magnetostatics.py	def _field_func(
+1	manim_extensions/physics/optics/lenses.py	def __init__(self, f: float, d: float, n: float = 1.52, **kwargs: Any) -> None:
+1	manim_extensions/physics/optics/lenses.py	def intersection(vmob1: VMobject, vmob2: VMobject) -> np.ndarray:
+1	manim_extensions/physics/optics/rays.py	def __init__(
+1	manim_extensions/physics/optics/rays.py	dists: list[list[Any]] = []
+1	manim_extensions/physics/optics/rays.py	result: list[list[Any]] = []
+1	manim_extensions/physics/rigid_mechanics/pendulum.py	cast(Any, spacescene).stop_rigidity(self.bobs)
+2	manim_extensions/physics/rigid_mechanics/pendulum.py	def __init__(
+1	manim_extensions/physics/rigid_mechanics/pendulum.py	self.pins: list[Any] = [pivot_point]
+1	manim_extensions/physics/rigid_mechanics/pendulum.py	spacescene = cast(SpaceScene, cast(Any, self.bobs[0]).spacescene)
+1	manim_extensions/physics/rigid_mechanics/pendulum.py	x, y = cast(Any, pins[i]).body.position
+1	manim_extensions/physics/rigid_mechanics/pendulum.py	x1, y1 = cast(Any, pins[i + 1]).body.position
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	b.rotate(cast(Any, b.body).angle - cast(Any, b).angle)
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, b).angle = cast(Any, b.body).angle
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).angle = 0
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).angle = angle_between_vectors(vec1, vec2)
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).angle = mob.get_angle()
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).body = pymunk.Body()
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).body = self.space.space.static_body
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).body.angle = mob.angle
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).body.position = mob.get_x(), mob.get_y()
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).shape = pymunk.Circle(body=mob.body, radius=mob.radius)
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).shape = pymunk.Poly(mob.body, vertices)
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (width, height))
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).shape = pymunk.Segment(
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob).spacescene = self
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob.body).activate()
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob.body).sleep()
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob.shape).density = density
+2	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob.shape).elasticity = elasticity
+2	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, mob.shape).friction = friction
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	cast(Any, space).space.step(dt)
+2	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	def __init__(
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	if cast(Any, mob.body).is_sleeping:
+1	manim_extensions/physics/rigid_mechanics/rigid_mechanics.py	x, y = cast(Any, b.body).position
+3	manim_extensions/physics/wave.py	def __init__(
+1	manim_extensions/pymunk/constraints/VDampedRotarySpring.py	def __init__(
+1	manim_extensions/pymunk/constraints/VDampedSpring.py	def __init__(
+1	manim_extensions/pymunk/constraints/VGearJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VGrooveJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VPinJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VPivotJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VRatchetJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VRotaryLimitJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/VSimpleMotor.py	def __init__(
+1	manim_extensions/pymunk/constraints/VSlideJoint.py	def __init__(
+1	manim_extensions/pymunk/constraints/constraint.py	def __init__(
+1	manim_extensions/pymunk/custom_mobjects/apple.py	def __init__(self, **kwargs: Any) -> None:
+1	manim_extensions/pymunk/custom_mobjects/gear.py	def __init__(
+1	manim_extensions/pymunk/custom_mobjects/v_spring.py	def __init__(
+2	manim_extensions/pymunk/space/SpaceScene.py	body = cast(Any, sub_mob).body
+1	manim_extensions/pymunk/space/SpaceScene.py	def __init__(
+1	manim_extensions/pymunk/space/SpaceScene.py	def get_line_query(
+1	manim_extensions/pymunk/space/SpaceScene.py	def get_point_query_info(
+1	manim_extensions/pymunk/space/SpaceScene.py	def get_shapea_shapeb_info(
+1	manim_extensions/pymunk/space/SpaceScene.py	def set_collision_detection_handler(
+1	manim_extensions/pymunk/space/SpaceScene.py	def set_wildcard_collision_handler(
+1	manim_extensions/pymunk/space/SpaceScene.py	return cast(Any, mob).body  # type: ignore[no-any-return]
+1	manim_extensions/pymunk/space/SpaceScene.py	return cast(Any, mob).shapes  # type: ignore[no-any-return]
+1	manim_extensions/pymunk/space/VSpace.py	body=cast(Any, mob).body, radius=mob.radius + stroke_width / 2
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).angle = cast(Any, mob).body.angle
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.DYNAMIC)
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body = pymunk.Body(body_type=pymunk.Body.STATIC)
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body,
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body, hull_verts, radius=stroke_width / 2
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body, local_points, radius=stroke_width / 2
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body, size=(mob.width, mob.height), radius=0.1
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.activate()
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.angular_velocity = angular_velocity
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.apply_force_at_local_point(force=force[:2], point=point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.apply_force_at_world_point(force=force[:2], point=point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.apply_impulse_at_local_point(
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.apply_impulse_at_world_point(
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.center_of_gravity = center_of_gravity
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.position = mob.get_x(), mob.get_y()
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.position_func = callback
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.velocity = velocity
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).body.velocity_func = callback
+3	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).shapes = [
+3	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).shapes.append(
+1	manim_extensions/pymunk/space/VSpace.py	cast(Any, mob).shapes.append(seg)
+1	manim_extensions/pymunk/space/VSpace.py	def __init__(
+1	manim_extensions/pymunk/space/VSpace.py	def _collision_detection_handler(
+1	manim_extensions/pymunk/space/VSpace.py	def _wildcard_collision_handler(
+5	manim_extensions/pymunk/space/VSpace.py	for shape in cast(Any, mob).shapes:
+1	manim_extensions/pymunk/space/VSpace.py	if cast(Any, mob).body is self.space.static_body:
+1	manim_extensions/pymunk/space/VSpace.py	local_pos = cast(Any, mob).body.world_to_local(point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	mob.rotate(cast(Any, mob).body.angle - cast(Any, mob).angle)
+7	manim_extensions/pymunk/space/VSpace.py	pymunk = cast(Any, require("physics", "pymunk"))
+1	manim_extensions/pymunk/space/VSpace.py	pymunk.Poly(cast(Any, mob).body, poly_verts, radius=0.1)
+1	manim_extensions/pymunk/space/VSpace.py	pymunk.Segment(cast(Any, mob).body, local_a, local_b, stroke_width / 2)
+2	manim_extensions/pymunk/space/VSpace.py	self.space.add(*cast(Any, mob).shapes)
+1	manim_extensions/pymunk/space/VSpace.py	self.space.add(cast(Any, mob).body)
+2	manim_extensions/pymunk/space/VSpace.py	stroke_width = (cast(Any, mob).stroke_width / 100) * (
+1	manim_extensions/pymunk/space/VSpace.py	velocity = cast(Any, mob).body.velocity_at_local_point(point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	velocity = cast(Any, mob).body.velocity_at_world_point(point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	world_pos = cast(Any, mob).body.local_to_world(point[:2])
+1	manim_extensions/pymunk/space/VSpace.py	x, y = cast(Any, mob).body.position
+1	manim_extensions/pymunk/utils/img_tools.py	return float(cast(Any, mask.getpixel((x, y))))
+1	manim_extensions/pymunk/utils/logger_tool.py	def __new__(cls, *args: Any, **kwargs: Any) -> "SingletonLogger":
+1	manim_extensions/qr_codes/qr.py	circle_style: dict[str, Any] = {
+1	manim_extensions/qr_codes/qr.py	corner_kwargs: dict[str, Any] = {
+1	manim_extensions/qr_codes/qr.py	def __init__(
+1	manim_extensions/qr_codes/qr.py	default_circle_kwargs: dict[str, Any] = {
+1	manim_extensions/qr_codes/qr.py	default_corner_kwargs: dict[str, Any] = {
+1	manim_extensions/qr_codes/qr.py	default_rect_kwargs: dict[str, Any] = {
+1	manim_extensions/qr_codes/qr.py	rect_kwargs: dict[str, Any] = {
+1	manim_extensions/radar/animations.py	cast(Any, self.mobject).restyle(
+7	manim_extensions/radar/animations.py	def __init__(
+1	manim_extensions/radar/animations.py	def _prepare_camera(self) -> dict[str, Any] | None:
+1	manim_extensions/radar/animations.py	def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.ndarray:
+1	manim_extensions/radar/animations.py	self._cam: dict[str, Any] | None = None
+1	manim_extensions/radar/animations.py	self.slots: list[dict[str, Any]] = []
+1	manim_extensions/radar/backdrop.py	base = ManimColor(cast(Any, p).accent)
+1	manim_extensions/radar/backdrop.py	c.set_opacity(cast(Any, c).base_op * f)
+1	manim_extensions/radar/backdrop.py	cast(Any, g).accent = (
+1	manim_extensions/radar/backdrop.py	cast(Any, g).freq = rnd.uniform(0.5, 1.8)
+1	manim_extensions/radar/backdrop.py	cast(Any, g).op = rnd.uniform(0.3, 1.0)
+1	manim_extensions/radar/backdrop.py	cast(Any, g).phase = rnd.uniform(0.0, 6.28)
+1	manim_extensions/radar/backdrop.py	cast(Any, g).vel = np.array(
+1	manim_extensions/radar/backdrop.py	cast(Any, p).shift(cast(Any, p).vel * dt)
+1	manim_extensions/radar/backdrop.py	def __init__(
+1	manim_extensions/radar/backdrop.py	if cast(Any, p).accent:
+1	manim_extensions/radar/backdrop.py	osc = 0.55 + 0.45 * math.sin(t * cast(Any, p).freq + p.phase)
+1	manim_extensions/radar/backdrop.py	p[0].set_opacity(0.045 * cast(Any, p).op * osc * f)
+1	manim_extensions/radar/backdrop.py	p[1].set_opacity(0.10 * cast(Any, p).op * osc * f)
+1	manim_extensions/radar/backdrop.py	p[2].set_opacity(cast(Any, p).op * osc * 0.9 * f)
+1	manim_extensions/radar/camera.py	def focus_point(
+1	manim_extensions/radar/camera.py	def pull_out(
+1	manim_extensions/radar/camera.py	def push_in(
+1	manim_extensions/radar/chart.py	RadarInput = RadarData | dict[Any, Any] | Sequence[float]
+1	manim_extensions/radar/chart.py	cast(Any, content)._chips = chips
+1	manim_extensions/radar/chart.py	cast(Any, s.breach[j]).set_opacity(0)
+1	manim_extensions/radar/chart.py	cast(Any, s.fx_group).add(g)
+1	manim_extensions/radar/chart.py	cast(Any, s.fx_group).add(pool)
+1	manim_extensions/radar/chart.py	cast(Any, series).opacity += (
+1	manim_extensions/radar/chart.py	cast(Any, series).opacity_target - cast(Any, series).opacity
+1	manim_extensions/radar/chart.py	def __init__(
+1	manim_extensions/radar/chart.py	def _corner(self, k: int, i: int) -> np.ndarray:
+1	manim_extensions/radar/chart.py	def _frame(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+1	manim_extensions/radar/chart.py	def _install_datasets(self, items: Sequence[Any]) -> None:
+1	manim_extensions/radar/chart.py	def _paint_compare_numbers(
+1	manim_extensions/radar/chart.py	def _paint_gap(
+1	manim_extensions/radar/chart.py	def _paint_legend(
+1	manim_extensions/radar/chart.py	def _paint_overflow(
+1	manim_extensions/radar/chart.py	def _paint_series(
+1	manim_extensions/radar/chart.py	def _polar_local(self, angle: float, radius: float) -> np.ndarray:
+1	manim_extensions/radar/chart.py	def _polygon_local(self, scale: float = 1.0) -> np.ndarray:
+1	manim_extensions/radar/chart.py	def _polygon_local_for(self, series: Series, scale: float = 1.0) -> np.ndarray:
+1	manim_extensions/radar/chart.py	def _rebuild_legend(self, pairs: list[tuple[Any, ...]]) -> VGroup:
+1	manim_extensions/radar/chart.py	def _seg_intersect(
+1	manim_extensions/radar/chart.py	def _set_sweep_local(self, points: np.ndarray) -> None:
+1	manim_extensions/radar/chart.py	def _to_world(
+1	manim_extensions/radar/chart.py	def _vertex_align(direction: np.ndarray) -> str:
+1	manim_extensions/radar/chart.py	def _wedge_local(
+1	manim_extensions/radar/chart.py	def attach_backdrop(
+1	manim_extensions/radar/chart.py	def compare(self, *datasets: Any) -> "RadarChart":
+1	manim_extensions/radar/chart.py	def disappear(self, run_time: float = 0.8, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/chart.py	def get_center(self) -> np.ndarray:
+1	manim_extensions/radar/chart.py	def glitch_in(self, run_time: float = 0.75, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/chart.py	def morph_to(
+1	manim_extensions/radar/chart.py	def pull_out(
+1	manim_extensions/radar/chart.py	def push_in(
+1	manim_extensions/radar/chart.py	def reveal(self, run_time: float = 0.9, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/chart.py	def shockwave(self, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/chart.py	g.set_stroke(opacity=cast(Any, g).base_so * op * grid_dim)
+1	manim_extensions/radar/chart.py	items: list[Any] = []
+1	manim_extensions/radar/chart.py	items: list[Any] = [data]
+1	manim_extensions/radar/chart.py	lobes: list[tuple[Any, str]] = []
+1	manim_extensions/radar/chart.py	opacity=cast(Any, dot).base_op * op * sop,
+1	manim_extensions/radar/chart.py	return cast(
+1	manim_extensions/radar/chart.py	return cast(np.ndarray, a + local[:, :1] * u + local[:, 1:2] * v)
+1	manim_extensions/radar/chart.py	return cast(np.ndarray, p0 + d1 * t)
+1	manim_extensions/radar/chart.py	ring.set_stroke(opacity=cast(Any, ring).base_so * op * grid_dim)
+1	manim_extensions/radar/chart.py	self._gap_spec: dict[Any, Any] | None = None
+1	manim_extensions/radar/chart.py	self.big_numbers: dict[Any, Any] = {}  # axis -> unclamped RollingNumber
+1	manim_extensions/radar/chart.py	spoke.set_stroke(opacity=cast(Any, spoke).base_so * op * grid_dim)
+1	manim_extensions/radar/chart.py	txt.move_to(self._to_world(cast(Any, txt).local_pos, a, u, v)[0])
+1	manim_extensions/radar/config.py	class RadarConfig:
+1	manim_extensions/radar/config.py	def evolved(self, **changes: Any) -> "RadarConfig":
+1	manim_extensions/radar/config.py	position: tuple[Any, ...] = (0.0, -0.18)
+1	manim_extensions/radar/config.py	text_kwargs: dict[Any, Any] = field(default_factory=dict)
+1	manim_extensions/radar/data.py	class RadarData:
+1	manim_extensions/radar/data.py	def with_values(self, values: Sequence[float], **changes: Any) -> "RadarData":
+1	manim_extensions/radar/data.py	meta: dict[Any, Any] = field(default_factory=dict)
+1	manim_extensions/radar/numbers.py	def __init__(
+1	manim_extensions/radar/numbers.py	def render(
+1	manim_extensions/radar/numbers.py	text_kwargs: dict[str, Any] = {
+1	manim_extensions/radar/overflow.py	def __init__(
+1	manim_extensions/radar/overflow.py	def burst_in(self, run_time: float = 1.1, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/overflow.py	def morph_to(self, data: RadarInputList, **kwargs: Any) -> Animation:
+1	manim_extensions/radar/poly.py	anims: list[Animation] = [Create(cast(Any, part["edges"]))]
+1	manim_extensions/radar/poly.py	cast(Any, part["edges"]).set_stroke(
+2	manim_extensions/radar/poly.py	def __init__(
+1	manim_extensions/radar/poly.py	def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
+1	manim_extensions/radar/poly.py	def _world(self, i: int, extra: float = 0.0) -> np.ndarray:
+1	manim_extensions/radar/poly.py	for k, lab in enumerate(cast(Any, m)):
+1	manim_extensions/radar/theme.py	def evolved(self, **changes: Any) -> "RadarTheme":
+1	manim_extensions/radar/utils.py	_FONT_CACHE: dict[tuple[Any, ...], str | None] = {}
+1	manim_extensions/radar/utils.py	def as_points(values: Iterable[Any]) -> np.ndarray:
+1	manim_extensions/radar/utils.py	def closed(points: np.ndarray) -> np.ndarray:
+1	manim_extensions/radar/utils.py	def unit_vector(degrees: float) -> np.ndarray:
+1	manim_extensions/rubikscube/__init__.py	cast(Any, ThreeDCamera)._manim_extensions_grouped_z_key = True
+1	manim_extensions/rubikscube/__init__.py	def _grouped(self: Any, *args: Any, **kwargs: Any) -> list[Mobject]:
+1	manim_extensions/rubikscube/cube.py	cast(Any, self.cubies)[loc[0], loc[1], loc[2]] = c
+1	manim_extensions/rubikscube/cube.py	cast(Any, self.cubies)[x, y, z] = cubie
+1	manim_extensions/rubikscube/cube.py	cubies: np.ndarray
+1	manim_extensions/rubikscube/cube.py	def adjust_indices(self, cubies: np.ndarray) -> None:
+1	manim_extensions/rubikscube/cube.py	def get_face(
+1	manim_extensions/rubikscube/cube.py	def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> None:
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[0, :, :]
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[:, 0, :]
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[:, :, 0]
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[:, :, self.dimensions - 1]
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[:, self.dimensions - 1, :]
+1	manim_extensions/rubikscube/cube.py	face_data = cast(Any, self.cubies)[self.dimensions - 1, :, :]
+1	manim_extensions/rubikscube/cube.py	face_data: np.ndarray
+1	manim_extensions/rubikscube/cube.py	indices: dict[tuple[float, float, float], np.ndarray] = {}
+1	manim_extensions/rubikscube/cube.py	return cast(np.ndarray, face_data.flatten())
+1	manim_extensions/rubikscube/cube_animations.py	VGroup(*cast(Any, self.mobject).get_face(self.face[0])).rotate(
+1	manim_extensions/rubikscube/cube_animations.py	cast(Any, self.mobject).adjust_indices(
+1	manim_extensions/rubikscube/cube_animations.py	cast(Any, self.mobject).get_face(self.face[0], False)
+1	manim_extensions/rubikscube/cube_animations.py	cast(Any, starting_mobject).set_indices()
+1	manim_extensions/rubikscube/cube_animations.py	def __init__(self, mobject: Mobject, face: str, **kwargs: Any) -> None:
+1	manim_extensions/rubikscube/cube_animations.py	if cast(Any, starting_mobject).indices == {}:
+1	manim_extensions/rubikscube/cube_animations.py	self.axis = get_axis_from_face(cast(Any, face[0]))
+1	manim_extensions/rubikscube/cubie.py	cast(Any, face).z_index_group = self
+1	manim_extensions/rubikscube/cubie.py	def init_colors(self, *args: Any, **kwargs: Any) -> "Cubie":
+1	manim_extensions/scenes.py	def __init__(self, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/scenes.py	def _wrap(original_init: Callable[..., None]) -> Callable[..., None]:
+1	manim_extensions/scenes.py	def patched_init(self: object, *args: Any, **kwargs: Any) -> None:
+1	manim_extensions/sequence_diagram/seq_action.py	cast(Any, mid_point), aligned_edge=UP
+1	manim_extensions/table/cell.py	def __init__(
+1	manim_extensions/table/row.py	def __getitem__(self, index: int | slice) -> Cell | list[Cell]:
+1	manim_extensions/table/row.py	def __getitem__(self, index: slice) -> list[Cell]:
+1	manim_extensions/table/row.py	def __init__(
+1	manim_extensions/table/table.py	def __getitem__(self, index: int | slice) -> Row | list[Row]:
+1	manim_extensions/table/table.py	def __getitem__(self, index: slice) -> list[Row]:
+1	manim_extensions/table/table.py	def __init__(
+1	manim_extensions/three_d/core.py	class GaussianSurface:
+1	manim_extensions/three_d/core.py	def __init__(
+1	manim_extensions/three_d/core.py	def __init_subclass__(cls, **config_kwargs: Any) -> None:
+1	manim_extensions/three_d/core.py	func: Callable[..., float] | None = None  # z=f(x,y); None = built-in Gaussian
+1	manim_extensions/three_d/core.py	scene_kwargs: dict[str, Any] = {
+1	manim_extensions/three_d/core.py	style_kwargs: dict[str, Any] = {
+1	manim_extensions/tikz/template.py	def __init__(
+1	manim_extensions/tikz/tikz.py	def __init__(
+1	manim_extensions/weighted_line/weighted_line.py	def __init__(
+1	manim_extensions/weighted_line/weighted_line.py	self.bg_config: dict[str, Any] = {
+1	manim_extensions/weighted_line/weighted_line.py	self.weight_config: dict[str, Any] = {

@@ -11,7 +11,7 @@ reference page.
 """
 
 from __future__ import annotations
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from typing import Any, Literal, cast
 
 # unlinked-class-ok: Layout, Filters
@@ -39,7 +39,7 @@ from manim import (
     override_animation,
 )
 
-from .layers.parent_layers import ConnectiveLayer
+from .layers.parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .layers.util import get_connective_layer
 from ..utils.mobjects.list_group import ListGroup
 from .animations.neural_network_transformations import InsertLayer, RemoveLayer
@@ -111,7 +111,7 @@ class NeuralNetwork(Group):
 
     def __init__(
         self,
-        input_layers: list[Any],
+        input_layers: Sequence[NeuralNetworkLayer],
         layer_spacing: float = 0.2,
         animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
         edge_width: float = 2.5,
@@ -152,11 +152,13 @@ class NeuralNetwork(Group):
         self.all_layers.move_to(ORIGIN)
         self.add(self.all_layers)
         # Make container for connections
-        self.connections: list[Any] = []
+        self.connections: list[NetworkConnection] = []
         # Print neural network
         print(repr(self))
 
-    def make_input_layers_dict(self, input_layers: list[Any]) -> dict[Any, Any] | None:
+    def make_input_layers_dict(
+        self, input_layers: Sequence[NeuralNetworkLayer]
+    ) -> dict[str, NeuralNetworkLayer] | None:
         """Make dictionary of input layers.
 
         Parameters
@@ -179,7 +181,7 @@ class NeuralNetwork(Group):
             return input_layers
         elif isinstance(input_layers, list):
             # If input layers is a list then make a dictionary with default
-            return_dict = {}
+            return_dict: dict[str, NeuralNetworkLayer] = {}
             for layer_index, input_layer in enumerate(input_layers):
                 return_dict[f"layer{layer_index}"] = input_layer
 
@@ -472,7 +474,7 @@ class NeuralNetwork(Group):
         self,
         run_time: float | None = None,
         passing_flash: bool = True,
-        layer_args: dict[Any, Any] = {},
+        layer_args: dict[object, Any] = {},
         per_layer_animations: bool = False,
         **kwargs: Any,
     ) -> Succession | dict[Mobject, Animation]:
@@ -672,7 +674,9 @@ class NeuralNetwork(Group):
         self.move_to(prior_center)
         return self
 
-    def filter_layers(self, function: Callable[..., Any]) -> list[Any]:
+    def filter_layers(
+        self, function: Callable[[NeuralNetworkLayer], bool]
+    ) -> list[NeuralNetworkLayer]:
         """Filters layers of the network given function.
 
         Parameters
@@ -685,8 +689,9 @@ class NeuralNetwork(Group):
         -------
             The layers for which ``function`` returned True.
         """
-        layers_to_return = []
+        layers_to_return: list[NeuralNetworkLayer] = []
         for layer in self.all_layers:
+            layer = cast(NeuralNetworkLayer, layer)
             func_out = function(layer)
             assert isinstance(
                 func_out, bool

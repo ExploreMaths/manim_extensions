@@ -103,7 +103,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, run_time: float = 1.5, **kwargs: Any
     ) -> Succession:
         """Makes dots converge on a specific location.
 
@@ -125,7 +125,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         location = self.embedding_layer.sample_point_location_from_distribution()
         # Set the embedding layer latent distribution
         # Move to location
-        animations: list[Any] = []
+        animations: list[Animation] = []
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer
         dots: list[Dot] = []
         for node in self.feed_forward_layer.node_group:
@@ -143,7 +143,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         self.dots = VGroup(*dots)
         self.add(self.dots)
         # Follow up with remove animations
-        remove_animations: list[Any] = []
+        remove_animations: list[Animation] = []
         for dot in dots:
             remove_animations.append(FadeOut(dot))
         self.remove(self.dots)

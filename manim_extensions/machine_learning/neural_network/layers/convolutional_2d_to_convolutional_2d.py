@@ -38,7 +38,7 @@ from manim.typing import Vector3D
 
 def get_rotated_shift_vectors(
     input_layer: Convolutional2DLayer, normalized: bool = False
-) -> tuple[Any, Any]:
+) -> tuple[Vector3D, Vector3D]:
     """Rotates the shift vectors.
 
     Parameters
@@ -698,7 +698,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict[Any, Any] = {},
+        layer_args: dict[object, Any] = {},
         all_filters_at_once: bool = False,
         highlight_active_feature_map: bool = True,
         run_time: float = 10.5,

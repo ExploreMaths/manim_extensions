@@ -30,6 +30,7 @@ from .manim_state import ManimState
 
 if TYPE_CHECKING:
     from .manim_automaton import ManimAutomaton
+    from .manim_pushdown_automaton import PushDownAutomatonRule
 
 import math
 
@@ -441,7 +442,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         self,
         transition_from: ManimState,
         transition_to: ManimState,
-        rules: list[Any],
+        rules: list[PushDownAutomatonRule],
         parent_automaton: ManimAutomaton,
         animation_style: dict[str, object],
         font_size: int = 100,

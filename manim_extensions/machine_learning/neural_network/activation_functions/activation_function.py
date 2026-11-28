@@ -76,8 +76,8 @@ class ActivationFunction(ABC, VGroup):
     def __init__(
         self,
         function_name: str | None = None,
-        x_range: list[Any] = [-1, 1],
-        y_range: list[Any] = [-1, 1],
+        x_range: list[float] = [-1, 1],
+        y_range: list[float] = [-1, 1],
         x_length: float = 0.5,
         y_length: float = 0.3,
         show_function_name: bool = True,

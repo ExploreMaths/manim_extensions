@@ -130,7 +130,7 @@ class MultiPendulum(VGroup):
         joint = pymunk.PinJoint(a, b)
         spacescene.space.space.add(joint)
 
-    def _redraw_rods(self, mob: Line, pins: list[Any], i: int) -> None:
+    def _redraw_rods(self, mob: Line, pins: list[Mobject | Point3D], i: int) -> None:
         """Update a rod line to connect the positions of two consecutive pins.
 
         Parameters
@@ -146,8 +146,8 @@ class MultiPendulum(VGroup):
             x, y, _ = pins[i]
         except (TypeError, ValueError):
             # pins[i] is a pymunk body, not a coordinate tuple
-            x, y = pins[i].body.position
-        x1, y1 = pins[i + 1].body.position
+            x, y = cast(Any, pins[i]).body.position
+        x1, y1 = cast(Any, pins[i + 1]).body.position
         mob.put_start_and_end_on(
             RIGHT * x + UP * y,
             RIGHT * x1 + UP * y1,
@@ -156,11 +156,11 @@ class MultiPendulum(VGroup):
     def start_swinging(self) -> None:
         """Creates pymunk joints between bobs and starts the physics simulation."""
         spacescene = cast(SpaceScene, cast(Any, self.bobs[0]).spacescene)
-        pins: list[Any] = [self.pivot_point]
+        pins: list[Mobject | Point3D] = [self.pivot_point]
         pins += list(self.bobs)
 
         for i in range(len(pins) - 1):
-            self._make_joints(pins[i + 1], pins[i], spacescene)
+            self._make_joints(cast(Mobject, pins[i + 1]), pins[i], spacescene)
             self.rods[i].add_updater(lambda mob, i=i: self._redraw_rods(mob, pins, i))
 
     def end_swinging(self) -> None:

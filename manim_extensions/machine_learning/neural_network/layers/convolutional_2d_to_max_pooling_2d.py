@@ -5,6 +5,7 @@
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
 from __future__ import annotations
+from manim import Animation
 from typing import Any, cast
 
 import random
@@ -102,7 +103,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         return None
 
     def make_forward_pass_animation(
-        self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
+        self, layer_args: dict[object, Any] = {}, run_time: float = 1.5, **kwargs: Any
     ) -> Succession:
         """Forward pass animation from conv2d to max pooling.
 
@@ -128,10 +129,10 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         feature_maps = input_layer.feature_maps
         grid_stroke_width = 1.0
         # Make all of the kernel gridded rectangles
-        create_gridded_rectangle_animations: list[Any] = []
-        create_and_remove_cell_animations: list[Any] = []
-        transform_gridded_rectangle_animations: list[Any] = []
-        remove_gridded_rectangle_animations: list[Any] = []
+        create_gridded_rectangle_animations: list[Animation] = []
+        create_and_remove_cell_animations: list[Animation] = []
+        transform_gridded_rectangle_animations: list[Animation] = []
+        remove_gridded_rectangle_animations: list[Animation] = []
 
         for feature_map_index, feature_map in enumerate(feature_maps):
             # 1. Draw gridded rectangle with kernel_size x kernel_size

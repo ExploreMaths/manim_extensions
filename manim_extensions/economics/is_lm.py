@@ -9,14 +9,14 @@ This module provides the IS-LM model diagram.
 from collections.abc import Callable
 from typing import Any
 
-from manim import AnimationGroup, BLUE, RED
+from manim import Animation, AnimationGroup, BLUE, RED
 from .base import EconDiagram
 
 
 class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
 
-    .. doc-example-covers: shift_is, shift_lm
+    .. doc-example-covers: fiscal_contraction, fiscal_expansion, monetary_contraction, monetary_expansion, shift_is, shift_lm
 
 
     IS curve (goods market equilibrium):
@@ -283,7 +283,9 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: float, show_arrows: bool = False) -> list[Any]:
+    def monetary_expansion(
+        self, ms: float, show_arrows: bool = False
+    ) -> list[Animation]:
         """Increase in money supply → LM shifts right → lower r, higher Y.
 
         Parameters
@@ -300,7 +302,9 @@ class ISLMDiagram(EconDiagram):
         """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
-    def monetary_contraction(self, ms: float, show_arrows: bool = False) -> list[Any]:
+    def monetary_contraction(
+        self, ms: float, show_arrows: bool = False
+    ) -> list[Animation]:
         """Decrease in money supply → LM shifts left → higher r, lower Y.
 
         Parameters
@@ -319,7 +323,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: float, show_arrows: bool = False) -> list[Any]:
+    def fiscal_expansion(self, a: float, show_arrows: bool = False) -> list[Animation]:
         """Increase in government spending → IS shifts right → higher r, higher Y.
 
         Parameters
@@ -336,7 +340,9 @@ class ISLMDiagram(EconDiagram):
         """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
-    def fiscal_contraction(self, a: float, show_arrows: bool = False) -> list[Any]:
+    def fiscal_contraction(
+        self, a: float, show_arrows: bool = False
+    ) -> list[Animation]:
         """Decrease in government spending → IS shifts left → lower r, lower Y.
 
         Parameters

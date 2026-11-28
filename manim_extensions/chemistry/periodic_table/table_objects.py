@@ -323,7 +323,7 @@ class PeriodicTable(VGroup):
         table.move_to(ORIGIN).scale(0.25)
         return table
 
-    def elements_position_dict(self) -> dict[Any, Any]:
+    def elements_position_dict(self) -> dict[int, list[float]]:
         """Return a dict mapping each atomic number to its [x, y, z] grid position in the table.
 
         Returns
@@ -331,7 +331,7 @@ class PeriodicTable(VGroup):
             A dictionary of the results.
         """
         # TODO: Think of a better way of doing this. However, it works and looks good
-        positions = {
+        positions: dict[int, list[float]] = {
             1: [0, 0, 0],
             2: [17, 0, 0],
             3: [0, 1, 0],

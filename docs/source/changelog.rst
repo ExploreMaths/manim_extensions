@@ -123,6 +123,11 @@ Changed (35)
   functions declare a concrete type. This removed every placeholder
   ``Returns`` block and replaced every bare ``Any`` return annotation.
 
+* Type checking now includes ``mypy --disallow-any-explicit`` through
+  ``workflow/check_explicit_any.py``. Existing explicit ``Any`` annotations
+  and casts are recorded in ``workflow/explicit_any_baseline.txt``; any new
+  occurrence fails the type job, and fixing an entry shrinks the baseline.
+
 * Font Awesome enum members whose names collide with Python builtins now use
   a trailing underscore: :attr:`~manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_`,
   ``map_``, ``filter_``, ``print_``, ``copyright_`` and

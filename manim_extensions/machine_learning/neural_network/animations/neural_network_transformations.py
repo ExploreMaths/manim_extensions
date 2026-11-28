@@ -18,6 +18,7 @@ from manim import (
     UpdateFromFunc,
 )
 from ..layers.util import get_connective_layer
+from ..layers.parent_layers import ConnectiveLayer, NeuralNetworkLayer
 
 if TYPE_CHECKING:
     from ..neural_network import NeuralNetwork
@@ -90,7 +91,14 @@ class RemoveLayer(AnimationGroup):
 
         super().__init__(*animations_list, lag_ratio=1.0)
 
-    def get_connective_layers(self) -> tuple[Any, ...]:
+    def get_connective_layers(
+        self,
+    ) -> tuple[
+        NeuralNetworkLayer | None,
+        NeuralNetworkLayer | None,
+        ConnectiveLayer | None,
+        ConnectiveLayer | None,
+    ]:
         """Gets the connective layers before and after self.layer.
 
         Returns
@@ -118,7 +126,12 @@ class RemoveLayer(AnimationGroup):
             after_layer = self.neural_network.all_layers[layer_index + 2]
             after_connective = self.neural_network.all_layers[layer_index + 1]
 
-        return before_layer, after_layer, before_connective, after_connective
+        return (
+            cast(NeuralNetworkLayer | None, before_layer),
+            cast(NeuralNetworkLayer | None, after_layer),
+            cast(ConnectiveLayer | None, before_connective),
+            cast(ConnectiveLayer | None, after_connective),
+        )
 
     def make_remove_animation(self) -> AnimationGroup:
         """Removes layer and the surrounding connective layers.
@@ -351,7 +364,9 @@ class InsertLayer(AnimationGroup):
             after_connective_width = after_connective.width
         return before_connective_width, after_connective_width
 
-    def remove_connective_layer_animation(self) -> tuple[Any, Animation]:
+    def remove_connective_layer_animation(
+        self,
+    ) -> tuple[NeuralNetworkLayer | None, Animation]:
         """Removes the connective layer before the insertion index.
 
         Returns
@@ -365,7 +380,7 @@ class InsertLayer(AnimationGroup):
             self.neural_network.all_layers.remove(removed_connective)
             # Make remove animation
             remove_animation = FadeOut(removed_connective)
-            return removed_connective, remove_animation
+            return cast(NeuralNetworkLayer, removed_connective), remove_animation
 
         return None, AnimationGroup()
 
@@ -380,7 +395,7 @@ class InsertLayer(AnimationGroup):
             before_connective_width,
             after_connective_width,
         ) = self.get_connective_layer_widths()
-        old_connective_width = 0
+        old_connective_width = 0.0
         if not self.old_connective_layer is None:
             old_connective_width = self.old_connective_layer.width
         # Before layer shift

@@ -112,26 +112,26 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     def __init__(
         self,
-        atoms_dict: dict[Any, Any],
-        bonds_dict: dict[Any, Any],
+        atoms_dict: dict[int, dict[str, Any]],
+        bonds_dict: dict[int, list[dict[str, Any]]],
         representation_type: str | None = None,
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         planar: bool = True,
         add_atoms_numbering: bool = False,
         add_bonds_numbering: bool = False,
-        rotate_bonds: list[Any] = [],
+        rotate_bonds: list[int] = [],
         **kwargs: Any,
     ) -> None:
         VGroup.__init__(self, **kwargs)
-        self.atoms_dict: dict[Any, Any] = atoms_dict
-        self.bonds_dict: dict[Any, Any] = bonds_dict
+        self.atoms_dict: dict[int, dict[str, Any]] = atoms_dict
+        self.bonds_dict: dict[int, list[dict[str, Any]]] = bonds_dict
         self.representation_type = representation_type
         self.explicit_carbons = explicit_carbons
         self.explicit_hydrogens = explicit_hydrogens
         self.planar = planar
         self.atoms: Any
-        self.atoms_by_index: dict[Any, Any]
+        self.atoms_by_index: dict[int, MAtomObject]
         self.atoms, self.atoms_by_index = self.get_atoms()
         self.bonds: VGroup = self.get_bonds()
         self.add(self.atoms, self.bonds)
@@ -143,7 +143,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self.complete_missing_hydrogens()
         self.move_to(ORIGIN)
 
-    def get_atoms(self) -> tuple[VDict, dict[Any, MAtomObject]]:
+    def get_atoms(self) -> tuple[VDict, dict[int, MAtomObject]]:
         """Build :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` instances from the atoms dict and return them as :class:`~manim.mobject.types.vectorized_mobject.VDict` + index dict.
 
         Returns
@@ -160,7 +160,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                 explicit_hydrogens=self.explicit_hydrogens,
                 representation_type=cast(Any, self.representation_type),
                 planar=self.planar,
-                bond_to=atom.get("bond_to"),
+                bond_to=cast(dict[int, str], atom.get("bond_to") or {}),
                 index=index,
             )
             atoms.add([(index, matom)])
@@ -182,7 +182,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                 # TODO: Add logic to check type of bond
                 bond_type = int(bond.get("type", 1))
                 from_atom = self.atoms_by_index[index]
-                to_atom = self.atoms_by_index[bond.get("to")]
+                to_atom = self.atoms_by_index[cast(int, bond.get("to"))]
                 if from_atom.element == "H" or to_atom.element == "H":
                     stereo = bond.get("stereo")
 
@@ -279,7 +279,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                         )
                     else:
                         if bond.get("stereo"):
-                            if int(bond.get("stereo")) == 1:
+                            if int(cast(str | int, bond["stereo"])) == 1:
                                 new_bond = PlainCramBond(
                                     from_atom=from_atom,
                                     to_atom=to_atom,
@@ -561,7 +561,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         except Exception as exception:
             raise exception
 
-    def find_atoms_position_by_index(self, atoms_index_list: list[Any]) -> list[Any]:
+    def find_atoms_position_by_index(
+        self, atoms_index_list: list[int]
+    ) -> list[Point3D]:
         """Returns the position of multiple atoms given their indices.
 
         Parameters
@@ -669,7 +671,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
 
-    def find_bonds_center_by_index(self, bonds_index_list: list[Any]) -> list[Any]:
+    def find_bonds_center_by_index(self, bonds_index_list: list[int]) -> list[Point3D]:
         """Returns the position of multiple bonds given their indices.
 
         Parameters
@@ -699,29 +701,29 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return bonds_positions
 
-    def find_all_atoms_positions(self) -> dict[Any, Any]:
+    def find_all_atoms_positions(self) -> dict[int, Point3D]:
         """Return a dict mapping every atom index to its current position.
 
         Returns
         -------
             Dictionary mapping atom indices to their positions.
         """
-        atoms_positions = {}
+        atoms_positions: dict[int, Point3D] = {}
         for atom_index in self.atoms.submob_dict.keys():
-            atoms_positions[atom_index] = self.find_atom_position_by_index(
-                atom_index=atom_index
+            atoms_positions[cast(int, atom_index)] = self.find_atom_position_by_index(
+                atom_index=cast(int, atom_index)
             )
 
         return atoms_positions
 
-    def find_all_bonds_centers(self) -> dict[Any, Any]:
+    def find_all_bonds_centers(self) -> dict[int, Point3D]:
         """Return a dict mapping every bond index to its center position.
 
         Returns
         -------
             Dictionary mapping bond indices to their center positions.
         """
-        bonds_positions = {}
+        bonds_positions: dict[int, Point3D] = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(
                 bond_index=bond_index
@@ -732,7 +734,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
+    ) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
         """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
@@ -837,7 +839,7 @@ class NamedMolecule(VGroup):
     def __init__(
         self,
         name: str,
-        molecule_data: MMoleculeObject | dict[str, Any],
+        molecule_data: MMoleculeObject | dict[int, dict[str, Any]],
         direction: Point3D = DOWN,
         buff: float = 1,
         tex: bool = False,
@@ -1072,7 +1074,7 @@ class NamedMolecule(VGroup):
             )
         return named_molecules
 
-    def rotate_bond(self, bonds: int | list[Any]) -> "NamedMolecule":
+    def rotate_bond(self, bonds: int | list[int]) -> "NamedMolecule":
         """Rotate specified bonds on the inner molecule and return self.
 
         Parameters
@@ -1152,7 +1154,9 @@ class NamedMolecule(VGroup):
         except Exception as exception:
             raise exception
 
-    def find_atoms_position_by_index(self, atoms_index_list: list[Any]) -> list[Any]:
+    def find_atoms_position_by_index(
+        self, atoms_index_list: list[int]
+    ) -> list[Point3D]:
         """Returns the position of multiple atoms given their indices.
 
         Parameters
@@ -1263,7 +1267,7 @@ class NamedMolecule(VGroup):
 
         return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
 
-    def find_bonds_center_by_index(self, bonds_index_list: list[Any]) -> list[Any]:
+    def find_bonds_center_by_index(self, bonds_index_list: list[int]) -> list[Point3D]:
         """Returns the position of multiple bonds given their indices.
 
         Parameters
@@ -1293,29 +1297,29 @@ class NamedMolecule(VGroup):
 
         return bonds_positions
 
-    def find_all_atoms_positions(self) -> dict[Any, Any]:
+    def find_all_atoms_positions(self) -> dict[int, Point3D]:
         """Return a dict mapping every atom index to its current position.
 
         Returns
         -------
             Dictionary mapping atom indices to their positions.
         """
-        atoms_positions = {}
+        atoms_positions: dict[int, Point3D] = {}
         for atom_index in self.atoms.submob_dict.keys():
-            atoms_positions[atom_index] = self.find_atom_position_by_index(
-                atom_index=atom_index
+            atoms_positions[cast(int, atom_index)] = self.find_atom_position_by_index(
+                atom_index=cast(int, atom_index)
             )
 
         return atoms_positions
 
-    def find_all_bonds_centers(self) -> dict[Any, Any]:
+    def find_all_bonds_centers(self) -> dict[int, Point3D]:
         """Return a dict mapping every bond index to its center position.
 
         Returns
         -------
             Dictionary mapping bond indices to their center positions.
         """
-        bonds_positions = {}
+        bonds_positions: dict[int, Point3D] = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(
                 bond_index=bond_index

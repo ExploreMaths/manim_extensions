@@ -11,6 +11,7 @@ and Traditional Autoencoders.
 
 from typing import Any, cast
 
+from ..layers.parent_layers import NeuralNetworkLayer
 from manim import (
     Animation,
     AnimationGroup,
@@ -67,8 +68,8 @@ class VariationalAutoencoder(Group):
 
     def __init__(
         self,
-        encoder_nodes_per_layer: list[Any] = [5, 3],
-        decoder_nodes_per_layer: list[Any] = [3, 5],
+        encoder_nodes_per_layer: list[int] = [5, 3],
+        decoder_nodes_per_layer: list[int] = [3, 5],
         point_color: ManimColor = BLUE,
         dot_radius: float = 0.05,
         ellipse_stroke_width: float = 1.0,
@@ -162,7 +163,7 @@ class VariationalAutoencoder(Group):
         # Make a wrapper NN with the triplet input. The encoder and decoder
         # layers are rebuilt so the triplet animation does not re-parent the
         # existing network.
-        wrapper_layers: list[Any] = [triplet_layer]
+        wrapper_layers: list[NeuralNetworkLayer] = [triplet_layer]
         wrapper_layers.extend(
             FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )
@@ -204,7 +205,7 @@ class VariationalAutoencoder(Group):
         # Make a wrapper NN with images. The encoder/decoder layers are
         # rebuilt instead of nesting ``self.neural_network``: a network is not
         # a layer, so it has no ``construct_layer`` method to call.
-        wrapper_layers: list[Any] = [ImageLayer(input_image)]
+        wrapper_layers: list[NeuralNetworkLayer] = [ImageLayer(input_image)]
         wrapper_layers.extend(
             FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )

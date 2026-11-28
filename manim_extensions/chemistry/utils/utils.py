@@ -253,7 +253,9 @@ from ..element import (
 from ..element.element import Element
 
 
-def mol_parser_string(mol_string: list[Any]) -> tuple[dict[Any, Any], dict[Any, Any]]:
+def mol_parser_string(
+    mol_string: list[str],
+) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
 
     Parameters
@@ -274,11 +276,11 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict[Any, Any], dict[Any, 
     ].rstrip()  # This info is not always available
     mol_general_info = mol_string[3]  # This info is not always available
     mol_string.remove(mol_general_info)  # This info is not always available
-    mol_general_info = (
+    mol_general_info_parts = (
         mol_general_info.rstrip().split()
     )  # This info is not always available
-    number_of_atoms = int(mol_general_info[0])
-    number_of_bonds = int(mol_general_info[1])
+    number_of_atoms = int(mol_general_info_parts[0])
+    number_of_bonds = int(mol_general_info_parts[1])
 
     atoms: dict[int, dict[str, Any]] = {}
     bonds: dict[int, list[dict[str, Any]]] = {}

@@ -6,6 +6,8 @@
 """Contains pushdown automaton."""
 
 from __future__ import annotations
+from manim import Animation
+from collections.abc import Sequence
 from typing import Any, cast
 
 # unlinked-class-ok: Source
@@ -44,6 +46,8 @@ pushdown_automaton_json = {
 
 class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     """Pushdown automaton that also tracks a stack during simulation.
+
+    .. doc-example-covers: play_string
 
     Parameters
     ----------
@@ -163,7 +167,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self,
         transition_from: ManimState,
         transition_to: ManimState,
-        rules: list[Any],
+        rules: Sequence[PushDownAutomatonRule | str],
     ) -> None:
         """Create and attach a pushdown transition between two states.
 
@@ -220,7 +224,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self,
         input: str | ManimAutomataInput,
         automaton_path_name: str | None = None,
-    ) -> list[Any]:
+    ) -> list[list[Animation]]:
         """Animate the pushdown automaton processing an input string.
 
         Parameters
@@ -248,8 +252,8 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             input_to_run = input
 
         # display manim_automaton_input to the screen
-        list_of_animations: list[Any] = [
-            self.manim_animations.animate_display_input(self.manim_automata_input)
+        list_of_animations: list[list[Animation]] = [
+            [self.manim_animations.animate_display_input(self.manim_automata_input)]
         ]
 
         # run the input through the machine, returning a history of what happened
@@ -264,10 +268,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         # normalize: every entry must be a list of animations so that callers
         # can uniformly do ``self.play(*entry)`` for each entry
-        return [
-            entry if isinstance(entry, list) else [entry]
-            for entry in list_of_animations
-        ]
+        return list_of_animations
 
     # overridden
     def automaton_step(
