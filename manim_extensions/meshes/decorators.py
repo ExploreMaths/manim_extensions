@@ -28,8 +28,6 @@ class _DanglingCheckable(Protocol):
         """
         ...
 
-
-
     def dangling_face_check(self) -> bool:
         """Return whether dangling faces exist.
 
@@ -38,8 +36,6 @@ class _DanglingCheckable(Protocol):
             Whether any face is degenerate.
         """
         ...
-
-
 
 
 def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
