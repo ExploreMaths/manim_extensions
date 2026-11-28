@@ -13,6 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~StyleSpec
    ~Node
    ~NodeState
    ~NodeStyle
@@ -27,6 +28,7 @@ Functions
    :hidden:
    :maxdepth: 1
 
+   node.StyleSpec
    node.Node
    node.NodeState
    node.NodeStyle

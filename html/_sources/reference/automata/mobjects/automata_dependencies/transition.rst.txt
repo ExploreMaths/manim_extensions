@@ -13,10 +13,12 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~ReadSymbol
    ~Transition
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
+   transition.ReadSymbol
    transition.Transition

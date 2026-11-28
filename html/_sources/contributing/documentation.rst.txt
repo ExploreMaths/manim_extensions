@@ -112,15 +112,15 @@ Section index pages such as ``docs/source/examples/index.rst`` **MUST NOT**
 contain hand-written headings for individual examples. Add the ``:section:``
 option to the ``.. manim::`` block instead; the directive then emits a section
 named after the scene, so every example appears in the right-hand
-``On this page`` sidebar and links straight to its block. Pair it with
-``:no_title:`` so the admonition caption does not repeat the section title.
+``On this page`` sidebar and links straight to its block. Keep the
+admonition caption as well: it gives each example a visible block title and
+anchor, while the section heading supplies the sidebar entry.
 
 .. code-block:: rst
 
    .. manim:: BooleanOperations
       :save_last_frame:
       :section:
-      :no_title:
 
       from manim import *
 
@@ -351,3 +351,11 @@ Docstring Formatting
 * A ``Returns`` section documents a value. Functions that only perform side effects are annotated ``-> None`` and do not carry a ``Returns`` section.
 
 ``scripts/check_return_annotations.py`` enforces return annotations: a function with a value-returning ``return`` must declare one, and a bare ``-> Any`` is always rejected. Use the concrete type, or ``-> None`` for a side-effect-only function.
+
+Explicit ``Any`` is also checked by ``workflow/check_explicit_any.py``, which runs ``mypy --disallow-any-explicit``. There is no baseline: prefer a concrete type, ``TypedDict`` with ``Unpack`` for bounded keyword sets, or ``ParamSpec`` for decorators and pass-through callables. Keep ``Any`` only where the type system cannot express the value, and justify it on the same line:
+
+.. code-block:: bash
+
+    python workflow/check_explicit_any.py
+
+An accepted exception uses ``# explicit-any-ok: <reason>`` on the annotated line. A finding without that marker fails the type job.

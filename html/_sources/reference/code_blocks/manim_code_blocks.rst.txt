@@ -13,6 +13,8 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~TokenLike
+   ~TokenizerLike
    ~C
    ~CSharp
    ~CodeBlock
@@ -42,6 +44,8 @@ Constants
    :hidden:
    :maxdepth: 1
 
+   manim_code_blocks.TokenLike
+   manim_code_blocks.TokenizerLike
    manim_code_blocks.Theme
    manim_code_blocks.ProgrammingLanguage
    manim_code_blocks.CodeBlock
