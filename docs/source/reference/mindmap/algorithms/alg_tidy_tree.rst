@@ -13,6 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~NodeLike
    ~TidyTreeLayout
    ~IYLNode
    ~WrappedTree
@@ -21,6 +22,7 @@ Classes
    :hidden:
    :maxdepth: 1
 
+   alg_tidy_tree.NodeLike
    alg_tidy_tree.TidyTreeLayout
    alg_tidy_tree.IYLNode
    alg_tidy_tree.WrappedTree

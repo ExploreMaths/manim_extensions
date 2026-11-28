@@ -19,7 +19,19 @@ from .layout import Layout
 
 
 class NodeLike(Protocol):
-    """Structural type shared by TreeNode and mindmap Node."""
+    """Structural type shared by tree nodes and mind-map nodes.
+
+    Examples
+    --------
+    .. manim:: NodeLikeScene
+       :save_last_frame:
+
+       from manim import *
+
+       class NodeLikeScene(Scene):
+           def construct(self):
+               self.add(Text("node"))
+    """
 
     x: float
     y: float

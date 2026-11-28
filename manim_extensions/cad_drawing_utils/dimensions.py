@@ -39,7 +39,17 @@ class _VDictAddMixin(VDict):
     """A :class:`~manim.mobject.types.vectorized_mobject.VDict` accepting any Mobject value."""
 
     def add(self, *mobjects: object) -> Self:
-        """Insert a named mapping or ordinary Mobjects, narrowing values for VDict."""
+        """Insert a named mapping or ordinary Mobjects, narrowing values for VDict.
+
+        Parameters
+        ----------
+        mobjects
+            A single mapping of names to Mobjects, or ordinary Mobjects.
+
+        Returns
+        -------
+            This mixin instance.
+        """
         if len(mobjects) == 1 and isinstance(mobjects[0], Mapping):
             mapping = cast(Mapping[str, Mobject], mobjects[0])
             entries: dict[Hashable, VMobject] = {

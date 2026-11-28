@@ -20,7 +20,7 @@ from manim.typing import Point3D
 
 
 class _MorphSlot(TypedDict):
-    """Per-series start and end values, styling and opacity for a morph."""
+    """Per-series morph values, styling and opacity."""
 
     start_values: list[float]
     end_values: list[float]
@@ -34,7 +34,7 @@ class _MorphSlot(TypedDict):
 
 
 class _CameraPush(TypedDict):
-    """State of the automatic micro-push for a burst morph."""
+    """Status of the automatic micro-push for a burst morph."""
 
     frame: Mobject
     direction: Point3D
@@ -51,7 +51,19 @@ class _CameraPush(TypedDict):
 class _Restylable(Protocol):
     """Mobject exposing the ring restyle callback."""
 
-    def restyle(self, radius: float, width: float, opacity: float) -> None: ...
+    def restyle(self, radius: float, width: float, opacity: float) -> None:
+        """Update the ring radius, width, and opacity.
+
+        Parameters
+        ----------
+        radius
+            New ring radius.
+        width
+            New ring width.
+        opacity
+            New ring opacity.
+        """
+        ...
 
 
 from manim.utils.color import ParsableManimColor
@@ -97,7 +109,6 @@ TRANSITIONS = {
     "stepped": dict(dip=True, shockwave=False, stepped=True),
     "burst": dict(dip=True, shockwave=True, burst=True),
 }
-
 
 # ---------------------------------------------------------------------------
 # small helpers

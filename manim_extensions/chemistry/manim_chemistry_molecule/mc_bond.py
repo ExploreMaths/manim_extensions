@@ -155,6 +155,13 @@ class MCBond:
 
         Raises
         ------
+        TypeError
+            If a bond field has an unexpected type.
+        Exception
+            If the bond data cannot be converted to a bond.
+
+        Raises
+        ------
         Exception
             Raised when ``bond_data_dict`` is not a dict, when it has no
             ``to_atom_index`` or ``from_atom_index`` entries, or when the

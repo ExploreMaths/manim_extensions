@@ -17,7 +17,17 @@ _LR_RUN_TIME = 2
 
 
 def _animation_list(result: AnimationGroup | list[AnimationGroup]) -> list[Animation]:
-    """Normalize a single animation or a group list into a flat animation list."""
+    """Normalize a single animation or a group list into a flat animation list.
+
+    Parameters
+    ----------
+    result
+        One animation group or a list of animation groups.
+
+    Returns
+    -------
+        Flat list of animations.
+    """
     return list(result) if isinstance(result, list) else [result]
 
 

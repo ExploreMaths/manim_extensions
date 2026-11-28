@@ -13,6 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~TextKwargs
    ~RadarConfig
 
 Functions
@@ -31,4 +32,5 @@ Constants
    :hidden:
    :maxdepth: 1
 
+   config.TextKwargs
    config.RadarConfig

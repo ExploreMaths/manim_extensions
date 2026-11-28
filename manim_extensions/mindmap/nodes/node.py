@@ -79,6 +79,22 @@ class NodeState(Enum):
 
 
 class StyleSpec(TypedDict, total=False):
+    """Optional visual style fields for a mind-map node.
+
+    Examples
+    --------
+    .. manim:: StyleSpecScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.mindmap.nodes.node import StyleSpec
+
+       class StyleSpecScene(Scene):
+           def construct(self):
+               spec: StyleSpec = {"color": BLUE, "stroke_width": 2.0}
+               self.add(Rectangle(**spec))
+    """
+
     color: ManimColor
     stroke_width: float
     font_size: float

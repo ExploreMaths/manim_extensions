@@ -162,20 +162,59 @@ language_colors = {
 
 
 class TokenLike(Protocol):
-    """A tokenizer token with a type name."""
+    """A tokenizer token with a type name.
+
+    Examples
+    --------
+    .. manim:: TokenLikeScene
+       :save_last_frame:
+
+       from manim import *
+
+       class TokenLikeScene(Scene):
+           def construct(self):
+               self.add(Text("token"))
+    """
 
     type: str
+    """Token type name."""
+
     value: str
+    """Token source text."""
 
 
 class TokenizerLike(Protocol):
-    """A tokenizer that splits one line into tokens."""
+    """A tokenizer that splits one line into tokens.
 
-    def tokenize(self, line: str) -> Sequence[TokenLike]: ...
+    Examples
+    --------
+    .. manim:: TokenizerLikeScene
+       :save_last_frame:
+
+       from manim import *
+
+       class TokenizerLikeScene(Scene):
+           def construct(self):
+               self.add(Text("tokenizer"))
+    """
+
+    def tokenize(self, line: str) -> Sequence[TokenLike]:
+        """Split one line into tokens.
+
+        Parameters
+        ----------
+        line
+            Input line to tokenize.
+
+        Returns
+        -------
+            Resulting tokens.
+        """
+        ...
 
 
 class ProgrammingLanguage(abstract):
-    """A programming language used to render `CodeBlocks`.
+    """A programming language used to render :class:`~manim_extensions.code_blocks.manim_code_blocks.CodeBlock` objects.
 
     Parameters
     ----------
@@ -186,45 +225,23 @@ class ProgrammingLanguage(abstract):
 
     Examples
     --------
-    .. manim:: ProgrammingLanguageOverview
+    .. manim:: ProgrammingLanguageScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage
 
-       ProgrammingLanguageTarget = ProgrammingLanguage
-
-       class ProgrammingLanguageOverview(Scene):
+       class ProgrammingLanguageScene(Scene):
            def construct(self):
-               public = [n for n in dir(ProgrammingLanguageTarget) if not n.startswith("_")]
-               card = VGroup(
-                   Text('ProgrammingLanguage', font_size=36),
-                   Text('module: manim_extensions.code_blocks.manim_code_blocks', font_size=18, color=GREY),
-                   Text('A programming language used to render CodeBlocks', font_size=22),
-                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
-               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
-               card.scale_to_fit_width(11.5).move_to(ORIGIN)
-               frame = RoundedRectangle(
-                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
-               ).move_to(card)
-               self.add(frame, card)
-
-    .. code-block:: python
-
-        from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage
-
-        class Python(ProgrammingLanguage):
-            name = "Python"
-            color = "#3572A5"
+               language = ProgrammingLanguage("Python")
+               self.add(Text(language.name, color=language.color))
     """
 
     name: str
-    """The name of the programming language. The name is displayed on the title card above the code block."""
+    """Display name of the programming language."""
 
     color: str
-    """
-    The color of the programming language. The color is used when displaying the name in the title card above the code block. by default, the official GitHub language colors are used for supported languages, see https://github.com/ozh/github-colors/blob/master/colors.json.
-    """
+    """GitHub language colour used for the title card."""
 
     def __init__(self, name: str, tokenize_name: str | None = None) -> None:
         self.name = name

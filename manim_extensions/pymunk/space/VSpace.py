@@ -32,7 +32,21 @@ if TYPE_CHECKING:
 
 
 class PymunkMobject(Mobject):
-    """A Manim mobject extended with pymunk body and shape attributes."""
+    """A Manim mobject extended with pymunk body and shape attributes.
+
+    Examples
+    --------
+    .. manim:: PymunkMobjectScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.pymunk.space.VSpace import PymunkMobject
+
+       class PymunkMobjectScene(Scene):
+           def construct(self):
+               body = PymunkMobject()
+               self.add(Dot(color=GREEN), Text("pymunk body").shift(DOWN))
+    """
 
     body: pymunk.Body
     shapes: list[pymunk.Shape]

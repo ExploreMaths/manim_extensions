@@ -120,7 +120,21 @@ class PhysicsAttributes(Protocol):
 
 
 class PhysicsMobject(Mobject):
-    """Mobject view with the physics attributes attached at runtime."""
+    """Mobject view with the physics attributes attached at runtime.
+
+    Examples
+    --------
+    .. manim:: PhysicsMobjectScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.physics.rigid_mechanics.rigid_mechanics import PhysicsMobject
+
+       class PhysicsMobjectScene(Scene):
+           def construct(self):
+               body = PhysicsMobject()
+               self.add(Dot(color=BLUE), Text("physics body").shift(DOWN))
+    """
 
     body: pymunk.Body
     shape: pymunk.Shape

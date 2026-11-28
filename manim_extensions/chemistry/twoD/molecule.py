@@ -612,7 +612,18 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return atoms_positions
 
     def _bond_at(self, index: int) -> BaseMBondObject:
-        """Return the typed bond mobject registered at ``index``."""
+        """Return the typed bond mobject registered at ``index``.
+
+        Parameters
+        ----------
+        index
+            Index of the bond.
+
+        Returns
+        -------
+        BaseMBondObject
+            Bond mobject stored at the index.
+        """
         return cast(BaseMBondObject, self.bonds[index])
 
     def find_bond_center_by_index(self, bond_index: int) -> Point3D:
@@ -1226,7 +1237,17 @@ class NamedMolecule(VGroup):
         return atoms_positions
 
     def _bond_at(self, index: int) -> BaseMBondObject:
-        """Return the typed bond mobject registered at ``index``."""
+        """Return the typed bond mobject registered at ``index``.
+
+        Parameters
+        ----------
+        index
+            Index of the bond.
+
+        Returns
+        -------
+            Bond mobject stored at the index.
+        """
         return cast(BaseMBondObject, self.bonds[index])
 
     def find_bond_center_by_index(self, bond_index: int) -> Point3D:

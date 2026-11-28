@@ -19,9 +19,27 @@ class _DanglingCheckable(Protocol):
 
     test_for_dangling: bool
 
-    def dangling_vert_check(self) -> bool: ...
+    def dangling_vert_check(self) -> bool:
+        """Return whether dangling vertices exist.
 
-    def dangling_face_check(self) -> bool: ...
+        Returns
+        -------
+            Whether any vertex is unused by a face.
+        """
+        ...
+
+
+
+    def dangling_face_check(self) -> bool:
+        """Return whether dangling faces exist.
+
+        Returns
+        -------
+            Whether any face is degenerate.
+        """
+        ...
+
+
 
 
 def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:

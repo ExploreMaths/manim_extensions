@@ -29,7 +29,21 @@ from ..algorithms.layout import Layout
 
 
 class MindMapSpec(TypedDict):
-    """Recursive mapping that describes a mind-map node and its children."""
+    """Recursive mapping that describes a mind-map node and its children.
+
+    Examples
+    --------
+    .. manim:: MindMapSpecScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.mindmap.mindmap.base import MindMapSpec
+
+       class MindMapSpecScene(Scene):
+           def construct(self):
+               spec: MindMapSpec = {"node": Circle(), "text": "root"}
+               self.add(spec["node"])
+    """
 
     node: VMobject | str
     text: NotRequired[str]

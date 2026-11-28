@@ -107,25 +107,35 @@ class LayoutType(Enum):
 
 
 class _CatalogLayout(TypedDict):
+    """Spacing fields shared by catalogue-based layouts."""
+
     node_spacing: float
     level_spacing: float
 
 
 class _MindMapLayout(_CatalogLayout):
+    """Catalogue layout with an explicit drawing direction."""
+
     direction: LayoutDirection
 
 
 class _MindMapInput(TypedDict):
+    """Input fields accepted by the mind-map layout configuration."""
+
     direction: Vector3D
     node_spacing: float
     level_spacing: float
 
 
 class _TimelineLayout(_CatalogLayout):
+    """Catalogue layout with both timeline sides."""
+
     sides: tuple[LayoutDirection, ...]
 
 
 class _TimelineInput(TypedDict):
+    """Input fields accepted by the timeline layout configuration."""
+
     node_spacing: float
     level_spacing: float
     sides: tuple[Vector3D, ...]

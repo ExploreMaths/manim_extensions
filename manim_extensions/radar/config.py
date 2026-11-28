@@ -21,7 +21,21 @@ __all__ = ["RadarConfig", "STYLES", "style_names", "get_style"]
 
 
 class TextKwargs(TypedDict, total=False):
-    """Keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`."""
+    """Keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`.
+
+    Examples
+    --------
+    .. manim:: TextKwargsScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.radar.config import TextKwargs
+
+       class TextKwargsScene(Scene):
+           def construct(self):
+               kwargs: TextKwargs = {"color": BLUE, "font_size": 36}
+               self.add(Text("radar", **kwargs))
+    """
 
     font: str
     weight: str

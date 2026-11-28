@@ -12,10 +12,12 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~PymunkMobject
    ~VSpace
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
+   VSpace.PymunkMobject
    VSpace.VSpace

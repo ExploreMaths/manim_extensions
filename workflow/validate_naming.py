@@ -5,7 +5,8 @@
 
 Rules:
 
-* classes are PascalCase (``^[A-Z][A-Za-z0-9]*$``) with no underscore;
+* classes are PascalCase (``^_?[A-Z][A-Za-z0-9]*$``), with an optional
+  leading underscore for private classes;
 * functions and methods are snake_case (``^_*[a-z][a-z0-9_]*$``), which
   permits private and dunder names;
 * module-level names and Enum members must not shadow Python builtins;
@@ -29,7 +30,7 @@ from _context import ROOT
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-CLASS_RE = re.compile(r"[A-Z][A-Za-z0-9]*$")
+CLASS_RE = re.compile(r"_?[A-Z][A-Za-z0-9]*$")
 FUNCTION_RE = re.compile(r"_*[a-z][a-z0-9_]*$")
 BUILTIN_NAMES = set(dir(builtins))
 ENUM_BASES = {"Enum", "IntEnum", "StrEnum", "Flag", "IntFlag"}

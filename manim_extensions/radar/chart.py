@@ -52,7 +52,7 @@ if TYPE_CHECKING:
 
 
 class _GapSpec(TypedDict):
-    """State captured by :meth:`~manim_extensions.radar.chart.RadarChart.highlight_gap`."""
+    """Geometry captured by :meth:`~manim_extensions.radar.chart.RadarChart.highlight_gap`."""
 
     a: int
     b: int
@@ -1594,7 +1594,22 @@ class RadarChart(VGroup):
 
     @staticmethod
     def _coerce_values(item: Mapping[str, object] | Sequence[float]) -> Sequence[float]:
-        """Extract a numeric value sequence from a mapping or sequence."""
+        """Extract a numeric value sequence from a mapping or sequence.
+
+        Parameters
+        ----------
+        item
+            Dataset mapping or a numeric sequence.
+
+        Returns
+        -------
+            Values for the dataset.
+
+        Raises
+        ------
+        ValueError
+            If a mapping has no numeric ``values`` sequence.
+        """
         if isinstance(item, Mapping):
             values = item.get("values")
             if not isinstance(values, Sequence) or isinstance(values, (str, bytes)):
@@ -1613,6 +1628,11 @@ class RadarChart(VGroup):
         Returns
         -------
             Snapshot suitable for the morph animation.
+
+        Raises
+        ------
+        ValueError
+            If the input cannot form a snapshot with the current dataset.
         """
 
         if isinstance(data, RadarData):

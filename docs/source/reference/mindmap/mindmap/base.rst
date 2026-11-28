@@ -13,6 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~MindMapSpec
    ~AbstractMap
    ~NodeMobject
 
@@ -26,5 +27,6 @@ Functions
    :hidden:
    :maxdepth: 1
 
+   base.MindMapSpec
    base.AbstractMap
    base.NodeMobject

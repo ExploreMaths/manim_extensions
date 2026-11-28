@@ -13,6 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~PhysicsMobject
    ~Space
    ~SpaceScene
    ~PhysicsAttributes
@@ -27,6 +28,7 @@ Functions
    :hidden:
    :maxdepth: 1
 
+   rigid_mechanics.PhysicsMobject
    rigid_mechanics.Space
    rigid_mechanics.SpaceScene
    rigid_mechanics.PhysicsAttributes

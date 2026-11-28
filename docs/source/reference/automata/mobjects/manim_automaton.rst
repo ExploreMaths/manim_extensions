@@ -13,12 +13,18 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~StateJSON
+   ~StepHistory
+   ~TransitionJSON
    ~ManimAutomaton
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
+   manim_automaton.StateJSON
+   manim_automaton.StepHistory
+   manim_automaton.TransitionJSON
    manim_automaton.ManimAutomaton
 
 Constants
