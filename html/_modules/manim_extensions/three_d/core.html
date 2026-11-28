@@ -1799,13 +1799,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: GaussianSurfaceConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import GaussianSurface, GaussianSurfaceScene</span>
 
 <span class="sd">       class GaussianSurfaceConfigScene(GaussianSurfaceScene):</span>
 <span class="sd">           style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Surface function; None selects the built-in shape.</span>
@@ -1880,13 +1882,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: SaddleSurfaceConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import SaddleSurface, SaddleSurfaceScene</span>
 
 <span class="sd">       class SaddleSurfaceConfigScene(SaddleSurfaceScene):</span>
 <span class="sd">           style = SaddleSurface(height=1.5, annotate=True, pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Parameter domain covered by the surface.</span>
@@ -1933,13 +1937,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: ParaboloidSurfaceConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import ParaboloidSurface, ParaboloidSurfaceScene</span>
 
 <span class="sd">       class ParaboloidSurfaceConfigScene(ParaboloidSurfaceScene):</span>
 <span class="sd">           style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Parameter domain covered by the surface.</span>
@@ -1986,13 +1992,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: EllipsoidSurfaceConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import EllipsoidSurface, EllipsoidSurfaceScene</span>
 
 <span class="sd">       class EllipsoidSurfaceConfigScene(EllipsoidSurfaceScene):</span>
 <span class="sd">           style = EllipsoidSurface(pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Semi-axis lengths (a, b, c) of the ellipsoid.</span>
@@ -2037,13 +2045,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: TorusSurfaceConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import TorusSurface, TorusSurfaceScene</span>
 
 <span class="sd">       class TorusSurfaceConfigScene(TorusSurfaceScene):</span>
 <span class="sd">           style = TorusSurface(pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Major radius of the torus.</span>
@@ -2090,13 +2100,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: HyperboloidOneSheetConfigScene</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import HyperboloidOneSheet, HyperboloidOneSheetScene</span>
 
 <span class="sd">       class HyperboloidOneSheetConfigScene(HyperboloidOneSheetScene):</span>
 <span class="sd">           style = HyperboloidOneSheet(pace='fast')</span>
+
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="c1">#: Waist radius of the hyperboloid.</span>

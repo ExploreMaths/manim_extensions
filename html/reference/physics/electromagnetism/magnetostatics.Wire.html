@@ -1517,13 +1517,13 @@
 <p class="rubric">Examples</p>
 <div id="wirescene" class="admonition admonition-manim-example">
 
-<p class="admonition-title">Example: WireScene <a class="headerlink" href="#wirescene">¶</a></p><img alt="../../../_images/WireScene-523c13c8.png" class="align-center" src="../../../_images/WireScene-523c13c8.png" />
+<p class="admonition-title">Example: WireScene <a class="headerlink" href="#wirescene">¶</a></p><img alt="../../../_images/WireScene-74d95122.png" class="align-center" src="../../../_images/WireScene-74d95122.png" />
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.magnetostatics</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wire</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">WireScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">loop</span> <span class="o">=</span> <span class="n">Wire</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">UP</span><span class="p">),</span> <span class="n">current</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">Wire</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">current</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"current = 2 A"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="n">UP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
 </pre></div>

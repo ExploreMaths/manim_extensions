@@ -1884,6 +1884,28 @@
 
 
 
+<div class="viewcode-block" id="_prune_empty_animations">
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/animations/dropout.html#manim_extensions.machine_learning.neural_network.animations.dropout._prune_empty_animations">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">_prune_empty_animations</span><span class="p">(</span><span class="n">animation</span><span class="p">:</span> <span class="n">Animation</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Drop empty nested animation groups in place and report if any remain.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    animation</span>
+<span class="sd">        The animation tree to prune.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Whether the animation still contains at least one child animation.</span>
+<span class="sd">    """</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">animation</span><span class="p">,</span> <span class="s2">"animations"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">children</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="n">children</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">child</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span> <span class="k">if</span> <span class="n">_prune_empty_animations</span><span class="p">(</span><span class="n">child</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">children</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="make_neural_network_dropout_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/animations/dropout.html#manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_neural_network_dropout_animation</span><span class="p">(</span>
@@ -1962,10 +1984,14 @@
     <span class="n">post_dropout_animation</span> <span class="o">=</span> <span class="n">PostDropoutAnimation</span><span class="p">(</span>
         <span class="n">neural_network</span><span class="p">,</span> <span class="n">layers_to_nodes_to_drop_out</span><span class="p">,</span> <span class="n">x_marks</span>
     <span class="p">)</span>
-    <span class="c1"># Combine the animations into one</span>
-    <span class="k">return</span> <span class="n">Succession</span><span class="p">(</span>
-        <span class="n">pre_dropout_animation</span><span class="p">,</span> <span class="n">forward_pass_animation</span><span class="p">,</span> <span class="n">post_dropout_animation</span>
-    <span class="p">)</span></div>
+    <span class="c1"># Combine the animations into one. A layer where every node is dropped</span>
+    <span class="c1"># can leave an empty AnimationGroup nested inside the forward pass; prune</span>
+    <span class="c1"># those empty groups so Scene.play never receives one.</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="n">pre_dropout_animation</span><span class="p">,</span> <span class="n">forward_pass_animation</span><span class="p">,</span> <span class="n">post_dropout_animation</span><span class="p">]</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">animation</span> <span class="k">for</span> <span class="n">animation</span> <span class="ow">in</span> <span class="n">sequence</span> <span class="k">if</span> <span class="n">_prune_empty_animations</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">Succession</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">)</span></div>
 
 </pre></div>
         </article>

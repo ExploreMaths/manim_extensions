@@ -1795,9 +1795,17 @@ updated to describe the package-wide check rather than the first-party
 allowlist.</p></li>
 </ul>
 </section>
-<section id="fixed-19">
-<h3>Fixed (19)<a class="headerlink" href="#fixed-19" title="Link to this heading">¶</a></h3>
+<section id="fixed-21">
+<h3>Fixed (21)<a class="headerlink" href="#fixed-21" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>The docs renderer now fails a static example whose PNG is a single flat
+background instead of caching or publishing a black frame.  Six animated
+surface configuration examples no longer request <code class="docutils literal notranslate"><span class="pre">:save_last_frame:</span></code>
+because their outro fades every object, and the <code class="docutils literal notranslate"><span class="pre">WireScene</span></code> example
+draws its loop face-on so the wire is visible.</p></li>
+<li><p>Dropout animations no longer insert an empty nested <code class="docutils literal notranslate"><span class="pre">AnimationGroup</span></code>
+into the succession when every node in a layer is dropped, so the
+<code class="docutils literal notranslate"><span class="pre">DropoutScene</span></code> example plays instead of raising <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
 <li><p>The <a class="reference internal" href="reference/basic/animations.FadeInRandom.html#manim_extensions.animations.FadeInRandom" title="manim_extensions.animations.FadeInRandom"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeInRandom</span></code></a> example now fades in
 a <code class="docutils literal notranslate"><span class="pre">Text</span></code> object instead of a formula, so the per-glyph random order is
 visible in the rendered clip.</p></li>
@@ -2362,8 +2370,8 @@ from the <a class="reference internal" href="reference/algorithm/index.html#modu
 (was only used by the deleted <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.code_mobject.Code.html#manim.mobject.text.code_mobject.Code" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Code</span></code></a> class).</p></li>
 </ul>
 </section>
-<section id="fixed-21">
-<h3>Fixed (21)<a class="headerlink" href="#fixed-21" title="Link to this heading">¶</a></h3>
+<section id="id1">
+<h3>Fixed (21)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed <code class="xref py py-class docutils literal notranslate"><span class="pre">ManimTransitionDocExample</span></code> displaying a full DFA
 instead of demonstrating a single transition.</p></li>
@@ -2460,8 +2468,8 @@ Manim extensions.</p></li>
 </section>
 <section id="v1-0-2">
 <h2>v1.0.2<a class="headerlink" href="#v1-0-2" title="Link to this heading">¶</a></h2>
-<section id="id1">
-<h3>Changed (1)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<section id="id2">
+<h3>Changed (1)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Documentation theme switched to Furo, matching Manim Community’s official documentation style.</p></li>
 </ul>
@@ -2469,8 +2477,8 @@ Manim extensions.</p></li>
 </section>
 <section id="v1-0-1">
 <h2>v1.0.1<a class="headerlink" href="#v1-0-1" title="Link to this heading">¶</a></h2>
-<section id="id2">
-<h3>Fixed (1)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h3>Fixed (1)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed <a class="reference internal" href="reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot" title="manim_extensions.mobjects.LabelDot"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelDot</span></code></a> center point calculation.</p></li>
 </ul>
@@ -2478,8 +2486,8 @@ Manim extensions.</p></li>
 </section>
 <section id="v1-0-0">
 <h2>v1.0.0<a class="headerlink" href="#v1-0-0" title="Link to this heading">¶</a></h2>
-<section id="id3">
-<h3>Added (1)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<section id="id4">
+<h3>Added (1)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Initial release with <a class="reference internal" href="reference/basic/mobjects.html#module-manim_extensions.mobjects" title="manim_extensions.mobjects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mobjects</span></code></a>, <a class="reference internal" href="reference/basic/geometry.html#module-manim_extensions.geometry" title="manim_extensions.geometry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geometry</span></code></a> and <a class="reference internal" href="reference/basic/animations.html#module-manim_extensions.animations" title="manim_extensions.animations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">animations</span></code></a> modules.</p></li>
 </ul>
@@ -2546,7 +2554,7 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a><ul>
 <li><a class="reference internal" href="#added-21">Added (21)</a></li>
 <li><a class="reference internal" href="#changed-34">Changed (34)</a></li>
-<li><a class="reference internal" href="#fixed-19">Fixed (19)</a></li>
+<li><a class="reference internal" href="#fixed-21">Fixed (21)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-6-latest">v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span></a><ul>
@@ -2566,7 +2574,7 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#added-4">Added (4)</a></li>
 <li><a class="reference internal" href="#changed-12">Changed (12)</a></li>
 <li><a class="reference internal" href="#removed-2">Removed (2)</a></li>
-<li><a class="reference internal" href="#fixed-21">Fixed (21)</a></li>
+<li><a class="reference internal" href="#id1">Fixed (21)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-3">v1.0.3</a><ul>
@@ -2576,15 +2584,15 @@ Manim extensions.</p></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-2">v1.0.2</a><ul>
-<li><a class="reference internal" href="#id1">Changed (1)</a></li>
+<li><a class="reference internal" href="#id2">Changed (1)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-1">v1.0.1</a><ul>
-<li><a class="reference internal" href="#id2">Fixed (1)</a></li>
+<li><a class="reference internal" href="#id3">Fixed (1)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-0">v1.0.0</a><ul>
-<li><a class="reference internal" href="#id3">Added (1)</a></li>
+<li><a class="reference internal" href="#id4">Added (1)</a></li>
 </ul>
 </li>
 </ul>

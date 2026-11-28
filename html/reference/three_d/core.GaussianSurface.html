@@ -1608,12 +1608,20 @@
 <p class="rubric">Examples</p>
 <div id="gaussiansurfaceconfigscene" class="admonition admonition-manim-example">
 
-<p class="admonition-title">Example: GaussianSurfaceConfigScene <a class="headerlink" href="#gaussiansurfaceconfigscene">¶</a></p><img alt="../../_images/GaussianSurfaceConfigScene-d29341d7.png" class="align-center" src="../../_images/GaussianSurfaceConfigScene-d29341d7.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<p class="admonition-title">Example: GaussianSurfaceConfigScene <a class="headerlink" href="#gaussiansurfaceconfigscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GaussianSurfaceConfigScene-654e048a.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.three_d.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianSurface</span><span class="p">,</span> <span class="n">GaussianSurfaceScene</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurfaceConfigScene</span><span class="p">(</span><span class="n">GaussianSurfaceScene</span><span class="p">):</span>
     <span class="n">style</span> <span class="o">=</span> <span class="n">GaussianSurface</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">rings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">orbit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pace</span><span class="o">=</span><span class="s1">'fast'</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct</span><span class="p">()</span>
 </pre></div>
 </div>
 </div><dl class="field-list simple">
