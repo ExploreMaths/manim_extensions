@@ -302,13 +302,15 @@ class GaussianSurface:
     Examples
     --------
     .. manim:: GaussianSurfaceConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import GaussianSurface, GaussianSurfaceScene
 
        class GaussianSurfaceConfigScene(GaussianSurfaceScene):
            style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Surface function; None selects the built-in shape.
@@ -377,13 +379,15 @@ class SaddleSurface:
     Examples
     --------
     .. manim:: SaddleSurfaceConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import SaddleSurface, SaddleSurfaceScene
 
        class SaddleSurfaceConfigScene(SaddleSurfaceScene):
            style = SaddleSurface(height=1.5, annotate=True, pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Parameter domain covered by the surface.
@@ -427,13 +431,15 @@ class ParaboloidSurface:
     Examples
     --------
     .. manim:: ParaboloidSurfaceConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import ParaboloidSurface, ParaboloidSurfaceScene
 
        class ParaboloidSurfaceConfigScene(ParaboloidSurfaceScene):
            style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Parameter domain covered by the surface.
@@ -477,13 +483,15 @@ class EllipsoidSurface:
     Examples
     --------
     .. manim:: EllipsoidSurfaceConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import EllipsoidSurface, EllipsoidSurfaceScene
 
        class EllipsoidSurfaceConfigScene(EllipsoidSurfaceScene):
            style = EllipsoidSurface(pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Semi-axis lengths (a, b, c) of the ellipsoid.
@@ -525,13 +533,15 @@ class TorusSurface:
     Examples
     --------
     .. manim:: TorusSurfaceConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import TorusSurface, TorusSurfaceScene
 
        class TorusSurfaceConfigScene(TorusSurfaceScene):
            style = TorusSurface(pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Major radius of the torus.
@@ -575,13 +585,15 @@ class HyperboloidOneSheet:
     Examples
     --------
     .. manim:: HyperboloidOneSheetConfigScene
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import HyperboloidOneSheet, HyperboloidOneSheetScene
 
        class HyperboloidOneSheetConfigScene(HyperboloidOneSheetScene):
            style = HyperboloidOneSheet(pace='fast')
+
+           def construct(self):
+               super().construct()
     """
 
     #: Waist radius of the hyperboloid.

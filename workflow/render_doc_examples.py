@@ -265,6 +265,23 @@ def output_name(class_name: str, code: str, assets=None, renderer="cairo") -> st
     return example_digest(class_name, user_code, assets or [], renderer)
 
 
+def _is_blank_image(path: Path) -> bool:
+    """Return ``True`` when every pixel equals the top-left background colour."""
+    from PIL import Image, ImageChops
+
+    with Image.open(path) as image:
+        rgb = image.convert("RGB")
+        background = Image.new("RGB", rgb.size, rgb.getpixel((0, 0)))
+        return ImageChops.difference(rgb, background).getbbox() is None
+
+
+def _cached_artifact_ok(path: Path, ext: str) -> bool:
+    """Return ``True`` when a cached output exists and is not a blank image."""
+    if not path.exists():
+        return False
+    return ext != "png" or not _is_blank_image(path)
+
+
 # The docs build executes every example with manim_directive.py's globals,
 # so __file__ inside an example resolves to this path (VideoMobject's
 # docstring example relies on it to locate docs/source/_static media).
@@ -344,6 +361,14 @@ def render_block(task):
             hits = list(Path(workdir).rglob(f"{output_file}.{ext}"))
         if not hits:
             return (output_file, "", False, "render produced no output file", q)
+        if save_last_frame and _is_blank_image(hits[0]):
+            return (
+                output_file,
+                "",
+                False,
+                "render produced a blank image (uniform background)",
+                q,
+            )
         return (output_file, str(hits[0]), True, "", q)
     except Exception:
         return (output_file, "", False, traceback.format_exc(limit=3), q)
@@ -458,7 +483,7 @@ def main() -> int:
             and entry.get("quality") == block["effective_quality"]
             and entry.get("renderer", "cairo") == block["renderer"]
             and entry.get("env_tags", {}) == expected_tags
-            and (target_dir / f"{block['output_file']}.{ext}").exists()
+            and _cached_artifact_ok(target_dir / f"{block['output_file']}.{ext}", ext)
         ):
             skipped += 1
             continue

@@ -305,9 +305,14 @@ Changed (34)
   updated to describe the package-wide check rather than the first-party
   allowlist.
 
-Fixed (19)
+Fixed (20)
 ~~~~~~~~~~
 
+* The docs renderer now fails a static example whose PNG is a single flat
+  background instead of caching or publishing a black frame.  Six animated
+  surface configuration examples no longer request ``:save_last_frame:``
+  because their outro fades every object, and the ``WireScene`` example
+  draws its loop face-on so the wire is visible.
 * The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
   a ``Text`` object instead of a formula, so the per-glyph random order is
   visible in the rendered clip.

@@ -48,7 +48,7 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
 
        class WireScene(Scene):
            def construct(self):
-               loop = Wire(Circle(2).rotate(PI / 2, UP), current=2)
+               loop = Wire(Circle(2), current=2)
                label = Text("current = 2 A", font_size=30).next_to(loop, UP)
                self.add(loop, label)
     """
