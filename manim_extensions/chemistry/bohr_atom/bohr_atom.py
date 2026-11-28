@@ -15,7 +15,6 @@ class BohrAtom(VGroup):
 
     .. doc-example-covers: arrange_electrons, electrons_group, get_electrons, get_nuclei, get_orbitals, nuclei_groups, orbitals_group
 
-
     Parameters
     ----------
     e

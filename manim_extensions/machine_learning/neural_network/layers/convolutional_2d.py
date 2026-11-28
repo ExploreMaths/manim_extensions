@@ -175,7 +175,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     .. doc-example-covers: construct_feature_maps, make_forward_pass_animation
 
-
     Parameters
     ----------
     num_feature_maps
@@ -311,7 +310,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the feature maps and apply the 3D rotation to the layer.
 
         Parameters
@@ -322,11 +321,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
@@ -342,13 +336,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this convolutional layer.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def construct_activation_function(self) -> None:
+        """Build the activation-function plot for this convolutional layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -452,7 +441,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return animation_group
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(self, scale_factor: float, **kwargs: Any) -> "Convolutional2DLayer":
         """Scale the layer and adjust cell_width proportionally.
 
         Parameters
@@ -462,13 +451,13 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
+        return self
 
     def get_center(self) -> Point3D:
         """Overrides function for getting center.
@@ -519,10 +508,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Unused; kept for interface compatibility with
             :meth:`~manim.mobject.mobject.Mobject.move_to`.
 
-
         Returns
         -------
-                The resulting value.
+            The layer itself, after moving.
         """
         layer_center = self.feature_maps.get_center()
         if isinstance(point_or_mobject, Mobject):

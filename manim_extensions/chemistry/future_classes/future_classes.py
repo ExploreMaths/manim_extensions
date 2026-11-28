@@ -115,7 +115,6 @@ class Element(VGroup):
 
     .. doc-example-covers: arrange_particles, get_electrons, get_holes, get_particles, get_subelectron_holes, make_subelectron_holes
 
-
     Parameters
     ----------
     element
@@ -343,7 +342,6 @@ class NPNTransistor(VGroup):
 
     .. doc-example-covers: make_particles
 
-
     Parameters
     ----------
     regions_opacity
@@ -414,7 +412,6 @@ class NPNTransistor(VGroup):
         horizontal_boundary
             Horizontal boundary points of the arrangement.
 
-
         Returns
         -------
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
@@ -430,7 +427,6 @@ class BatterySchema(VGroup):
     """A battery schema attached to a mobject.
 
     .. doc-example-covers: corner_schema, horizontal_schema, select_schema
-
 
     Parameters
     ----------
@@ -630,7 +626,6 @@ class MOSFETTransistor(VGroup):
 
     .. doc-example-covers: add_battery, add_battery_sides, add_battery_terminals, add_holes, make_main_board, make_n_region
 
-
     Parameters
     ----------
     show_holes
@@ -696,7 +691,6 @@ class MOSFETTransistor(VGroup):
         ----------
         side
             Direction of the n-region relative to the main board.
-
 
         Returns
         -------
@@ -836,7 +830,7 @@ class BatterySide(VMobject):
 # Useful functions
 
 
-def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> Any:
+def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> None:
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
     Parameters
@@ -845,11 +839,6 @@ def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) ->
         Mobjects to distribute along the line.
     boundary
         Boundary points of the line.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)
@@ -1153,7 +1142,6 @@ def inverse_smooth(t: float, inflection: float = 10.0) -> float:
         Input value of the easing function.
     inflection
         Inflection parameter passed to :func:`~manim.utils.rate_functions.smooth`.
-
 
     Returns
     -------

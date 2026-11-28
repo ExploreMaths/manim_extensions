@@ -33,7 +33,6 @@ class VariationalAutoencoder(Group):
 
     .. doc-example-covers: make_image_forward_pass, make_triplet_forward_pass
 
-
     Parameters
     ----------
     encoder_nodes_per_layer

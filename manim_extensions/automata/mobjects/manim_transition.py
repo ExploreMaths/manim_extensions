@@ -182,7 +182,7 @@ class ManimTransition(Transition, VGroup):
 
         return p1, p2
 
-    def create_reflexive_arrow(self, point1: Point3D, point2: Point3D) -> Any:
+    def create_reflexive_arrow(self, point1: Point3D, point2: Point3D) -> None:
         """Create a curved reflexive arrow from the source state back to itself.
 
         Parameters
@@ -191,11 +191,6 @@ class ManimTransition(Transition, VGroup):
             Start point on the state circle.
         point2
             End point on the state circle.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
 
@@ -242,18 +237,13 @@ class ManimTransition(Transition, VGroup):
 
         return normal_vectors[normal_vector_choice]
 
-    def position_text(self, buffer: float) -> Any:
+    def position_text(self, buffer: float) -> None:
         """Place each read-symbol label next to the transition arrow.
 
         Parameters
         ----------
         buffer
             Padding distance used to separate multiple labels stacked around the arrow.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Obtain coordinates for the centre of the line
         x1 = None
@@ -289,15 +279,10 @@ class ManimTransition(Transition, VGroup):
             read_symbol.set_x(text_coordinates[0])
             read_symbol.set_y(text_coordinates[1])
 
-    def convert_straight_arrow_to_curved_arrow(self) -> Any:
+    def convert_straight_arrow_to_curved_arrow(self) -> None:
         """Converts a straight arrow transition to a curved arrow transition.
         This method is primarily used when there are two opposing transitions
         between two states.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # remove existing manim arrow
         self.remove(self.arrow)
@@ -310,7 +295,7 @@ class ManimTransition(Transition, VGroup):
         self.construct_curved_arrow()
         self.add(self.arrow, *self.read_symbols)
 
-    def construct_curved_arrow(self, buffer: float = 0.5) -> Any:
+    def construct_curved_arrow(self, buffer: float = 0.5) -> None:
         # create a straight line and use the points locations to create curved arrow
         """Construct a curved arrow and position its read-symbol labels.
 
@@ -318,11 +303,6 @@ class ManimTransition(Transition, VGroup):
         ----------
         buffer
             Extra offset applied to stacked labels near the arc.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         temp_arrow = Arrow(self.transition_from, self.transition_to)
         from_point = temp_arrow.start
@@ -382,13 +362,8 @@ class ManimTransition(Transition, VGroup):
                 return True  # There is a read_symbol that matches the given token
         return False  # There are no read_symbols that match the given token
 
-    def rotate_symbols_parallel_to_arrow(self) -> Any:
-        """Rotate all read symbols so they are aligned parallel to the arrow.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def rotate_symbols_parallel_to_arrow(self) -> None:
+        """Rotate all read symbols so they are aligned parallel to the arrow."""
         for read_symbol in self.read_symbols:
             slope = self.calculate_slope_of_line()
 

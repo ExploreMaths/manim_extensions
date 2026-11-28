@@ -21,7 +21,6 @@ class ManimML3DScene(ThreeDScene):
        the primary purpose of this is to make it so
        that everything inside of a layer
 
-
     Parameters
     ----------
     args
@@ -49,7 +48,7 @@ class ManimML3DScene(ThreeDScene):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)  # type: ignore[no-untyped-call]
 
-    def play(self, *args: Any, **kwargs: Any) -> Any:
+    def play(self, *args: Any, **kwargs: Any) -> None:
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
         Parameters
@@ -59,10 +58,5 @@ class ManimML3DScene(ThreeDScene):
             :meth:`~manim.scene.scene.Scene.play`.
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play`.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         super().play(*args, **kwargs)

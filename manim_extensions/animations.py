@@ -92,7 +92,7 @@ class TypeWriter(Animation):
 
         super().__init__(mobject, **kwargs)
 
-    def interpolate_mobject(self, alpha: float) -> Any:
+    def interpolate_mobject(self, alpha: float) -> None:
         """Set the visible characters based on the animation progress ``alpha``.
 
         This method is called internally by Manim during the animation.  It
@@ -102,11 +102,6 @@ class TypeWriter(Animation):
         ----------
         alpha
             Animation progress from ``0`` to ``1``.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
@@ -630,18 +625,13 @@ class PassingRectangle(Animation):
         rect.move_to((self.mob_left + self.mob_right) / 2)
         super().__init__(rect, rate_func=linear, **kwargs)
 
-    def interpolate_mobject(self, alpha: float) -> Any:
+    def interpolate_mobject(self, alpha: float) -> None:
         """Slide and resize the sweep rectangle based on ``alpha``.
 
         Parameters
         ----------
         alpha
             Animation progress from ``0`` to ``1``.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         a_left = rush_into(alpha)
         a_right = 1 - rush_into(1 - alpha)

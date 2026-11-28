@@ -4,8 +4,6 @@
 
 """Network connection visualization utilities."""
 
-from typing import Any
-
 import numpy as np
 from manim import (
     Animation,
@@ -101,13 +99,8 @@ class NetworkConnection(VGroup):
 
         self.make_mobjects()
 
-    def make_mobjects(self) -> Any:
-        """Build the arrow or arc that connects the two mobjects.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def make_mobjects(self) -> None:
+        """Build the arrow or arc that connects the two mobjects."""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject
             right_mobject = self.end_mobject

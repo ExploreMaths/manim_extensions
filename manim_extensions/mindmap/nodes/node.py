@@ -255,7 +255,6 @@ class Node:
 
     .. doc-example-covers: get_children_mobjects, get_connector, get_descendants_mobjects, get_node_and_line_without_updater
 
-
     Parameters
     ----------
     vmobject
@@ -321,36 +320,26 @@ class Node:
         self.connector: Line | None = None
         self.connector_style: dict[str, Any] | None = None
 
-    def scale(self, scale_factor: float) -> Any:
+    def scale(self, scale_factor: float) -> None:
         """Scale the node around its current center.
 
         Parameters
         ----------
         scale_factor
             Uniform scaling factor applied to the node dimensions.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.node_state = NodeState.SCALE
         self.scale_factor = scale_factor
         self.width *= scale_factor
         self.height *= scale_factor
 
-    def add_child(self, child: "Node") -> Any:
+    def add_child(self, child: "Node") -> None:
         """Attach a child node to the current node.
 
         Parameters
         ----------
         child
             Child node to insert beneath the current parent.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if self.children:
             child.neighbor = self.children[-1]
@@ -358,18 +347,13 @@ class Node:
         self.children.append(child)
         child.parent = self
 
-    def remove_child(self, child: "Node") -> Any:
+    def remove_child(self, child: "Node") -> None:
         """Mark a child node for removal from the current node.
 
         Parameters
         ----------
         child
             Child node scheduled for removal from the tree.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -380,18 +364,13 @@ class Node:
             raise ValueError(f"Node {child} is not a child of {self}")
         child.node_state = NodeState.REMOVE
 
-    def alter_content(self, vmobject: VMobject) -> Any:
+    def alter_content(self, vmobject: VMobject) -> None:
         """Replace the displayed content of the node.
 
         Parameters
         ----------
         vmobject
             New mobject used to render the node content.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.node_state = NodeState.ALTER
         self.alter_vmobject = vmobject
@@ -539,7 +518,7 @@ class Node:
 
     def set_connector(
         self, layout_type: LayoutType, direction: Vector3D = RIGHT, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Set the connector line.
 
         Parameters
@@ -550,11 +529,6 @@ class Node:
             The direction of the operation.
         kwargs
             Kwargs processed by this operation.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if self.parent is not None and self.connector is None:
             self.connector_style = kwargs
@@ -570,7 +544,7 @@ class Node:
         layout_type: LayoutType,
         direction: Vector3D = RIGHT,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Change the connector line.
 
         Parameters
@@ -585,11 +559,6 @@ class Node:
             The direction of the operation.
         **kwargs
             Additional keyword arguments used as the connector line style.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         current_style = getattr(self, "connector_style", None)
         if (

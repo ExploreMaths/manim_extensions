@@ -28,7 +28,6 @@ class FeedForwardToVector(ConnectiveLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     input_layer

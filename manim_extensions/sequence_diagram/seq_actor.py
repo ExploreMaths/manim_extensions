@@ -34,7 +34,6 @@ class SeqActor(VGroup):
 
     .. doc-example-covers: time_elapse
 
-
     Parameters
     ----------
         name

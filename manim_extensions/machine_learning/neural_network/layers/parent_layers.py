@@ -31,7 +31,6 @@ class NeuralNetworkLayer(ABC, Group):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     text
@@ -81,7 +80,7 @@ class NeuralNetworkLayer(ABC, Group):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Constructs the layer at network construction time.
 
         Parameters
@@ -93,11 +92,6 @@ class NeuralNetworkLayer(ABC, Group):
         **kwargs
             Forwarded to the parent class; a ``"debug_mode"`` entry draws a
             surrounding rectangle around the layer.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if "debug_mode" in kwargs and kwargs["debug_mode"]:
             self.add(SurroundingRectangle(self))
@@ -143,7 +137,6 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     .. doc-example-covers: make_forward_pass_animation
-
 
     Parameters
     ----------
@@ -249,7 +242,6 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     input_layer
@@ -348,7 +340,6 @@ class BlankConnective(ConnectiveLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     input_layer
@@ -418,7 +409,7 @@ class BlankConnective(ConnectiveLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Construct nothing: a blank connective has no geometry of its own.
 
         Parameters
@@ -429,11 +420,6 @@ class BlankConnective(ConnectiveLayer):
             Following layer.
         **kwargs
             Ignored.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         return None
 

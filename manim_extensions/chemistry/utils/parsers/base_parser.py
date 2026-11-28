@@ -40,7 +40,6 @@ class BaseParser(ABC):
     filename
         Path to the file to parse.
 
-
     Examples
     --------
     .. manim:: BaseParserOverview
@@ -76,7 +75,7 @@ class BaseParser(ABC):
     """
 
     def __init__(self, filename: FilePath) -> None:
-        self.file_data: str | list[str] = self.read_file(filename)
+        self.file_data: str | list[str] | list[list[str]] = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):
             self.molecular_data: list[MoleculeData] | None = parsed_data
@@ -89,7 +88,9 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def read_file(filename: FilePath) -> Any:
+    def read_file(
+        filename: FilePath,
+    ) -> str | list[str] | list[list[str]]:
         """Reads the file and converts it to a string.
 
         Parameters
@@ -99,7 +100,7 @@ class BaseParser(ABC):
 
         Returns
         -------
-            String with the file data.
+            The raw file contents as a string, a list of strings, or nested string rows.
         """
         ...
 

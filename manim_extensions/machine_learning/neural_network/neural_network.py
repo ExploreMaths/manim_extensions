@@ -51,7 +51,6 @@ class NeuralNetwork(Group):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     input_layers
@@ -195,7 +194,7 @@ class NeuralNetwork(Group):
         connection_style: str = "default",
         connection_position: str = "bottom",
         arc_direction: str = "down",
-    ) -> Any:
+    ) -> None:
         """Add connection from start layer to end layer.
 
         Parameters
@@ -210,11 +209,6 @@ class NeuralNetwork(Group):
             Unused position hint reserved for future use.
         arc_direction
             Direction the connection arc bends.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         assert connection_style in ["default"]
         if connection_style == "default":
@@ -235,13 +229,9 @@ class NeuralNetwork(Group):
             self.connections.append(connection)
             self.add(connection)
 
-    def _construct_input_layers(self) -> Any:
+    def _construct_input_layers(self) -> None:
         """Constructs each of the input layers in context
         of their adjacent layers..
-
-        Returns
-        -------
-                The resulting value.
         """
         prev_layer = None
         next_layer = None
@@ -263,7 +253,7 @@ class NeuralNetwork(Group):
         self,
         layout: str = "linear",
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom",
-    ) -> Any:
+    ) -> None:
         """Position the layers of the network.
 
         Parameters
@@ -272,11 +262,6 @@ class NeuralNetwork(Group):
             Layout mode for the network.
         layout_direction
             Direction in which layers are arranged.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -371,13 +356,8 @@ class NeuralNetwork(Group):
         # Handle layering
         return connective_layers, all_layers
 
-    def _place_connective_layers(self) -> Any:
-        """Center each connective layer between its input and output layers.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _place_connective_layers(self) -> None:
+        """Center each connective layer between its input and output layers."""
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
             layer_midpoint = (
@@ -456,7 +436,7 @@ class NeuralNetwork(Group):
         new_layer.move_to(old_layer)
         prior_center = self.all_layers.get_center()
 
-        def swap_layer(network: NeuralNetwork) -> Any:
+        def swap_layer(network: NeuralNetwork) -> None:
             """Replace the layer and rebuild the surrounding connections."""
             network.input_layers.replace(input_index, new_layer)
             for name, layer in cast(Any, network.input_layers_dict).items():
@@ -634,7 +614,9 @@ class NeuralNetwork(Group):
 
         return animation_group
 
-    def set_z_index(self, z_index_value: float, family: bool = False) -> Any:
+    def set_z_index(
+        self, z_index_value: float, family: bool = False
+    ) -> "NeuralNetwork":
         """Overridden set_z_index.
 
         Parameters
@@ -645,17 +627,17 @@ class NeuralNetwork(Group):
             Kept for signature compatibility; setting ``family=False`` stops
             sub-neural networks from inheriting the parent z-index.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
             if not isinstance(layer, NeuralNetwork):
                 layer.set_z_index(z_index_value)
+        return self
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(self, scale_factor: float, **kwargs: Any) -> "NeuralNetwork":
         """Overridden scale.
 
         Scales every layer and re-places the layers and connective layers
@@ -668,10 +650,9 @@ class NeuralNetwork(Group):
         **kwargs
             Additional keyword arguments forwarded to each layer's ``scale``.
 
-
         Returns
         -------
-                The resulting value.
+            The network itself, after scaling.
         """
         prior_center = self.get_center()
 

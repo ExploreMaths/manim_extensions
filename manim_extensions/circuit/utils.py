@@ -276,18 +276,13 @@ class Circuit(VMobject):
         else:
             return [end1, end2]
 
-    def add_components(self, *args: Mobject) -> Any:
+    def add_components(self, *args: Mobject) -> None:
         """Append circuit components to the circuit definition.
 
         Parameters
         ----------
         *args
             Components to add to the circuit.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for component in args:
             self.component_list.add(cast(Any, component))
@@ -415,13 +410,8 @@ class Node(VMobject):
 
         self.set_color(WHITE)
 
-    def __update(self) -> Any:
-        """Rebuild the internal wire paths for this junction node.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def __update(self) -> None:
+        """Rebuild the internal wire paths for this junction node."""
         self.clear_points()
         for path in self.coords:
             self.start_new_path(path[0])
@@ -465,35 +455,25 @@ class Node(VMobject):
 
         return False
 
-    def add_dot(self, dot_coord: Point3DLike) -> Any:
+    def add_dot(self, dot_coord: Point3DLike) -> None:
         """Add a junction dot at the provided coordinate.
 
         Parameters
         ----------
         dot_coord
             Position of the dot to place on the node.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.junction_dots.add(Dot(dot_coord))
 
     # wire is just a matrix with dimensions 2n x 3 or 3 x 3
     # depending entirely on if it is a diagonal wire or not
-    def add_wire(self, wire_param: list[Point3DLike]) -> Any:
+    def add_wire(self, wire_param: list[Point3DLike]) -> None:
         """Append a wire path to the node's internal connectivity list.
 
         Parameters
         ----------
         wire_param
             Sequence of points describing a wire path.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if len(self.coords) == 0:
             self.coords.append(wire_param)
@@ -530,7 +510,7 @@ class Node(VMobject):
 
         self.__update()
 
-    def merge(self, node: "Node", wire: list[Point3DLike] | bool = False) -> Any:
+    def merge(self, node: "Node", wire: list[Point3DLike] | bool = False) -> None:
         """Merge this node with another node and optionally attach a wire.
 
         Parameters
@@ -539,11 +519,6 @@ class Node(VMobject):
             Other node to merge into this one.
         wire
             Optional wire path to add before or during the merge.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if wire is not False:
             self.add_wire(cast(Any, wire))

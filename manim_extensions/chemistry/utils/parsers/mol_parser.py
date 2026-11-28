@@ -63,7 +63,9 @@ class MolParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: FilePath) -> Any:
+    def read_file(
+        filename: FilePath,
+    ) -> str | list[str] | list[list[str]]:
         """Read a MOL file and return its lines.
 
         Parameters

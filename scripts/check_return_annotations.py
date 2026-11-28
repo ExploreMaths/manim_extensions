@@ -1,12 +1,21 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""CI checker: every public function with a docstring and a non-trivial
-``return`` statement must declare a return annotation (``-> ...``).
+"""CI checker: return annotations must describe what the function returns.
 
-Mirrors the acceptance rule requested by the maintainer: "a function with a
-``return`` statement must declare a return annotation".  Exemptions (kept in
-sync with check_type_annotations.py):
+Two rules are enforced:
+
+1. A function with a ``return`` statement that produces a value must
+   declare a return annotation (``-> ...``).
+2. A return annotation must not be bare ``Any``.  ``Any`` disables type
+   checking for the return value; annotate the concrete type, or ``None``
+   when the body only performs side effects.
+
+Mirrors the acceptance rules requested by the maintainer: "a function with
+a ``return`` statement must declare a return annotation" and "Any should
+only be used when the function really returns an arbitrary value".
+
+Exemptions (kept in sync with check_type_annotations.py):
 the vendored ``fontawesome`` package, test files, and functions without a
 docstring.  Functions defined in ``__init__.py`` are checked as well,
 since package initialisers may define public helpers (re-exported names
@@ -14,10 +23,12 @@ are plain imports, not function definitions).
 
 A function is considered to "return a value" if its body contains at least
 one ``return`` statement whose value is not the literal ``None`` (explicit
-``return None`` is also a real return and requires an annotation).
+``return None`` is also a real return and requires an annotation).  Nested
+functions, classes and lambdas are separate scopes and are not descended
+into.
 
 Usage:  python scripts/check_return_annotations.py
-Exit code 0 when every checked function is annotated, 1 otherwise.
+Exit code 0 when every checked function is annotated precisely, 1 otherwise.
 """
 
 from __future__ import annotations
@@ -37,44 +48,50 @@ def _ignored_module(rel: str) -> bool:
     return False
 
 
+def _is_non_none_return(node: ast.Return) -> bool:
+    """True when a ``return`` statement produces a value other than ``None``."""
+    if node.value is None:
+        return False
+    if isinstance(node.value, ast.Constant) and node.value.value is None:
+        return False
+    return True
+
+
 def _has_value_return(node: ast.FunctionDef | ast.AsyncFunctionDef) -> bool:
     """True if the function's own body returns a non-None value.
 
-    Nested functions are not walked: a ``return`` inside an inner ``def``
-    belongs to that inner function, not to the outer one.
+    Every statement container is walked, including ``if``, ``for``,
+    ``while``, ``try`` and ``with`` blocks.  Nested functions, classes and
+    lambdas are separate scopes and are skipped.
     """
 
-    def scan(body: list[ast.stmt]) -> bool:
-        for stmt in body:
-            if isinstance(stmt, ast.Return):
-                if stmt.value is None:
-                    continue
-                if isinstance(stmt.value, ast.Constant) and stmt.value.value is None:
-                    continue
-                return True
-            # do not descend into nested defs; recurse into other statements
-            if isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef)):
+    def scan(current: ast.AST) -> bool:
+        for child in ast.iter_child_nodes(current):
+            if isinstance(
+                child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Lambda)
+            ):
                 continue
-            for child in ast.iter_child_nodes(stmt):
-                if isinstance(child, ast.Return) and _is_non_none(child):
-                    return True
-                if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                    continue
+            if isinstance(child, ast.Return) and _is_non_none_return(child):
+                return True
+            if scan(child):
+                return True
         return False
 
-    def _is_non_none(r: ast.Return) -> bool:
-        if r.value is None:
-            return False
-        if isinstance(r.value, ast.Constant) and r.value.value is None:
-            return False
-        return True
+    return scan(node)
 
-    return scan(node.body)
+
+def _is_any_annotation(node: ast.expr | None) -> bool:
+    """True when the return annotation is exactly ``Any`` or ``typing.Any``."""
+    if isinstance(node, ast.Name):
+        return node.id == "Any"
+    if isinstance(node, ast.Attribute):
+        return node.attr == "Any"
+    return False
 
 
 def main() -> int:
     problems: list[str] = []
-    scanned = 0
+    checked = 0
     for path in sorted(PACKAGE.rglob("*.py")):
         rel = str(path.relative_to(PACKAGE)).replace("\\", "/")
         if _ignored_module(rel):
@@ -86,25 +103,36 @@ def main() -> int:
         for node in ast.walk(tree):
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
+            checked += 1
             name = node.name
-            if node.returns is not None:
+            has_value = _has_value_return(node)
+            if node.returns is None:
+                if not has_value:
+                    continue
+                problems.append(
+                    f"{rel}:{node.lineno}: {name}: has return value(s) but "
+                    f"no return annotation"
+                )
                 continue
-            if not _has_value_return(node):
-                continue
-            scanned += 1
-            problems.append(
-                f"{rel}:{node.lineno}: {name}: has return value(s) but no return annotation"
-            )
+            if _is_any_annotation(node.returns):
+                if has_value:
+                    problems.append(
+                        f"{rel}:{node.lineno}: {name}: returns a value but is "
+                        f"annotated '-> Any'; use a concrete return type"
+                    )
+                else:
+                    problems.append(
+                        f"{rel}:{node.lineno}: {name}: is annotated '-> Any' "
+                        f"but never returns a value; annotate '-> None'"
+                    )
 
     if problems:
-        print(
-            f"FAIL: {len(problems)} function(s) with return value(s) lack a return annotation"
-        )
-        for p in problems:
-            print(f"  {p}")
+        print(f"FAIL: {len(problems)} function(s) have imprecise return annotations")
+        for problem in problems:
+            print(f"  {problem}")
         return 1
     print(
-        f"OK: all documented public functions with return values are annotated ({scanned} checked)"
+        f"OK: all checked functions have precise return annotations ({checked} checked)"
     )
     return 0
 

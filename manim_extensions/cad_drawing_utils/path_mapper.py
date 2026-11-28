@@ -501,7 +501,6 @@ class DashedLineMobject(VDict):
 
     .. doc-example-covers: generate_dash_mobjects
 
-
     Parameters
     ----------
     target_mobject

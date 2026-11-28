@@ -597,7 +597,6 @@ class AbstractLayoutAnimation(AnimationGroup):
 
     .. doc-example-covers: collect_animations
 
-
     Parameters
     ----------
         scene
@@ -759,7 +758,6 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
     .. doc-example-covers: collect_animations
 
-
     Parameters
     ----------
     scene
@@ -852,7 +850,6 @@ class RemoveNode(LayoutAnimation):
     r"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
     .. doc-example-covers: collect_animations
-
 
     Parameters
     ----------
@@ -959,7 +956,6 @@ class InsertNode(LayoutAnimation):
     r"""Insert one or more child nodes into the mind map.
 
     .. doc-example-covers: collect_animations
-
 
     Parameters
     ----------

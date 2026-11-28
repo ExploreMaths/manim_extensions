@@ -239,7 +239,6 @@ class CodeBlock(VGroup):
 
     .. doc-example-covers: uncreate
 
-
     Parameters
     ----------
     text
@@ -384,12 +383,17 @@ class CodeBlock(VGroup):
         self.code_background = background_rect
 
     def create(self, **kwargs: Any) -> tuple[Any, ...]:
-        r"""Return a tuple of animations for creating the code block. Use such as:\n
-        ```
-        python = CodeBlock('print("Hello World!")', language = Python)
-        self.play(*python.create())
-        ```
-        By default the animation will :class:`~manim.animation.fading.FadeIn` the `background` and `title_background`, and :class:`~manim.animation.creation.AddTextLetterByLetter` the `code` and `title`.
+        """Return a tuple of animations for creating the code block.
+
+        Use the returned animations with :meth:`~manim.scene.scene.Scene.play`:
+
+        .. code-block:: python
+
+            python = CodeBlock('print("Hello World!")', language=Python)
+            self.play(*python.create())
+
+        By default the animation fades in the background and title background, and
+        writes the code and title letter by letter.
 
         Parameters
         ----------
@@ -416,11 +420,11 @@ class CodeBlock(VGroup):
 
     def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
         """Return a tuple of animations for uncreating the code block. Use such as:
-        ```
-        python = CodeBlock('print("Hello World!")', language = Python)
-        self.play(*python.uncreate())
-        ```
-        By default the animation will :class:`~manim.animation.fading.FadeOut` the `background` and `title_background`, and :class:`~manim.animation.creation.Uncreate` the `code` and `title`.
+                ```
+                python = CodeBlock('print("Hello World!")', language = Python)
+                self.play(*python.uncreate())
+                ```
+                By default the animation will :class:`~manim.animation.fading.FadeOut` the `background` and `title_background`, and :class:`~manim.animation.creation.Uncreate` the `code` and `title`.
 
         Parameters
         ----------

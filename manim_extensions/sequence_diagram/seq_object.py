@@ -15,7 +15,6 @@ class SeqObject(VGroup):
 
     .. doc-example-covers: create_obj_label
 
-
     Parameters
     ----------
         name

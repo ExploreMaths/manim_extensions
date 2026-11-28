@@ -170,7 +170,6 @@ class NamedFormula(VGroup):
 
     .. doc-example-covers: make_name
 
-
     Parameters
     ----------
     metal_name

@@ -30,7 +30,6 @@ class ImageLayer(NeuralNetworkLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     numpy_image
@@ -102,7 +101,7 @@ class ImageLayer(NeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Construct layer method.
 
         Parameters
@@ -113,11 +112,6 @@ class ImageLayer(NeuralNetworkLayer):
             Output layer.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
@@ -212,7 +206,7 @@ class ImageLayer(NeuralNetworkLayer):
         """
         return cast(Point3D, self.image_mobject.get_right())
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(self, scale_factor: float, **kwargs: Any) -> "ImageLayer":
         """Scales the image mobject.
 
         Parameters
@@ -223,12 +217,12 @@ class ImageLayer(NeuralNetworkLayer):
             Forwarded to
             :meth:`~manim.mobject.mobject.Mobject.scale`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         self.image_mobject.scale(scale_factor)
+        return self
 
     @property  # type: ignore[misc]
     def width(self) -> float:

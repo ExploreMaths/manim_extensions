@@ -72,18 +72,13 @@ class TreeNode:
         self.children: list[TreeNode] = []
         self.parent: TreeNode | None = None
 
-    def add_child(self, child: "TreeNode") -> Any:
+    def add_child(self, child: "TreeNode") -> None:
         """Add a child node and establish the parent-child relationship.
 
         Parameters
         ----------
         child
             The child node to add.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.children.append(child)
         child.parent = self
@@ -133,7 +128,7 @@ def split_integer(n: int) -> tuple[int, int]:
     return k, k
 
 
-def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
+def sync_copy_bfs(src: TreeNode, dst: object) -> None:
     """Synchronously traverse two trees and copy data from src to dst.
 
     Parameters
@@ -142,11 +137,6 @@ def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
         Source tree (data provider).
     dst
         Destination tree (data receiver).
-
-
-    Returns
-    -------
-        The resulting value.
 
     Raises
     ------
@@ -260,13 +250,8 @@ class StandardLayout(Layout):
             case _:
                 assert_never(direction)
 
-    def _split(self) -> Any:
-        """Split the root's children into left/right (or top/bottom) parts.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _split(self) -> None:
+        """Split the root's children into left/right (or top/bottom) parts."""
         self.left = TreeNode(cast(Any, self.root).height, cast(Any, self.root).width)
         if (number := len(cast(Any, self.root).children)) > 0:
             m, n = split_integer(number)
@@ -315,7 +300,7 @@ class StandardLayout(Layout):
         sync_copy_bfs(self.left, self.root)
         return self.root
 
-    def _offset(self, node: TreeNode, x: float, y: float) -> Any:
+    def _offset(self, node: TreeNode, x: float, y: float) -> None:
         """Translate a subtree by *(x, y)* and mark it as flipped.
 
         Parameters
@@ -326,11 +311,6 @@ class StandardLayout(Layout):
             Horizontal offset.
         y
             Vertical offset.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         node.x += x
         node.y += y
@@ -338,12 +318,7 @@ class StandardLayout(Layout):
         for child in node.children:
             self._offset(child, x, y)
 
-    def _merge(self) -> Any:
-        """Merge the right (or bottom) subtree into the left tree.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _merge(self) -> None:
+        """Merge the right (or bottom) subtree into the left tree."""
         for child in cast(Any, self.right).children:
             self.left.add_child(child)

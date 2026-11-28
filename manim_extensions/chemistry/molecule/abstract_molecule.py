@@ -24,7 +24,6 @@ class AbstractMolecule:
 
     .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
 
-
     Parameters
     ----------
     args
@@ -83,7 +82,6 @@ class AbstractMolecule:
         **kwargs: Any,
     ) -> "AbstractMolecule":
         """Reads a string and returns a single molecule from the parsed data.
-
 
         Parameters
         ----------
@@ -179,7 +177,6 @@ class AbstractMolecule:
         **kwargs: Any,
     ) -> "AbstractMolecule":
         """Reads a string and returns a single molecule from the parsed data.
-
 
         Parameters
         ----------
@@ -368,7 +365,6 @@ class AbstractMolecule:
         Returns
         -------
             The object itself, for method chaining.
-
 
         Examples
         ----------

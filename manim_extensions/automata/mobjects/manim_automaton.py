@@ -170,24 +170,19 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         if self.states:
             self.center()
 
-    def add_manim_state(self, manim_state: ManimState) -> Any:
+    def add_manim_state(self, manim_state: ManimState) -> None:
         """Add an existing :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` mobject to the automaton's VGroup.
 
         Parameters
         ----------
         manim_state
             The state mobject to add.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # maybe need validation
         # adds an already existing manim_state to automaton
         self.add(manim_state)
 
-    def construct_state(self, state: dict[str, Any], scaling: float = 10) -> Any:
+    def construct_state(self, state: dict[str, Any], scaling: float = 10) -> None:
         """Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.
 
         Parameters
@@ -197,11 +192,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             and optional ``"initial"``/``"final"`` flags.
         scaling
             Coordinate scaling factor.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         initial = False
         final = False
@@ -229,18 +219,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             )
         )
 
-    def construct_states(self, states: list[dict[str, Any]]) -> Any:
+    def construct_states(self, states: list[dict[str, Any]]) -> None:
         """Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.
 
         Parameters
         ----------
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for state in states:
             if "initial" in state.keys():
@@ -275,18 +260,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             for state_obj in self.states:
                 cast(Any, state_obj).scale(size_factor)
 
-    def construct_transitions(self, transitions: list[dict[str, Any]]) -> Any:
+    def construct_transitions(self, transitions: list[dict[str, Any]]) -> None:
         """Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.
 
         Parameters
         ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[str]] = {}
@@ -327,7 +307,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_from: ManimState,
         transition_to: ManimState,
         read_symbols: list[str],
-    ) -> Any:
+    ) -> None:
         """Create a single :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` between two states and register it.
 
         Parameters
@@ -338,11 +318,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             The destination state of the transition.
         read_symbols
             The symbols that trigger this transition.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         new_transition = ManimTransition(
             transition_from,
@@ -369,13 +344,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         """
         return ManimAutomataInput(input_string, animation_style=self.animation_style)
 
-    def set_default_position_of_input_string(self) -> Any:
-        """Position the input string mobject centered above the automaton.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def set_default_position_of_input_string(self) -> None:
+        """Position the input string mobject centered above the automaton."""
         # get centre of self
         c1 = self.get_x()
         c2 = self.get_y()
@@ -605,13 +575,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         return options
 
-    def export_recorded_path_to_file(self) -> Any:
-        """Save the recorded NDA path as JSON to recorded_path.txt.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def export_recorded_path_to_file(self) -> None:
+        """Save the recorded NDA path as JSON to recorded_path.txt."""
         with open("recorded_path.txt", "w") as fp:
             json.dump(self.recorded_path, fp)
 

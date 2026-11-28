@@ -75,7 +75,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     def edge_flip(
         self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Flip the shared edge between two adjacent triangle faces.
 
         The edge connecting the two non-shared vertices of the original
@@ -92,11 +92,6 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             Index of the second triangle face (must share an edge with the first).
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------

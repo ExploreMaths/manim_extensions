@@ -1099,7 +1099,7 @@ class VideoMobject(ImageMobject):
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
-    def _video_updater(self, mob: "VideoMobject", dt: float) -> Any:
+    def _video_updater(self, mob: "VideoMobject", dt: float) -> None:
         """Internal updater that advances the video frame on each render step.
 
         Parameters
@@ -1108,11 +1108,6 @@ class VideoMobject(ImageMobject):
             The mobject this updater is attached to.
         dt
             Elapsed time (in seconds) since the last frame.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         cv2 = require("video", "cv2")
 
@@ -1265,13 +1260,8 @@ class VideoMobject(ImageMobject):
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         return self
 
-    def __del__(self) -> Any:
-        """Release the OpenCV capture on garbage collection.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def __del__(self) -> None:
+        """Release the OpenCV capture on garbage collection."""
         if hasattr(self, "_cap") and self._cap is not None and self._cap.isOpened():
             self._cap.release()
 
@@ -1447,18 +1437,13 @@ class Trail(VGroup):
         self.add(self.trail)
         self.pos_old = self[0].get_center()
 
-    def get_path_xyz(self, err: float = 1e-4) -> Any:
+    def get_path_xyz(self, err: float = 1e-4) -> None:
         """Record the latest centre position if the mobject has moved.
 
         Parameters
         ----------
         err
             Minimum displacement required to record a new point.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         pos_new = self[0].get_center()
         pos_old = self.pos_old
@@ -1492,7 +1477,7 @@ class Trail(VGroup):
             )
         return path
 
-    def update_path(self, trail: VGroup) -> Any:
+    def update_path(self, trail: VGroup) -> None:
         """Updater: replace ``trail`` by the freshly created path.
 
         Parameters
@@ -1500,11 +1485,6 @@ class Trail(VGroup):
         trail
             The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance
             with a custom shape).
-
-
-        Returns
-        -------
-                The resulting value.
         """
         trail.become(self.create_path())
 
@@ -1698,13 +1678,8 @@ class ObjectBorder(VGroup):
         if track:
             self.add_updater(lambda m: self._rebuild())
 
-    def _rebuild(self) -> Any:
-        """Recreate the border and corner markers around the current position of ``obj``.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _rebuild(self) -> None:
+        """Recreate the border and corner markers around the current position of ``obj``."""
         border = Rectangle(
             width=self.obj.width + 2 * self.buff,
             height=self.obj.height + 2 * self.buff,

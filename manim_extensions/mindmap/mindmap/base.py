@@ -170,7 +170,6 @@ class AbstractMap(Group):
 
     .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap
 
-
     Parameters
     ----------
     layout_method
@@ -215,18 +214,13 @@ class AbstractMap(Group):
         self.add(*self.get_all_mindmap())
         self.move_to(ORIGIN)
 
-    def _set_node_position(self, node: Node) -> Any:
+    def _set_node_position(self, node: Node) -> None:
         """Recursively position a node and all its descendants.
 
         Parameters
         ----------
         node
             The root of the subtree to position.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         pos = np.array([node.x, node.y, 0])
         cast(Any, node.vmobject).move_to(pos)
@@ -234,13 +228,8 @@ class AbstractMap(Group):
         for child in node.children:
             self._set_node_position(child)
 
-    def _set_connectors(self) -> Any:
+    def _set_connectors(self) -> None:
         """Set connection lines.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------

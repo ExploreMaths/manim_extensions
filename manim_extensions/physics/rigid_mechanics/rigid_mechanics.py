@@ -26,6 +26,7 @@ the specific functions of the space.
 """
 
 from __future__ import annotations
+from types import ModuleType
 from typing import Any, Protocol, TYPE_CHECKING, cast
 
 import numpy as np
@@ -64,7 +65,7 @@ __all__ = [
 ]
 
 
-def _load_pymunk() -> Any:
+def _load_pymunk() -> ModuleType:
     """Import pymunk lazily, as it belongs to the ``physics`` extra.
 
     Returns
@@ -232,17 +233,12 @@ class SpaceScene(Scene):
         self.space = Space(gravity=self.GRAVITY)
         super().__init__(renderer=renderer, **kwargs)
 
-    def setup(self) -> Any:
-        """Add the physics space to the scene and advance it every frame.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def setup(self) -> None:
+        """Add the physics space to the scene and advance it every frame."""
         self.add(self.space)
         self.space.add_updater(_step)
 
-    def add_body(self, body: Mobject) -> Any:
+    def add_body(self, body: Mobject) -> None:
         """Register a pymunk body's shape in the physics space.
 
         Parameters
@@ -250,11 +246,6 @@ class SpaceScene(Scene):
         body
             A mobject whose ``body`` and ``shape`` attributes are pymunk
             objects to be added to the simulation space.
-
-
-        Returns
-        -------
-            The resulting value.
         """
         if body.body != self.space.space.static_body:
             self.space.space.add(body.body)
@@ -266,7 +257,7 @@ class SpaceScene(Scene):
         elasticity: float = 0.8,
         density: float = 1,
         friction: float = 0.8,
-    ) -> Any:
+    ) -> None:
         """Make any mobject movable by gravity.
         Equivalent to :class:`~manim.scene.scene.Scene`'s ``add`` function.
 
@@ -281,11 +272,6 @@ class SpaceScene(Scene):
         friction
             Friction of the mobjects in regards to
             interacting with other rigid and static objects.
-
-
-        Returns
-        -------
-            The resulting value.
         """
         pymunk = require("physics", "pymunk")
         for mob in mobs:
@@ -312,7 +298,7 @@ class SpaceScene(Scene):
 
     def make_static_body(
         self, *mobs: Mobject, elasticity: float = 1, friction: float = 0.8
-    ) -> Any:
+    ) -> None:
         """Make any mobject interactable by rigid objects.
 
         Parameters
@@ -324,11 +310,6 @@ class SpaceScene(Scene):
         friction
             Friction of the mobjects in regards to
             interacting with rigid objects.
-
-
-        Returns
-        -------
-            The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, (VGroup, Group)):
@@ -340,18 +321,13 @@ class SpaceScene(Scene):
             cast(Any, mob.shape).friction = friction
             self.add_body(mob)
 
-    def stop_rigidity(self, *mobs: Mobject) -> Any:
+    def stop_rigidity(self, *mobs: Mobject) -> None:
         """Stop the mobjects rigidity.
 
         Parameters
         ----------
         mobs
             Mobs processed by this operation.
-
-
-        Returns
-        -------
-            The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, (VGroup, Group)):
@@ -360,7 +336,7 @@ class SpaceScene(Scene):
                 cast(Any, mob.body).sleep()
 
 
-def _step(space: Mobject, dt: float = 1 / 60) -> Any:
+def _step(space: Mobject, dt: float = 1 / 60) -> None:
     """Advance the pymont simulation by one time step.
 
     Parameters
@@ -369,27 +345,17 @@ def _step(space: Mobject, dt: float = 1 / 60) -> Any:
         The physics space containing the simulation.
     dt
         Time step size in seconds.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     cast(Any, space).space.step(dt)
 
 
-def _simulate(b: Mobject) -> Any:
+def _simulate(b: Mobject) -> None:
     """Read the current state of a pymont body and update the Manim mobject.
 
     Parameters
     ----------
     b
         The physics body whose state is synchronised to its mobject.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     x, y = cast(Any, b.body).position
     b.move_to(x * RIGHT + y * UP)
@@ -397,18 +363,13 @@ def _simulate(b: Mobject) -> Any:
     cast(Any, b).angle = cast(Any, b.body).angle
 
 
-def get_shape(mob: VMobject) -> Any:
+def get_shape(mob: VMobject) -> None:
     """Obtains the shape of the body from the mobject.
 
     Parameters
     ----------
     mob
         The mobject to manipulate.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
@@ -431,7 +392,7 @@ def get_shape(mob: VMobject) -> Any:
         cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
 
 
-def get_angle(mob: VMobject) -> Any:
+def get_angle(mob: VMobject) -> None:
     """Obtains the angle of the body from the mobject.
     Used internally for updaters.
 
@@ -439,11 +400,6 @@ def get_angle(mob: VMobject) -> Any:
     ----------
     mob
         The mobject to manipulate.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]

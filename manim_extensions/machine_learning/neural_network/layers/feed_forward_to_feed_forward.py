@@ -39,7 +39,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     .. doc-example-covers: construct_edges, make_forward_pass_animation, modify_edge_stroke_widths
 
-
     Parameters
     ----------
     input_layer
@@ -111,7 +110,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the fully-connected edges between input and output layers.
 
         Parameters
@@ -122,11 +121,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.edges = self.construct_edges()
         self.add(self.edges)
@@ -235,7 +229,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         colors: list[ManimColor] | None = None,
         magnitudes: VectorND | None = None,
         color_scheme: str = "inferno",
-    ) -> Any:
+    ) -> None:
         """Changes the colors of edges.
 
         Either explicit per-edge colors or magnitudes mapped through a
@@ -250,11 +244,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             to colors through ``color_scheme``.
         color_scheme
             Name of the color scheme used when mapping magnitudes to colors.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------

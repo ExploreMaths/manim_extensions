@@ -77,7 +77,6 @@ class EconDiagram(VGroup):
 
     .. doc-example-covers: add_vertical_line, get_shift_animation, mark_equilibrium
 
-
     Parameters
     ----------
     x_label
@@ -173,7 +172,6 @@ class EconDiagram(VGroup):
             Color of the curve.
         label_text
             If given, text label placed next to the curve's end.
-
 
         Returns
         -------

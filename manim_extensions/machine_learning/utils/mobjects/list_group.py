@@ -5,7 +5,6 @@
 """List group utility for neural network visualization."""
 
 from collections.abc import Iterator
-from typing import Any
 
 from manim import Mobject
 
@@ -13,8 +12,7 @@ from manim import Mobject
 class ListGroup(Mobject):
     """Indexable Group with traditional list operations.
 
-    .. doc-example-covers: get, remove, remove_at_index, remove_at_indices
-
+    .. doc-example-covers: get, insert, remove, remove_at_index, remove_at_indices
 
     Parameters
     ----------
@@ -60,7 +58,7 @@ class ListGroup(Mobject):
 
     def insert(  # intentionally returns None instead of the group
         self, index: int, item: Mobject
-    ) -> Any:
+    ) -> "ListGroup":
         """Inserts item at index.
 
         Parameters
@@ -70,13 +68,13 @@ class ListGroup(Mobject):
         item
             Item to insert into the group.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         self.items.insert(index, item)
         self.submobjects = self.items
+        return self
 
     def remove_at_index(self, index: int) -> Mobject:
         """Removes item at index.
@@ -157,25 +155,20 @@ class ListGroup(Mobject):
 
     def add(  # type: ignore[override]
         self, item: Mobject
-    ) -> Any:  # intentionally shadows Mobject.add with list semantics
+    ) -> None:  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
         Parameters
         ----------
         item
             Item to append to the end of the group.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.items.append(item)
         self.submobjects = self.items
 
     def replace(  # type: ignore[override]
         self, index: int, item: Mobject
-    ) -> Any:  # intentionally shadows Mobject.replace with list semantics
+    ) -> None:  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
         Parameters
@@ -184,11 +177,6 @@ class ListGroup(Mobject):
             Index of the item to replace.
         item
             Item to store at the given index.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.items[index] = item
         self.submobjects = self.items
@@ -221,7 +209,7 @@ class ListGroup(Mobject):
 
     def set_z_index(  # type: ignore[override]  # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
-    ) -> Any:
+    ) -> None:
         """Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.
 
         Parameters
@@ -230,11 +218,6 @@ class ListGroup(Mobject):
             Z-index to apply to all items in the group.
         family
             Whether to also set the z-index of submobjects.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for item in self.items:
             item.set_z_index(z_index_value, family=True)

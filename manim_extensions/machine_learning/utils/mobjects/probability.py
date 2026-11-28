@@ -19,7 +19,6 @@ class GaussianDistribution(VGroup):
 
     .. doc-example-covers: construct_gaussian_distribution, construct_simple_gaussian_ellipse
 
-
     Parameters
     ----------
     axes
@@ -97,7 +96,7 @@ class GaussianDistribution(VGroup):
         else:
             raise Exception(f"Uncrecognized distribution theme: {self.dist_theme}")
 
-    """  
+    """
     @override_animation(Create)
     def _create_gaussian_distribution(self):
         return Create(self)

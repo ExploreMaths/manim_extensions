@@ -20,7 +20,6 @@ class MAtomObject(VGroup):
 
     .. doc-example-covers: add_atom
 
-
     Parameters
     ----------
     coords
@@ -261,17 +260,12 @@ class MAtomObject(VGroup):
 
         return self.make_copy()
 
-    def set_atom_color(self, color: ManimColor) -> Any:
+    def set_atom_color(self, color: ManimColor) -> None:
         """TODO: Add the color depending on cpk convention
 
         Parameters
         ----------
         color
             New color of the atom.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         pass

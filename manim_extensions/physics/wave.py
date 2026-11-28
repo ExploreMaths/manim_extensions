@@ -120,7 +120,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         return z
 
-    def _update_wave(self, mob: Mobject, dt: float) -> Any:
+    def _update_wave(self, mob: Mobject, dt: float) -> None:
         """Advance the wave simulation by ``dt`` seconds and refresh the surface.
 
         Parameters
@@ -129,11 +129,6 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             The surface mobject being updated.
         dt
             The time step since the last update.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.time += dt
         mob.match_points(
@@ -145,22 +140,12 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         )
 
-    def start_wave(self) -> Any:
-        """Animate the wave propagation.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def start_wave(self) -> None:
+        """Animate the wave propagation."""
         self.add_updater(self._update_wave)
 
-    def stop_wave(self) -> Any:
-        """Stop animating the wave propagation.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def stop_wave(self) -> None:
+        """Stop animating the wave propagation."""
         self.remove_updater(self._update_wave)
 
 
@@ -300,7 +285,7 @@ class StandingWave(ParametricFunction):
         )
         self.shift((-self.length / 2, 0, 0))
 
-    def _update_wave(self, mob: Mobject, dt: float) -> Any:
+    def _update_wave(self, mob: Mobject, dt: float) -> None:
         """Advance the standing-wave simulation and refresh the curve.
 
         Parameters
@@ -309,11 +294,6 @@ class StandingWave(ParametricFunction):
             The parametric curve object being updated.
         dt
             The time step since the last update.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.time += dt
         mob.become(
@@ -332,21 +312,11 @@ class StandingWave(ParametricFunction):
             ).shift(self.wave_center + (-self.length / 2, 0, 0))
         )
 
-    def start_wave(self) -> Any:
-        """Begin the standing-wave animation and store its current center.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def start_wave(self) -> None:
+        """Begin the standing-wave animation and store its current center."""
         self.wave_center = self.get_center()
         self.add_updater(self._update_wave)
 
-    def stop_wave(self) -> Any:
-        """Stop the standing-wave animation.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def stop_wave(self) -> None:
+        """Stop the standing-wave animation."""
         self.remove_updater(self._update_wave)

@@ -26,7 +26,6 @@ class GriddedRectangle(VGroup):
 
     .. doc-example-covers: make_grid_lines
 
-
     Parameters
     ----------
     color
@@ -258,18 +257,13 @@ class GriddedRectangle(VGroup):
 
     def set_color(  # type: ignore[override]  # intentionally returns None instead of the group
         self, color: ManimColor
-    ) -> Any:
+    ) -> None:
         """Sets the color of the gridded rectangle.
 
         Parameters
         ----------
         color
             Color to apply to the rectangle border and fill.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.color = color
         self.rectangle.set_color(color)

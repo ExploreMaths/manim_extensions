@@ -555,7 +555,7 @@ class SolowDiagram(EconDiagram):
 
         container = cast(VGroup, self._shares_group)
 
-        def updater(mob: Mobject, alpha: float) -> Any:
+        def updater(mob: Mobject, alpha: float) -> None:
             """Rebuilds the consumption/investment shares mobject at capital level k."""
             k = k_start + (k_end - k_start) * alpha
             new = self._build_shares(k, c_color, i_color)

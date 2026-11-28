@@ -254,7 +254,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             self.input_layer.image_mobject, self.output_layer.feature_maps[0]
         )
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(
+        self, scale_factor: float, **kwargs: Any
+    ) -> "ImageToConvolutional2DLayer":
         """Scale the layer by forwarding to the parent class.
 
         Parameters
@@ -264,12 +266,12 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         super().scale(scale_factor, **kwargs)
+        return self
 
     @override_animation(Create)
     def _create_override(self, **kwargs: Any) -> Animation:

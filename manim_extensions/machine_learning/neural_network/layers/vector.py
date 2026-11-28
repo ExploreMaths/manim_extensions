@@ -20,7 +20,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
     .. doc-example-covers: make_forward_pass_animation, make_vector
 
-
     Parameters
     ----------
     num_values
@@ -77,7 +76,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the vector label and add it to the layer.
 
         Parameters
@@ -88,11 +87,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)
         # Make the vector

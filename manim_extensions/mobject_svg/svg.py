@@ -128,7 +128,7 @@ def _set_cairo_context_color(
     ctx: cairo.Context[Any],
     rgbas: np.ndarray,
     vmobject: VMobject,
-) -> Any:
+) -> None:
     """Set the cairo source to a solid colour or a stroke gradient.
 
     Parameters
@@ -139,11 +139,6 @@ def _set_cairo_context_color(
         One rgba per stroke or fill point.
     vmobject
         The mobject that provides the gradient start and end points.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if len(rgbas) == 1:
         # Use reversed rgb because cairo surface is
@@ -162,7 +157,7 @@ def _set_cairo_context_color(
 
 def _apply_stroke(
     ctx: cairo.Context[Any], vmobject: VMobject, background: bool = False
-) -> Any:
+) -> None:
     """Stroke the current cairo path with the mobject's stroke colour.
 
     Parameters
@@ -173,11 +168,6 @@ def _apply_stroke(
         The mobject whose stroke width and rgbas are applied.
     background
         Stroke with the background stroke instead of the foreground one.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     from manim import config
 
@@ -200,7 +190,7 @@ def _apply_stroke(
     ctx.stroke_preserve()
 
 
-def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> Any:
+def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> None:
     """Fill the current cairo path with the vmobject's fill colours.
 
     Parameters
@@ -209,11 +199,6 @@ def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> Any:
         The cairo context to draw into.
     vmobject
         The vmobject whose fill rgbas are applied.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     _set_cairo_context_color(
         ctx,
@@ -237,7 +222,7 @@ def _temporary_svg_path() -> Path:
 
 def _create_svg_from_vmobject_internal(
     vmobject: VMobject, ctx: cairo.Context[Any]
-) -> Any:
+) -> None:
     """Draw one mobject into the current cairo context.
 
     Parameters
@@ -246,11 +231,6 @@ def _create_svg_from_vmobject_internal(
         The mobject to draw.
     ctx
         The cairo context that receives the drawing.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     # Drop non-finite points before building the path.
     points = vmobject.points

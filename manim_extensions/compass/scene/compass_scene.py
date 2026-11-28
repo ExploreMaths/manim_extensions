@@ -52,7 +52,6 @@ class CompassScene(MovingCameraScene):
 
     .. doc-example-covers: draw_line
 
-
     Examples
     --------
     .. manim:: CompassSceneUsage
@@ -77,20 +76,15 @@ class CompassScene(MovingCameraScene):
                self.wait()
     """
 
-    def setup(self) -> Any:
-        """Arrange the compass, ruler and pencil around the canvas edges.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def setup(self) -> None:
+        """Arrange the compass, ruler and pencil around the canvas edges."""
         self.compass = Compass(span=0.5).to_edge(LEFT)
         self.ruler = Ruler().to_edge(DOWN)
         self.pencil = Pencil().to_corner(UR)
 
     def compass_move_niddle_tip_to(
         self, pos: Point3D = ORIGIN, run_time: float = 1
-    ) -> Any:
+    ) -> None:
         """Move the compass needle tip to a target position.
 
         Parameters
@@ -99,11 +93,6 @@ class CompassScene(MovingCameraScene):
             Target position for the needle tip.
         run_time
             Duration of the animation.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.play(
             self.compass.animate.move_niddle_tip_to(pos),
@@ -117,7 +106,7 @@ class CompassScene(MovingCameraScene):
         arc: Arc | None = None,
         added_anims: list[Animation] | None = None,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Rotate the compass about its needle tip.
 
         Parameters
@@ -131,11 +120,6 @@ class CompassScene(MovingCameraScene):
         **kwargs
             Additional keyword arguments forwarded to
             :meth:`~manim.scene.scene.Scene.play()`.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         anims: list[Animation] = [
             Rotate(
@@ -155,7 +139,7 @@ class CompassScene(MovingCameraScene):
             anims.append(Create(angle_or_arc))
         self.play(*anims, **kwargs)
 
-    def compass_split_span(self, span: float = 3, run_time: float = 1) -> Any:
+    def compass_split_span(self, span: float = 3, run_time: float = 1) -> None:
         """Open both compass legs so the distance between tips equals ``span``.
 
         Parameters
@@ -164,17 +148,12 @@ class CompassScene(MovingCameraScene):
             Target distance between the compass tips.
         run_time
             Duration of the opening animation.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.play(
             SplitCompass(self.compass, span=span), run_time=run_time, rate_func=linear
         )
 
-    def split_cmpass_span(self, span: float = 1, run_time: float = 1) -> Any:
+    def split_cmpass_span(self, span: float = 1, run_time: float = 1) -> None:
         """Adjust the pen tip while holding the needle fixed to reach a span.
 
         Parameters
@@ -183,11 +162,6 @@ class CompassScene(MovingCameraScene):
             Desired distance between the compass tips.
         run_time
             Duration of the animation.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         angle = self.compass.get_compass_rotate_angle_with_span(span)
         self.play(
@@ -202,7 +176,7 @@ class CompassScene(MovingCameraScene):
         niddle_pos: Point3D | None = None,
         pen_pos: Point3D | None = None,
         run_time: float = 1.0,
-    ) -> Any:
+    ) -> None:
         """Place the compass at the specified positions: move niddle_tip to niddle_pos and pen_tip to pen_pos.
 
         Parameters
@@ -213,11 +187,6 @@ class CompassScene(MovingCameraScene):
             Target position for the compass pen tip (pen_tip).
         run_time
             Duration of the placement animation in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.play(
             PutCompass(
@@ -285,18 +254,13 @@ class CompassScene(MovingCameraScene):
         )
         return arc
 
-    def flip_compass(self, run_time: float = 1) -> Any:
+    def flip_compass(self, run_time: float = 1) -> None:
         """Flip the compass, swapping the needle and pen tips.
 
         Parameters
         ----------
         run_time
             Duration of the flip animation in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.play(self.compass.animate.reverse_tip(), run_time=run_time)
 
@@ -305,7 +269,7 @@ class CompassScene(MovingCameraScene):
         aside_pos: Point3D = RIGHT,
         span_buff: float = 0.1,
         run_time: float = 1.0,
-    ) -> Any:
+    ) -> None:
         """Put the compass aside.
 
         Parameters
@@ -316,11 +280,6 @@ class CompassScene(MovingCameraScene):
             Distance between the two compass tips when placed aside.
         run_time
             Time required to place the compass.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         r = 0.5 * self.compass.leg_length
         vec = r * DOWN if self.compass.get_compass_rotate_angle_direction() else r * UP
@@ -337,7 +296,7 @@ class CompassScene(MovingCameraScene):
         lag_ratio: float = 0.5,
         run_time: float = 1.0,
         with_pencil: bool = True,
-    ) -> Any:
+    ) -> None:
         """Place the ruler so that one of its edges aligns with start and end.
 
         Parameters
@@ -352,11 +311,6 @@ class CompassScene(MovingCameraScene):
             Time to place the ruler.
         with_pencil
             Whether to place the pencil at the same time.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if with_pencil:
             self.play(
@@ -370,7 +324,7 @@ class CompassScene(MovingCameraScene):
         else:
             self.play(PutRuler(self.ruler, start=start, end=end), run_time=run_time)
 
-    def set_pencil(self, pos: Point3D, run_time: float = 1.0) -> Any:
+    def set_pencil(self, pos: Point3D, run_time: float = 1.0) -> None:
         """Move the pencil nib to the specified position.
 
         Parameters
@@ -379,11 +333,6 @@ class CompassScene(MovingCameraScene):
             Target position for the pencil nib.
         run_time
             Duration of the move animation in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.play(
             self.pencil.animate.move_nid_to(pos),
@@ -433,7 +382,7 @@ class CompassScene(MovingCameraScene):
             self.play(Create(line), run_time=0.5 * run_time)
         return line
 
-    def put_pencil_away(self, pos: Point3D = 3 * DOWN, run_time: float = 1) -> Any:
+    def put_pencil_away(self, pos: Point3D = 3 * DOWN, run_time: float = 1) -> None:
         """Translate the pencil as a whole to the specified position.
 
         Parameters
@@ -442,11 +391,6 @@ class CompassScene(MovingCameraScene):
             Target position for the pencil.
         run_time
             Duration of the translation animation in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         curr_pos = self.pencil.get_center()
         self.play(self.pencil.animate.shift(pos - curr_pos), run_time=run_time)
@@ -456,7 +400,7 @@ class CompassScene(MovingCameraScene):
         aside_pos: Point3D = 3 * DOWN,
         horizontal_or_vertical: bool = True,
         run_time: float = 1.0,
-    ) -> Any:
+    ) -> None:
         """Put the ruler aside at the specified position.
 
         The ruler is first rotated to a horizontal or vertical orientation
@@ -470,11 +414,6 @@ class CompassScene(MovingCameraScene):
             If ``True``, align the ruler horizontally; otherwise vertically.
         run_time
             Total duration of the put-away animation in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         vec_w = self.ruler.get_direction_vector_of_ruler()
         vec = RIGHT if horizontal_or_vertical else DOWN

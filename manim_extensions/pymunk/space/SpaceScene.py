@@ -333,8 +333,8 @@ class SpaceScene(ZoomedScene):
 
     def add_constraints(self, *mobs: VConstraint) -> None:
         """Adds constraint Mobjects to the scene and installs them into the physical space.
-        This method ensures that the constraints (such as springs, joints, or motors)
-        are both visually rendered in Manim and physically simulated in Pymunk.
+                This method ensures that the constraints (such as springs, joints, or motors)
+                are both visually rendered in Manim and physically simulated in Pymunk.
 
         Parameters
         ----------
@@ -348,8 +348,8 @@ class SpaceScene(ZoomedScene):
 
     def active_body(self, *mobs: Mobject) -> None:
         """Activates the physical bodies of the given Mobjects if they are sleeping.
-        In physics simulations, bodies that have come to rest are often put to 'sleep'
-        to save computation. This method forces those bodies back into an active state.
+                In physics simulations, bodies that have come to rest are often put to 'sleep'
+                to save computation. This method forces those bodies back into an active state.
 
         Parameters
         ----------
@@ -367,9 +367,9 @@ class SpaceScene(ZoomedScene):
 
     def sleep_body(self, *mobs: Mobject) -> None:
         """Forces the physical bodies of the given Mobjects into a sleeping state.
-        Sleeping bodies are removed from the physics simulation update loop until
-        they are touched by another active body or manually activated, which
-        helps reduce CPU usage.
+                Sleeping bodies are removed from the physics simulation update loop until
+                they are touched by another active body or manually activated, which
+                helps reduce CPU usage.
 
         Parameters
         ----------
@@ -778,7 +778,6 @@ class SpaceScene(ZoomedScene):
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
 
-
         Returns
         -------
             The velocity vector (vx, vy, 0) at the given point.
@@ -797,7 +796,6 @@ class SpaceScene(ZoomedScene):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-
 
         Returns
         -------

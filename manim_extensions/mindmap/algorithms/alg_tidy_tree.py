@@ -193,7 +193,7 @@ class IYLNode:
     )
 
 
-def move_right(node: object, move: float, is_horizontal: bool) -> Any:
+def move_right(node: object, move: float, is_horizontal: bool) -> None:
     """Move a node and all its descendants by ``move`` in the non-layered direction.
 
     Parameters
@@ -204,11 +204,6 @@ def move_right(node: object, move: float, is_horizontal: bool) -> Any:
         The offset to apply.
     is_horizontal
         If ``True``, shifts ``y``; otherwise shifts ``x``.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if is_horizontal:
         cast(Any, node).y += move
@@ -238,7 +233,7 @@ def get_min(node: object, is_horizontal: bool) -> float:
     return res
 
 
-def normalize(node: Any, is_horizontal: bool) -> Any:
+def normalize(node: Any, is_horizontal: bool) -> None:
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -247,17 +242,12 @@ def normalize(node: Any, is_horizontal: bool) -> Any:
         The subtree root.
     is_horizontal
         Whether the layout is horizontal.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     min_val = get_min(node, is_horizontal)
     move_right(node, -min_val, is_horizontal)
 
 
-def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> Any:
+def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> None:
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
@@ -271,11 +261,6 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> A
         The original node to update.
     is_horizontal
         Whether the layout is horizontal.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if is_horizontal:
         cast(Any, root).y = converted.x
@@ -287,7 +272,7 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> A
             convert_back(child, cast(Any, root).children[i], is_horizontal)
 
 
-def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> Any:
+def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> None:
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -301,11 +286,6 @@ def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> Any:
         The layout direction.
     level_spacing
         Spacing between adjacent layers.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if (parent := cast(Any, node).parent) is not None:
         cast(Any, node).level = cast(Any, parent).level + 1
@@ -420,18 +400,13 @@ class TidyTreeLayout(Layout):
         normalize(self.root, self.is_horizontal)
         return self.root
 
-    def first_walk(self, t: WrappedTree) -> Any:
+    def first_walk(self, t: WrappedTree) -> None:
         """First traversal: compute prelim and mod, detect and eliminate overlaps.
 
         Parameters
         ----------
         t
             The root of the subtree to process.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if t.child_number == 0:
             self.set_extremes(t)
@@ -453,18 +428,13 @@ class TidyTreeLayout(Layout):
         self.position_root(t)
         self.set_extremes(t)
 
-    def set_extremes(self, t: WrappedTree) -> Any:
+    def set_extremes(self, t: WrappedTree) -> None:
         """Set the extreme (leftmost and rightmost) nodes for a subtree.
 
         Parameters
         ----------
         t
             The subtree root.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if t.child_number == 0:
             t.extreme_left = t
@@ -500,7 +470,7 @@ class TidyTreeLayout(Layout):
             ih = ih.nxt
         return IYLNode(low, index, ih)
 
-    def separate(self, t: WrappedTree, i: int, ih: IYLNode | None) -> Any:
+    def separate(self, t: WrappedTree, i: int, ih: IYLNode | None) -> None:
         """Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.
 
         Parameters
@@ -511,11 +481,6 @@ class TidyTreeLayout(Layout):
             Index of the current subtree.
         ih
             Preceding subtrees whose right contour may still collide with the current subtree.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         sr: WrappedTree | None = t.children[
             i - 1
@@ -563,7 +528,7 @@ class TidyTreeLayout(Layout):
         elif sr is not None and cl is None:
             self.set_right_thread(t, i, sr, mssr)
 
-    def move_subtree(self, t: WrappedTree, i: int, si: int, dist: float) -> Any:
+    def move_subtree(self, t: WrappedTree, i: int, si: int, dist: float) -> None:
         """Shift a subtree by adding ``dist`` to its modifier.
 
         Parameters
@@ -576,18 +541,13 @@ class TidyTreeLayout(Layout):
             Index of the leftmost sibling that was moved.
         dist
             The shift distance.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         t.children[i].mod += dist
         t.children[i].mod_sum_extreme_left += dist
         t.children[i].mod_sum_extreme_right += dist
         self.distribute_extra(t, i, si, dist)
 
-    def distribute_extra(self, t: WrappedTree, i: int, si: int, dist: float) -> Any:
+    def distribute_extra(self, t: WrappedTree, i: int, si: int, dist: float) -> None:
         """Distribute extra spacing among siblings after a subtree is moved.
 
         Parameters
@@ -600,11 +560,6 @@ class TidyTreeLayout(Layout):
             Index of the leftmost sibling that was moved.
         dist
             The total extra distance to distribute.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if si != i - 1:
             nr = i - si
@@ -658,7 +613,7 @@ class TidyTreeLayout(Layout):
 
     def set_left_thread(
         self, t: WrappedTree, i: int, cl: WrappedTree, modsumcl: float
-    ) -> Any:
+    ) -> None:
         """Set the left thread for a subtree whose left contour is exhausted.
 
         Parameters
@@ -671,11 +626,6 @@ class TidyTreeLayout(Layout):
             The left-contour node of the current subtree.
         modsumcl
             The accumulated modifier sum along the left contour.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         li = t.children[0].extreme_left
         cast(Any, li).thread_left = cl
@@ -687,7 +637,7 @@ class TidyTreeLayout(Layout):
 
     def set_right_thread(
         self, t: WrappedTree, i: int, sr: WrappedTree, modsumsr: float
-    ) -> Any:
+    ) -> None:
         """Set the right thread for a subtree whose right contour is exhausted.
 
         Parameters
@@ -700,11 +650,6 @@ class TidyTreeLayout(Layout):
             The right-contour node of the current subtree.
         modsumsr
             The accumulated modifier sum along the right contour.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         ri = t.children[i].extreme_right
         cast(Any, ri).thread_right = sr
@@ -714,18 +659,13 @@ class TidyTreeLayout(Layout):
         t.children[i].extreme_right = t.children[i - 1].extreme_right
         t.children[i].mod_sum_extreme_right = t.children[i - 1].mod_sum_extreme_right
 
-    def position_root(self, t: WrappedTree) -> Any:
+    def position_root(self, t: WrappedTree) -> None:
         """Place the root of a subtree halfway between its first and last children.
 
         Parameters
         ----------
         t
             The subtree root.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         t.prelim = (
             t.children[0].prelim
@@ -734,7 +674,7 @@ class TidyTreeLayout(Layout):
             + t.children[-1].prelim
         ) / 2
 
-    def second_walk(self, t: WrappedTree, modsum: float) -> Any:
+    def second_walk(self, t: WrappedTree, modsum: float) -> None:
         """Second traversal: accumulate prelim and mod into final coordinates.
 
         Parameters
@@ -743,11 +683,6 @@ class TidyTreeLayout(Layout):
             The subtree root.
         modsum
             Sum of all ancestor mod values from the root to the current node.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         modsum += t.mod
         if self.is_horizontal:
@@ -759,18 +694,13 @@ class TidyTreeLayout(Layout):
         for child in t.children:
             self.second_walk(child, modsum)
 
-    def add_child_spacing(self, t: WrappedTree) -> Any:
+    def add_child_spacing(self, t: WrappedTree) -> None:
         """Apply accumulated shift and change values to children's mod.
 
         Parameters
         ----------
         t
             The parent node whose children are updated.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         d: float = 0
         modsumdelta: float = 0
@@ -779,25 +709,16 @@ class TidyTreeLayout(Layout):
             modsumdelta += d + child.change
             child.mod += modsumdelta
 
-    def compute_connectors(self) -> Any:
-        """Compute connector paths between each node and its parent in the layout.
+    def compute_connectors(self) -> None:
+        """Compute connector paths between each node and its parent in the layout."""
 
-        Returns
-        -------
-            The resulting value.
-        """
-
-        def compute_node(node: object) -> Any:
+        def compute_node(node: object) -> None:
             """Compute the connector path from a node to its parent.
 
             Parameters
             ----------
             node
                 The child node.
-
-            Returns
-            -------
-                The connector line/curve.
             """
             parent = cast(Any, node).parent
             match self.direction:

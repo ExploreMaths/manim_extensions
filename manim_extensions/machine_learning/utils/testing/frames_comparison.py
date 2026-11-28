@@ -69,7 +69,9 @@ def frames_comparison(
         The pytest wrapper around the test function.
     """
 
-    def decorator_maker(tested_scene_construct: Callable[..., Any]) -> Any:
+    def decorator_maker(
+        tested_scene_construct: Callable[..., Any],
+    ) -> Callable[..., None]:
         """Validate the test signature and build the pytest wrapper."""
         if (
             SCENE_PARAMETER_NAME
@@ -95,7 +97,7 @@ def frames_comparison(
         # The "request" parameter is meant to be used as a fixture by pytest. See below.
         def wrapper(
             *args: Any, request: FixtureRequest, tmp_path: str, **kwargs: Any
-        ) -> Any:
+        ) -> None:
             """Run the wrapped test with pytest fixtures and parametrization."""
             # Wraps the test_function to a construct method, to "freeze" the eventual additional arguments (parametrizations fixtures).
             construct = functools.partial(tested_scene_construct, *args, **kwargs)
@@ -165,7 +167,7 @@ def frames_comparison(
     # Case where the decorator is called with and without parentheses.
     # If func is None, callabl(None) returns False
     if callable(func):
-        return cast(Callable[..., None], decorator_maker(func))
+        return decorator_maker(func)
     return cast(Callable[..., None], decorator_maker)
 
 
@@ -219,7 +221,7 @@ def _make_test_comparing_frames(
     )
     testRenderer = _make_test_renderer_class(renderer_class)
 
-    def real_test() -> Any:
+    def real_test() -> None:
         """Render the test scene and compare its frames."""
         with frames_tester.testing():
             sceneTested = _make_test_scene_class(

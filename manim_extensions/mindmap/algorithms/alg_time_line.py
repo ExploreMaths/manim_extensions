@@ -128,7 +128,7 @@ def walk(
     is_root: bool = False,
     layer_index: int = 0,
     index: int = 0,
-) -> Any:
+) -> None:
     """Tree traversal utility.
 
     Supports pre-order (before_callback) and post-order (after_callback) callbacks.
@@ -153,11 +153,6 @@ def walk(
         The depth of the current node (root is 0).
     index
         The index of ``node`` within its parent's children list.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     # Pre-order callback
     if before_callback:
@@ -265,13 +260,8 @@ class TimeLineLayout(Layout):
         return self.root.node
 
     # ==================== Stage 1: base-value computation ====================
-    def _compute_base(self) -> Any:
-        """Pre-order traversal: create nodes, set root position, compute second-level top values.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _compute_base(self) -> None:
+        """Pre-order traversal: create nodes, set root position, compute second-level top values."""
 
         def before_callback(
             node: TimelineNode,
@@ -321,13 +311,8 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, None, True, 0)
 
     # ==================== Stage 2: precise coordinate computation ====================
-    def _compute_coords(self) -> Any:
-        """Pre-order traversal: compute node left (x) and top (y).
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _compute_coords(self) -> None:
+        """Pre-order traversal: compute node left (x) and top (y)."""
 
         def before_callback(
             node: TimelineNode,
@@ -375,13 +360,8 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, None, True, 0)
 
     # ==================== Stage 3: collision adjustment ====================
-    def _adjust(self) -> Any:
-        """Pre-order + post-order traversal: adjust node left and top.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _adjust(self) -> None:
+        """Pre-order + post-order traversal: adjust node left and top."""
 
         def before_callback(
             node: TimelineNode,
@@ -423,7 +403,7 @@ class TimeLineLayout(Layout):
             is_root: bool,
             layer_index: int,
             index: int,
-        ) -> Any:
+        ) -> None:
             # Special handling: mirror-flip upward-growing branches
             """_adjust after_callback helper.
 
@@ -456,7 +436,7 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, after_callback, True, 0)
 
     # ==================== Core collision-adjustment algorithms ====================
-    def _update_brothers_left(self, node: TimelineNode) -> Any:
+    def _update_brothers_left(self, node: TimelineNode) -> None:
         """Adjust siblings' left (x coordinate).
 
         Logic: traverse the root's children (second-level nodes). If a node's
@@ -467,11 +447,6 @@ class TimeLineLayout(Layout):
         ----------
         node
             The root node whose children are examined.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         children_list = node.children
         total_add_width = 0.0
@@ -487,7 +462,7 @@ class TimeLineLayout(Layout):
             if difference > 0:
                 total_add_width += difference
 
-    def _update_brothers_top(self, node: TimelineNode, add_height: float) -> Any:
+    def _update_brothers_top(self, node: TimelineNode, add_height: float) -> None:
         """Adjust siblings' top (y coordinate).
 
         Logic: the current node's subtree is tall, so following siblings in the
@@ -500,11 +475,6 @@ class TimeLineLayout(Layout):
             The node whose siblings need to be shifted.
         add_height
             The vertical offset to apply to younger siblings.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if node._parent and not node._parent._is_root:
             children_list = node._parent.children
@@ -558,7 +528,7 @@ class TimeLineLayout(Layout):
         """
         total_height = 0.0
 
-        def loop(n: TimelineNode) -> Any:
+        def loop(n: TimelineNode) -> None:
             """Recursively accumulate the total height of a subtree.
 
             Parameters
@@ -634,7 +604,7 @@ class TimeLineLayout(Layout):
 
     def _update_children(
         self, children: list[TimelineNode], prop: str, offset: float
-    ) -> Any:
+    ) -> None:
         """Recursively shift a property on each child in a list.
 
         Parameters
@@ -645,11 +615,6 @@ class TimeLineLayout(Layout):
             The attribute name to modify (e.g. ``"x"`` or ``"y"``).
         offset
             The offset to add to the current value.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for item in children:
             current = getattr(item, prop)
@@ -658,7 +623,7 @@ class TimeLineLayout(Layout):
                 self._update_children(item.children, prop, offset)
 
     # ==================== Coordinate write-back ====================
-    def _apply_coords(self, node: TimelineNode) -> Any:
+    def _apply_coords(self, node: TimelineNode) -> None:
         """Write computed layout coordinates back to the original node tree.
 
         Sets ``x``, ``y``, ``side``, and ``level`` on the wrapped
@@ -668,11 +633,6 @@ class TimeLineLayout(Layout):
         ----------
         node
             The root of the (sub)tree whose coordinates should be applied.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if node.node:
             cast(Any, node.node).x = cast(Any, node).x + node.width / 2

@@ -132,13 +132,8 @@ class ThreeDCylinder(OpenGLSurface):
         r = self.radius
         return np.array([r * np.cos(phi), r * np.sin(phi), height])
 
-    def add_bases(self) -> Any:
-        """Adds the end caps of the cylinder.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def add_bases(self) -> None:
+        """Adds the end caps of the cylinder."""
         if config.renderer == RendererType.OPENGL:
             color = cast(Any, self.color)
             opacity = self.opacity
@@ -163,13 +158,8 @@ class ThreeDCylinder(OpenGLSurface):
         )
         self.base_bottom.shift(self.u_range[0] * IN)
 
-    def _rotate_to_direction(self) -> Any:
-        """Orient the bond along its target direction.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _rotate_to_direction(self) -> None:
+        """Orient the bond along its target direction."""
         x, y, z = self.direction
 
         phi: float = 0
@@ -203,18 +193,13 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_theta = theta
         self._current_phi = phi
 
-    def set_direction(self, direction: Vector3D) -> Any:
+    def set_direction(self, direction: Vector3D) -> None:
         """Align the cylinder to point along the given direction vector.
 
         Parameters
         ----------
         direction
             Direction the cylinder is aligned to.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.direction = direction
         self._rotate_to_direction()
@@ -293,7 +278,7 @@ class ThreeDLine(ThreeDCylinder):
 
     def set_start_and_end_attrs(
         self, start: Point3D, end: Point3D, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Sets the start and end points of the line.
 
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
@@ -308,11 +293,6 @@ class ThreeDLine(ThreeDCylinder):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -492,7 +472,6 @@ class ThreeDBond(OpenGLGroup):
     Uses an origin atom and a target atom to be drawn.
 
     .. doc-example-covers: add_double_bond, add_single_bond, add_triple_bond
-
 
     Parameters
     ----------

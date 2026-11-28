@@ -83,26 +83,21 @@ class Ray(Line):
         if propagate:
             self.propagate(*propagate)
 
-    def propagate(self, *lenses: Lens) -> Any:
+    def propagate(self, *lenses: Lens) -> None:
         """Let the ray propagate through the list
-        of lenses passed.
+                of lenses passed.
 
         Parameters
         ----------
         lenses
             All the lenses for the ray to propagate through.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:
-            intersects = intersection(lens, self)
-            if len(intersects) == 0:
+            raw_intersects = intersection(lens, self)
+            if len(raw_intersects) == 0:
                 continue
-            intersects = self._sort_intersections(intersects)
+            intersects = self._sort_intersections(raw_intersects)
             if not self.propagated:
                 self.put_start_and_end_on(
                     self.start,
@@ -122,14 +117,14 @@ class Ray(Line):
             r_ang = snell(i_ang, lens.n)
             r_ang *= -1 if lens.f > 0 else 1
             ref_ray = rotate_vector(lens.c[0] - self.end, r_ang)
-            intersects = intersection(
+            raw_intersects = intersection(
                 lens,
                 Line(
                     self.end - ref_ray * self.init_length,
                     self.end + ref_ray * self.init_length,
                 ),
             )
-            intersects = self._sort_intersections(intersects)
+            intersects = self._sort_intersections(raw_intersects)
             self.add_line_to(intersects[1])
             self.start = self.end
             self.end = intersects[1]

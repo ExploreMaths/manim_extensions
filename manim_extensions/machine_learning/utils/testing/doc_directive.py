@@ -74,7 +74,7 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     pass
 
 
-def visit(self, node: list[Any], name: str = "") -> Any:
+def visit(self, node: list[Any], name: str = "") -> None:
     """Visit a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode`, adding a placeholder title if missing, then render as admonition.
 
     Parameters
@@ -83,29 +83,19 @@ def visit(self, node: list[Any], name: str = "") -> Any:
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to visit.
     name
         Name of the admonition.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 
-def depart(self, node: SkipManimNode) -> Any:
+def depart(self, node: SkipManimNode) -> None:
     """Depart from a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` by closing the admonition rendering.
 
     Parameters
     ----------
     node
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to depart from.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     self.depart_admonition(node)
 
@@ -359,7 +349,7 @@ class ManimDirective(Directive):
 rendering_times_file_path = Path("../rendering_times.csv")
 
 
-def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> Any:
+def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> None:
     """Append one rendering-time row to the statistics CSV.
 
     Parameters
@@ -370,11 +360,6 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> 
         Rendering duration in seconds.
     file_name
         The source file that contains the example.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     with rendering_times_file_path.open("a") as file:
         csv.writer(file).writerow(
@@ -386,18 +371,13 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> 
         )
 
 
-def _log_rendering_times(*args: Any) -> Any:
+def _log_rendering_times(*args: Any) -> None:
     """Print a summary of the collected rendering times.
 
     Parameters
     ----------
     *args
         Ignored Sphinx event arguments.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if rendering_times_file_path.exists():
         with rendering_times_file_path.open() as file:
@@ -424,18 +404,13 @@ def _log_rendering_times(*args: Any) -> Any:
         print("")
 
 
-def _delete_rendering_times(*args: Any) -> Any:
+def _delete_rendering_times(*args: Any) -> None:
     """Remove the rendering-time CSV if it exists.
 
     Parameters
     ----------
     *args
         Ignored Sphinx event arguments.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     if rendering_times_file_path.exists():
         rendering_times_file_path.unlink()

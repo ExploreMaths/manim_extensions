@@ -28,12 +28,14 @@ This script checks that public functions, methods, and classes in
 4. Section headers must use the numpydoc format (a bare header line
    followed by a ``----------`` underline). Google-style inline headers
    such as ``Returns:`` are rejected.
-4b. Section headers must be separated from the preceding paragraph by a
-   blank line, and the entry list must immediately follow the underline
-   (a blank line between the underline and the first entry is rejected).
-   Napoleon parses a header that is flush against the summary as summary
-   text, and sphinx-autodoc-typehints then injects the ``:type:`` line
-   into the summary paragraph, which docutils renders as raw reST text.
+4b. Section headers must be separated from the preceding paragraph by
+   exactly one blank line, and the entry list must immediately follow
+   the underline (a blank line between the underline and the first entry
+   is rejected).  Napoleon parses a header that is flush against the
+   summary as summary text, and sphinx-autodoc-typehints then injects
+   the ``:type:`` line into the summary paragraph, which docutils renders
+   as raw reST text; extra blank lines create inconsistent spacing in
+   the rendered page.
 5. Entry descriptions in the Parameters/Other Parameters/Returns/Yields/
    Receives/Raises/Attributes sections must start with a capital letter
    and end with a period. Descriptions starting with inline literals,
@@ -55,10 +57,11 @@ This script checks that public functions, methods, and classes in
 6d. The docstring closing triple-quote must be indented to the same column
    as the opening triple-quote; a closing quote flush at column 0 is
    rejected.
-6e. The body of a ``Returns``/``Yields`` section must be indented below the
-   section header. A prose description left at the header's indent is
-   not parsed as the return description by napoleon and renders as a
-   loose paragraph under the section.
+6e. The body of a ``Returns``/``Yields`` section must be indented exactly
+   four spaces below the section header.  A prose description left at
+   the header's indent is not parsed as the return description by
+   napoleon and renders as a loose paragraph; a body indented eight
+   spaces is over-indented and renders with an unintended code block.
 6f. A docstring must start with a summary sentence, not a numpydoc section
    header. The summary must describe behaviour instead of merely repeating
    the function or class name (``paint.``, ``GaussianSurfaceScene.``).
@@ -1034,18 +1037,38 @@ def check_return_type_lines(doc, qualname, lineno, violations):
 
 
 def check_section_spacing(doc, qualname, lineno, violations):
-    """Section headers must be blank-line separated and tightly underlined.
+    """Section headers must have exactly one blank line before them.
 
     A section header that directly follows a summary line (no blank line)
     is absorbed into the summary paragraph by napoleon, and the typehints
     plugin then injects ``:type:`` into that paragraph so docutils renders
-    raw reST text in the reference pages.  A blank line between the
-    underline and the first entry is likewise rejected: numpydoc sections
-    are a header, an underline, and the entries immediately after.
+    raw reST text in the reference pages.  Extra blank lines before a
+    header are also rejected: the summary and every section must be
+    separated from the next section by exactly one blank line.  A blank
+    line between the underline and the first entry is likewise rejected:
+    numpydoc sections are a header, an underline, and the entries
+    immediately after.
     """
     lines = doc.splitlines()
     for name, idx in section_positions(doc):
-        if idx > 0 and lines[idx - 1].strip():
+        header_indent = len(lines[idx]) - len(lines[idx].lstrip(" \t"))
+        if header_indent:
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "SECTION_INDENTED",
+                    "message": f"section header '{name}' is indented "
+                    f"{header_indent} spaces relative to the summary; "
+                    f"section headers must start at the docstring margin",
+                }
+            )
+        blank_before = 0
+        probe = idx - 1
+        while probe >= 0 and not lines[probe].strip():
+            blank_before += 1
+            probe -= 1
+        if idx > 0 and blank_before == 0:
             violations.append(
                 {
                     "line": lineno,
@@ -1055,6 +1078,18 @@ def check_section_spacing(doc, qualname, lineno, violations):
                     f"'{lines[idx - 1].strip()[:40]}' without a blank "
                     f"line; napoleon absorbs it into the summary and "
                     f"raw ':param:/:type:' text leaks into the docs",
+                }
+            )
+        elif blank_before > 1:
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "SECTION_EXTRA_BLANK_BEFORE",
+                    "message": f"section header '{name}' is preceded by "
+                    f"{blank_before} blank lines; use exactly one blank "
+                    f"line between the summary or previous section and "
+                    f"the header",
                 }
             )
         if (
@@ -1159,19 +1194,22 @@ def check_description_indent(doc, qualname, lineno, violations):
 
 
 def check_return_body_indent(doc, qualname, lineno, violations):
-    """Returns/Yields descriptions must be indented below the header.
+    """Returns/Yields descriptions must sit exactly four spaces below the header.
 
     When the first non-blank line under the underline sits at the same
     indent as the section header and is prose (rather than a named entry),
     napoleon treats it as a loose paragraph instead of the return
-    description. The project style therefore requires the body to be
-    indented one level below the header.
+    description.  When it sits eight spaces below the header, docutils
+    renders the description as an over-indented code block.  The project
+    style therefore requires the body to be indented exactly one level
+    (four spaces) below the header.
     """
     lines = doc.splitlines()
     for name, hpos in section_positions(doc):
         if name not in ("Returns", "Yields"):
             continue
         header_indent = len(lines[hpos]) - len(lines[hpos].lstrip(" \t"))
+        expected_indent = header_indent + 4
         j = hpos + 2
         while j < len(lines) and not lines[j].strip():
             j += 1
@@ -1187,7 +1225,19 @@ def check_return_body_indent(doc, qualname, lineno, violations):
         if stripped.startswith(".. "):
             continue
         body_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
-        if body_indent > header_indent:
+        if body_indent > expected_indent:
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "RETURNS_BODY_OVER_INDENTED",
+                    "message": f"'{name}' description '{stripped[:50]}' is "
+                    f"indented {body_indent - header_indent} spaces below "
+                    f"the section header; use exactly 4 spaces",
+                }
+            )
+            continue
+        if body_indent == expected_indent:
             continue
         if (
             (PARAM_ENTRY_RE.match(stripped) and not _prose_after_colon(stripped))

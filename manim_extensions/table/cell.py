@@ -24,7 +24,6 @@ class Cell(VGroup):
 
     .. doc-example-covers: create_border, set_value
 
-
     Parameters
     ----------
     value
@@ -244,7 +243,7 @@ class Cell(VGroup):
 
         return new_cell
 
-    def resize_width(self, new_width: float) -> Any:
+    def resize_width(self, new_width: float) -> None:
         """Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
 
@@ -252,11 +251,6 @@ class Cell(VGroup):
         ----------
         new_width
             The new width.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.cell_width = new_width
 

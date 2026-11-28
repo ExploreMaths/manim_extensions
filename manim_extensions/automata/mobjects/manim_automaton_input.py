@@ -19,7 +19,6 @@ class ManimAutomataInput(VGroup):
 
     .. doc-example-covers: highlight_token
 
-
     Parameters
     ----------
     input_string

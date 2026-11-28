@@ -18,7 +18,6 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     input_layer

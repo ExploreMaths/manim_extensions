@@ -120,13 +120,8 @@ class MindMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _set_connectors(self) -> None:
+        """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -225,13 +220,8 @@ class TimeLine(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _set_connectors(self) -> None:
+        """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -334,13 +324,8 @@ class StandardMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _set_connectors(self) -> None:
+        """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -443,13 +428,8 @@ class CatalogMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def _set_connectors(self) -> None:
+        """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(

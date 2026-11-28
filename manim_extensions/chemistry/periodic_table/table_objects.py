@@ -37,7 +37,6 @@ class MElementObject(VGroup):
 
     .. doc-example-covers: create_frame_base, create_frame_with_text, max_height_ratio
 
-
     Parameters
     ----------
     atomic_number
@@ -256,7 +255,6 @@ class PeriodicTable(VGroup):
     """Draws a periodic table using the data using a configuration from a csv file.
 
     .. doc-example-covers: add_elements
-
 
     Parameters
     ----------

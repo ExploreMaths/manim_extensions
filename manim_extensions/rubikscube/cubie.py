@@ -85,12 +85,12 @@ class Cubie(VGroup):
             round(self.get_z(), 3),
         )
 
-    def generate_points(self) -> Any:
+    def generate_points(self) -> "Cubie":
         """Construct the six square faces that correspond to this cubie.
 
         Returns
         -------
-            The resulting value.
+            The constructed object itself.
         """
         faces = np.array(
             get_faces_of_cubie(
@@ -120,6 +120,7 @@ class Cubie(VGroup):
             self.faces[tuple(vect)] = face
             self.add(face)
             i += 1
+        return self
 
     def get_face(self, face: Literal["F", "B", "U", "D", "L", "R"]) -> Square:
         """Return the face tile corresponding to a cube label.

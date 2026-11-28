@@ -318,7 +318,6 @@ class MCMCAxes(Group):
 
     .. doc-example-covers: make_transition_animation, show_ground_truth_gaussian, visualize_gaussian_proposal_about_point
 
-
     Parameters
     ----------
     dot_color

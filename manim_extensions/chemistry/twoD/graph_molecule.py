@@ -148,7 +148,7 @@ class DoubleLine(ArcBetweenPoints):
 
     def set_points_by_ends(
         self, start: Point3D, end: Point3D, *args: Any, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Reposition both arcs of the double bond to span from start to end.
 
         Parameters
@@ -160,10 +160,6 @@ class DoubleLine(ArcBetweenPoints):
         **kwargs
             Additional keyword arguments passed to
             :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.
-
-        Returns
-        -------
-            The arcs now span from ``start`` to ``end``.
         """
         self.put_start_and_end_on(start=start, end=end)
 
@@ -218,7 +214,6 @@ class GraphMolecule(Graph, AbstractMolecule):
     r"""Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim.
 
     .. doc-example-covers: get_atoms_vgroup_from_index, get_bonds_vgroup_from_index, get_connected_atoms_and_bonds, get_connected_atoms_and_bonds_group_from_index, get_connected_atoms_v_group, make_labels, select_bond_from_edge, select_bond_type
-
 
     Parameters
     ----------
@@ -520,7 +515,6 @@ class GraphMolecule(Graph, AbstractMolecule):
 
            Only works properly for non cyclic structures. If you use
            an atom from a cycle as the starting point, it will take the whole cycle.
-
 
         Parameters
         ----------

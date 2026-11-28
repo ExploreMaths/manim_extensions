@@ -84,7 +84,7 @@ class MCMolecule:
         self,
         atoms_dict: dict[Any, Any],
         elements_data_dict: dict[Any, Any] | None,
-    ) -> Any:
+    ) -> None:
         """Uses the atoms dict returned by a parser to add the atoms to the molecule.
 
         Parameters
@@ -94,11 +94,6 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -122,18 +117,13 @@ class MCMolecule:
             self.atoms.append(mc_atom)
             self.atoms_by_index[atom_index] = mc_atom
 
-    def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> Any:
+    def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> None:
         """Uses the bonds dict returned by a parser to add the bonds to the molecule.
 
         Parameters
         ----------
         bonds_dict
             Bonds dict from a parser. See Base Parser.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -154,13 +144,8 @@ class MCMolecule:
                 )
             )
 
-    def add_connections_between_atoms(self) -> Any:
+    def add_connections_between_atoms(self) -> None:
         r"""Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -448,18 +433,13 @@ class MCMolecule:
         self.remove_hydrogens(atoms_to_be_removed)
         return None
 
-    def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> Any:
+    def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> None:
         """Remove specified atoms and their associated bonds, then reindex.
 
         Parameters
         ----------
         atoms_to_be_removed
             Indices of the atoms to remove.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if not atoms_to_be_removed:
             return
@@ -486,13 +466,8 @@ class MCMolecule:
 
         self.reindex_molecule_atoms()
 
-    def reindex_molecule_atoms(self) -> Any:
-        """Reassign consecutive indices to all atoms and update bond references.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def reindex_molecule_atoms(self) -> None:
+        """Reassign consecutive indices to all atoms and update bond references."""
         self.atoms_by_index = {}
         atoms_old_index_mapping = {}
         for index, atom in enumerate(self.atoms, start=1):

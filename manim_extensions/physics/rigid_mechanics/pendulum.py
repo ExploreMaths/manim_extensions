@@ -108,7 +108,7 @@ class MultiPendulum(VGroup):
 
     def _make_joints(
         self, mob1: Mobject, mob2: Mobject | Point3D, spacescene: SpaceScene
-    ) -> Any:
+    ) -> None:
         """Create a pymont pin joint between two bodies (or a body and a fixed point).
 
         Parameters
@@ -119,11 +119,6 @@ class MultiPendulum(VGroup):
             Second body mobject, or a fixed point in space.
         spacescene
             The physics scene to which the joint is added.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         pymunk = require("physics", "pymunk")
         a = mob1.body
@@ -135,7 +130,7 @@ class MultiPendulum(VGroup):
         joint = pymunk.PinJoint(a, b)
         spacescene.space.space.add(joint)
 
-    def _redraw_rods(self, mob: Line, pins: list[Any], i: int) -> Any:
+    def _redraw_rods(self, mob: Line, pins: list[Any], i: int) -> None:
         """Update a rod line to connect the positions of two consecutive pins.
 
         Parameters
@@ -146,11 +141,6 @@ class MultiPendulum(VGroup):
             List of pin joints or positions.
         i
             Index of the first pin; the rod connects ``pins[i]`` to ``pins[i+1]``.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         try:
             x, y, _ = pins[i]
@@ -163,13 +153,8 @@ class MultiPendulum(VGroup):
             RIGHT * x1 + UP * y1,
         )
 
-    def start_swinging(self) -> Any:
-        """Creates pymunk joints between bobs and starts the physics simulation.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def start_swinging(self) -> None:
+        """Creates pymunk joints between bobs and starts the physics simulation."""
         spacescene = cast(SpaceScene, cast(Any, self.bobs[0]).spacescene)
         pins: list[Any] = [self.pivot_point]
         pins += list(self.bobs)
@@ -178,13 +163,8 @@ class MultiPendulum(VGroup):
             self._make_joints(pins[i + 1], pins[i], spacescene)
             self.rods[i].add_updater(lambda mob, i=i: self._redraw_rods(mob, pins, i))
 
-    def end_swinging(self) -> Any:
-        """Stop swinging.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def end_swinging(self) -> None:
+        """Stop swinging."""
         spacescene = self.bobs[0].spacescene
         cast(Any, spacescene).stop_rigidity(self.bobs)
 

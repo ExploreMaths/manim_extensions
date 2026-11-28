@@ -76,18 +76,13 @@ class CubeMove(Animation):
             cast(Any, starting_mobject).set_indices()
         return cast(RubiksCube, starting_mobject)
 
-    def interpolate_mobject(self, alpha: float) -> Any:
+    def interpolate_mobject(self, alpha: float) -> None:
         """Interpolate the cube rotation at progress ``alpha``.
 
         Parameters
         ----------
         alpha
             Animation progress between ``0`` and ``1``.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.mobject.become(self.starting_mobject)
 
@@ -95,13 +90,8 @@ class CubeMove(Animation):
             self.rate_func(alpha) * self.angle, self.axis
         )
 
-    def finish(self) -> Any:
-        """Finalise the cube move and update face indices after animation completes.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def finish(self) -> None:
+        """Finalise the cube move and update face indices after animation completes."""
         super().finish()
         cast(Any, self.mobject).adjust_indices(
             cast(Any, self.mobject).get_face(self.face[0], False)

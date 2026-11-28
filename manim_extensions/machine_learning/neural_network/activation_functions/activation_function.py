@@ -98,13 +98,8 @@ class ActivationFunction(ABC, VGroup):
 
         self.construct_activation_function()
 
-    def construct_activation_function(self) -> Any:
-        """Build the axes, curve and labels for the activation function.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def construct_activation_function(self) -> None:
+        """Build the axes, curve and labels for the activation function."""
         # Make an axis
         self.axes = Axes(
             x_range=self.x_range,
@@ -146,7 +141,7 @@ class ActivationFunction(ABC, VGroup):
             self.add(function_name_text)
 
     @abstractmethod
-    def apply_function(self, x_val: float | None) -> Any:  # type: ignore[override]
+    def apply_function(self, x_val: float | None) -> float:  # type: ignore[override]
         """Evaluates function at given x_val.
 
         Abstract method: concrete subclasses implement the actual
@@ -158,13 +153,18 @@ class ActivationFunction(ABC, VGroup):
             Input value at which to evaluate the function. If ``None``,
             a random value within ``x_range`` is used instead.
 
-
         Returns
         -------
-                The resulting value.
+            The evaluated function value.
+
+        Raises
+        ------
+        NotImplementedError
+            If called directly on the abstract base class.
         """
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
+        raise NotImplementedError
 
     def make_evaluate_animation(self, x_val: float | None = None) -> Succession:
         """Evaluates the function at a random point in the x_range.

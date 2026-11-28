@@ -207,13 +207,8 @@ class RubiksCube(VMobject):
             return np.zeros(3)
         return (all_points.min(axis=0) + all_points.max(axis=0)) / 2
 
-    def generate_cubies(self) -> Any:  # , **kwargs):
-        """Populate the cube with its cubies and apply offsets.
-
-        Returns
-        -------
-            The cubies are added as submobjects of the cube.
-        """
+    def generate_cubies(self) -> None:  # , **kwargs):
+        """Populate the cube with its cubies and apply offsets."""
         for x in range(self.dimensions):
             for y in range(self.dimensions):
                 for z in range(self.dimensions):
@@ -225,18 +220,13 @@ class RubiksCube(VMobject):
                     cast(Any, self.cubies)[x, y, z] = cubie
         self.move_to(ORIGIN)
 
-    def set_state(self, positions: list[Any]) -> Any:
+    def set_state(self, positions: list[Any]) -> None:
         """Apply a colour state to each cube face.
 
         Parameters
         ----------
         positions
             A sequence of face letters specifying the cube state.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         colors = {
             "U": self.colors[0],
@@ -282,7 +272,7 @@ class RubiksCube(VMobject):
             list[str], sv.solve(state).replace("3", "'").replace("1", "").split()
         )
 
-    def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> Any:
+    def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> None:
         """Apply translation offsets to a cubie based on its position.
 
         Parameters
@@ -293,11 +283,6 @@ class RubiksCube(VMobject):
             The offset metadata used to translate the cubie.
         tile
             The cubie to transform.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         offsets_nr = len(offset)
         for i in range(offsets_nr):
@@ -348,28 +333,18 @@ class RubiksCube(VMobject):
             return cast(np.ndarray, face_data.flatten())
         return face_data
 
-    def set_indices(self) -> Any:
-        """Build the position-to-cubie index map for the current cube state.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def set_indices(self) -> None:
+        """Build the position-to-cubie index map for the current cube state."""
         for c in self.cubies.flatten():
             self.indices[c.get_rounded_center()] = c.position
 
-    def adjust_indices(self, cubies: np.ndarray) -> Any:
+    def adjust_indices(self, cubies: np.ndarray) -> None:
         """Rebuild the cube index mapping from a set of cubies.
 
         Parameters
         ----------
         cubies
             The cubies whose positions should be reindexed.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for c in cubies.flatten():
             loc = self.indices[c.get_rounded_center()]

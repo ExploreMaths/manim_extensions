@@ -4,8 +4,6 @@
 
 """functions to display voronoi diagram and create delaunay meshes as its dual."""
 
-from typing import Any
-
 # python imports
 import numpy as np
 
@@ -24,7 +22,6 @@ class VoronoiDelaunay:
     delaunay triangulation.
 
     .. doc-example-covers: create_voronoi, get_circum_circle
-
 
     Parameters
     ----------
@@ -179,7 +176,7 @@ class VoronoiDelaunay:
             f"voronoi vertex {voronoi_vertex_index} is not part of any triangle ridge"
         )
 
-    def create_triangle(self, voronoi_vertex_index: int) -> Any:
+    def create_triangle(self, voronoi_vertex_index: int) -> None:
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.
 
         The triangle is formed by the three mesh vertices whose Voronoi
@@ -189,11 +186,6 @@ class VoronoiDelaunay:
         ----------
         voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle is created.
-
-
-        Returns
-        -------
-                The resulting value.
         """
 
         triangle_indices = set()

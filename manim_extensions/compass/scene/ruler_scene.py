@@ -32,7 +32,6 @@ class SingleRulerScene(MovingCameraScene):
 
     .. doc-example-covers: draw_line_with_pencil
 
-
     Examples
     --------
     .. manim:: SingleRulerSceneUsage
@@ -47,13 +46,8 @@ class SingleRulerScene(MovingCameraScene):
                self.put_ruler_back()
     """
 
-    def setup(self) -> Any:
-        """Place the ruler at the bottom edge and the pencil at the right edge.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def setup(self) -> None:
+        """Place the ruler at the bottom edge and the pencil at the right edge."""
         self.ruler = Ruler(width=0.4, length=8).to_edge(DOWN)
         self.pencil = Pencil(height=1).to_edge(RIGHT)
         self.pen_pos = self.pencil.get_center()
@@ -105,7 +99,7 @@ class SingleRulerScene(MovingCameraScene):
 
     def put_ruler_back(
         self, added_anims: list[Any] | None = None, run_time: float = 0.5, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Restore the ruler to its saved state and move the pencil back.
 
         Parameters
@@ -116,11 +110,6 @@ class SingleRulerScene(MovingCameraScene):
             Run time for the play.
         **kwargs
             Additional keyword arguments passed to the play.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         anims = [
             Restore(self.ruler),

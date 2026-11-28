@@ -147,14 +147,15 @@ class FastManimMesh(OpenGLMobject):
         """
         return np.hstack(mesh.faces) if mesh.faces else np.array([], dtype=int)
 
-    def init_points(self) -> Any:
+    def init_points(self) -> "FastManimMesh":
         """Set the mesh vertices as the mobject's points.
 
         Returns
         -------
-            The resulting value.
+            The object itself, allowing method chaining.
         """
         self.set_points(self.mesh.vertices)
+        return self
 
     def refresh_from_mesh(self) -> None:
         """Rebuild points and triangle indices after changing ``mesh`` in place."""

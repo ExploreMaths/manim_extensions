@@ -131,18 +131,12 @@ class WeightedLine(Line):
         if self.weight is not None:
             self._add_weight()
 
-    def _add_weight(self) -> Any:
+    def _add_weight(self) -> None:
         """Clears any current weight and then displays the weight is not none.
 
         Use weight_config dict to send options to the :class:`~manim.mobject.text.text_mobject.Text` object.
 
         Use bg_config dict to send options to the background Rectangle object.
-
-
-
-        Returns
-        -------
-                The resulting value.
         """
 
         # Set the new weight if it is present

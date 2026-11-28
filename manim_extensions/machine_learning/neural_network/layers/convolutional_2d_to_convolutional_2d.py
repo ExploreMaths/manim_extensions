@@ -76,7 +76,6 @@ class Filters(VGroup):
 
     .. doc-example-covers: make_connective_lines, make_input_feature_map_rectangles, make_output_feature_map_rectangles
 
-
     Parameters
     ----------
     input_layer
@@ -355,14 +354,14 @@ class Filters(VGroup):
     @override_animation(Create)
     def _create_override(self, **kwargs: Any) -> Animation:
         """NOTE This create override animation
-        is a workaround to make sure that the filter
-        does not show up in the scene before the create animation.
+                is a workaround to make sure that the filter
+                does not show up in the scene before the create animation.
 
-        Without this override the filters were shown at the beginning
-        of the neural network forward pass animation
-        instead of just when the filters were supposed to appear.
-        I think this is a bug with :class:`~manim.animation.composition.Succession` in the core
-        Manim Community Library.
+                Without this override the filters were shown at the beginning
+                of the neural network forward pass animation
+                instead of just when the filters were supposed to appear.
+                I think this is a bug with :class:`~manim.animation.composition.Succession` in the core
+                Manim Community Library.
 
         Parameters
         ----------
@@ -736,7 +735,9 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 highlight_active_feature_map=highlight_active_feature_map
             )
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(
+        self, scale_factor: float, **kwargs: Any
+    ) -> "Convolutional2DToConvolutional2D":
         """Scale the layer and adjust cell_width proportionally.
 
         Parameters
@@ -746,13 +747,13 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
+        return self
 
     @override_animation(Create)
     def _create_override(self, **kwargs: Any) -> Animation:

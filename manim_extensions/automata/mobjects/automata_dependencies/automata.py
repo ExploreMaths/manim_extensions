@@ -99,33 +99,23 @@ class FiniteStateAutomaton:
         if json_template:
             self.construct_from_json(json_template)
 
-    def process_xml(self, xml_file: str) -> Any:
+    def process_xml(self, xml_file: str) -> None:
         """Construct the automaton from an XML file.
 
         Parameters
         ----------
         xml_file
             Path to the XML file describing the automaton.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
-    def construct_from_json(self, json_dictionary: dict[Any, Any]) -> Any:
+    def construct_from_json(self, json_dictionary: dict[Any, Any]) -> None:
         """Construct the automaton from a JSON-like dictionary.
 
         Parameters
         ----------
         json_dictionary
             Structured automaton data containing the state and transition lists.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         states = json_dictionary["structure"]["automaton"]["state"]
         transitions = json_dictionary["structure"]["automaton"]["transition"]
@@ -133,18 +123,13 @@ class FiniteStateAutomaton:
         self.construct_states(states)
         self.construct_transitions(transitions)
 
-    def construct_states(self, states: list[dict[str, object]]) -> Any:
+    def construct_states(self, states: list[dict[str, object]]) -> None:
         """Construct state objects from a list of state dictionaries.
 
         Parameters
         ----------
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for state_data in states:
             initial = "initial" in state_data
@@ -153,18 +138,13 @@ class FiniteStateAutomaton:
             name = str(state_data.get("@name", str(state_id)))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
-    def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
+    def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
         """Construct transition objects from a list of transition dictionaries.
 
         Parameters
         ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         for trans_data in transitions:
             from_id = int(cast(Any, trans_data["from"]))

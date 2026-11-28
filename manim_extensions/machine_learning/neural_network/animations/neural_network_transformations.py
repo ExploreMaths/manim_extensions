@@ -39,7 +39,6 @@ class RemoveLayer(AnimationGroup):
        the state of the neural network layers after previous animations have been run.
        To fix this issue I needed to use an :class:`~manim.animation.updaters.update.UpdateFromFunc`.
 
-
     Parameters
     ----------
     layer
@@ -228,7 +227,7 @@ class RemoveLayer(AnimationGroup):
         """
         self.anim_count = 0
 
-        def create_new_connective(neural_network: NeuralNetwork) -> Any:
+        def create_new_connective(neural_network: NeuralNetwork) -> None:
             """Creates new connective layer.
 
             This is a closure that creates a new connective layer and animates it.
@@ -259,7 +258,6 @@ class InsertLayer(AnimationGroup):
     """Animation for inserting layer at given index.
 
     .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation
-
 
     Parameters
     ----------

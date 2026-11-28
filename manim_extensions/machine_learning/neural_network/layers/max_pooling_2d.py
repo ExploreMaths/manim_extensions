@@ -39,7 +39,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
        it is called MaxPooling2DLayer because the 2D corresponds
        to the 2 spatial dimensions of the convolution.
 
-
     Parameters
     ----------
     kernel_size
@@ -124,7 +123,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the output feature maps and apply 3D rotation to the layer.
 
         Parameters
@@ -135,11 +134,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Make the output feature maps
         input_layer_any = cast(Any, input_layer)

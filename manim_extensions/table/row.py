@@ -81,13 +81,8 @@ class Row(VGroup):
         self.cells: list[Cell] = []
         self.create_cells()
 
-    def create_cells(self) -> Any:
-        """Create and position all cells in this row.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def create_cells(self) -> None:
+        """Create and position all cells in this row."""
         for i, value in enumerate(self.values):
             cell = Cell(
                 value=value,

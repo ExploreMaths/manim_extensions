@@ -7,18 +7,11 @@
 This module provides the entry point for the Rubik's Cube extension.
 """
 
-from typing import Any
-
 from . import __version__
 
 
-def main() -> Any:
-    """Entry point for the ``python -m manim_extensions.rubikscube`` command.
-
-    Returns
-    -------
-        The resulting value.
-    """
+def main() -> None:
+    """Entry point for the ``python -m manim_extensions.rubikscube`` command."""
     print("manim-rubikscube (Manim Extensions) v" + __version__ + "\n")
 
 

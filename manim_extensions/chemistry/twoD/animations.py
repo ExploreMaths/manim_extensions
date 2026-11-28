@@ -18,7 +18,6 @@ class GMAnimationBuilder:
 
     .. doc-example-covers: rotate_atoms_about_bond
 
-
     Parameters
     ----------
     molecule

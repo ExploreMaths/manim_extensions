@@ -157,9 +157,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     ) -> None:
         """Removes physical bodies, shapes, or constraints from the physical space.
 
-        This method handles the unregistration of Pymunk objects. It is crucial for
-        maintaining simulation performance and preventing memory leaks or unexpected
-        physical interactions after a Mobject has been removed from the scene.
+                This method handles the unregistration of Pymunk objects. It is crucial for
+                maintaining simulation performance and preventing memory leaks or unexpected
+                physical interactions after a Mobject has been removed from the scene.
 
         Parameters
         ----------
@@ -695,7 +695,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
 
-
         Returns
         -------
             The velocity vector (vx, vy, 0) at the given point.
@@ -716,7 +715,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-
 
         Returns
         -------

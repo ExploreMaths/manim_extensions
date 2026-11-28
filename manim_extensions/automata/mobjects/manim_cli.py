@@ -72,13 +72,8 @@ class ManimAutomataCLI:
     def __init__(self) -> None:
         print(cli_logo)
 
-    def creation_menu(self) -> Any:
-        """Prompt the user to choose an automaton type and schema file path.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def creation_menu(self) -> None:
+        """Prompt the user to choose an automaton type and schema file path."""
         options = [
             "Deterministic Finite Automaton",
             "Non-deterministic Finite Automaton",
@@ -87,13 +82,8 @@ class ManimAutomataCLI:
         self.creation_option = self.display_options(options)
         self.file_path = input("Schema File Path: ")
 
-    def display_nda_options(self) -> Any:
-        """Prompt the user to choose an NDA-specific option.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def display_nda_options(self) -> None:
+        """Prompt the user to choose an NDA-specific option."""
         options = ["Non-deterministic Automaton Path Builder"]
         self.nda_option = self.display_options(options)
 

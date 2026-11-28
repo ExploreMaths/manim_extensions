@@ -36,7 +36,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
     .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation
 
-
     Parameters
     ----------
     point_radius
@@ -110,7 +109,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the axes, point cloud, and latent distribution for the embedding.
 
         Parameters
@@ -121,11 +120,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.axes = Axes(
             tips=False,
@@ -390,13 +384,8 @@ class NeuralNetworkEmbeddingTestScene(Scene):
                self.add(nn)
     """
 
-    def construct(self) -> Any:
-        """Build the test scene with an embedding layer and Gaussian distribution.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def construct(self) -> None:
+        """Build the test scene with an embedding layer and Gaussian distribution."""
         nne = EmbeddingLayer()
         mean = np.array([0, 0])
         cov = np.array([[5.0, 1.0], [0.0, 1.0]])

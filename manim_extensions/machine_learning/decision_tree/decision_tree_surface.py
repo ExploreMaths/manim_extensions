@@ -205,7 +205,7 @@ def compute_decision_areas(
     return result
 
 
-def plot_areas(rectangles: MatrixMN) -> Any:
+def plot_areas(rectangles: MatrixMN) -> None:
     """Plot decision area rectangles on the current matplotlib axes.
 
     Parameters
@@ -214,11 +214,6 @@ def plot_areas(rectangles: MatrixMN) -> Any:
         Array of decision-area rectangles as returned by
         :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;
         each row is ``[left, right, bottom, top, class_index]``.
-
-
-    Returns
-    -------
-            The resulting value.
     """
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
@@ -331,7 +326,6 @@ class IrisDatasetPlot(VGroup):
     """Plot of the first two features of the Iris dataset.
 
     .. doc-example-covers: create_animation
-
 
     Parameters
     ----------
@@ -537,7 +531,6 @@ class DecisionTreeSurface(VGroup):
 
     .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
 
-
     Parameters
     ----------
     tree_clf
@@ -548,7 +541,6 @@ class DecisionTreeSurface(VGroup):
         Manim axes the surface rectangles are drawn in.
     class_colors
         Colors, one per class, used to fill the decision areas.
-
 
     Examples
     --------

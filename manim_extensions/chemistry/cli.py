@@ -6,7 +6,7 @@
 This module provides command-line interface for downloading molecules from PubChem.
 """
 
-from typing import Any, Literal
+from typing import Literal
 
 import os
 
@@ -16,13 +16,8 @@ from .utils import PubchemAPIManager
 
 
 @click.group
-def cli() -> Any:
-    """Command-line interface group for chemistry-related commands.
-
-    Returns
-    -------
-        The resulting value.
-    """
+def cli() -> None:
+    """Command-line interface group for chemistry-related commands."""
 
 
 @click.command()
@@ -48,7 +43,7 @@ def pubchem_molecule(
     inchi: tuple[str, ...],
     three_d: bool,
     output_folder: str,
-) -> Any:
+) -> None:
     r"""Download molecule from pubchem.
 
     Supports downloading multiple files from a single request.
@@ -82,11 +77,6 @@ def pubchem_molecule(
         Whether to use three-dimensional data of the molecule.
     output_folder
         Folder where the downloaded files are saved.
-
-
-    Returns
-    -------
-        The resulting value.
 
     Raises
     ------

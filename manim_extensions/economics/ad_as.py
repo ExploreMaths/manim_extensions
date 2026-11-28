@@ -362,7 +362,7 @@ class ADASDiagram(EconDiagram):
 
     def _append_long_run(
         self, anims: list[Any], lr_run_time: float, show_arrows: bool
-    ) -> Any:
+    ) -> None:
         """Append the long-run adjustment to an animation list.
 
         Parameters
@@ -373,11 +373,6 @@ class ADASDiagram(EconDiagram):
             Duration of the long-run adjustment.
         show_arrows
             Whether the adjustment draws guide arrows.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         clear = self.clear_arrows()
         if clear is not None:
@@ -415,7 +410,6 @@ class ADASDiagram(EconDiagram):
             Short run: AD shifts right → output rises above potential, price unchanged.
 
             Long run: SRAS slowly shifts up → output returns to potential at higher price.
-
 
         Returns
         -------
@@ -456,7 +450,6 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts down → output returns to potential at lower price.
 
-
         Returns
         -------
             A list of animations to play in sequence.
@@ -493,7 +486,6 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts back down as economy self-corrects.
 
-
         Returns
         -------
             A list of animations to play in sequence.
@@ -527,7 +519,6 @@ class ADASDiagram(EconDiagram):
             Short run: SRAS shifts down → price falls, output rises.
 
             Long run: SRAS slowly shifts back up as economy self-corrects.
-
 
         Returns
         -------

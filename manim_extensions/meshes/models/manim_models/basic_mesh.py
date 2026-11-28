@@ -175,13 +175,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
         self.setup()
 
-    def setup(self) -> Any:
-        """create all the necessary manim objects for the renderer.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def setup(self) -> None:
+        """create all the necessary manim objects for the renderer."""
         if self.display_faces:
             self.setup_faces()
         if self.display_edges:
@@ -393,7 +388,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         """
         return self.edges.submobjects[edge_idx]
 
-    def add_vertices(self, new_vertices: Vertices, scene: Scene) -> Any:
+    def add_vertices(self, new_vertices: Vertices, scene: Scene) -> None:
         """fade in some additional vertices.
 
         Parameters
@@ -402,18 +397,13 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             New vertices processed by this operation.
         scene
             The scene in which the action is performed.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.mesh.add_vertices(new_vertices)
         # fade out current ones, fade in all after add
         if self.display_vertices:
             scene.play(FadeOut(self.vertices), FadeIn(self.setup_vertices()))
 
-    def _update_vertex(self, vertex_idx: int, pos: Point3D) -> Any:
+    def _update_vertex(self, vertex_idx: int, pos: Point3D) -> None:
         """Change the position of a vertex and update all dependent mobjects.
 
         If vertices are displayed the corresponding vertex object is moved.
@@ -426,11 +416,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Index of the vertex to update.
         pos
             New position for the vertex (2-D or 3-D coordinates).
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # update mesh
         self.mesh.update_vertex(vertex_idx, pos)
@@ -451,18 +436,13 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             for edge in self.mesh.get_vertex_edges(vertex_idx):
                 self._update_edge(edge)
 
-    def _update_edge(self, edge: tuple[int, int]) -> Any:
+    def _update_edge(self, edge: tuple[int, int]) -> None:
         """Update the Manim object of ``edge`` to reflect the latest vertex positions.
 
         Parameters
         ----------
         edge
             A pair of vertex indices defining the edge to update.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         e = self.get_edge(self.mesh.get_edge_index(edge))
         vert_1 = self.mesh.get_3d_vertices()[edge[0]]
@@ -503,29 +483,29 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         self.vertices = Group()
         self.setup()
 
-    def shift(self, *vectors: Vector3DLike) -> Any:
+    def shift(self, *vectors: Vector3DLike) -> "ManimMesh":
         """Shift the mesh and its underlying data by the sum of ``vectors``.
 
-        Multiple vectors of the same dimensionality are summed to produce
-        the final translation.
+                Multiple vectors of the same dimensionality are summed to produce
+                the final translation.
 
         Parameters
         ----------
         vectors
             One or more displacement vectors to apply.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         total_shift = np.sum([np.asarray(v, dtype=float) for v in vectors], axis=0)
         # update vertices of self.mesh
         self.mesh.translate_mesh(self._as_mesh_dim(total_shift))
         # shift manim vertices, edges and faces
         super().shift(total_shift)
+        return self
 
-    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
+    def scale(self, scale_factor: float, **kwargs: Any) -> "ManimMesh":
         """Scale the mesh (data and Manim objects) about its bounding-box centre.
 
         Parameters
@@ -535,16 +515,16 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         about_point = self._mesh_center()
         self.mesh.scale_mesh(scale_factor, about_point)
         super().scale(scale_factor, **kwargs)
+        return self
 
-    def stretch(self, factor: float, dim: int, **kwargs: Any) -> Any:
+    def stretch(self, factor: float, dim: int, **kwargs: Any) -> "ManimMesh":
         """Stretch the mesh along a single dimension.
 
         Parameters
@@ -556,10 +536,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent Mobject.stretch.
 
-
         Returns
         -------
-            The resulting value.
+            The object itself, allowing method chaining.
 
         Raises
         ------
@@ -571,6 +550,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         about_point = self._mesh_center()
         self.mesh.stretch_mesh(factor, dim, about_point)
         super().stretch(factor, dim, **kwargs)
+        return self
 
     def rotate(
         self,
@@ -580,7 +560,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         about_point: Point3DLike | None = None,
         about_edge: Vector3DLike | None = None,
         **kwargs: Any,
-    ) -> Any:
+    ) -> "ManimMesh":
         """Rotate the mesh (data and Manim objects) about ``about_point``.
 
         For 2-D meshes the rotation is always about the z-axis; for 3-D
@@ -610,10 +590,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         axis_array: Vector3D = np.asarray(axis, dtype=float)
         if self.mesh.dim == 4:
@@ -625,13 +604,13 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                 )
                 self.mesh.apply_rotation(angle, axis_array, mesh_center)
                 self._rebuild_objects()
-                return
+                return self
             # a 3-D axis cannot express a 4-D rotation: rotate the projection only
             point = (
                 self.get_critical_point(ORIGIN) if about_point is None else about_point
             )
             super().rotate(angle, axis, about_point=point, **kwargs)
-            return
+            return self
 
         pivot = self.get_critical_point(ORIGIN) if about_point is None else about_point
         pivot_array: Point3D = np.asarray(pivot, dtype=float)
@@ -640,6 +619,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         else:
             self.mesh.apply_rotation(angle, axis_array, pivot_array)
         super().rotate(angle, axis, about_point=pivot, **kwargs)
+        return self
 
     def flip(
         self,
@@ -647,7 +627,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         *,
         about_point: Point3DLike | None = None,
         about_edge: Vector3DLike | None = None,
-    ) -> Any:
+    ) -> "ManimMesh":
         """Flip the mesh (data and Manim objects) about the plane orthogonal to ``axis``.
 
         The underlying data mesh is updated first; the resulting Manim
@@ -666,7 +646,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         axis_array: Vector3D = np.asarray(axis, dtype=float)
         if self.mesh.dim == 4 and axis_array.shape[0] == 4:
@@ -677,7 +657,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             )
             self.mesh.apply_flip(axis_array, mesh_center)
             self._rebuild_objects()
-            return
+            return self
 
         pivot = self.get_critical_point(ORIGIN) if about_point is None else about_point
         pivot_array: Point3D = np.asarray(pivot, dtype=float)
@@ -686,10 +666,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         # rotate the mesh data as well; use the parent rotation to avoid
         # applying the flip to the data twice.
         super().rotate(TAU / 2, axis, about_point=pivot)
+        return self
 
     def shift_vertex(
         self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Animate a single vertex and update all adjacent faces/edges.
 
         Parameters
@@ -702,11 +683,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Displacement vector (same dimensionality as ``mesh.dim``).
         **kwargs
             May include ``shift_vertex_runtime`` (animation duration in seconds).
-
-
-        Returns
-        -------
-                The resulting value.
         """
         start = self.mesh.vertices[vertex_idx].copy()
         tracker = ValueTracker(0)
@@ -729,7 +705,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs: Any) -> Any:
+    def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs: Any) -> None:
         """Animate all vertices simultaneously with per-vertex offsets.
 
         Parameters
@@ -741,11 +717,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             ``self.mesh.vertices``).
         **kwargs
             May include ``shift_vertices_runtime`` (animation duration in seconds).
-
-
-        Returns
-        -------
-                The resulting value.
         """
         start = copy.deepcopy(self.mesh.vertices)
         tracker = ValueTracker(0)
@@ -773,7 +744,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
     def move_vertices_to(
         self, scene: Scene, new_positions: Point3D_Array, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Animate all vertices to ``new_positions`` and update the underlying mesh.
 
         Parameters
@@ -784,11 +755,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Target positions for every vertex (same shape as ``self.mesh.vertices``).
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertices`.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -804,7 +770,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
     def move_vertex_to(
         self, scene: Scene, vertex_idx: int, pos: Point3D, **kwargs: Any
-    ) -> Any:
+    ) -> None:
         """Animate a single vertex to a new absolute position.
 
         Parameters
@@ -817,11 +783,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Target position for the vertex (must match ``mesh.dim``).
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertex`.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -842,7 +803,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         threshold: tuple[float, ...],
         nof_steps: int = 1,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Animate vertices snapping to a regular grid.
 
         Uses :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid` to compute the target positions and
@@ -860,11 +821,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Number of intermediate snap steps.
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # to be able to show the movement, the update needs to be calculated on a dummy mesh first
         new_verts = self.mesh.snap_to_grid(

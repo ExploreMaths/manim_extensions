@@ -30,7 +30,6 @@ class TripletLayer(NeuralNetworkLayer):
 
     .. doc-example-covers: make_assets, make_forward_pass_animation
 
-
     Parameters
     ----------
     anchor
@@ -98,7 +97,7 @@ class TripletLayer(NeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Build the triplet assets and add them to the layer.
 
         Parameters
@@ -109,11 +108,6 @@ class TripletLayer(NeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Make the assets
         self.assets = self.make_assets()

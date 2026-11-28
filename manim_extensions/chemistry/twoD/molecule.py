@@ -53,7 +53,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     .. doc-example-covers: get_bonds
 
-
     Parameters
     ----------
     atoms_dict
@@ -386,13 +385,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def complete_missing_hydrogens(self) -> Any:
-        """Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def complete_missing_hydrogens(self) -> None:
+        """Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count."""
         supported_atoms = ["O", "S", "N", "P"]
 
         for atom in self.atoms:

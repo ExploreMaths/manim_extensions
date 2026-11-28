@@ -111,7 +111,6 @@ class MArrayElement(VGroup):
 
     .. doc-example-covers: animate_mob_index, animate_mob_label, animate_mob_square, animate_mob_value, fetch_mob, fetch_mob_index, fetch_mob_label, fetch_mob_square, fetch_mob_value, update_mob_index, update_mob_label, update_mob_value
 
-
     Parameters
     ----------
     scene
@@ -619,7 +618,6 @@ class MArray(VGroup):
     r"""A class that represents an array.
 
     .. doc-example-covers: animate_elem_index, animate_elem_square, animate_elem_value, append_elem, fetch_mob_arr_label, update_elem_index, update_elem_value, update_mob_arr_label
-
 
     Parameters
     ----------
@@ -1658,7 +1656,6 @@ class MArrayPointer(VGroup):
 
     .. doc-example-covers: animate_mob_arrow, animate_mob_label, fetch_mob_arrow, fetch_mob_label, update_mob_label
 
-
     Parameters
     ----------
     scene
@@ -2192,7 +2189,6 @@ class MArraySlidingWindow(VGroup):
     r"""A class that represents a sliding window.
 
     .. doc-example-covers: animate_mob_label, animate_mob_window, fetch_mob_label, fetch_mob_window, update_mob_label
-
 
     Parameters
     ----------

@@ -123,18 +123,13 @@ class LeafNode(Group):
         else:
             self._construct_text_node(class_index)
 
-    def _construct_text_node(self, class_index: int) -> Any:
+    def _construct_text_node(self, class_index: int) -> None:
         """Build a text leaf node.
 
         Parameters
         ----------
         class_index
             Index of the represented class.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if self.class_names is None:
             label = str(class_index)
@@ -146,18 +141,13 @@ class LeafNode(Group):
         self.add(rectangle)
         self.add(node)
 
-    def _construct_image_node(self, class_index: int) -> Any:
+    def _construct_image_node(self, class_index: int) -> None:
         """Build an image leaf node.
 
         Parameters
         ----------
         class_index
             Index of the represented class.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Get image
         image_path = self.class_image_paths[class_index]
@@ -216,7 +206,6 @@ class DecisionTreeDiagram(Group):
 
     .. doc-example-covers: create_decision_tree, make_expand_tree_animation
 
-
     Parameters
     ----------
     sklearn_tree
@@ -229,7 +218,6 @@ class DecisionTreeDiagram(Group):
         Image file paths, one per class, used for the leaf nodes.
     class_colors
         Colors, one per class, used for the leaf node borders.
-
 
     Examples
     --------
@@ -387,7 +375,7 @@ class DecisionTreeDiagram(Group):
             direction: str,
             parent_object: Mobject,
             parent_node: int,
-        ) -> Any:
+        ) -> None:
             """Recursively build tree nodes and connections at the given depth."""
             # make the node object
             is_leaf = (

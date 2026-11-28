@@ -19,6 +19,8 @@ from manim.typing import Point3D, Vector3D
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
+    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
+
     Parameters
     ----------
     from_atom
@@ -96,7 +98,7 @@ class BaseMBondObject(VGroup):
         self.type = type
         self.color = ManimColor(color)
         self.subtype = self.define_subtype(subtype) or subtype
-        self.bond = self.create_line()
+        self.bond = cast(VMobject, self.create_line())
         self.index = index
         self.add(self.bond)
 
@@ -250,41 +252,29 @@ class BaseMBondObject(VGroup):
 
         return perp_vector / np.linalg.norm(perp_vector)
 
-    def no_subtype(self) -> Any:
+    def no_subtype(self) -> VMobject | None:
         """Provide the geometry used when no bond subtype is selected.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
-        direction
-            Direction from the from-atom to the to-atom; derived from the
-            atoms when omitted.
-
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
-    def shorter_subtype(self) -> Any:
+    def shorter_subtype(self) -> VMobject | None:
         """Provide the geometry used when the bond is drawn shorter on both ends.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
-        direction
-            Direction from the from-atom to the to-atom; derived from the
-            atoms when omitted.
-
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
-    def shorter_from_subtype(self, direction: Point3D | None = None) -> Any:
+    def shorter_from_subtype(self, direction: Point3D | None = None) -> VMobject | None:
         """Provide the geometry used when the bond is shortened at the from-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
@@ -297,11 +287,11 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
-    def shorter_to_subtype(self, direction: Point3D | None = None) -> Any:
+    def shorter_to_subtype(self, direction: Point3D | None = None) -> VMobject | None:
         """Provide the geometry used when the bond is shortened at the to-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
@@ -314,11 +304,16 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
-    def longer_subtype(self) -> Any:
+    def longer_subtype(
+        self,
+        direction: Point3D | None = None,
+        bond: Mobject | None = None,
+        base_line: Mobject | None = None,
+    ) -> VMobject | None:
         """Provide the geometry used when the bond is drawn longer.
 
         Bond subclasses override this hook and return their concrete mobject.
@@ -328,29 +323,27 @@ class BaseMBondObject(VGroup):
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
+        bond
+            Bond the subtype geometry is attached to.
+        base_line
+            Base line the subtype geometry is derived from.
 
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
-    def create_line(self) -> Any:
+    def create_line(self) -> VMobject | None:
         """Assemble the bond's line components for the selected subtype.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
-        direction
-            Direction from the from-atom to the to-atom; derived from the
-            atoms when omitted.
-
         Returns
         -------
-                The resulting value.
+            The generated bond line, or ``None`` when the subtype produces no geometry.
         """
-        pass
+        return None
 
     def get_vector(self) -> Vector3D:
         """All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.
@@ -375,7 +368,6 @@ class SimpleBond(BaseMBondObject):
     """A single-line chemical bond between two atoms.
 
     .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
-
 
     Examples
     --------
@@ -452,8 +444,22 @@ class SimpleBond(BaseMBondObject):
         )
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
-    def longer_subtype(self) -> Line:
+    def longer_subtype(
+        self,
+        direction: Point3D | None = None,
+        bond: Mobject | None = None,
+        base_line: Mobject | None = None,
+    ) -> Line:
         """Return a zero-length line at the from atom (degenerate bond).
+
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom.
+        bond
+            Bond the subtype geometry is attached to.
+        base_line
+            Base line the subtype geometry is derived from.
 
         Returns
         -------
@@ -488,7 +494,6 @@ class DoubleBond(BaseMBondObject):
     """A double bond between two atoms.
 
     .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
-
 
     Parameters
     ----------
@@ -759,8 +764,7 @@ class DoubleBond(BaseMBondObject):
 class TripleBond(BaseMBondObject):
     """A triple bond between two atoms.
 
-    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
-
+    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
 
     Parameters
     ----------
@@ -906,8 +910,11 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def longer_subtype(
-        self, bond: Mobject | None = None, base_line: Mobject | None = None
-    ) -> Any:
+        self,
+        direction: Point3D | None = None,
+        bond: Mobject | None = None,
+        base_line: Mobject | None = None,
+    ) -> VGroup | None:
         """Add two offset parallel lines to form a triple bond from a base line.
 
         Parameters
@@ -916,12 +923,16 @@ class TripleBond(BaseMBondObject):
             Bond the lines are added to.
         base_line
             Base line the parallel lines are copied from.
-
+        direction
+            Direction from the from-atom to the to-atom.
 
         Returns
         -------
-                The resulting value.
+            An empty group when ``bond`` or ``base_line`` is missing;
+            otherwise ``None`` after the lines are added to ``bond``.
         """
+        if direction is None:
+            direction = self.from_atom.coords - self.to_atom.coords
         if bond is None or base_line is None:
             return VGroup()
         bond.add(base_line)
@@ -935,6 +946,7 @@ class TripleBond(BaseMBondObject):
         double_line.move_to(pivot_line.get_end())
         triple_line.move_to(pivot_line.get_start())
         bond.add(double_line, triple_line)
+        return None
 
     def create_line(self) -> VGroup | VMobject:
         """Build the triple bond VGroup based on the configured subtype.
@@ -980,7 +992,6 @@ class PlainCramBond(BaseMBondObject):
     """A filled triangular wedge bond representing stereochemistry (coming out of the page).
 
     .. doc-example-covers: create_line, no_subtype
-
 
     Examples
     --------
@@ -1094,8 +1105,22 @@ class PlainCramBond(BaseMBondObject):
         )
         return cram_bond
 
-    def longer_subtype(self) -> Polygram:
+    def longer_subtype(
+        self,
+        direction: Point3D | None = None,
+        bond: Mobject | None = None,
+        base_line: Mobject | None = None,
+    ) -> Polygram:
         """Return a degenerate zero-length cram bond at the from atom.
+
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom.
+        bond
+            Bond the subtype geometry is attached to.
+        base_line
+            Base line the subtype geometry is derived from.
 
         Returns
         -------
@@ -1158,7 +1183,6 @@ class DashedCramBond(BaseMBondObject):
     """A dashed wedge bond representing stereochemistry (going into the page).
 
     .. doc-example-covers: add_dashed_cram_bond, create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
-
 
     Examples
     --------
@@ -1278,7 +1302,12 @@ class DashedCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def longer_subtype(self, direction: Point3D | None = None) -> VGroup:
+    def longer_subtype(
+        self,
+        direction: Point3D | None = None,
+        bond: Mobject | None = None,
+        base_line: Mobject | None = None,
+    ) -> VGroup:
         """Return a degenerate zero-length dashed cram bond at the from atom.
 
         Parameters
@@ -1286,6 +1315,10 @@ class DashedCramBond(BaseMBondObject):
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
+        bond
+            Bond the subtype geometry is attached to.
+        base_line
+            Base line the subtype geometry is derived from.
 
         Returns
         -------

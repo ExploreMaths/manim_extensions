@@ -34,7 +34,7 @@ from ...utils.deps import require
 __all__ = ["Lens", "snell", "antisnell", "intersection"]
 
 
-def intersection(vmob1: VMobject, vmob2: VMobject) -> Any:
+def intersection(vmob1: VMobject, vmob2: VMobject) -> np.ndarray:
     """Compute the intersection points of two VMobject curves.
 
     Parameters

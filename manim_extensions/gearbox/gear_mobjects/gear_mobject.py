@@ -510,12 +510,12 @@ class Gear(VMobject):
             cast(ParsableManimColor, color), width, opacity, background, family
         )
 
-    def generate_points(self) -> Any:
+    def generate_points(self) -> "Gear":
         """Build the gear outline from involute curves, fillets, and arcs.
 
         Returns
         -------
-            The resulting value.
+            The constructed object itself.
         """
 
         # involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle
@@ -752,7 +752,7 @@ class Gear(VMobject):
 
         involute_curve.reverse_direction()
 
-        def smooth_curve_joint(curve1: VMobject, curve2: VMobject) -> Any:
+        def smooth_curve_joint(curve1: VMobject, curve2: VMobject) -> None:
             """Smoothly join two curves by inserting a midpoint between their ends.
 
             Parameters
@@ -802,8 +802,9 @@ class Gear(VMobject):
         if self.inner_teeth:
             Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
+        return self
 
-    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1) -> Any:
+    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1) -> None:
         """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
@@ -815,11 +816,6 @@ class Gear(VMobject):
         bias
             When offset is used, there will play between gears. If bias is ``False``,
             This function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Examples
         --------
@@ -1140,12 +1136,12 @@ class Rack(VMobject):
             Line(start=ORIGIN, end=UP, stroke_opacity=0, fill_opacity=0)
         )
 
-    def generate_points(self) -> Any:
+    def generate_points(self) -> "Rack":
         """Build the rack outline from trapezoidal teeth.
 
         Returns
         -------
-            The resulting value.
+            The constructed object itself.
         """
 
         h_amax = self.pitch / 4 / np.tan(self.alpha * DEGREES)
@@ -1173,6 +1169,7 @@ class Rack(VMobject):
         self.add_line_to(point2)
         self.add_line_to(self.points[0, :] + LEFT * self.h / 2)
         self.add_line_to(self.points[0, :])
+        return self
 
     def get_center(self) -> Point3D:
         """Return the geometric center of the rack.

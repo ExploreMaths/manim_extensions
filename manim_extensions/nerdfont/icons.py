@@ -53,17 +53,12 @@ def _font_path() -> str:
     return str(pkg_resources.files("manim_extensions.nerdfont") / _FONT_FILENAME)
 
 
-def _install_font_linux() -> Any:
+def _install_font_linux() -> None:
     """Install the TTF into the fontconfig user font dir (Linux only).
 
     Idempotent and best-effort: a missing ``fc-cache`` binary or an
     unwritable home directory is silently ignored (``register_font``
     remains sufficient on Windows/macOS and older pango).
-
-
-    Returns
-    -------
-            The resulting value.
     """
     global _font_installed
     if _font_installed or platform.system() != "Linux":

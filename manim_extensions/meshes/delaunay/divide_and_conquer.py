@@ -184,7 +184,7 @@ class DivideAndConquer:
             split_line,
         )
 
-    def triangulate_leq_3(self, vert_indices: list[Any]) -> Any:
+    def triangulate_leq_3(self, vert_indices: list[Any]) -> None:
         """Triangulate a base case of at most three vertices.
 
         Creates a triangle (or a degenerate segment when only two vertices
@@ -195,11 +195,6 @@ class DivideAndConquer:
         vert_indices
             Indices of the vertices to triangulate.  The list must contain
             at most three entries.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------
@@ -225,7 +220,7 @@ class DivideAndConquer:
         base_lr: tuple[int, int],
         rr_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
         speed: float = 1.0,
-    ) -> Any:
+    ) -> int | None:
         """Find the best right-side candidate vertex for the merge step.
 
         The method evaluates all right-side vertices connected to the
@@ -279,9 +274,9 @@ class DivideAndConquer:
                     next_potential_candidate is None
                     or not np.linalg.norm(c - vertices[endpoints[order[i + 1]]]) < r
                 ):
-                    return endpoints[
-                        order[i]
-                    ]  # next_potential_candidate not within circle defined by base_lr and
+                    return int(
+                        endpoints[order[i]]
+                    )  # next_potential_candidate not within circle defined by base_lr and
                     # potential_candidate
 
                 # delete RR edge to potential_candidate
@@ -310,7 +305,7 @@ class DivideAndConquer:
         base_lr: tuple[int, int],
         ll_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
         speed: float = 1.0,
-    ) -> Any:
+    ) -> int | None:
         """Find the best left-side candidate vertex for the merge step.
 
         Mirror of :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate` for the left side.  Evaluates
@@ -363,7 +358,7 @@ class DivideAndConquer:
                     next_potential_candidate is None
                     or not np.linalg.norm(c - vertices[endpoints[order[i + 1]]]) < r
                 ):
-                    return endpoints[order[i]]
+                    return int(endpoints[order[i]])
 
                 # delete LL edge to potential_candidate
                 faces = self.triangle_mesh.mesh.faces
@@ -455,6 +450,7 @@ class DivideAndConquer:
                     r_candidate = None
 
             candidate = r_candidate if r_candidate is not None else l_candidate
+            assert candidate is not None
             indices = indices_right if r_candidate is not None else indices_left
             if (
                 len(indices) == 2
@@ -587,7 +583,7 @@ class DivideAndConquer:
 
         return indices_left[left], indices_right[right]
 
-    def divide_and_conquer_recursive(self, speed: float = 1.0) -> Any:
+    def divide_and_conquer_recursive(self, speed: float = 1.0) -> None:
         """Run the complete recursive divide-and-conquer algorithm.
 
         Starts with the full set of mesh vertices and recursively splits,
@@ -598,11 +594,6 @@ class DivideAndConquer:
         ----------
         speed
             Animation speed multiplier.
-
-
-        Returns
-        -------
-            The resulting value.
 
         Raises
         ------

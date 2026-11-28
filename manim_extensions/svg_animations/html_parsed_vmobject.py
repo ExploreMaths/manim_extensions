@@ -9,7 +9,7 @@ This module provides functionality to parse SVG files and create
 animated Manim objects from them.
 """
 
-from typing import Any, cast
+from typing import cast
 
 # unlinked-class-ok: Arrays
 
@@ -96,7 +96,7 @@ if (!rendered) {
 var keys = Object.keys(combsDict);
 var ithElements = [];
 for (let arr of keys) {
-    if (Array.isArray(arr[i])) {   
+    if (Array.isArray(arr[i])) {
         ithElements.push(arr[i]);
     }
     else {
@@ -208,7 +208,7 @@ class HTMLParsedVMobject:
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
 
-    def updater(self, dt: float) -> Any:
+    def updater(self, dt: float) -> None:
         """Export the vmobject to an SVG frame and append the JS update.
 
         Called once per rendered frame through the scene updater registered
@@ -220,11 +220,6 @@ class HTMLParsedVMobject:
         ----------
         dt
             Elapsed time since the previous frame, in seconds.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         if self.continue_updating is False:
             return
@@ -285,16 +280,11 @@ class HTMLParsedVMobject:
         self.current_index += 1
         os.remove(svg_filename)
 
-    def update_html(self) -> Any:
+    def update_html(self) -> None:
         """Rewrite the HTML page with the current frame and time.
 
         Called on every scene update; embeds the current SVG frame and
         renderer time into the HTML/JS output.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
@@ -321,17 +311,12 @@ class HTMLParsedVMobject:
                 bg_color_css,
             )
 
-    def finish(self) -> Any:
+    def finish(self) -> None:
         """Stop the updater and write the final HTML and JS files.
 
         Removes the scene updater and flushes the accumulated
         JavaScript updates to ``<scene_name>.js`` and the final page to
         ``<scene_name>.html``.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
@@ -356,7 +341,7 @@ class HTMLParsedVMobject:
         value_trackers: list[ValueTracker],
         linspaces: list[VectorND],
         animate_this: bool = True,
-    ) -> Any:
+    ) -> None:
         """Precompute the interactive JavaScript state for value combinations.
 
         Iterates over the cartesian product of ``linspaces``, sets each
@@ -375,12 +360,6 @@ class HTMLParsedVMobject:
         animate_this
             If ``False``, stop the per-frame updater before sweeping and
             record the current scene time as ``self.last_t``.
-
-
-
-        Returns
-        -------
-                The resulting value.
         """
         svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:

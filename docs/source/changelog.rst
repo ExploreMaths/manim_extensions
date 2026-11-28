@@ -112,8 +112,16 @@ Added (21)
   ``Classes`` index pages instead of two sibling sections in one document.
   ``Classes`` keeps its own ``_AnimationBuilder`` entry and hidden toctree.
 
-Changed (34)
+Changed (35)
 ~~~~~~~~~~~~
+
+* Docstring formatting is stricter. The summary and every numpydoc section
+  now need exactly one blank line before the next section, and a
+  ``Returns``/``Yields`` body must be indented exactly four spaces below its
+  header. Bare ``-> Any`` return annotations are rejected: side-effect-only
+  functions use ``-> None`` and no ``Returns`` section, while value-returning
+  functions declare a concrete type. This removed every placeholder
+  ``Returns`` block and replaced every bare ``Any`` return annotation.
 
 * Font Awesome enum members whose names collide with Python builtins now use
   a trailing underscore: :attr:`~manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_`,

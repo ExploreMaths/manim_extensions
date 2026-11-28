@@ -42,7 +42,6 @@ class SeqAction(AnimationGroup):
 
     .. doc-example-covers: introduce_actors, subject_gives_gift_to_target
 
-
     Examples
     --------
     .. manim:: SeqActionMessages

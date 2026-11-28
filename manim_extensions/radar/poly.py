@@ -199,7 +199,6 @@ class PolyRadarChart(VGroup):
 
     .. doc-example-covers: spin_to
 
-
     Parameters
     ----------
     axes_names

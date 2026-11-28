@@ -40,7 +40,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     num_nodes
@@ -141,7 +140,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Creates the neural network layer.
 
         Parameters
@@ -152,11 +151,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Add Nodes
         for node_number in range(self.num_nodes):
@@ -187,13 +181,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this feed-forward layer.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def construct_activation_function(self) -> None:
+        """Build the activation-function plot for this feed-forward layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -357,7 +346,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         mobject_or_point: Any,
         aligned_edge: Any = None,
         coor_mask: Any = None,
-    ) -> Any:
+    ) -> "FeedForwardLayer":
         """Moves the center of the layer to the given mobject or point.
 
         Parameters
@@ -371,10 +360,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             Coordinate mask forwarded to the underlying ``move_to``
             implementation.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):
@@ -383,3 +371,4 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             target_center = mobject_or_point
 
         self.shift(target_center - layer_center)
+        return self

@@ -46,7 +46,6 @@ class VSimpleMotor(VConstraint):
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
-
     Examples
     --------
     .. manim:: VSimpleMotorScene

@@ -31,7 +31,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
     .. doc-example-covers: make_forward_pass_animation
 
-
     Parameters
     ----------
     operation_type
@@ -119,7 +118,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
-    ) -> Any:
+    ) -> None:
         """Creates the neural network layer.
 
         Parameters
@@ -130,11 +129,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-
-        Returns
-        -------
-                The resulting value.
         """
         # Draw the operation
         self.operation_text = Text(self.operation_type, font_size=self.font_size)
@@ -148,13 +142,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this math-operation layer.
-
-        Returns
-        -------
-            The resulting value.
-        """
+    def construct_activation_function(self) -> None:
+        """Build the activation-function plot for this math-operation layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -239,7 +228,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         mobject_or_point: Any,
         aligned_edge: Any = None,
         coor_mask: Any = None,
-    ) -> Any:
+    ) -> "MathOperationLayer":
         """Moves the center of the layer to the given mobject or point.
 
         Parameters
@@ -253,10 +242,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             Coordinate mask forwarded to the underlying ``move_to``
             implementation.
 
-
         Returns
         -------
-                The resulting value.
+            The object itself, allowing method chaining.
         """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):
@@ -265,3 +253,4 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             target_center = mobject_or_point
 
         self.shift(target_center - layer_center)
+        return self

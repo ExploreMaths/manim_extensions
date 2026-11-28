@@ -17,7 +17,6 @@ class MVariable(MArrayElement):
 
     .. doc-example-covers: update_index, update_label, update_value
 
-
     Parameters
     ----------
     scene
