@@ -51,12 +51,6 @@ Render a Python code block:
            self.play(*block.create())
            self.wait()
 
-Classes
--------
-
-.. autoall:: manim_extensions.code_blocks
-   :types: class
-
 Modules
 -------
 

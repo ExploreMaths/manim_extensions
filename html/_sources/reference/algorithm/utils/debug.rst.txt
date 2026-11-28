@@ -15,9 +15,6 @@ Classes
 
    ~ParagraphLineIndices
 
-.. autoall:: manim_extensions.algorithm.utils.debug
-   :types: class
-
 .. toctree::
    :hidden:
    :maxdepth: 1

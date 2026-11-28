@@ -15,9 +15,6 @@ Classes
 
    ~ArcFromCenter
 
-.. autoall:: manim_extensions.compass.utils.geometry_method
-   :types: class
-
 Functions
 ---------
 

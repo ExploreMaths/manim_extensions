@@ -15,9 +15,6 @@ Classes
 
    ~CircumCircle
 
-.. autoall:: manim_extensions.meshes.delaunay.delaunay_criterion
-   :types: class
-
 Functions
 ---------
 
