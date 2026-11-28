@@ -387,7 +387,17 @@ def make_forward_pass_with_dropout_animation(
 
 
 def _prune_empty_animations(animation: Animation) -> bool:
-    """Drop empty nested animation groups in place and report if any remain."""
+    """Drop empty nested animation groups in place and report if any remain.
+
+    Parameters
+    ----------
+    animation
+        The animation tree to prune.
+
+    Returns
+    -------
+        Whether the animation still contains at least one child animation.
+    """
     children = getattr(animation, "animations", None)
     if children is None:
         return True
