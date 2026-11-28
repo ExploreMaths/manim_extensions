@@ -8,6 +8,7 @@ Rules:
 * classes are PascalCase (``^[A-Z][A-Za-z0-9]*$``) with no underscore;
 * functions and methods are snake_case (``^_*[a-z][a-z0-9_]*$``), which
   permits private and dunder names;
+* module-level names and Enum members must not shadow Python builtins;
 * names in every package file are checked, including vendored packages.
 
 Usage:
@@ -19,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import builtins
 import re
 import sys
 from pathlib import Path
@@ -29,6 +31,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 CLASS_RE = re.compile(r"[A-Z][A-Za-z0-9]*$")
 FUNCTION_RE = re.compile(r"_*[a-z][a-z0-9_]*$")
+BUILTIN_NAMES = set(dir(builtins))
+ENUM_BASES = {"Enum", "IntEnum", "StrEnum", "Flag", "IntFlag"}
+
+
+def _assignment_targets(node: ast.Assign | ast.AnnAssign) -> list[str]:
+    targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+    return [target.id for target in targets if isinstance(target, ast.Name)]
+
+
+def _is_enum(node: ast.ClassDef) -> bool:
+    return any(
+        isinstance(base, ast.Name) and base.id in ENUM_BASES for base in node.bases
+    )
 
 
 def scan_file(path: Path) -> list[tuple[int, str, str]]:
@@ -36,10 +51,23 @@ def scan_file(path: Path) -> list[tuple[int, str, str]]:
     source = path.read_text(encoding="utf-8")
     tree = ast.parse(source, filename=str(path))
     problems: list[tuple[int, str, str]] = []
+
+    for node in tree.body:
+        if isinstance(node, (ast.Assign, ast.AnnAssign)):
+            for name in _assignment_targets(node):
+                if name in BUILTIN_NAMES and not name.startswith("_"):
+                    problems.append((node.lineno, "module name", name))
+
     for node in ast.walk(tree):
         if isinstance(node, ast.ClassDef):
             if not CLASS_RE.fullmatch(node.name):
                 problems.append((node.lineno, "class", node.name))
+            if _is_enum(node):
+                for statement in node.body:
+                    if isinstance(statement, (ast.Assign, ast.AnnAssign)):
+                        for name in _assignment_targets(statement):
+                            if name in BUILTIN_NAMES and not name.startswith("_"):
+                                problems.append((statement.lineno, "enum member", name))
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             if not FUNCTION_RE.fullmatch(node.name):
                 problems.append((node.lineno, "function", node.name))

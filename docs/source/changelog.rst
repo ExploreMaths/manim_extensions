@@ -115,8 +115,18 @@ Added (21)
   ``Classes`` index pages instead of two sibling sections in one document.
   ``Classes`` keeps its own ``_AnimationBuilder`` entry and hidden toctree.
 
-Changed (33)
+Changed (34)
 ~~~~~~~~~~~~
+
+* Font Awesome enum members whose names collide with Python builtins now use
+  a trailing underscore: :attr:`~manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list_`,
+  ``map_``, ``filter_``, ``print_``, ``copyright_`` and
+  :attr:`~manim_extensions.fontawesome.manim_fontawesome.RegularEnum.map_`,
+  ``copyright_``.  The ``solid`` and ``regular`` namespaces still accept the
+  public icon names (``solid.list``, ``regular.map``, ...), and
+  ``list_icons()`` keeps returning the original icon names.  This removes
+  the ambiguous Sphinx target that made ``list`` in a type alias link to the
+  icon constant.
 
 * The QR code factory is now the :class:`~manim_extensions.qr_codes.qr.QRCode`
   mobject class.  The refactored version no longer exposes a separate

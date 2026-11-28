@@ -52,6 +52,17 @@ solid_dir = svg_dir / "solid"
 #: Font Awesome release bundled with the package.
 FONT_AWESOME_VERSION = "6.5.1"
 
+# Enum members whose Font Awesome names collide with Python builtins use a
+# trailing underscore. The style namespaces keep accepting the original names.
+_RESERVED_ICON_NAMES = {
+    "copyright": "copyright_",
+    "filter": "filter_",
+    "list": "list_",
+    "map": "map_",
+    "print": "print_",
+}
+_ORIGINAL_ICON_NAMES = {value: key for key, value in _RESERVED_ICON_NAMES.items()}
+
 
 class BrandEnum(Enum):
     """Bundled brand-style icon paths.
@@ -1148,7 +1159,7 @@ class RegularEnum(Enum):
 
     image = os.fspath(regular_dir / "image.svg")
 
-    map = os.fspath(regular_dir / "map.svg")
+    map_ = os.fspath(regular_dir / "map.svg")
 
     star_half_stroke = os.fspath(regular_dir / "star-half-stroke.svg")
 
@@ -1276,7 +1287,7 @@ class RegularEnum(Enum):
 
     face_angry = os.fspath(regular_dir / "face-angry.svg")
 
-    copyright = os.fspath(regular_dir / "copyright.svg")
+    copyright_ = os.fspath(regular_dir / "copyright.svg")
 
     file_code = os.fspath(regular_dir / "file-code.svg")
 
@@ -1940,7 +1951,7 @@ class SolidEnum(Enum):
 
     clipboard_list = os.fspath(solid_dir / "clipboard-list.svg")
 
-    list = os.fspath(solid_dir / "list.svg")
+    list_ = os.fspath(solid_dir / "list.svg")
 
     camera = os.fspath(solid_dir / "camera.svg")
 
@@ -2018,7 +2029,7 @@ class SolidEnum(Enum):
 
     tenge_sign = os.fspath(solid_dir / "tenge-sign.svg")
 
-    map = os.fspath(solid_dir / "map.svg")
+    map_ = os.fspath(solid_dir / "map.svg")
 
     star_half_stroke = os.fspath(solid_dir / "star-half-stroke.svg")
 
@@ -2752,7 +2763,7 @@ class SolidEnum(Enum):
 
     briefcase = os.fspath(solid_dir / "briefcase.svg")
 
-    filter = os.fspath(solid_dir / "filter.svg")
+    filter_ = os.fspath(solid_dir / "filter.svg")
 
     language = os.fspath(solid_dir / "language.svg")
 
@@ -2798,7 +2809,7 @@ class SolidEnum(Enum):
 
     bowl_food = os.fspath(solid_dir / "bowl-food.svg")
 
-    print = os.fspath(solid_dir / "print.svg")
+    print_ = os.fspath(solid_dir / "print.svg")
 
     cloud_sun = os.fspath(solid_dir / "cloud-sun.svg")
 
@@ -3000,7 +3011,7 @@ class SolidEnum(Enum):
 
     franc_sign = os.fspath(solid_dir / "franc-sign.svg")
 
-    copyright = os.fspath(solid_dir / "copyright.svg")
+    copyright_ = os.fspath(solid_dir / "copyright.svg")
 
     venus_double = os.fspath(solid_dir / "venus-double.svg")
 
@@ -4347,7 +4358,9 @@ class Regular:
         -------
             The requested regular icon.
         """
-        return _get_svg_object(RegularEnum.__members__[name].value)
+        return _get_svg_object(
+            RegularEnum.__members__[_RESERVED_ICON_NAMES.get(name, name)].value
+        )
 
 
 class Solid:
@@ -4387,7 +4400,9 @@ class Solid:
         -------
             The requested solid icon.
         """
-        return _get_svg_object(SolidEnum.__members__[name].value)
+        return _get_svg_object(
+            SolidEnum.__members__[_RESERVED_ICON_NAMES.get(name, name)].value
+        )
 
 
 # patched: added list_icons() — upstream offers no public way to enumerate
@@ -4406,7 +4421,7 @@ def list_icons(style: str = "solid") -> list[str]:
         (or the matching namespace) to obtain the icon mobject.
     """
     enums = {"solid": SolidEnum, "regular": RegularEnum, "brand": BrandEnum}
-    return list(enums[style].__members__)
+    return [_ORIGINAL_ICON_NAMES.get(name, name) for name in enums[style].__members__]
 
 
 #: Enum of brand-style icon names mapped to their SVG paths.
